@@ -1,0 +1,45 @@
+{
+  "name": "expressmatch",
+  "version": "1.0.0",
+  "description": "Express Match",
+  "main": "index.js",
+  "scripts": {
+    "start": "node_modules/webpack/bin/webpack.js --config webpack.config.dev.js --mode development",
+    "build": "node --inspect server/srcServer.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "ExpressMatch",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "bcrypt": "^3.0.0",
+    "body-parser": "^1.18.2",
+    "compression": "^1.7.2",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "^1.4.3",
+    "ejs": "^2.6.1",
+    "express": "^4.16.3",
+    "express-session": "^1.15.6",
+    "helmet": "^3.12.0",
+    "mongoose": "^5.0.17",
+    "morgan": "^1.9.0",
+    "passport": "^0.4.0",
+    "passport-facebook": "^2.1.1",
+    "passport-local": "^1.0.0",
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2",
+    "react-router": "^4.2.0"
+  },
+  "devDependencies": {
+    "babel-loader": "^7.1.4",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "clean-webpack-plugin": "^0.1.19",
+    "css-loader": "^0.28.11",
+    "sass-loader": "^7.0.1",
+    "style-loader": "^0.21.0",
+    "webpack": "^4.6.0",
+    "webpack-cli": "^2.0.15",
+    "webpack-dev-middleware": "^3.1.3",
+    "webpack-hot-middleware": "^2.22.1"
+  }
+}
