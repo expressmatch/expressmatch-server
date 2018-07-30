@@ -43,7 +43,7 @@ app.use(webpackHotMiddleware(compiler, {
 app.use(compression());
 app.use(helmet());
 app.use(morgan('dev'));
-app.use(cookieParser());
+//app.use(cookieParser());
 app.use(bodyParser.urlencoded({
 	extended: true,
 	limit: "20mb"
