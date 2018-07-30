@@ -48,17 +48,6 @@ module.exports = function(app, passport) {
     }));
 
 	// =====================================
-	// PROFILE SECTION =====================
-	// =====================================
-	// we will want this protected so you have to be logged in to visit
-	// we will use route middleware to verify this (the isLoggedIn function)
-	app.get('/profile', isLoggedIn, function(req, res) {
-	    res.render('profile.ejs', {
-	        user : req.user // get the user out of session and pass to template
-	    });
-	});
-
-	// =====================================
     // FACEBOOK ROUTES =====================
     // =====================================
     // route for facebook authentication and login
@@ -72,6 +61,29 @@ module.exports = function(app, passport) {
             successRedirect : '/posts',
             failureRedirect : '/'
         }));
+
+    // =====================================
+    // APP AUTHENTICATION FOR ALL ROUTES ===
+    // =====================================
+    // authenticating rest of the server and UI routes
+    app.use('/', function(req, res){
+    	if(req.isAuthenticated()){
+    		req.next();
+    	}else{
+    		res.redirect('/');
+    	}
+    });
+
+	// =====================================
+	// PROFILE SECTION =====================
+	// =====================================
+	// we will want this protected so you have to be logged in to visit
+	// we will use route middleware to verify this (the isLoggedIn function)
+	app.get('/profile', isLoggedIn, function(req, res) {
+	    res.render('profile.ejs', {
+	        user : req.user // get the user out of session and pass to template
+	    });
+	});
 
 	// =====================================
 	// LOGOUT ==============================
