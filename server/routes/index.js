@@ -1,7 +1,7 @@
 const express = require("express");
 const userRoutes = require("./user.routes");
 const authRoutes = require("./auth.routes");
-
+const postRoutes = require("./post.routes");
 const router = express.Router();
 
 module.exports = function(app, passport) {
@@ -67,6 +67,7 @@ module.exports = function(app, passport) {
     // =====================================
     // authenticating rest of the server and UI routes
     app.use('/', function(req, res){
+    	console.log('Authentication middleware called at /');
     	if(req.isAuthenticated()){
     		req.next();
     	}else{
@@ -93,18 +94,48 @@ module.exports = function(app, passport) {
 	    res.redirect('/');
 	});
 
-	router.use("/user", userRoutes);
-	router.use("/auth", authRoutes);
+	app.use("/user", userRoutes);
+	app.use("/auth", authRoutes);
+	app.use(postRoutes(app));
+
+	console.log(listRoutes(app));
 	return router;
 }
+
 
 // route middleware to make sure a user is logged in
 function isLoggedIn(req, res, next) {
 
-    // if user is authenticated in the session, carry on 
+    // if user is authenticated in the session, carry on
     if (req.isAuthenticated())
         return next();
 
     // if they aren't redirect them to the home page
     res.redirect('/');
+}
+
+
+function listRoutes(app, routes, stack, parent){
+
+    parent = parent || '';
+    if(stack){
+        stack.forEach(function(r){
+            if (r.route && r.route.path){
+                var method = '';
+
+                for(method in r.route.methods){
+                    if(r.route.methods[method]){
+                        routes.push({method: method.toUpperCase(), path: parent + r.route.path});
+                    }
+                }
+
+            } else if (r.handle && r.handle.name == 'router') {
+                const routerName = r.regexp.source.replace("^\\","").replace("\\/?(?=\\/|$)","");
+                return listRoutes(app, routes, r.handle.stack, parent + routerName);
+            }
+        });
+        return routes;
+    } else {
+        return listRoutes(app, [], app._router.stack);
+    }
 }

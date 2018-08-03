@@ -62,13 +62,11 @@ app.use(flash());
 
 //-------Routes---------//
 const routes = initRoutes(app, passport);
-//app.use("/api", routes);	
 
 // Catch no route match, always at the end
 app.get('*', function(req, res) {
 	res.sendFile(path.resolve(__dirname,'../client/index.html'));
 });
-
 //-------Launch---------//
 app.listen(port, () => {
 	console.log('Express App server listening on post ' + port);
