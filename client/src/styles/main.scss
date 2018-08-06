@@ -1,0 +1,15 @@
+@import './reset.scss';
+@import './variables.scss';
+
+@import './header.scss';
+@import './content.scss';
+@import './posts.scss';
+
+div, span {
+  //border: 0.5px solid $em-border-gray;
+}
+
+.main-container{
+  display: flex;
+  flex-flow: column nowrap;
+}

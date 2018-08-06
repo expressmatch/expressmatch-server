@@ -1,0 +1,39 @@
+#header{
+  height: 60px;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid $em-border-gray;
+
+  .left-content{
+    .app-logo{
+      min-width: 100px;
+    }
+  }
+  .right-content{
+    display: flex;
+    flex-flow: row;
+
+    .menu-items{
+      display: flex;
+      flex-flow: row nowrap;
+      align-items: center;
+
+      .menu-item{
+        padding: 0 10px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+      }
+    }
+    .profile{
+      .profile-picture{
+        height: 30px;
+        width: 30px;
+        border-radius: 50%;
+        border: 1px solid $em-border-gray;
+      }
+    }
+  }
+}
