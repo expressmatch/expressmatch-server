@@ -37,6 +37,8 @@
     "babylon": "^6.18.0",
     "clean-webpack-plugin": "^0.1.19",
     "css-loader": "^0.28.11",
+    "node-sass": "^4.9.2",
+    "redux": "^4.0.0",
     "sass-loader": "^7.0.3",
     "style-loader": "^0.21.0",
     "webpack": "^4.16.3",

@@ -62,7 +62,6 @@ app.use(flash());
 
 //-------Routes---------//
 const routes = initRoutes(app, passport);
-//app.use("/api", routes);	
 
 // Catch no route match, always at the end
 app.get('*', function(req, res) {

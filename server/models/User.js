@@ -38,14 +38,12 @@ const UserSchema = new mongoose.Schema({
     email: {
       type: String
     },
-    // photos: {
-    //   type: [{
-    //     type: String
-    //   }]
-    // }
-    photo: {
-      type: String
+    photos: {
+      type: [String]
     }
+    // photo: {
+    //   type: String
+    // }
   }
 });
 

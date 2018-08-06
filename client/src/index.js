@@ -1,12 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/App';
+import { BrowserRouter } from 'react-router-dom';
+import './styles/main.scss';
 
 ReactDOM.render(
-	<App />,
-	document.getElementById('app')
+	<BrowserRouter>
+		<App />
+	</BrowserRouter>,
+    document.getElementById('app')
 );
 
 if(module.hot){
-	module.hot.accept();
+    module.hot.accept();
 }

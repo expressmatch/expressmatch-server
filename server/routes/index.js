@@ -1,78 +1,15 @@
 const express = require("express");
 const userRoutes = require("./user.routes");
 const authRoutes = require("./auth.routes");
-
+const postRoutes = require("./post.routes");
 const router = express.Router();
 
 module.exports = function(app, passport) {
 
-	// =====================================
-	// HOME PAGE (with login links) ========
-	// =====================================
-	app.get('/', function(req, res) {
-	    res.render('index.ejs'); // load the index.ejs file
-	});
+    app.use("/auth", authRoutes(app, passport));
 
-	// =====================================
-	// LOGIN ===============================
-	// =====================================
-	// show the login form
-	app.get('/login', function(req, res) {
-
-	    // render the page and pass in any flash data if it exists
-	    res.render('login.ejs', { message: req.flash('loginMessage') }); 
-	});
-
-	// process the login form
-    app.post('/login', passport.authenticate('local-login', {
-        successRedirect : '/posts', // redirect to the secure profile section
-        failureRedirect : '/login', // redirect back to the signup page if there is an error
-        failureFlash : true // allow flash messages
-    }));
-
-	// =====================================
-	// SIGNUP ==============================
-	// =====================================
-	// show the signup form
-	app.get('/signup', function(req, res) {
-
-	    // render the page and pass in any flash data if it exists
-	    res.render('signup.ejs', { message: req.flash('signupMessage') });
-	});
-
-	// process the signup form
-	app.post('/signup', passport.authenticate('local-signup', {
-        successRedirect : '/posts', // redirect to the secure profile section
-        failureRedirect : '/signup', // redirect back to the signup page if there is an error
-        failureFlash : true // allow flash messages
-    }));
-
-	// =====================================
-    // FACEBOOK ROUTES =====================
-    // =====================================
-    // route for facebook authentication and login
-    app.get('/auth/facebook', passport.authenticate('facebook', { 
-      scope : ['public_profile', 'email']
-    }));
-
-    // handle the callback after facebook has authenticated the user
-    app.get('/auth/facebook/callback',
-        passport.authenticate('facebook', {
-            successRedirect : '/posts',
-            failureRedirect : '/'
-        }));
-
-    // =====================================
-    // APP AUTHENTICATION FOR ALL ROUTES ===
-    // =====================================
-    // authenticating rest of the server and UI routes
-    app.use('/', function(req, res){
-    	if(req.isAuthenticated()){
-    		req.next();
-    	}else{
-    		res.redirect('/');
-    	}
-    });
+    app.use("/user", isLoggedIn, userRoutes);
+    app.use("/", isLoggedIn, postRoutes(app));
 
 	// =====================================
 	// PROFILE SECTION =====================
@@ -85,26 +22,39 @@ module.exports = function(app, passport) {
 	    });
 	});
 
-	// =====================================
-	// LOGOUT ==============================
-	// =====================================
-	app.get('/logout', function(req, res) {
-	    req.logout();
-	    res.redirect('/');
-	});
-
-	router.use("/user", userRoutes);
-	router.use("/auth", authRoutes);
+	console.log(listRoutes(app));
 	return router;
 }
 
-// route middleware to make sure a user is logged in
 function isLoggedIn(req, res, next) {
 
-    // if user is authenticated in the session, carry on 
     if (req.isAuthenticated())
         return next();
 
-    // if they aren't redirect them to the home page
     res.redirect('/');
+}
+
+function listRoutes(app, routes, stack, parent){
+
+    parent = parent || '';
+    if(stack){
+        stack.forEach(function(r){
+            if (r.route && r.route.path){
+                var method = '';
+
+                for(method in r.route.methods){
+                    if(r.route.methods[method]){
+                        routes.push({method: method.toUpperCase(), path: parent + r.route.path});
+                    }
+                }
+
+            } else if (r.handle && r.handle.name == 'router') {
+                const routerName = r.regexp.source.replace("^\\","").replace("\\/?(?=\\/|$)","");
+                return listRoutes(app, routes, r.handle.stack, parent + routerName);
+            }
+        });
+        return routes;
+    } else {
+        return listRoutes(app, [], app._router.stack);
+    }
 }
