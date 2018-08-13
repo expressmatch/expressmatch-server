@@ -3,13 +3,25 @@
 
 @import './header.scss';
 @import './content.scss';
+@import './profile.scss';
 @import './posts.scss';
 
-div, span {
-  //border: 0.5px solid $em-border-gray;
+body{
+  margin: 0;
+  font-family: Roboto,-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Arial,sans-serif;
+  font-size: .850rem;
+  font-weight: 400;
+  line-height: 1.6;
+  color: #888da8;
+  background-color: #edf2f6;
 }
 
-.main-container{
-  display: flex;
-  flex-flow: column nowrap;
+.app {
+  height: 100%;
+
+  .main-container{
+    display: flex;
+    flex-flow: column nowrap;
+    height: 100%;
+  }
 }

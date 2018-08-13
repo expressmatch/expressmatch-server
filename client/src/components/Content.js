@@ -1,7 +1,8 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import Posts from './posts/Posts';
+import PostsContainer from '../containers/PostsContainer';
 import CreatePost from './posts/CreatePost';
+import ProfileContainer from '../containers/ProfileContainer';
 import NotFoundPage from './NotFoundPage';
 
 class Content extends React.Component {
@@ -9,11 +10,11 @@ class Content extends React.Component {
         return (
             <div id="content">
                 <Switch>
-                    <Route exact path="/posts" component={Posts} />
+                    <Route exact path="/posts" component={PostsContainer} />
                     <Route path="/createpost" component={CreatePost} />
+                    <Route path="/profile1" component={ProfileContainer} />
                     <Route component={NotFoundPage} />
                 </Switch>
-                Content
             </div>
         );
     }

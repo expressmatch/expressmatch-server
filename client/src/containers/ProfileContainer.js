@@ -3,34 +3,33 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as actions from '../actions/postsActions';
-import Posts from '../components/posts/Posts';
+import Profile from '../components/Profile';
 
-class PostsContainer extends React.Component {
+class ProfileContainer extends React.Component {
     constructor(props){
         super(props);
     }
 
     componentDidMount(){
-       this.props.actions.getPosts();
+        // this.props.actions.getPosts();
     }
     componentWillMount(){
 
     }
     componentWillReceiveProps(){
-        console.log(this.props.posts);
+
     }
 
     render() {
         return (
-            <Posts posts={this.props.posts}/>
+            <Profile/>
         );
     }
 }
 
 
-PostsContainer.propTypes = {
-    actions: PropTypes.object.isRequired,
-    posts: PropTypes.array.isRequired
+ProfileContainer.propTypes = {
+
 };
 
 function mapStateToProps(state, ownProps) {
@@ -48,4 +47,4 @@ function mapDispatchToProps(dispatch) {
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(PostsContainer);
+)(ProfileContainer);

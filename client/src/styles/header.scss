@@ -4,11 +4,19 @@
   flex-flow: row nowrap;
   justify-content: space-between;
   align-items: center;
-  border: 1px solid $em-border-gray;
+  border-bottom: 1px solid $em-border-gray;
+  background-color: $em-bg-white;
+  position: sticky;
+  -webkit-position: sticky;
+  top: 0px;
+  background-color: #3f4257;
+  z-index: 100;
 
   .left-content{
     .app-logo{
       min-width: 100px;
+      color: #fff;
+      margin: 0 10px;
     }
   }
   .right-content{
@@ -20,11 +28,12 @@
       flex-flow: row nowrap;
       align-items: center;
 
-      .menu-item{
+      .menu-item a{
         padding: 0 10px;
         text-overflow: ellipsis;
         overflow: hidden;
         white-space: nowrap;
+        color: #fff;
       }
     }
     .profile{

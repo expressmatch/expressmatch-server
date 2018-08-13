@@ -1,0 +1,45 @@
+#profile{
+  width: 80%;
+  margin: auto;
+
+  form{
+    .form-control{
+      padding: 20px 0;
+
+      .field-label{
+        font-size: 24px;
+        padding: 10px 0;
+      }
+      .field-value{
+        padding: 10px 0 0 0;
+
+        input, select, textarea{
+          height: 39.2px;
+          font-size: 100%;
+        }
+        textarea{
+          height: 100px;
+          resize: none;
+        }
+
+        input, textarea{
+          background-color: $em-bg-gray;;
+          border-radius: 3px;
+          border: 1px solid rgba(0,0,0,.12);
+          margin: 0 0 4px;
+          max-width: 100%;
+          padding: 8px;
+          width: 100%;
+          outline: none;
+
+          &:focus{
+            background-color: $em-bg-white;
+          }
+        }
+        button{
+          padding: 8px 16px;
+        }
+      }
+    }
+  }
+}

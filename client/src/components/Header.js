@@ -8,7 +8,7 @@ class Header extends React.Component {
                 <div className="left-content">
                     <a href="/posts">
                         <div className="app-logo">
-                            Express Match
+                            EXPRESS MATCH
                         </div>
                     </a>
                 </div>
@@ -23,10 +23,13 @@ class Header extends React.Component {
                         <div className="menu-item">
                             <NavLink to="/createpost">Create new post</NavLink>
                         </div>
-                        <div className="menu-item">Messages</div>
+                        <div className="menu-item">
+                            <a href="#">Messages</a>
+                        </div>
                     </div>
                     <div className="profile">
                         <div className="profile-picture"/>
+                        <a href="/profile1">Profile</a>
                     </div>
                 </div>
             </div>
