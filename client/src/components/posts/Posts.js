@@ -1,6 +1,14 @@
 import React from 'react';
 
 class Posts extends React.Component {
+    constructor(props){
+        super(props);
+    }
+
+    componentWillReceiveProps(newProps){
+
+        
+    }
     render() {
         return (
             <div className="posts">

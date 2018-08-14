@@ -1,3 +1,10 @@
 export default {
-    posts: []
+    posts: {
+        entities: {
+            posts: {
+                byId: {},
+                allIds: []
+            }
+        }
+    }
 }

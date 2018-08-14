@@ -17,7 +17,6 @@ class PostsContainer extends React.Component {
 
     }
     componentWillReceiveProps(){
-        console.log(this.props.posts);
     }
 
     render() {
@@ -35,7 +34,7 @@ PostsContainer.propTypes = {
 
 function mapStateToProps(state, ownProps) {
     return {
-        posts: state.posts
+        posts: state.posts.entities.posts.allIds.map(id => state.posts.entities.posts.byId[id])
     };
 }
 
