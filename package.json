@@ -11,6 +11,7 @@
   "author": "ExpressMatch",
   "license": "UNLICENSED",
   "dependencies": {
+    "axios": "^0.18.0",
     "bcrypt": "^3.0.0",
     "body-parser": "^1.18.3",
     "compression": "^1.7.3",
@@ -26,6 +27,7 @@
     "passport-facebook": "^2.1.1",
     "passport-local": "^1.0.0",
     "react": "^16.4.1",
+    "react-calendar": "^2.16.1",
     "react-dom": "^16.4.1",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.3.1",

@@ -10,14 +10,14 @@
       padding: 25px;
       margin: 10px 0;
       background-color: $em-bg-white;
-      position: relative;
+      border-radius: 5px;
 
       .post-header{
         display: flex;
         justify-content: space-between;
 
         .post-date{
-
+          font-size: 13px;
         }
         .post-action{
           cursor: pointer;
@@ -39,22 +39,44 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
+
+        .likes-count{
+
+        }
+        .liked{
+          font-size: 13px;
+        }
+        .comments-count{
+
+        }
       }
       .post-controls{
-        padding: 10px 0;
-        position: absolute;
-        top: 20px;
-        right: -20px;
+        display: flex;
+        align-items: stretch;
+        border-bottom: 1px solid #e6ecf5;
 
         .post-control{
-          padding: 5px;
+          margin: 5px;
+          flex: 1 0 auto;
+
+          &:first-child{
+            margin-left: 0;
+          }
+          &:last-child{
+            margin-right: 0;
+          }
 
           button{
-            width: 30px;
+            color: #888da8;
             height: 30px;
-            border-radius: 50%;
+            width: 100%;
+            border-radius: 2px;
             outline: none;
             cursor: pointer;
+
+            &:hover{
+              background-color: #f2f2f2;
+            }
           }
         }
       }
@@ -63,8 +85,20 @@
   .right-content{
     width: 250px;
     min-width: 250px;
-    //border: 1px solid #e6ecf5;
     margin-left: 10px;
-    padding: 10px;
+    padding: 10px 20px;
+
+    .panel{
+      margin-bottom: 10px;
+      border: 1px solid black;
+
+
+      &.filter {
+        .filter-item{
+          height: 28px;
+          border: 1px solid black;
+        }
+      }
+    }
   }
 }

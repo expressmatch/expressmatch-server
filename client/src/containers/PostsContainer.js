@@ -21,7 +21,7 @@ class PostsContainer extends React.Component {
 
     render() {
         return (
-            <Posts posts={this.props.posts}/>
+            <Posts posts={this.props.posts} actions={this.props.actions}/>
         );
     }
 }
@@ -33,6 +33,7 @@ PostsContainer.propTypes = {
 };
 
 function mapStateToProps(state, ownProps) {
+    //TODO
     return {
         posts: state.posts.entities.posts.allIds.map(id => state.posts.entities.posts.byId[id])
     };

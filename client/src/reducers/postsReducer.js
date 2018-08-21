@@ -16,7 +16,7 @@ const postsReducer = (state = initialState.posts, action) => {
                     allIds: posts.allIds
                 }
             }
-        }
+        };
     }else{
         return state;
     }

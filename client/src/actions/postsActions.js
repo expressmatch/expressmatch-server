@@ -8,7 +8,7 @@ export function getPosts() {
 
         postsService.getPosts().then(data => {
             dispatch(getPostsSuccess(data));
-        }).catch( error => {
+        }).catch(error => {
             dispatch(getPostsFailure(error));
         })
     };
@@ -25,20 +25,28 @@ export function getPostsFailure(error){
 /*-------- FETCH POSTS - END ---------*/
 
 /*-------- SUBMIT POST - START ---------*/
-export function submitPost(req) {
-    return (dispatch, getState, service ) => {
-        service.submitPost(req).then(data => {
-            dispatch(submitPostSuccess(data));
-        }).catch( error => {
-            dispatch(submitPostFailure(error));
+/*-------- SUBMIT POST - END ---------*/
+
+
+/*-------- LIKE POST - START ---------*/
+export function likePost(postId) {
+    return (dispatch, getState ) => {
+        dispatch(likePostRequest());
+
+        postsService.likePost(postId).then(data => {
+            dispatch(likePostSuccess(data));
+        }).catch(error => {
+            dispatch(likePostFailure(error));
         })
     };
 }
-export function submitPostSuccess(data){
-    return { type: types.SUBMIT_POST_SUCCESS, data};
+export function likePostRequest(){
+    return { type: types.LIKE_POST_REQUEST };
 }
-export function submitPostFailure(error){
-    return { type: types.SUBMIT_POST_FAILURE, error };
+export function likePostSuccess(post){
+    return { type: types.LIKE_POST_SUCCESS, post };
 }
-/*-------- SUBMIT POST - END ---------*/
-
+export function likePostFailure(error){
+    return { type: types.LIKE_POST_FAILURE, error };
+}
+/*-------- LIKE POST - END ---------*/

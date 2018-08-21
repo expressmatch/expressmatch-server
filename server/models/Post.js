@@ -3,39 +3,43 @@
 const mongoose = require("mongoose");
 
 const PostSchema = new mongoose.Schema({
-  content: {
-    type: String
-  },
-  datecreated: {
-    type: Date,
-    default: Date.now
-  },
-  datelastmodified: {
-    type: Date,
-    default: Date.now
-  },
-  active: {
-    type: Boolean,
-    default: true
-  },
-  anonymous: {
-    type: Boolean
-  },
-  totalcomments: {
-    type: Number,
-    default: 0
-  },
-  totallikes: {
-    type: Number,
-    default: 0
-  },
-  totalshares: {
-    type: Number,
-    default: 0
-  },
-  tags: {
-    type: [String]
-  }
+    // _id: {
+    //
+    // },
+    content: {
+        type: String
+    },
+    dateCreated: {
+        type: Date,
+        default: Date.now
+    },
+    dateLastModified: {
+        type: Date,
+        default: Date.now
+    },
+    active: {
+        type: Boolean,
+        default: true
+    },
+    anonymous: {
+        type: Boolean,
+        default: true
+    },
+    totalComments: {
+        type: Number,
+        default: 0
+    },
+    totalLikes: {
+        type: Number,
+        default: 0
+    },
+    totalShares: {
+        type: Number,
+        default: 0
+    },
+    tags: {
+        type: [String]
+    }
 });
 
 module.exports = mongoose.model("Post", PostSchema);

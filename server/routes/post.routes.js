@@ -8,8 +8,9 @@ module.exports = function (app) {
     //TODO: Change all the apis to router
 
     app.get('/api/posts', getAllPosts);
-    app.post('/api/posts', createNewPost);
+    app.post('/post/create', createNewPost);
     app.get('/api/posts/:postId', getPost);
+    app.post('/post/:postId/like', likePost)
 
     return router;
 };
@@ -26,6 +27,7 @@ const getAllPosts = function (req, res, next) {
 };
 
 const createNewPost = function (req, res, next) {
+    console.log(req.body);
     let data = req.body;
 
     let post = new Post(data);
@@ -38,7 +40,6 @@ const createNewPost = function (req, res, next) {
 };
 
 const getPost = function (req, res, next) {
-    debugger;
     Post.findOne({_id: new ObjectId(req.params.postId)}, function (err, post) {
         if (err) next(err);
 
@@ -47,4 +48,11 @@ const getPost = function (req, res, next) {
         }
     })
     req.json({});
+};
+
+const likePost = (req, res, next) => {
+    console.log(req.params.postId);
+
+
+
 };

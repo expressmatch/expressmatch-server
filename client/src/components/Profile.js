@@ -24,11 +24,15 @@ class Profile extends React.Component {
                     <div className="form-control">
                         <div className="field-label">What is your gender?</div>
                         <div className="field-value">
-                            <input type="text" />
+                            <select>
+                                <option>-Select-</option>
+                                <option>Male</option>
+                                <option>Female</option>
+                            </select>
                         </div>
                     </div>
                     <div className="form-control">
-                        <div className="field-label">In which city do you live?</div>
+                        <div className="field-label">In which city do you live currently?</div>
                         <div className="field-value">
                             <input type="text" />
                         </div>
@@ -66,7 +70,7 @@ class Profile extends React.Component {
                     <div className="form-control">
                         <div className="field-label">What is the nature of your job?</div>
                         <div className="field-value">
-                            <input type="text" />
+                            <input type="text" disabled value="Hello" />
                         </div>
                     </div>
                     <div className="form-control">
@@ -77,6 +81,7 @@ class Profile extends React.Component {
                     </div>
                     <div className="form-control">
                         <div className="field-value">
+                            <button>Reset</button>
                             <button onClick={this.handleSave}>Save</button>
                         </div>
                     </div>
