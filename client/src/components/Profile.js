@@ -1,87 +1,109 @@
 import React from 'react';
 
 class Profile extends React.Component {
-    constructor(props){
+    constructor(props) {
         super(props);
 
+        this.resetForm = this.resetForm.bind(this);
         this.handleSave = this.handleSave.bind(this);
+        this.validateForm = this.validateForm.bind(this);
     }
 
-    handleSave(e){
+
+    resetForm(e) {
         e.preventDefault();
-
+        alert('reset');
     }
+
+    handleSave(e) {
+        e.preventDefault();
+        let formData = new FormData(document.querySelector('form')[0]);
+
+        this.validateForm().then(() => {
+            this.props.actions.updateProfile(formData);
+        }).catch((e) => {
+            console.log(e);
+        });
+    }
+
+    validateForm() {
+        return new Promise((resolve, reject) => {
+          resolve(true);
+        });
+    }
+
     render() {
+        console.log(this.props.profile);
         return (
             <div id="profile">
                 <form>
                     <div className="form-control">
                         <div className="field-label">What is your age?</div>
                         <div className="field-value">
-                            <input type="text" />
+                            <input type="text" defaultValue={this.props.profile.age}/>
                         </div>
                     </div>
                     <div className="form-control">
                         <div className="field-label">What is your gender?</div>
                         <div className="field-value">
-                            <select>
+                            <select defaultValue={this.props.profile.gender}>
                                 <option>-Select-</option>
-                                <option>Male</option>
-                                <option>Female</option>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
                             </select>
                         </div>
                     </div>
                     <div className="form-control">
                         <div className="field-label">In which city do you live currently?</div>
                         <div className="field-value">
-                            <input type="text" />
+                            <input type="text" defaultValue={this.props.profile.currentCity}/>
                         </div>
                     </div>
                     <div className="form-control">
                         <div className="field-label">What is your hometown?</div>
                         <div className="field-value">
-                            <input type="text" />
+                            <input type="text" defaultValue={this.props.profile.homeTown}/>
                         </div>
                     </div>
                     <div className="form-control">
                         <div className="field-label">What is your mother tongue?</div>
                         <div className="field-value">
-                            <input type="text" />
+                            <input type="text" defaultValue={this.props.profile.motherTongue}/>
                         </div>
                     </div>
                     <div className="form-control">
                         <div className="field-label">Do you want to enter caste details?</div>
                         <div className="field-value">
-                            <input type="text" />
+                            <input type="text" defaultValue={this.props.profile.caste}/>
                         </div>
                     </div>
                     <div className="form-control">
                         <div className="field-label">Do you want to enter sub caste details?</div>
                         <div className="field-value">
-                            <input type="text" />
+                            <input type="text" defaultValue={this.props.profile.subCaste}/>
                         </div>
                     </div>
                     <div className="form-control">
                         <div className="field-label">Where do you work?</div>
                         <div className="field-value">
-                            <input type="text" />
+                            <input type="text" defaultValue={this.props.profile.organization}/>
                         </div>
                     </div>
                     <div className="form-control">
                         <div className="field-label">What is the nature of your job?</div>
                         <div className="field-value">
-                            <input type="text" disabled value="Hello" />
+                            <input type="text" defaultValue={this.props.profile.job}/>
                         </div>
                     </div>
                     <div className="form-control">
                         <div className="field-label">What are your interests?</div>
                         <div className="field-value">
-                            <textarea></textarea>
+                            <textarea defaultValue={this.props.profile.interests}></textarea>
                         </div>
                     </div>
                     <div className="form-control">
                         <div className="field-value">
-                            <button>Reset</button>
+                            <button onClick={this.resetForm}>Reset</button>
                             <button onClick={this.handleSave}>Save</button>
                         </div>
                     </div>

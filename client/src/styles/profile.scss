@@ -1,5 +1,6 @@
 #profile{
   width: 65%;
+  min-width: 654px;
   margin: auto;
   background-color: $em-bg-white;
   border: 1px solid #e6ecf5;
@@ -15,6 +16,7 @@
       .field-label{
         padding: 5px 0;
         width: 50%;
+        min-width: 200px;
         font-weight: 500;
       }
       .field-value{

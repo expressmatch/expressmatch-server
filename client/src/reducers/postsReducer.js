@@ -5,7 +5,7 @@ import {hashAndOrderItems} from "./reducerUtil";
 const postsReducer = (state = initialState.posts, action) => {
     if( action.type === types.GET_POSTS_SUCCESS) {
 
-        let posts = hashAndOrderItems(action.posts);
+        let posts = hashAndOrderItems(action.posts, '_id');
 
         return {
             ...state,

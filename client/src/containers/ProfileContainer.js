@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import * as actions from '../actions/postsActions';
+import * as actions from '../actions/profileActions';
 import Profile from '../components/Profile';
 
 class ProfileContainer extends React.Component {
@@ -11,7 +11,7 @@ class ProfileContainer extends React.Component {
     }
 
     componentDidMount(){
-        // this.props.actions.getPosts();
+        this.props.actions.getProfile();
     }
     componentWillMount(){
 
@@ -22,19 +22,19 @@ class ProfileContainer extends React.Component {
 
     render() {
         return (
-            <Profile/>
+            <Profile profile={this.props.profile} actions={this.props.actions} />
         );
     }
 }
 
 
 ProfileContainer.propTypes = {
-
+    profile: PropTypes.object.isRequired
 };
 
 function mapStateToProps(state, ownProps) {
     return {
-        posts: state.posts
+        profile: state.profile
     };
 }
 

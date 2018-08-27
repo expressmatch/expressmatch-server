@@ -27,7 +27,6 @@ const getAllPosts = function (req, res, next) {
 };
 
 const createNewPost = function (req, res, next) {
-    console.log(req.body);
     let data = req.body;
 
     let post = new Post(data);
@@ -35,7 +34,7 @@ const createNewPost = function (req, res, next) {
         if (err)
             next(err);
 
-        res.status(200).json({});
+        res.status(200).json(post);
     });
 };
 

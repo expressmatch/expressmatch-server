@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 
 class CreatePost extends React.Component {
 
@@ -9,15 +10,21 @@ class CreatePost extends React.Component {
     }
 
     onSubmit(e){
-        console.log('Form Submitted');
-        //e.preventDefault();
+        e.preventDefault();
 
+        //FIXME
+        let data = {
+            content: e.target.querySelector('textarea[name=\'content\']').value
+        };
+        this.props.actions.createPost(data).then(()=>{
+            this.props.history.push('/posts');
+        });
     }
     render() {
         return (
             <div className="create-post">
                 <div id="profile">
-                    <form method="POST" onSubmit={this.onSubmit} className="create-post-form" action="/post/create">
+                    <form onSubmit={this.onSubmit} className="create-post-form">
                         <div className="form-control">
                             <div className="field-label">What is your Proposal?</div>
                             <div className="field-value">
@@ -27,7 +34,7 @@ class CreatePost extends React.Component {
                         <div className="form-control">
                             <div className="field-value">
                                 <button>Reset</button>
-                                <button onClick={this.handleSave}>Submit</button>
+                                <button>Submit</button>
                             </div>
                         </div>
                     </form>
@@ -37,4 +44,4 @@ class CreatePost extends React.Component {
     }
 }
 
-export default CreatePost;
+export default withRouter(CreatePost);

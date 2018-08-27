@@ -53,12 +53,12 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
 // required for passport
-app.use(session({ secret: 'my_express_app_idea' })); 
+app.use(session({ secret: 'my_express_app_idea' }));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
 
-//app.use(express.static(path.resolve(__dirname,'../client')));
+//app.use(express.static(path.join(__dirname, 'public')));
 
 //-------Routes---------//
 const routes = initRoutes(app, passport);

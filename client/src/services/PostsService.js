@@ -15,8 +15,26 @@ let getPosts = (() => {
             axios({
                 method: 'GET',
                 url: '/api/posts',
-                headers: {'Content-type': ' application/json'},
+                headers: {'Content-type': 'application/json'},
                 data: {}
+            }).then(response => {
+                resolve(response.data);
+            }).catch(error => {
+                reject(error);
+            });
+        });
+    };
+})();
+
+let createPost = (() => {
+
+    return (post) => {
+        return new Promise((resolve, reject) => {
+            axios({
+                method: 'POST',
+                url: '/post/create',
+                headers: {'Content-type': 'application/json'},
+                data: post
             }).then(response => {
                 resolve(response.data);
             }).catch(error => {
@@ -33,7 +51,7 @@ let likePost = (() => {
             axios({
                 method: 'POST',
                 url: `/post/${postId}/like`,
-                headers: {'Content-type': ' application/json'},
+                headers: {'Content-type': 'application/json'},
                 data: {}
             }).then(response => {
                 resolve(response.data);
@@ -46,6 +64,7 @@ let likePost = (() => {
 
 const PostsService = {
     getPosts,
+    createPost,
     likePost
 };
 

@@ -76,18 +76,22 @@ class Posts extends React.Component {
                     {this.props.posts && this.props.posts.map(post => {
                         return this.renderPost(post);
                     })}
+                    {this.props.posts.length === 0 && <div className="empty-message">No Posts To Display</div>}
                 </div>
                 <div className="right-content">
-                    <div className="panel calendar">
+                    <div className="panel date-filter">
                         <Calendar maxDate={new Date()} onChange={function (value) {
                             alert(value);
                         }}/>
                     </div>
-                    <div className="panel filter">
+                    <div className="panel quick-filter">
                         <div className="filter-item">My city</div>
                         <div className="filter-item">My caste</div>
                         <div className="filter-item">My mother tongue</div>
-                        <div className="filter-item">My company</div>
+                        <div className="filter-item selected">My hometown</div>
+                    </div>
+                    <div className="panel more-filter">
+                        More Filters..
                     </div>
                 </div>
             </div>

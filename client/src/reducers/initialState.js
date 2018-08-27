@@ -6,5 +6,17 @@ export default {
                 allIds: []
             }
         }
+    },
+    profile: {
+        age: 21,
+        gender: "male",
+        currentCity: "",
+        homeTown: "",
+        motherTongue: "",
+        caste: "",
+        subCaste: "",
+        organization: "",
+        job: "",
+        interests: []
     }
 }
