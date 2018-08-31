@@ -1,5 +1,7 @@
 import React from 'react';
-import Calendar from 'react-calendar/dist/entry.nostyle';
+import QuickFilter from './filters/QuickFilter';
+import DateFilter from './filters/DateFilter';
+import Filters from './filters/Filters';
 
 class Posts extends React.Component {
     constructor(props) {
@@ -79,19 +81,14 @@ class Posts extends React.Component {
                     {this.props.posts.length === 0 && <div className="empty-message">No Posts To Display</div>}
                 </div>
                 <div className="right-content">
-                    <div className="panel date-filter">
-                        <Calendar maxDate={new Date()} onChange={function (value) {
-                            alert(value);
-                        }}/>
+                    <div className="panel">
+                        <DateFilter />
                     </div>
-                    <div className="panel quick-filter">
-                        <div className="filter-item">My city</div>
-                        <div className="filter-item">My caste</div>
-                        <div className="filter-item">My mother tongue</div>
-                        <div className="filter-item selected">My hometown</div>
+                    <div className="panel">
+                        <QuickFilter />
                     </div>
-                    <div className="panel more-filter">
-                        More Filters..
+                    <div className="panel">
+                        <Filters />
                     </div>
                 </div>
             </div>

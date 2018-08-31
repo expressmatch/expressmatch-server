@@ -1,7 +1,9 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 
 class Header extends React.Component {
+
     render() {
         return (
             <div id="header">
@@ -28,8 +30,16 @@ class Header extends React.Component {
                         {/*</div>*/}
                     </div>
                     <div className="profile">
-                        <div className="profile-picture"/>
-                        <a href="/profile1">Profile</a>
+                        <UncontrolledDropdown className="menu-toggle">
+                            <DropdownToggle tag="div" className="profile-picture">
+                            </DropdownToggle>
+                            <DropdownMenu right>
+                                <DropdownItem className="menu-item header" header>Express User</DropdownItem>
+                                <DropdownItem divider />
+                                <DropdownItem tag="a" href="/profile1" className="menu-item">Profile</DropdownItem>
+                                <DropdownItem tag="a" href="/logout" className="menu-item">Logout</DropdownItem>
+                            </DropdownMenu>
+                        </UncontrolledDropdown>
                     </div>
                 </div>
             </div>

@@ -71,8 +71,12 @@
             height: 30px;
             width: 100%;
             border-radius: 2px;
+            -moz-outline: none;
+            -webkit-outline: none;
             outline: none;
             cursor: pointer;
+            font-size: 13px;
+            font-weight: bold;
 
             &:hover{
               background-color: #f2f2f2;
@@ -99,11 +103,11 @@
       margin-bottom: 20px;
       border: 1px solid #e6ecf5;
 
-      &.date-filter{
+      .date-filter{
 
       }
 
-      &.quick-filter {
+      .quick-filter {
         display: flex;
         justify-content: flex-start;
         align-items: stretch;
@@ -127,7 +131,7 @@
         }
       }
 
-      &.more-filter{
+      .more-filter{
         background-color: #fff;
       }
     }

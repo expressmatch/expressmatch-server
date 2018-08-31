@@ -1,4 +1,4 @@
-#header{
+#header {
   height: 60px;
   display: flex;
   flex-flow: row nowrap;
@@ -12,24 +12,24 @@
   background-color: #3f4257;
   z-index: 100;
 
-  .left-content{
-    .app-logo{
+  .left-content {
+    .app-logo {
       min-width: 100px;
       color: #fff;
       margin: 0 10px;
       font-weight: bold;
     }
   }
-  .right-content{
+  .right-content {
     display: flex;
     flex-flow: row;
 
-    .menu-items{
+    .menu-items {
       display: flex;
       flex-flow: row nowrap;
       align-items: center;
 
-      .menu-item a{
+      .menu-item a {
         padding: 0 10px;
         text-overflow: ellipsis;
         overflow: hidden;
@@ -38,20 +38,43 @@
         text-decoration: none;
         font-weight: 600;
 
-        &:hover{
+        &:hover {
           color: #ddd;
         }
-        &:active{
+        &:active {
           color: #ccc;
         }
       }
     }
-    .profile{
-      .profile-picture{
+    .profile {
+      margin: 0 10px;
+      .menu-toggle {
         height: 30px;
         width: 30px;
         border-radius: 50%;
-        border: 1px solid $em-border-gray;
+
+        .profile-picture {
+          height: 30px;
+          width: 30px;
+          border-radius: 50%;
+          border: 1px solid $em-border-gray;
+        }
+        .dropdown-menu {
+          max-width: 200px;
+          .menu-item {
+            font-size: 13px;
+            font-size: 13px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            padding: 5px 10px;
+
+            &.header{
+              font-weight: bold;
+              padding: 0 10px;
+            }
+          }
+        }
       }
     }
   }

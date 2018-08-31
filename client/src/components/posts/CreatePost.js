@@ -25,13 +25,13 @@ class CreatePost extends React.Component {
             <div className="create-post">
                 <div id="profile">
                     <form onSubmit={this.onSubmit} className="create-post-form">
-                        <div className="form-control">
+                        <div className="em-form-control">
                             <div className="field-label">What is your Proposal?</div>
                             <div className="field-value">
                                 <textarea name="content"></textarea>
                             </div>
                         </div>
-                        <div className="form-control">
+                        <div className="em-form-control">
                             <div className="field-value">
                                 <button>Reset</button>
                                 <button>Submit</button>
