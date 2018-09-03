@@ -1,14 +1,11 @@
-import postApi from '../api/postsApi';
 import axios from 'axios';
 
 let getPosts = (() => {
-    // return () => {
-    //     return new Promise((resolve, reject) => {
-    //         resolve(postApi.getPosts());
-    //     }, err => {
-    //         reject(err);
-    //     });
-    // };
+
+    const processResponse = (response) => {
+
+        return response;
+    };
 
     return () => {
         return new Promise((resolve, reject) => {
@@ -18,7 +15,7 @@ let getPosts = (() => {
                 headers: {'Content-type': 'application/json'},
                 data: {}
             }).then(response => {
-                resolve(response.data);
+                resolve(processResponse(response.data));
             }).catch(error => {
                 reject(error);
             });

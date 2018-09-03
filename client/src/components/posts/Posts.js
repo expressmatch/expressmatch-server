@@ -26,8 +26,16 @@ class Posts extends React.Component {
         return (
             <article className="post" key={post._id} data-id={post._id}>
                 <div className="post-header">
-                    <div className="post-date">
-                        19 hours ago
+                    <div className="post-details">
+                        <div className="post-date detail">
+                            {post.dateCreated}
+                        </div>
+                        <div className="post-place detail">
+                            San Francisco, California
+                        </div>
+                        <div className="post-caste detail">
+                            caste, sub-caste
+                        </div>
                     </div>
                     <div className="post-action">
                         ...
@@ -82,14 +90,16 @@ class Posts extends React.Component {
                 </div>
                 <div className="right-content">
                     <div className="panel">
-                        <DateFilter />
+                        <DateFilter actions={this.props.actions}/>
                     </div>
                     <div className="panel">
-                        <QuickFilter />
+                        <QuickFilter
+                            actions={this.props.actions}
+                            filters={this.props.filters.quick}/>
                     </div>
-                    <div className="panel">
-                        <Filters />
-                    </div>
+                    {/*<div className="panel">*/}
+                        {/*<Filters />*/}
+                    {/*</div>*/}
                 </div>
             </div>
         );

@@ -11,6 +11,9 @@ export const LIKE_POST_REQUEST = 'LIKE_POST_REQUEST';
 export const LIKE_POST_SUCCESS = 'LIKE_POST_SUCCESS';
 export const LIKE_POST_FAILURE = 'LIKE_POST_FAILURE';
 
+//Filters
+export const UI_DATE_FILTER = 'UI_DATE_FILTER';
+export const UI_QUICK_FILTER = 'UI_QUICK_FILTER';
 
 // Profile
 export const GET_PROFILE_REQUEST = 'GET_PROFILE_REQUEST';

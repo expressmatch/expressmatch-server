@@ -5,6 +5,15 @@ export default {
                 byId: {},
                 allIds: []
             }
+        },
+        filters: {
+            date: null,
+            quick: {
+                city: false,
+                caste: false,
+                motherTongue: false
+            },
+            advanced: {}
         }
     },
     profile: {

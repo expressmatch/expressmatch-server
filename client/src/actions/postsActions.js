@@ -70,3 +70,9 @@ export function likePostFailure(error){
     return { type: types.LIKE_POST_FAILURE, error };
 }
 /*-------- LIKE POST - END ---------*/
+export function uiDateFilter(date){
+    return { type: types.UI_DATE_FILTER, date };
+}
+export function uiQuickFilter(filter){
+    return { type: types.UI_QUICK_FILTER, filter };
+}

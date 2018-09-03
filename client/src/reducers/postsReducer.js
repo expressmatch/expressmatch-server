@@ -17,6 +17,27 @@ const postsReducer = (state = initialState.posts, action) => {
                 }
             }
         };
+    } else if( action.type === types.UI_DATE_FILTER) {
+
+        return {
+            ...state,
+            filters: {
+                ...state.filters,
+                date: action.date.toString()
+            }
+        };
+    }else if( action.type === types.UI_QUICK_FILTER) {
+
+        return {
+            ...state,
+            filters: {
+                ...state.filters,
+                quick: {
+                    ...state.filters.quick,
+                    [action.filter]: !state.filters.quick[action.filter]
+                }
+            }
+        };
     }else{
         return state;
     }

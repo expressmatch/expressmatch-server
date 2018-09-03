@@ -10,13 +10,15 @@ class DateFilter extends React.Component {
     }
 
     onChange(value) {
-        alert(value);
+        console.log(value);
+        this.props.actions.uiDateFilter(value);
     }
 
     render() {
         return (
             <div className="date-filter">
                 <Calendar maxDate={new Date()} onChange={this.onChange}/>
+                <button className="today-filter">Today</button>
             </div>
         );
     }

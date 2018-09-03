@@ -4,24 +4,30 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as actions from '../actions/postsActions';
 import Posts from '../components/posts/Posts';
+import { makeGetPosts } from '../selector/GetPostsSelector';
 
 class PostsContainer extends React.Component {
-    constructor(props){
+    constructor(props) {
         super(props);
     }
 
-    componentDidMount(){
-       this.props.actions.getPosts();
+    componentDidMount() {
+        this.props.actions.getPosts();
     }
-    componentWillMount(){
+
+    componentWillMount() {
 
     }
-    componentWillReceiveProps(){
+
+    componentWillReceiveProps() {
     }
 
     render() {
         return (
-            <Posts posts={this.props.posts} actions={this.props.actions}/>
+            <Posts
+                posts={this.props.posts}
+                filters={this.props.filters}
+                actions={this.props.actions}/>
         );
     }
 }
@@ -29,21 +35,26 @@ class PostsContainer extends React.Component {
 
 PostsContainer.propTypes = {
     actions: PropTypes.object.isRequired,
-    posts: PropTypes.array.isRequired
+    posts: PropTypes.array.isRequired,
+    filters: PropTypes.object.isRequired
 };
 
-function mapStateToProps(state, ownProps) {
-    //TODO
-    return {
-        posts: state.posts.entities.posts.allIds.map(id => state.posts.entities.posts.byId[id])
-    };
-}
+const mapStateToProps = (state, ownProps) => {
+    const getPosts = makeGetPosts(state);
+    const mapStateToProps = (state, ownProps) => {
+        return {
+            posts: getPosts(state, ownProps),
+            filters: state.posts.filters
+        };
+    }
+    return mapStateToProps;
+};
 
-function mapDispatchToProps(dispatch) {
+const mapDispatchToProps = (dispatch) => {
     return {
         actions: bindActionCreators(actions, dispatch)
     };
-}
+};
 
 export default connect(
     mapStateToProps,

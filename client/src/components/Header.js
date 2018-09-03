@@ -31,8 +31,7 @@ class Header extends React.Component {
                     </div>
                     <div className="profile">
                         <UncontrolledDropdown className="menu-toggle">
-                            <DropdownToggle tag="div" className="profile-picture">
-                            </DropdownToggle>
+                            <DropdownToggle tag="div" className="profile-picture" />
                             <DropdownMenu right>
                                 <DropdownItem className="menu-item header" header>Express User</DropdownItem>
                                 <DropdownItem divider />

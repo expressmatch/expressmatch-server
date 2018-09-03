@@ -13,11 +13,19 @@
   z-index: 100;
 
   .left-content {
-    .app-logo {
-      min-width: 100px;
-      color: #fff;
-      margin: 0 10px;
-      font-weight: bold;
+    a{
+      text-decoration: none;
+
+      .app-logo {
+        min-width: 100px;
+        color: #fff;
+        margin: 0 10px;
+        font-weight: bold;
+
+        &:hover{
+          color: #ececec;
+        }
+      }
     }
   }
   .right-content {
@@ -39,7 +47,7 @@
         font-weight: 600;
 
         &:hover {
-          color: #ddd;
+          color: #ececec;
         }
         &:active {
           color: #ccc;
@@ -68,10 +76,24 @@
             overflow: hidden;
             text-overflow: ellipsis;
             padding: 5px 10px;
+            color: gray;
+
+            &:hover{
+              background-color: #ececec;
+            }
 
             &.header{
               font-weight: bold;
               padding: 0 10px;
+              color: #3f4257;
+
+              &:hover{
+                background-color: #fff;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+              }
             }
           }
         }
