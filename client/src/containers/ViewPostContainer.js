@@ -6,7 +6,7 @@ import * as actions from '../actions/postsActions';
 import Posts from '../components/posts/Posts';
 import {makeGetPosts} from '../selector/GetPostsSelector';
 
-class PostsContainer extends React.Component {
+class ViewPostContainer extends React.Component {
     constructor(props) {
         super(props);
     }
@@ -19,7 +19,6 @@ class PostsContainer extends React.Component {
         if (this.props.filters !== nextProps.filters) {
             this.props.actions.getPosts(nextProps.filters);
         }
-
     }
 
     componentWillMount() {
@@ -37,7 +36,7 @@ class PostsContainer extends React.Component {
 }
 
 
-PostsContainer.propTypes = {
+ViewPostContainer.propTypes = {
     actions: PropTypes.object.isRequired,
     posts: PropTypes.array.isRequired,
     filters: PropTypes.object.isRequired
@@ -63,4 +62,4 @@ const mapDispatchToProps = (dispatch) => {
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(PostsContainer);
+)(ViewPostContainer);

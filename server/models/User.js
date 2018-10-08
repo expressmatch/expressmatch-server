@@ -39,7 +39,7 @@ const UserSchema = new mongoose.Schema({
       type: String
     },
     photos: {
-      type: [String]
+      type: [{ value: String}]
     }
     // photo: {
     //   type: String

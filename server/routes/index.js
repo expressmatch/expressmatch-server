@@ -2,13 +2,14 @@ const express = require("express");
 const userRoutes = require("./user.routes");
 const authRoutes = require("./auth.routes");
 const postRoutes = require("./post.routes");
+const profileRoutes = require("./profile.routes");
 const router = express.Router();
 
 module.exports = function(app, passport) {
 
     app.use("/auth", authRoutes(app, passport));
-
     app.use("/user", isLoggedIn, userRoutes);
+    app.use("/profile", isLoggedIn, profileRoutes(app));
     app.use("/", isLoggedIn, postRoutes(app));
 
 	// =====================================
@@ -16,11 +17,11 @@ module.exports = function(app, passport) {
 	// =====================================
 	// we will want this protected so you have to be logged in to visit
 	// we will use route middleware to verify this (the isLoggedIn function)
-	app.get('/profile', isLoggedIn, function(req, res) {
-	    res.render('profile.ejs', {
-	        user : req.user // get the user out of session and pass to template
-	    });
-	});
+	// app.get('/profile', isLoggedIn, function(req, res) {
+	//     res.render('profile.ejs', {
+	//         user : req.user // get the user out of session and pass to template
+	//     });
+	// });
 
 	console.log(listRoutes(app));
 	return router;

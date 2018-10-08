@@ -4,8 +4,9 @@
   "description": "Express Match",
   "main": "index.js",
   "scripts": {
-    "start": "node_modules/webpack/bin/webpack.js --config webpack.config.dev.js --mode development",
-    "build": "node --inspect server/srcServer.js",
+    "build": "nodemon server/srcServer.js",
+    "debug": "nodemon --inspect server/srcServer.js",
+    "prod": "node_modules/webpack/bin/webpack.js --config webpack.config.prod.js --mode production",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "ExpressMatch",
@@ -22,6 +23,7 @@
     "express": "^4.16.3",
     "express-session": "^1.15.6",
     "helmet": "^3.13.0",
+    "moment": "^2.22.2",
     "mongoose": "^5.2.5",
     "morgan": "^1.9.0",
     "passport": "^0.4.0",
@@ -46,6 +48,7 @@
     "clean-webpack-plugin": "^0.1.19",
     "css-loader": "^0.28.11",
     "node-sass": "^4.9.2",
+    "nodemon": "^1.18.4",
     "redux": "^4.0.0",
     "redux-immutable-state-invariant": "^2.1.0",
     "sass-loader": "^7.0.3",

@@ -2,11 +2,11 @@ import * as types from '../constants/actionTypes';
 import postsService from '../services/PostsService';
 
 /*-------- FETCH POSTS - START---------*/
-export function getPosts() {
+export function getPosts(filters) {
     return (dispatch, getState ) => {
         dispatch(getPostsRequest());
 
-        return postsService.getPosts().then(data => {
+        return postsService.getPosts(filters).then(data => {
             dispatch(getPostsSuccess(data));
         }).catch(error => {
             dispatch(getPostsFailure(error));

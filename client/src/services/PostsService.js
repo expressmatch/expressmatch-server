@@ -7,13 +7,15 @@ let getPosts = (() => {
         return response;
     };
 
-    return () => {
+    return (filters) => {
         return new Promise((resolve, reject) => {
             axios({
                 method: 'GET',
                 url: '/api/posts',
                 headers: {'Content-type': 'application/json'},
-                data: {}
+                params: {
+                    filters: filters
+                }
             }).then(response => {
                 resolve(processResponse(response.data));
             }).catch(error => {

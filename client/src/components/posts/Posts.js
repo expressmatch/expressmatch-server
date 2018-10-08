@@ -2,6 +2,7 @@ import React from 'react';
 import QuickFilter from './filters/QuickFilter';
 import DateFilter from './filters/DateFilter';
 import Filters from './filters/Filters';
+import { withRouter } from 'react-router-dom';
 
 class Posts extends React.Component {
     constructor(props) {
@@ -9,6 +10,7 @@ class Posts extends React.Component {
 
         this.renderPost = this.renderPost.bind(this);
         this.likePost = this.likePost.bind(this);
+        this.copyLink = this.copyLink.bind(this);
     }
 
     componentWillReceiveProps(newProps) {
@@ -21,6 +23,12 @@ class Posts extends React.Component {
 
         this.props.actions.likePost(postId);
     }
+    copyLink(e) {
+        let target = e.currentTarget.closest('.post'),
+            postId = target.dataset['id'];
+
+        this.props.history.push('/posts/' + postId);
+    }
 
     renderPost(post) {
         return (
@@ -28,7 +36,7 @@ class Posts extends React.Component {
                 <div className="post-header">
                     <div className="post-details">
                         <div className="post-date detail">
-                            {post.dateCreated}
+                            {post.createAt}
                         </div>
                         <div className="post-place detail">
                             San Francisco, California
@@ -42,20 +50,22 @@ class Posts extends React.Component {
                     </div>
                 </div>
                 <div className="content">
-                    {post.content}
+                    <pre>{post.content}</pre>
                 </div>
                 <div className="post-meta">
                     <div className="likes-count">
-                        &#9829; {post.totalLikes}
+                        <i className="far fa-heart"></i> {post.likes.length}
                     </div>
                     <div className="liked">
-                        Express Match and {post.totalLikes - 1} others likes this
+                        {post.likes.length === 0 && 'Be the first one to like this proposal'}
+                        {post.likes.length === 1 && `Express Match likes this`}
+                        {post.likes.length > 1 && `Express Match and ${post.likes.length - 1} others likes this`}
                     </div>
                     <div className="comments-count">
-                        {post.totalComments}
+                        <i className="fas fa-comments"></i> {post.comments.length}
                     </div>
                     <div className="shares-count">
-                        {post.totalShares}
+                        <i className="fas fa-share-square"></i> {post.shares.length}
                     </div>
                 </div>
                 <div className="post-controls">
@@ -65,7 +75,7 @@ class Posts extends React.Component {
                         </button>
                     </div>
                     <div className="post-control copy">
-                        <button className="btn btn-control">
+                        <button className="btn btn-control" onClick={this.copyLink}>
                             Copy Link
                         </button>
                     </div>
@@ -89,14 +99,10 @@ class Posts extends React.Component {
                     {this.props.posts.length === 0 && <div className="empty-message">No Posts To Display</div>}
                 </div>
                 <div className="right-content">
-                    <div className="panel">
-                        <DateFilter actions={this.props.actions}/>
-                    </div>
-                    <div className="panel">
-                        <QuickFilter
-                            actions={this.props.actions}
-                            filters={this.props.filters.quick}/>
-                    </div>
+                    <DateFilter actions={this.props.actions} selected={this.props.filters.date}/>
+                    <QuickFilter
+                        actions={this.props.actions}
+                        filters={this.props.filters.quick}/>
                     {/*<div className="panel">*/}
                         {/*<Filters />*/}
                     {/*</div>*/}
@@ -106,4 +112,4 @@ class Posts extends React.Component {
     }
 }
 
-export default Posts;
+export default withRouter(Posts);

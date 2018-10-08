@@ -15,9 +15,9 @@ export const makeGetPosts = () => createSelector(
             return {
                 ...post,
                 dateCreated: post.dateCreated,
-                dateSelected: filters.date
+                //dateSelected: filters.date
             }
-        });
+        }).sort();
 
     }
 );

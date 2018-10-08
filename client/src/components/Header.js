@@ -10,7 +10,8 @@ class Header extends React.Component {
                 <div className="left-content">
                     <a href="/posts">
                         <div className="app-logo">
-                            EXPRESS MATCH
+                            EXPRESS MATCH&nbsp;
+                            <i className="fas fa-kiss-wink-heart"></i>
                         </div>
                     </a>
                 </div>
@@ -35,7 +36,7 @@ class Header extends React.Component {
                             <DropdownMenu right>
                                 <DropdownItem className="menu-item header" header>Express User</DropdownItem>
                                 <DropdownItem divider />
-                                <DropdownItem tag="a" href="/profile1" className="menu-item">Profile</DropdownItem>
+                                <DropdownItem tag="a" href="/profile" className="menu-item">Profile</DropdownItem>
                                 <DropdownItem tag="a" href="/logout" className="menu-item">Logout</DropdownItem>
                             </DropdownMenu>
                         </UncontrolledDropdown>

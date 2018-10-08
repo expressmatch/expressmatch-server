@@ -1,30 +1,35 @@
 "use strict";
 
 const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 
 const ProfileSchema = new mongoose.Schema({
-    userId: {
-        type: Object._id,
-        required: true
+    user: {
+        ref: 'User',
+        type: Schema.Types.ObjectId
+    },
+    name: {
+        type: String,
+        //required: true
     },
     age: {
         type: Number,
-        required: true
+        //required: true
     },
     gender: {
         type: String,
-        required: true
+        //required: true
     },
     currentCity: {
         type: String,
-        required: true
+        //required: true
     },
     homeTown: {
         type: String
     },
     motherTongue: {
         type: String,
-        required: true
+        //required: true
     },
     caste: {
         type: String
@@ -43,6 +48,9 @@ const ProfileSchema = new mongoose.Schema({
     },
     pagesLiked: {
         type: [String]
+    },
+    photos: {
+        type: []
     }
 });
 

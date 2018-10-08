@@ -1,21 +1,11 @@
 "use strict";
 
 const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 
 const PostSchema = new mongoose.Schema({
-    // _id: {
-    //
-    // },
     content: {
         type: String
-    },
-    dateCreated: {
-        type: Date,
-        default: Date.now
-    },
-    dateLastModified: {
-        type: Date,
-        default: Date.now
     },
     active: {
         type: Boolean,
@@ -25,21 +15,19 @@ const PostSchema = new mongoose.Schema({
         type: Boolean,
         default: true
     },
-    totalComments: {
-        type: Number,
-        default: 0
+    comments: {
+        type: [String]
     },
-    totalLikes: {
-        type: Number,
-        default: 0
-    },
-    totalShares: {
-        type: Number,
-        default: 0
+    likes: [{
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+    }],
+    shares: {
+        type: [String]
     },
     tags: {
         type: [String]
     }
-});
+}, { timestamps: true });
 
 module.exports = mongoose.model("Post", PostSchema);

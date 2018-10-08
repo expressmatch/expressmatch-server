@@ -45,7 +45,11 @@
       }
 
       .content{
-        margin: 25px 0;
+        pre{
+          margin: 25px 0;
+          word-wrap: break-word;
+          white-space:pre-wrap;
+        }
       }
       .post-meta{
         padding: 20px 0;
@@ -53,18 +57,25 @@
         border-bottom: 1px solid #e6ecf5;
         display: flex;
         align-items: center;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
+        cursor: default;
 
         .likes-count{
-
+          width: 10%;
         }
         .liked{
-          font-size: 13px;
+          font-size: 12px;
+          width: 66%;
+          text-align: center;
         }
         .comments-count{
-
+          width: 12%;
+        }
+        .shares-count{
+          width: 12%;
+        }
+        i{
+          zoom: 1.2;
+          vertical-align: middle;
         }
       }
       .post-controls{
@@ -84,6 +95,7 @@
           }
 
           button{
+            background: none;
             color: #888da8;
             height: 30px;
             width: 100%;
@@ -95,6 +107,8 @@
             font-size: 13px;
             font-weight: bold;
 
+            &:active{
+            }
             &:hover{
               background-color: #f2f2f2;
             }
@@ -116,15 +130,28 @@
     margin-left: 10px;
     padding: 10px 20px;
 
+    .date-filter-container{
+      display: flex;
+      flex-flow: column;
+
+      .date-filter{
+        margin-bottom: 5px;
+      }
+      .today-filter{
+        align-self: flex-end;
+        margin-bottom: 10px;
+      }
+    }
+
     .panel{
       margin-bottom: 20px;
       border: 1px solid #e6ecf5;
 
-      .date-filter{
+      &.date-filter{
 
       }
 
-      .quick-filter {
+      &.quick-filter {
         display: flex;
         justify-content: flex-start;
         align-items: stretch;
@@ -150,7 +177,7 @@
         }
       }
 
-      .more-filter{
+      &.more-filter{
         background-color: #fff;
       }
     }

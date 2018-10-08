@@ -58,10 +58,10 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
 
-//app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.resolve(__dirname,'../client/dist')));
 
 //-------Routes---------//
-const routes = initRoutes(app, passport);
+initRoutes(app, passport);
 
 // Catch no route match, always at the end
 app.get('*', function(req, res) {

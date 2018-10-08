@@ -1,7 +1,7 @@
-const express   = require("express");
-const router    = express.Router();
-const ObjectId  = require('mongoose').Types.ObjectId;
-const Post      = require("../models/Post");
+const express = require("express");
+const router = express.Router();
+const ObjectId = require('mongoose').Types.ObjectId;
+const Post = require("../models/Post");
 
 module.exports = function (app) {
 
@@ -23,7 +23,7 @@ const getAllPosts = function (req, res, next) {
         if (posts) {
             res.status(200).json(posts);
         }
-    });
+    }).sort({createdAt: 'desc'});
 };
 
 const createNewPost = function (req, res, next) {
@@ -50,8 +50,21 @@ const getPost = function (req, res, next) {
 };
 
 const likePost = (req, res, next) => {
-    console.log(req.params.postId);
 
-
+    //TODO: Change it to findOneandUpdate
+    Post.findOne({_id: req.params.postId}, function (err, post) {
+        if (post.likes.indexOf(req.user._id) < 0) {
+            post.likes.push(req.user._id);
+        } else {
+            post.likes.splice(post.likes.indexOf(req.user._id), 1);
+        }
+        post.save(function (err, post) {
+            if (err) {
+                next(err);
+            }
+            //TODO: Virtual property to check for isLikedByCurrentUser
+            res.status(200).json(post);
+        });
+    });
 
 };

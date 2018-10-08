@@ -6,7 +6,7 @@ let getProfile = (() => {
         return new Promise((resolve, reject) => {
             axios({
                 method: 'GET',
-                url: '/profile',
+                url: '/userprofile',
                 headers: {'Content-type': ' application/json'},
                 data: {}
             }).then(response => {

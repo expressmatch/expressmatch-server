@@ -47,6 +47,7 @@
           margin: 0 0 4px;
           max-width: 100%;
           padding: 8px;
+          -webkit-outline: none;
           outline: none;
 
           &:focus{
@@ -54,15 +55,15 @@
           }
         }
         button{
+          background: none;
           padding: 8px 16px;
-          border-radius: 10px;
-          margin-right: 5px;
           color: #888da8;
+          -webkit-outline: none;
           outline: none;
-          font-weight: 500;
+          font-weight: bold;
+          font-size: 12px;
 
           &:active{
-            font-weight: 600;
           }
           &:hover{
             opacity: 0.8;

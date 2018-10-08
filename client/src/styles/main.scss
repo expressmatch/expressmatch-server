@@ -9,20 +9,22 @@
 @import './posts.scss';
 @import './createpost.scss';
 
-//::selection {
-//  color: #fff;
-//  background-color: #ddd;
-//}
+::selection {
+  background-color: #e6e6e6;
+}
 body{
   margin: 0;
   font-family: sans-serif;
-  font-size: 14px;
+  font-size: 13px;
   color: #888da8;
   background-color: #edf2f6;
+  overflow-x: hidden;
 }
-body, input, textarea, select, header, article, section, aside {
+body, input, textarea, select, header, article, section, aside, pre {
   line-height: 1.6;
   letter-spacing: 0.5px;
+  font-size: 13px;
+  color: #888da8;
 }
 
 
