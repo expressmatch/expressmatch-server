@@ -22,12 +22,30 @@ const PostSchema = new mongoose.Schema({
         type: Schema.Types.ObjectId,
         ref: 'User'
     }],
-    shares: {
-        type: [String]
-    },
+    shares: [{
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+    }],
     tags: {
         type: [String]
-    }
+    },
+    // postedBy: {
+    //     type: mongoose.Schema.Types.ObjectId,
+    //     ref: 'User'
+    // },
+    postedBy: {
+        userId: Schema.Types.ObjectId,
+        caste: String,
+        subCaste: String,
+        city: String
+    },
 }, { timestamps: true });
+
+PostSchema.methods.isLikedByUser = function(user){
+   if(user){
+       return this.likes.indexOf(user._id) >= 0;
+   }
+   return false;
+};
 
 module.exports = mongoose.model("Post", PostSchema);

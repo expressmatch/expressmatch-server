@@ -36,13 +36,13 @@ class Posts extends React.Component {
                 <div className="post-header">
                     <div className="post-details">
                         <div className="post-date detail">
-                            {post.createAt}
+                            {post.createdAt}
                         </div>
                         <div className="post-place detail">
-                            San Francisco, California
+                            {post.postedBy.city}
                         </div>
                         <div className="post-caste detail">
-                            caste, sub-caste
+                            {post.postedBy.caste}{post.postedBy.caste && post.postedBy.subCaste && ', '}{post.postedBy.subCaste}
                         </div>
                     </div>
                     <div className="post-action">
@@ -54,7 +54,9 @@ class Posts extends React.Component {
                 </div>
                 <div className="post-meta">
                     <div className="likes-count">
-                        <i className="far fa-heart"></i> {post.likes.length}
+                        {post.isLikedByUser && <i className="fas fa-heart"></i>}
+                        {!post.isLikedByUser && <i className="far fa-heart"></i>}
+                        &nbsp;{post.likes.length}
                     </div>
                     <div className="liked">
                         {post.likes.length === 0 && 'Be the first one to like this proposal'}
@@ -71,7 +73,8 @@ class Posts extends React.Component {
                 <div className="post-controls">
                     <div className="post-control like">
                         <button className="btn btn-control" onClick={this.likePost}>
-                            Like
+                            {!post.isLikedByUser && 'Like'}
+                            {post.isLikedByUser && 'Unlike'}
                         </button>
                     </div>
                     <div className="post-control copy">

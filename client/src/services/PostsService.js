@@ -10,11 +10,11 @@ let getPosts = (() => {
     return (filters) => {
         return new Promise((resolve, reject) => {
             axios({
-                method: 'GET',
+                method: 'POST',
                 url: '/api/posts',
                 headers: {'Content-type': 'application/json'},
-                params: {
-                    filters: filters
+                data: {
+                    filters
                 }
             }).then(response => {
                 resolve(processResponse(response.data));

@@ -1,13 +1,14 @@
 const express = require("express");
 const router = express.Router();
 const ObjectId = require('mongoose').Types.ObjectId;
-const Post = require("../models/Post");
+const Post = require('../models/Post');
+const User = require('../models/User');
 
 module.exports = function (app) {
 
     //TODO: Change all the apis to router
 
-    app.get('/api/posts', getAllPosts);
+    app.post('/api/posts', getAllPosts);
     app.post('/post/create', createNewPost);
     app.get('/api/posts/:postId', getPost);
     app.post('/post/:postId/like', likePost)
@@ -16,25 +17,51 @@ module.exports = function (app) {
 };
 
 const getAllPosts = function (req, res, next) {
-    Post.find({}, function (err, posts) {
-        if (err)
-            next(err); //Express will catch error and handle it
 
-        if (posts) {
-            res.status(200).json(posts);
-        }
-    }).sort({createdAt: 'desc'});
-};
+    let filters = req.body.filters,
+        predicate = [],
+        postsRes = [],
+        query = null;
 
-const createNewPost = function (req, res, next) {
-    let data = req.body;
+    if (filters.quick.caste) predicate.push({'postedBy.caste': req.user.profile.caste});
+    if (filters.quick.city) predicate.push({'postedBy.city': req.user.profile.currentCity});
+    if (filters.quick.motherTongue) predicate.push({'postedBy.motherTongue': req.user.profile.motherTongue});
 
-    let post = new Post(data);
-    post.save(function (err) {
+    if (predicate.length > 0) {
+        query = Post.find({$or: predicate});
+    }else{
+        query = Post.find({});
+    }
+    query.sort({createdAt: 'desc'}).exec(function (err, posts) {
         if (err)
             next(err);
 
-        res.status(200).json(post);
+        if (posts) {
+            postsRes = posts.map(post => {
+                let obj = post.toJSON();
+                obj.isLikedByUser = post.isLikedByUser(req.user);
+                return obj;
+            })
+            res.status(200).json(postsRes);
+        }
+    });
+};
+
+const createNewPost = function (req, res, next) {
+    let data = req.body,
+        post = new Post(data);
+
+    post.postedBy = {
+        userId  : req.user._id,
+        caste   : req.user.profile.caste,
+        subCaste: req.user.profile.subCaste,
+        city    : req.user.profile.currentCity
+    };
+    post.save(function (err, savedPost) {
+        if (err)
+            next(err);
+
+        res.status(200).json(savedPost);
     });
 };
 
@@ -45,25 +72,28 @@ const getPost = function (req, res, next) {
         if (post) {
             res.status(200).json(post);
         }
-    })
+    });
     req.json({});
 };
 
 const likePost = (req, res, next) => {
+    let postRes = null;
 
-    //TODO: Change it to findOneandUpdate
     Post.findOne({_id: req.params.postId}, function (err, post) {
         if (post.likes.indexOf(req.user._id) < 0) {
             post.likes.push(req.user._id);
         } else {
             post.likes.splice(post.likes.indexOf(req.user._id), 1);
         }
-        post.save(function (err, post) {
+        post.save(function (err, savedPost) {
             if (err) {
                 next(err);
             }
-            //TODO: Virtual property to check for isLikedByCurrentUser
-            res.status(200).json(post);
+            postRes = {
+                ...savedPost.toJSON(),
+                'isLikedByUser': savedPost.isLikedByUser(req.user)
+            };
+            res.status(200).json(postRes);
         });
     });
 

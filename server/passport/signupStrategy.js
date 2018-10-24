@@ -1,6 +1,6 @@
 const LocalStrategy     = require('passport-local').Strategy;
 const User              = require('../models/User');
-const Profile           = require('../models/Profile');
+//const Profile           = require('../models/Profile');
 
 module.exports = function(passport) {
 
@@ -28,19 +28,31 @@ module.exports = function(passport) {
 
                     newUser.local.email = email;
                     newUser.local.password = newUser.generateHash(password);
+                    newUser.profile = {
+                        age: 21,
+                        gender: "male",
+                        currentCity: "",
+                        homeTown: "",
+                        motherTongue: "",
+                        caste: "",
+                        subCaste: "",
+                        organization: "",
+                        job: "",
+                        interests: []
+                    };
 
                     newUser.save(function(err) {
                         if (err)
                             return done(err);
 
-                        let userProfile = new Profile({
-                            user: newUser._id
-                        });
-                        userProfile.save(function (err) {
-                            if (err)
-                                return done(err);
-                                //TODO: Delete User that has been created too
-                        });
+                        // let userProfile = new Profile({
+                        //     user: newUser._id
+                        // });
+                        // userProfile.save(function (err) {
+                        //     if (err)
+                        //         return done(err);
+                        //         //TODO: Delete User that has been created too
+                        // });
                         return done(null, newUser);
                     });
                 }

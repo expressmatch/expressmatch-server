@@ -14,10 +14,6 @@ const UserSchema = new mongoose.Schema({
       type: String
     },
   },
-  createdAt: {
-    type: Date,
-    default: Date.now
-  },
   facebook: {
     id: {
       type: String,
@@ -40,12 +36,48 @@ const UserSchema = new mongoose.Schema({
     },
     photos: {
       type: [{ value: String}]
-    }
+    },
     // photo: {
     //   type: String
     // }
-  }
-});
+  },
+    profile: {
+        age: {
+            type: Number,
+            //required: true
+        },
+        gender: {
+            type: String,
+            //required: true
+        },
+        currentCity: {
+            type: String,
+            //required: true
+        },
+        homeTown: {
+            type: String
+        },
+        motherTongue: {
+            type: String,
+            //required: true
+        },
+        caste: {
+            type: String
+        },
+        subCaste: {
+            type: String
+        },
+        job: {
+            type: String
+        },
+        organization: {
+            type: String
+        },
+        interests: {
+            type: [String]
+        }
+    }
+}, { timestamps: true });
 
 // UserSchema.statics.authenticate = function (username, password, callback) {
 

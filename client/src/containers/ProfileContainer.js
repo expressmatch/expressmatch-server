@@ -13,12 +13,6 @@ class ProfileContainer extends React.Component {
     componentDidMount(){
         this.props.actions.getProfile();
     }
-    componentWillMount(){
-
-    }
-    componentWillReceiveProps(){
-
-    }
 
     render() {
         return (

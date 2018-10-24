@@ -49,6 +49,7 @@
           margin: 25px 0;
           word-wrap: break-word;
           white-space:pre-wrap;
+          overflow: hidden;
         }
       }
       .post-meta{
@@ -108,9 +109,14 @@
             font-weight: bold;
 
             &:active{
+              opacity: 0.8;
             }
             &:hover{
               background-color: #f2f2f2;
+            }
+            &:focus{
+              text-decoration: none;
+              box-shadow: none;
             }
           }
         }

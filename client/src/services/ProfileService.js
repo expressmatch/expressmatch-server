@@ -24,7 +24,7 @@ let updateProfile = (() => {
         return new Promise((resolve, reject) => {
             axios({
                 method: 'POST',
-                url: `/profile/${profile._id}`,
+                url: '/updateProfile',
                 headers: {'Content-type': ' application/json'},
                 data: {
                     profile

@@ -1,6 +1,5 @@
 const FacebookStrategy  = require('passport-facebook').Strategy;
 const User              = require('../models/User');
-const Profile           = require('../models/Profile');
 const configAuth        = require('../config/auth');
 
 module.exports = function (passport) {
@@ -40,22 +39,24 @@ module.exports = function (passport) {
                         photos: profile.photos
                     };
 
+                    //TODO: Update User Schema Unified to both FB and E-mail login
+                    newUser.profile = {
+                        age: 21,
+                        gender: "male",
+                        currentCity: "",
+                        homeTown: "",
+                        motherTongue: "",
+                        caste: "",
+                        subCaste: "",
+                        organization: "",
+                        job: "",
+                        interests: []
+                    };
+
                     newUser.save(function (err) {
                         if (err)
                             throw err;
 
-                        let userProfile = new Profile({
-                            user: newUser._id,
-                            name: profile.name.givenName + ' ' + profile.name.familyName,
-                            gender: profile.gender,
-                            //photos: profile.photos //TODO: Photos Format
-                        });
-
-                        userProfile.save(function (err) {
-                            if (err)
-                                throw err;
-                                //TODO: Delete User that has been created too
-                        });
                         return done(null, newUser);
                     });
                 }
