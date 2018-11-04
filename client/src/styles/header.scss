@@ -13,7 +13,7 @@
   position: -o-sticky;
   top: 0px;
   background-color: #3f4257;
-  z-index: 100;
+  z-index: 1001;
 
   .left-content {
     a{
@@ -73,7 +73,6 @@
         .dropdown-menu {
           max-width: 200px;
           .menu-item {
-            font-size: 13px;
             font-size: 13px;
             white-space: nowrap;
             overflow: hidden;

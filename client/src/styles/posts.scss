@@ -38,6 +38,23 @@
 
         .post-action{
           cursor: pointer;
+
+          .dropdown-menu {
+            max-width: 200px;
+            .menu-item {
+              font-size: 12px;
+              white-space: nowrap;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              color: #888da8;
+              cursor: pointer;
+
+              &:hover{
+                background-color: #edf2f6;
+                text-decoration: underline;
+              }
+            }
+          }
         }
       }
       .created-date{
@@ -117,6 +134,36 @@
             &:focus{
               text-decoration: none;
               box-shadow: none;
+            }
+          }
+          .dropdown-menu {
+            max-width: 200px;
+            .menu-item {
+              font-size: 13px;
+              font-size: 13px;
+              white-space: nowrap;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              padding: 5px 10px;
+              color: gray;
+
+              &:hover{
+                background-color: #ececec;
+              }
+
+              &.header{
+                font-weight: bold;
+                padding: 0 10px;
+                color: #3f4257;
+
+                &:hover{
+                  background-color: #fff;
+                  -webkit-user-select: none;
+                  -moz-user-select: none;
+                  -ms-user-select: none;
+                  user-select: none;
+                }
+              }
             }
           }
         }

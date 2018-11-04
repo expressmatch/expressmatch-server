@@ -51,8 +51,8 @@ class Posts extends React.Component {
                         <UncontrolledDropdown className="menu-toggle">
                             <DropdownToggle tag="div" className="post-action-menu">...</DropdownToggle>
                             <DropdownMenu right>
-                                <DropdownItem className="menu-item">Copy Link to Post</DropdownItem>
-                                <DropdownItem className="menu-item">Report Spam</DropdownItem>
+                                <DropdownItem className="menu-item">Copy link to post</DropdownItem>
+                                <DropdownItem className="menu-item">Report spam</DropdownItem>
                             </DropdownMenu>
                         </UncontrolledDropdown>
                     </div>
