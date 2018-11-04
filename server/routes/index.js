@@ -8,9 +8,9 @@ const router = express.Router();
 module.exports = function(app, passport) {
 
     app.use("/auth", authRoutes(app, passport));
-    app.use("/user", isLoggedIn, userRoutes);
-    app.use("/profile", isLoggedIn, profileRoutes(app));
-    app.use("/", isLoggedIn, postRoutes(app));
+    app.use("/user", userRoutes);
+    app.use("/profile", profileRoutes(app));
+    app.use("/", postRoutes(app));
 
 	// =====================================
 	// PROFILE SECTION =====================
@@ -25,14 +25,6 @@ module.exports = function(app, passport) {
 
 	console.log(listRoutes(app));
 	return router;
-}
-
-function isLoggedIn(req, res, next) {
-
-    if (req.isAuthenticated())
-        return next();
-
-    res.redirect('/');
 }
 
 function listRoutes(app, routes, stack, parent){
