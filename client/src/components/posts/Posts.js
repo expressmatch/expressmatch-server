@@ -3,6 +3,8 @@ import QuickFilter from './filters/QuickFilter';
 import DateFilter from './filters/DateFilter';
 import Filters from './filters/Filters';
 import { withRouter } from 'react-router-dom';
+import { UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
+import Spinner from '../common/Spinner';
 
 class Posts extends React.Component {
     constructor(props) {
@@ -46,7 +48,13 @@ class Posts extends React.Component {
                         </div>
                     </div>
                     <div className="post-action">
-                        ...
+                        <UncontrolledDropdown className="menu-toggle">
+                            <DropdownToggle tag="div" className="post-action-menu">...</DropdownToggle>
+                            <DropdownMenu right>
+                                <DropdownItem className="menu-item">Copy Link to Post</DropdownItem>
+                                <DropdownItem className="menu-item">Report Spam</DropdownItem>
+                            </DropdownMenu>
+                        </UncontrolledDropdown>
                     </div>
                 </div>
                 <div className="content">
@@ -95,6 +103,7 @@ class Posts extends React.Component {
     render() {
         return (
             <div className="posts">
+                {/*<Spinner/>*/}
                 <div className="left-content">
                     {this.props.posts && this.props.posts.map(post => {
                         return this.renderPost(post);
