@@ -215,8 +215,8 @@ class Profile extends React.Component {
                     </div>
                     <div className="em-form-control">
                         <div className="field-value">
-                            <button onClick={this.resetForm}>Reset</button>
-                            <button onClick={this.handleSave}>Save</button>
+                            <input type="reset" onClick={this.resetForm} value="Reset" />
+                            <input type="submit" onClick={this.handleSave} value="Submit" />
                         </div>
                     </div>
                 </form>

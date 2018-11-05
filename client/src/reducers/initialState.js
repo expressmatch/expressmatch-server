@@ -1,5 +1,6 @@
 export default {
     posts: {
+        loading: false,
         entities: {
             posts: {
                 byId: {},

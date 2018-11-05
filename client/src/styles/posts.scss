@@ -51,7 +51,7 @@
 
               &:hover{
                 background-color: #edf2f6;
-                text-decoration: underline;
+                //text-decoration: underline;
               }
             }
           }
@@ -136,36 +136,6 @@
               box-shadow: none;
             }
           }
-          .dropdown-menu {
-            max-width: 200px;
-            .menu-item {
-              font-size: 13px;
-              font-size: 13px;
-              white-space: nowrap;
-              overflow: hidden;
-              text-overflow: ellipsis;
-              padding: 5px 10px;
-              color: gray;
-
-              &:hover{
-                background-color: #ececec;
-              }
-
-              &.header{
-                font-weight: bold;
-                padding: 0 10px;
-                color: #3f4257;
-
-                &:hover{
-                  background-color: #fff;
-                  -webkit-user-select: none;
-                  -moz-user-select: none;
-                  -ms-user-select: none;
-                  user-select: none;
-                }
-              }
-            }
-          }
         }
       }
     }
@@ -193,6 +163,20 @@
       .today-filter{
         align-self: flex-end;
         margin-bottom: 10px;
+        background-color: #888da8;
+        color: #fff;
+        -moz-outline: none;
+        -webkit-outline: none;
+        outline: none;
+        cursor: pointer;
+        font-size: 13px;
+        border-radius: 5px;
+        border: 1px solid #e6ecf5;
+
+        &:active{
+          background: none;
+          color: #888da8;
+        }
       }
     }
 
@@ -222,7 +206,7 @@
           &.selected{
             border-left: 5px solid;
             padding: 0 0 0 5px;
-            color: blue;
+            color: #6072d0;
           }
           &:last-child{
             border-bottom: none;

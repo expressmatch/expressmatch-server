@@ -7,7 +7,9 @@ export function getPosts(filters) {
         dispatch(getPostsRequest());
 
         return postsService.getPosts(filters).then(data => {
-            dispatch(getPostsSuccess(data));
+            setTimeout(() => {
+                return dispatch(getPostsSuccess(data));
+            }, 2000);
         }).catch(error => {
             dispatch(getPostsFailure(error));
         })

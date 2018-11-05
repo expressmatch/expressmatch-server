@@ -102,24 +102,26 @@ class Posts extends React.Component {
 
     render() {
         return (
-            <div className="posts">
-                {/*<Spinner/>*/}
-                <div className="left-content">
-                    {this.props.posts && this.props.posts.map(post => {
-                        return this.renderPost(post);
-                    })}
-                    {this.props.posts.length === 0 && <div className="empty-message">No Posts To Display</div>}
+            {/*<React.Fragment>*/}
+                <div className="posts">
+                    <div className="left-content">
+                        <Spinner loading={this.props.loading}/>
+                        {this.props.posts && this.props.posts.map(post => {
+                            return this.renderPost(post);
+                        })}
+                        {!this.props.loading && this.props.posts.length === 0 && <div className="empty-message">No Posts To Display</div>}
+                    </div>
+                    <div className="right-content">
+                        <DateFilter actions={this.props.actions} selected={this.props.filters.date}/>
+                        <QuickFilter
+                            actions={this.props.actions}
+                            filters={this.props.filters.quick}/>
+                        {/*<div className="panel">*/}
+                            {/*<Filters />*/}
+                        {/*</div>*/}
+                    </div>
                 </div>
-                <div className="right-content">
-                    <DateFilter actions={this.props.actions} selected={this.props.filters.date}/>
-                    <QuickFilter
-                        actions={this.props.actions}
-                        filters={this.props.filters.quick}/>
-                    {/*<div className="panel">*/}
-                        {/*<Filters />*/}
-                    {/*</div>*/}
-                </div>
-            </div>
+            {/*</React.Fragment>*/}
         );
     }
 }

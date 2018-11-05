@@ -31,7 +31,8 @@ class PostsContainer extends React.Component {
             <Posts
                 posts={this.props.posts}
                 filters={this.props.filters}
-                actions={this.props.actions}/>
+                actions={this.props.actions}
+                loading={this.props.loading}/>
         );
     }
 }
@@ -48,6 +49,7 @@ const mapStateToProps = (state, ownProps) => {
     const mapStateToProps = (state, ownProps) => {
         return {
             posts: getPosts(state, ownProps),
+            loading: state.posts.loading,
             filters: state.posts.filters
         };
     }

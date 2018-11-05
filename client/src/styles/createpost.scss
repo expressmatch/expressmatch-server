@@ -47,6 +47,7 @@
           margin: 0 0 4px;
           max-width: 100%;
           padding: 8px;
+          -webkit-outline: none;
           outline: none;
 
           &:focus{
@@ -59,6 +60,7 @@
           color: #888da8;
           outline: none;
           width: 100px;
+          background: none;
 
           &:active{
             font-weight: 600;
