@@ -4,10 +4,9 @@ import { FadeLoader } from 'react-spinners';
 
 const override = css`{
     position: absolute;
+    margin: auto;
+    top: 50%;
     left: 50%;
-    top: 50%; 
-    margin: 0 auto;
-    z-index: 1101;
 }`;
 
 export default class Spinner extends React.Component {

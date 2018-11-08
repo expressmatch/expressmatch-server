@@ -3,7 +3,7 @@ const path = require('path');
 const cleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = {
-	devtool: 'cheap-module-eval-source-map',
+	devtool: 'source-map',
 	entry: [
 		'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&overlay=false',
 		'./client/src/index'

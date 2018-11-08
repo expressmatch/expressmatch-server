@@ -20,7 +20,7 @@ body{
   font-size: 13px;
   color: #888da8;
   background-color: #edf2f6;
-  overflow-x: hidden;
+  overflow: hidden;
 }
 body, input, textarea, select, header, article, section, aside, pre {
   line-height: 1.6;
@@ -30,12 +30,12 @@ body, input, textarea, select, header, article, section, aside, pre {
 }
 
 
-.app {
+#app {
   height: 100%;
+  overflow-y: auto;
 
   .main-container{
     display: flex;
     flex-flow: column nowrap;
-    height: 100%;
   }
 }
