@@ -19,6 +19,7 @@ class Posts extends React.Component {
         this.copyLink = this.copyLink.bind(this);
         this.comment = this.comment.bind(this);
         this.postComment = this.postComment.bind(this);
+        this.toggleComment = this.toggleComment.bind(this);
     }
 
     componentWillReceiveProps(newProps) {
@@ -70,6 +71,24 @@ class Posts extends React.Component {
             this.props.actions.postComment(postId, commentId, commentStr).then(() => {
 
             });
+        }
+    }
+
+    toggleComment(e){
+        let target = e.currentTarget,
+            post = target.closest('.post'),
+            comment = target.closest('.comment-item'),
+            postId = post && post.dataset['id'],
+            commentId = comment && comment.dataset['id'],
+            commentStr = target.value;
+
+        if(commentStr.trim() === ''){
+            this.setState({
+                showNewComment: {
+                    ...this.state.showNewComment,
+                    [postId]: false
+                }
+            })
         }
     }
 
@@ -188,7 +207,8 @@ class Posts extends React.Component {
                             <textarea
                                 className="new-comment"
                                 placeholder="Hit enter to post your reply"
-                                onKeyDown={this.postComment}/>}
+                                onKeyDown={this.postComment}
+                                onBlur={this.toggleComment}/>}
                     </div>
                 </div>
             </article>

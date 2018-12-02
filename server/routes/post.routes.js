@@ -101,6 +101,12 @@ const likePost = (req, res, next) => {
             };
             res.status(200).json(postRes);
         });
+    }).populate({
+        path: 'comments',
+        populate: {
+            path: 'comments',
+            model: 'Comment'
+        }
     });
 
 };
