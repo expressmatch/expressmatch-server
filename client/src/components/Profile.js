@@ -1,26 +1,30 @@
 import React from 'react';
 import PlacesAutocomplete from 'react-places-autocomplete';
 
+import DatePicker from "react-datepicker";
+
 class Profile extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            ...props.profile
+            ...props.profile,
         };
 
         this.resetForm = this.resetForm.bind(this);
         this.handleSave = this.handleSave.bind(this);
         this.validateForm = this.validateForm.bind(this);
-        
+
         this.handleCurrentCityChange = this.handleCurrentCityChange.bind(this);
         this.handleHomeTownChange = this.handleHomeTownChange.bind(this);
         this.handleCurrentCitySelect = this.handleCurrentCitySelect.bind(this);
         this.handleHomeTownSelect = this.handleHomeTownSelect.bind(this);
         this.handleProfileChange = this.handleProfileChange.bind(this);
+        this.handleDOBChange = this.handleDOBChange.bind(this);
+        this.handleDOBSelect = this.handleDOBSelect.bind(this);
     }
 
-    componentWillReceiveProps(nextProps){
+    componentWillReceiveProps(nextProps) {
         this.setState({...nextProps.profile});
     }
 
@@ -28,7 +32,7 @@ class Profile extends React.Component {
         this.setState({currentCity});
     }
 
-    handleCurrentCitySelect(currentCity){
+    handleCurrentCitySelect(currentCity) {
         this.setState({currentCity});
     }
 
@@ -36,15 +40,25 @@ class Profile extends React.Component {
         this.setState({homeTown});
     }
 
-    handleHomeTownSelect(homeTown){
+    handleHomeTownSelect(homeTown) {
         this.setState({homeTown});
     }
 
-    handleProfileChange(event){
+    handleProfileChange(event) {
         this.setState({
-            [event.target.dataset.name]: event.target.value
+                [event.target.dataset.name]: event.target.value
             }
         );
+    }
+
+    handleDOBChange(date) {
+        this.setState({
+            dob: date
+        });
+    }
+
+    handleDOBSelect() {
+
     }
 
     resetForm(e) {
@@ -74,9 +88,15 @@ class Profile extends React.Component {
             <div id="profile">
                 <form>
                     <div className="em-form-control">
-                        <div className="field-label">What is your age?</div>
+                        <div className="field-label">Date of Birth</div>
                         <div className="field-value">
-                            <input type="text" data-name="age" value={this.state.age} onChange={this.handleProfileChange}/>
+                            <DatePicker
+                                data-name="age"
+                                selected={this.state.dob}
+                                onSelect={this.handleDOBSelect}
+                                onChange={this.handleDOBChange}
+                            />
+                            {/*<input type="text" data-name="age" value={this.state.age} onChange={this.handleProfileChange}/>*/}
                         </div>
                     </div>
                     <div className="em-form-control">
@@ -97,8 +117,8 @@ class Profile extends React.Component {
                                 date-name="currentCity"
                                 onChange={this.handleCurrentCityChange}
                                 onSelect={this.handleCurrentCitySelect}
-                                searchOptions={{ types: ['(cities)'] }}>
-                                {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
+                                searchOptions={{types: ['(cities)']}}>
+                                {({getInputProps, suggestions, getSuggestionItemProps, loading}) => (
                                     <div>
                                         <input
                                             {...getInputProps({
@@ -107,20 +127,13 @@ class Profile extends React.Component {
                                             })}
                                         />
                                         <div className="autocomplete-dropdown-container">
-                                            {loading && <div>Loading...</div>}
+                                            {loading && <div className="suggestion-item">Loading...</div>}
                                             {suggestions.map(suggestion => {
-                                                const className = suggestion.active
-                                                    ? 'suggestion-item--active'
-                                                    : 'suggestion-item';
-                                                // inline style for demonstration purpose
-                                                const style = suggestion.active
-                                                    ? { backgroundColor: '#fafafa', cursor: 'pointer' }
-                                                    : { backgroundColor: '#ffffff', cursor: 'pointer' };
+                                                const className = 'suggestion-item '.concat(suggestion.active ? 'active' : '');
                                                 return (
                                                     <div
                                                         {...getSuggestionItemProps(suggestion, {
-                                                            className,
-                                                            style,
+                                                            className
                                                         })}
                                                     >
                                                         <span>{suggestion.description}</span>
@@ -141,8 +154,8 @@ class Profile extends React.Component {
                                 date-name="homeTown"
                                 onChange={this.handleHomeTownChange}
                                 onSelect={this.handleHomeTownSelect}
-                                searchOptions={{ types: ['(cities)'] }}>
-                                {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
+                                searchOptions={{types: ['(cities)']}}>
+                                {({getInputProps, suggestions, getSuggestionItemProps, loading}) => (
                                     <div>
                                         <input
                                             {...getInputProps({
@@ -151,20 +164,13 @@ class Profile extends React.Component {
                                             })}
                                         />
                                         <div className="autocomplete-dropdown-container">
-                                            {loading && <div>Loading...</div>}
+                                            {loading && <div className="suggestion-item">Loading...</div>}
                                             {suggestions.map(suggestion => {
-                                                const className = suggestion.active
-                                                    ? 'suggestion-item--active'
-                                                    : 'suggestion-item';
-                                                // inline style for demonstration purpose
-                                                const style = suggestion.active
-                                                    ? { backgroundColor: '#fafafa', cursor: 'pointer' }
-                                                    : { backgroundColor: '#ffffff', cursor: 'pointer' };
+                                                const className = 'suggestion-item '.concat(suggestion.active ? 'active' : '');
                                                 return (
                                                     <div
                                                         {...getSuggestionItemProps(suggestion, {
-                                                            className,
-                                                            style,
+                                                            className
                                                         })}
                                                     >
                                                         <span>{suggestion.description}</span>
@@ -180,31 +186,36 @@ class Profile extends React.Component {
                     <div className="em-form-control">
                         <div className="field-label">What is your mother tongue?</div>
                         <div className="field-value">
-                            <input type="text" data-name="motherTongue" value={this.state.motherTongue} onChange={this.handleProfileChange}/>
+                            <input type="text" data-name="motherTongue" value={this.state.motherTongue}
+                                   onChange={this.handleProfileChange}/>
                         </div>
                     </div>
                     <div className="em-form-control">
                         <div className="field-label">If you wish, enter your caste details</div>
                         <div className="field-value">
-                            <input type="text" data-name="caste"  value={this.state.caste} onChange={this.handleProfileChange}/>
+                            <input type="text" data-name="caste" value={this.state.caste}
+                                   onChange={this.handleProfileChange}/>
                         </div>
                     </div>
                     <div className="em-form-control">
                         <div className="field-label">If you wish, enter your sub caste details</div>
                         <div className="field-value">
-                            <input type="text" data-name="subCaste" value={this.state.subCaste} onChange={this.handleProfileChange}/>
+                            <input type="text" data-name="subCaste" value={this.state.subCaste}
+                                   onChange={this.handleProfileChange}/>
                         </div>
                     </div>
                     <div className="em-form-control">
                         <div className="field-label">Where do you work?</div>
                         <div className="field-value">
-                            <input type="text" data-name="organization" value={this.state.organization} onChange={this.handleProfileChange}/>
+                            <input type="text" data-name="organization" value={this.state.organization}
+                                   onChange={this.handleProfileChange}/>
                         </div>
                     </div>
                     <div className="em-form-control">
                         <div className="field-label">What is the nature of your job?</div>
                         <div className="field-value">
-                            <input type="text" data-name="job" value={this.state.job} onChange={this.handleProfileChange}/>
+                            <input type="text" data-name="job" value={this.state.job}
+                                   onChange={this.handleProfileChange}/>
                         </div>
                     </div>
                     <div className="em-form-control">
@@ -215,8 +226,8 @@ class Profile extends React.Component {
                     </div>
                     <div className="em-form-control">
                         <div className="field-value">
-                            <input type="reset" onClick={this.resetForm} value="Reset" />
-                            <input type="submit" onClick={this.handleSave} value="Submit" />
+                            <input type="reset" onClick={this.resetForm} value="Reset"/>
+                            <input type="submit" onClick={this.handleSave} value="Submit"/>
                         </div>
                     </div>
                 </form>

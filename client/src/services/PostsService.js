@@ -61,10 +61,32 @@ let likePost = (() => {
     };
 })();
 
+let postComment = (() => {
+    return (postId, commentId, comment) => {
+        return new Promise((resolve, reject) => {
+            axios({
+                method: 'POST',
+                url: '/api/comment',
+                headers: {'Content-type': 'application/json'},
+                data: {
+                    postId,
+                    commentId,
+                    comment
+                }
+            }).then(response => {
+                resolve(response.data);
+            }).catch(error => {
+                reject(error);
+            });
+        });
+    };
+})();
+
 const PostsService = {
     getPosts,
     createPost,
-    likePost
+    likePost,
+    postComment
 };
 
 export default PostsService;

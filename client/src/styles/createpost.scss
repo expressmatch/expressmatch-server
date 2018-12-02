@@ -14,9 +14,14 @@
 
       .field-label{
         padding: 5px 0;
-        width: 50%;
+        width: 35%;
         min-width: 200px;
         font-weight: bold;
+
+        .sub-text{
+          font-weight: normal;
+          font-size: 12px;
+        }
       }
       .field-value{
         padding: 10px 0 0 0;
@@ -24,7 +29,7 @@
         input, select, textarea{
           height: 30px;
           font-size: 13px;
-          width: 300px;
+          width: 450px;
           outline: none;
           border: 1px solid #e6ecf5;
           color: #888da8;
@@ -35,8 +40,9 @@
           }
         }
         textarea{
-          height: 100px;
+          height: 250px;
           resize: none;
+          font-size: 12px;
         }
 
         input[type="text"], textarea{

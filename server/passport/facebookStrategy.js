@@ -39,9 +39,11 @@ module.exports = function (passport) {
                         photos: profile.photos
                     };
 
+
                     //TODO: Update User Schema Unified to both FB and E-mail login
                     newUser.profile = {
-                        age: 21,
+                        // age: 21,
+                        dob: "",
                         gender: "male",
                         currentCity: "",
                         homeTown: "",
@@ -52,6 +54,13 @@ module.exports = function (passport) {
                         job: "",
                         interests: []
                     };
+
+                    if(profile.birthday){
+                        newUser.dob = profile.birthday;
+                    }
+
+                    console.log(newUser.profile.birthday);
+
 
                     newUser.save(function (err) {
                         if (err)

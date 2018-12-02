@@ -32,7 +32,13 @@ const getAllPosts = function (req, res, next) {
     }else{
         query = Post.find({});
     }
-    query.sort({createdAt: 'desc'}).exec(function (err, posts) {
+    query.populate({
+        path: 'comments',
+        populate: {
+            path: 'comments',
+            model: 'Comment'
+        }
+    }).sort({createdAt: 'desc'}).exec(function (err, posts) {
         if (err)
             next(err);
 
@@ -41,7 +47,7 @@ const getAllPosts = function (req, res, next) {
                 let obj = post.toJSON();
                 obj.isLikedByUser = post.isLikedByUser(req.user);
                 return obj;
-            })
+            });
             res.status(200).json(postsRes);
         }
     });

@@ -15,20 +15,21 @@ const PostSchema = new mongoose.Schema({
         type: Boolean,
         default: true
     },
-    comments: {
-        type: [String]
-    },
     likes: [{
         type: Schema.Types.ObjectId,
         ref: 'User'
     }],
-    shares: [{
-        type: Schema.Types.ObjectId,
-        ref: 'User'
-    }],
+    // shares: [{
+    //     type: Schema.Types.ObjectId,
+    //     ref: 'User'
+    // }],
     tags: {
         type: [String]
     },
+    comments: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Comment'
+    }],
     // postedBy: {
     //     type: mongoose.Schema.Types.ObjectId,
     //     ref: 'User'

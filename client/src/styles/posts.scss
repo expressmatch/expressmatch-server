@@ -49,6 +49,7 @@
               text-overflow: ellipsis;
               color: #888da8;
               cursor: pointer;
+              line-height: 15px;
 
               &:hover{
                 background-color: #edf2f6;
@@ -78,19 +79,24 @@
         align-items: center;
         cursor: default;
 
-        .likes-count{
-          width: 10%;
+        .likes{
+          display: flex;
+          .logo,.count {
+            padding: 0 5px;
+            flex: 1 0 0;
+          }
         }
         .liked{
           font-size: 12px;
-          width: 66%;
           text-align: center;
+          flex: 1 0 0;
         }
-        .comments-count{
-          width: 12%;
-        }
-        .shares-count{
-          width: 12%;
+        .comments{
+          display: flex;
+          .logo,.count {
+            padding: 0 5px;
+            flex: 1 0 0;
+          }
         }
         i{
           zoom: 1.2;
@@ -136,6 +142,122 @@
               text-decoration: none;
               box-shadow: none;
             }
+          }
+        }
+      }
+      .comments-control{
+        .header{
+          padding: 5px 0;
+          text-decoration: underline;
+          //text-transform: uppercase;
+          font-size: 11px;
+        }
+        .comments-list {
+          .comment-item{
+            padding: 5px 0;
+            font-size: 12px;
+            letter-spacing: 0.5px;
+            word-spacing: 0.1px;
+            line-height: 13px;
+
+            .comment-bubble{
+
+              background-color: #edf2f6;
+              padding: 10px;
+              border-radius: 5px;
+
+              .comment-content{
+                .postedBy{
+                  font-weight: bold;
+                  &:hover{
+                    text-decoration: underline;
+                    cursor: pointer;
+                  }
+                }
+                .content{
+
+                }
+              }
+              .comment-actions{
+                .action{
+                  padding: 5px 5px 0 0;
+                  display: inline-block;
+                  cursor: pointer;
+
+                  &:hover{
+                    text-decoration: underline;
+                  }
+                }
+              }
+            }
+
+
+            .reply-list {
+
+              margin: 0 0 0 20px;
+              .header {
+                padding: 5px 0;
+                text-decoration: underline;
+                //text-transform: uppercase;
+                font-size: 11px;
+              }
+
+              .reply-item {
+                padding: 5px 0;
+                margin: 5px 0;
+                font-size: 12px;
+                letter-spacing: 0.5px;
+                word-spacing: 0.1px;
+                line-height: 13px;
+                background-color: #edf2f6;
+                padding: 10px;
+                border-radius: 5px;
+
+                .reply-content {
+                  .postedBy {
+                    font-weight: bold;
+                    &:hover {
+                      text-decoration: underline;
+                      cursor: pointer;
+                    }
+                  }
+                  .content {
+
+                  }
+                }
+                .reply-actions {
+                  .action {
+                    padding: 5px 5px 0 0;
+                    display: inline-block;
+                    cursor: pointer;
+
+                    &:hover{
+                      text-decoration: underline;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+        .new-comment{
+          height: 60px;
+          width: 100%;
+          resize: none;
+          border-radius: 5px;
+          border: 1px solid rgba(0,0,0,.12);
+          margin: 5px 0;
+          padding: 8px;
+          background-color: $em-bg-gray;
+          font-size: 12px;
+          line-height: 14px;
+
+          outline: none;
+          -moz-outline: none;
+          -webkit-outline: none;
+
+          &:focus{
+            background-color: $em-bg-white;
           }
         }
       }
