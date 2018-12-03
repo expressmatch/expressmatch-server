@@ -17,9 +17,14 @@ class Posts extends React.Component {
         this.renderPost = this.renderPost.bind(this);
         this.likePost = this.likePost.bind(this);
         this.copyLink = this.copyLink.bind(this);
+
         this.comment = this.comment.bind(this);
         this.postComment = this.postComment.bind(this);
         this.toggleComment = this.toggleComment.bind(this);
+
+        this.reply = this.reply.bind(this);
+        this.postReply = this.postReply.bind(this);
+        this.toggleReply = this.toggleReply.bind(this);
     }
 
     componentWillReceiveProps(newProps) {
@@ -57,9 +62,7 @@ class Posts extends React.Component {
 
             let target = e.currentTarget,
                 post = target.closest('.post'),
-                comment = target.closest('.comment-item'),
                 postId = post && post.dataset['id'],
-                commentId = comment && comment.dataset['id'],
                 commentStr = target.value;
 
             this.setState({
@@ -68,7 +71,7 @@ class Posts extends React.Component {
                     [postId]: false
                 }
             });
-            this.props.actions.postComment(postId, commentId, commentStr).then(() => {
+            this.props.actions.postComment(postId, null, commentStr).then(() => {
 
             });
         }
@@ -77,9 +80,7 @@ class Posts extends React.Component {
     toggleComment(e){
         let target = e.currentTarget,
             post = target.closest('.post'),
-            comment = target.closest('.comment-item'),
             postId = post && post.dataset['id'],
-            commentId = comment && comment.dataset['id'],
             commentStr = target.value;
 
         if(commentStr.trim() === ''){
@@ -87,6 +88,57 @@ class Posts extends React.Component {
                 showNewComment: {
                     ...this.state.showNewComment,
                     [postId]: false
+                }
+            })
+        }
+    }
+
+    reply(e){
+        let target = e.currentTarget.closest('.comment-item'),
+            commentId = target.dataset['id'];
+
+        this.setState({
+            showNewComment: {
+                ...this.state.showNewComment,
+                [commentId]: !this.state.showNewComment[commentId]
+            }
+        });
+    }
+
+    postReply(e){
+        if(e.keyCode == 13 && e.shiftKey == false) {
+            e.preventDefault();
+
+            let target = e.currentTarget,
+                post = target.closest('.post'),
+                comment = target.closest('.comment-item'),
+                postId = post && post.dataset['id'],
+                commentId = comment && comment.dataset['id'],
+                commentStr = target.value;
+
+            this.setState({
+                showNewComment: {
+                    ...this.state.showNewComment,
+                    [commentId]: false
+                }
+            });
+            this.props.actions.postComment(postId, commentId, commentStr).then(() => {
+
+            });
+        }
+    }
+
+    toggleReply(e){
+        let target = e.currentTarget,
+            comment = target.closest('.comment-item'),
+            commentId = comment && comment.dataset['id'],
+            commentStr = target.value;
+
+        if(commentStr.trim() === ''){
+            this.setState({
+                showNewComment: {
+                    ...this.state.showNewComment,
+                    [commentId]: false
                 }
             })
         }
@@ -161,6 +213,14 @@ class Posts extends React.Component {
                 </div>
                 <div className="comments-control">
                     {post.comments.length ? <div className="header">View comments:</div> : null}
+                    <div className="new-comment-container">
+                        {!!this.state.showNewComment[post._id] &&
+                        <textarea
+                            className="new-comment"
+                            placeholder="Hit enter to post your comment"
+                            onKeyDown={this.postComment}
+                            onBlur={this.toggleComment}/>}
+                    </div>
                     <div className="comments-list">
                         {post.comments.map(comment => {
                             return (
@@ -172,11 +232,22 @@ class Posts extends React.Component {
                                         </div>
                                         <div className="comment-actions">
                                             <div className="action">Like</div>
-                                            <div className="action">Reply</div>
+                                            <div className="action" onClick={this.reply}>
+                                                {!this.state.showNewComment[comment._id] && 'Reply'}
+                                                {!!this.state.showNewComment[comment._id] && 'Cancel'}
+                                            </div>
                                         </div>
                                     </div>
                                     <div className="reply-list">
                                         {comment.comments.length ? <div className="header">View replies:</div> : null}
+                                        <div className="new-reply-container">
+                                            {!!this.state.showNewComment[comment._id] &&
+                                            <textarea
+                                                className="new-reply"
+                                                placeholder="Hit enter to post your reply"
+                                                onKeyDown={this.postReply}
+                                                onBlur={this.toggleReply}/>}
+                                        </div>
                                         {comment.comments.map(reply => {
                                             return (
                                                 <div className="reply-item" key={reply._id} data-id={reply._id}>
@@ -191,24 +262,9 @@ class Posts extends React.Component {
                                             );
                                         })}
                                     </div>
-                                    <div className="comment-reply">
-                                        {/*<textarea*/}
-                                            {/*className="new-comment"*/}
-                                            {/*placeholder="Reply to comment"*/}
-                                            {/*onKeyDown={this.postComment}/>*/}
-                                    </div>
-
                                 </div>
                             );
                         })}
-                    </div>
-                    <div>
-                        {!!this.state.showNewComment[post._id] &&
-                            <textarea
-                                className="new-comment"
-                                placeholder="Hit enter to post your reply"
-                                onKeyDown={this.postComment}
-                                onBlur={this.toggleComment}/>}
                     </div>
                 </div>
             </article>
@@ -236,6 +292,12 @@ class Posts extends React.Component {
                 </div>
             </div>
         );
+    }
+
+    componentWillUnmount(){
+        this.state = {
+            showNewComment: {}
+        };
     }
 }
 
