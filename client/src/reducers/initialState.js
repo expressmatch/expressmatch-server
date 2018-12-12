@@ -1,10 +1,15 @@
 export default {
     posts: {
-        loading: false,
         entities: {
             posts: {
                 byId: {},
-                allIds: []
+                allIds: [],
+                loading: false
+            },
+            comments: {
+                byId: {},
+                allIds: [],
+                loading: false
             }
         },
         filters: {

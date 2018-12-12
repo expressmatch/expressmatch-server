@@ -5,6 +5,7 @@ import Filters from './filters/Filters';
 import { withRouter } from 'react-router-dom';
 import { UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 import Spinner from '../common/Spinner';
+import CommentsContainer from "../../containers/CommentsContainer";
 
 class Posts extends React.Component {
     constructor(props) {
@@ -19,12 +20,6 @@ class Posts extends React.Component {
         this.copyLink = this.copyLink.bind(this);
 
         this.comment = this.comment.bind(this);
-        this.postComment = this.postComment.bind(this);
-        this.toggleComment = this.toggleComment.bind(this);
-
-        this.reply = this.reply.bind(this);
-        this.postReply = this.postReply.bind(this);
-        this.toggleReply = this.toggleReply.bind(this);
     }
 
     componentWillReceiveProps(newProps) {
@@ -44,7 +39,8 @@ class Posts extends React.Component {
         this.props.history.push('/posts/' + postId);
         //TODO: Implement Deep Links
     }
-    comment(e){
+
+    comment(e) {
         let target = e.currentTarget.closest('.post'),
             postId = target.dataset['id'];
 
@@ -54,94 +50,6 @@ class Posts extends React.Component {
                 [postId]: true
             }
         });
-    }
-
-    postComment(e){
-        if(e.keyCode == 13 && e.shiftKey == false) {
-            e.preventDefault();
-
-            let target = e.currentTarget,
-                post = target.closest('.post'),
-                postId = post && post.dataset['id'],
-                commentStr = target.value;
-
-            this.setState({
-                showNewComment: {
-                    ...this.state.showNewComment,
-                    [postId]: false
-                }
-            });
-            this.props.actions.postComment(postId, null, commentStr).then(() => {
-
-            });
-        }
-    }
-
-    toggleComment(e){
-        let target = e.currentTarget,
-            post = target.closest('.post'),
-            postId = post && post.dataset['id'],
-            commentStr = target.value;
-
-        if(commentStr.trim() === ''){
-            this.setState({
-                showNewComment: {
-                    ...this.state.showNewComment,
-                    [postId]: false
-                }
-            })
-        }
-    }
-
-    reply(e){
-        let target = e.currentTarget.closest('.comment-item'),
-            commentId = target.dataset['id'];
-
-        this.setState({
-            showNewComment: {
-                ...this.state.showNewComment,
-                [commentId]: !this.state.showNewComment[commentId]
-            }
-        });
-    }
-
-    postReply(e){
-        if(e.keyCode == 13 && e.shiftKey == false) {
-            e.preventDefault();
-
-            let target = e.currentTarget,
-                post = target.closest('.post'),
-                comment = target.closest('.comment-item'),
-                postId = post && post.dataset['id'],
-                commentId = comment && comment.dataset['id'],
-                commentStr = target.value;
-
-            this.setState({
-                showNewComment: {
-                    ...this.state.showNewComment,
-                    [commentId]: false
-                }
-            });
-            this.props.actions.postComment(postId, commentId, commentStr).then(() => {
-
-            });
-        }
-    }
-
-    toggleReply(e){
-        let target = e.currentTarget,
-            comment = target.closest('.comment-item'),
-            commentId = comment && comment.dataset['id'],
-            commentStr = target.value;
-
-        if(commentStr.trim() === ''){
-            this.setState({
-                showNewComment: {
-                    ...this.state.showNewComment,
-                    [commentId]: false
-                }
-            })
-        }
     }
 
     renderPost(post) {
@@ -211,62 +119,9 @@ class Posts extends React.Component {
                         </button>
                     </div>
                 </div>
-                <div className="comments-control">
-                    {post.comments.length ? <div className="header">View comments:</div> : null}
-                    <div className="new-comment-container">
-                        {!!this.state.showNewComment[post._id] &&
-                        <textarea
-                            className="new-comment"
-                            placeholder="Hit enter to post your comment"
-                            onKeyDown={this.postComment}
-                            onBlur={this.toggleComment}/>}
-                    </div>
-                    <div className="comments-list">
-                        {post.comments.map(comment => {
-                            return (
-                                <div className="comment-item" key={comment._id} data-id={comment._id}>
-                                    <div className="comment-bubble">
-                                        <div className="comment-content">
-                                            <div className="postedBy">ExpressMatch:</div>
-                                            <div className="content">{comment.content}</div>
-                                        </div>
-                                        <div className="comment-actions">
-                                            <div className="action">Like</div>
-                                            <div className="action" onClick={this.reply}>
-                                                {!this.state.showNewComment[comment._id] && 'Reply'}
-                                                {!!this.state.showNewComment[comment._id] && 'Cancel'}
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="reply-list">
-                                        {comment.comments.length ? <div className="header">View replies:</div> : null}
-                                        <div className="new-reply-container">
-                                            {!!this.state.showNewComment[comment._id] &&
-                                            <textarea
-                                                className="new-reply"
-                                                placeholder="Hit enter to post your reply"
-                                                onKeyDown={this.postReply}
-                                                onBlur={this.toggleReply}/>}
-                                        </div>
-                                        {comment.comments.map(reply => {
-                                            return (
-                                                <div className="reply-item" key={reply._id} data-id={reply._id}>
-                                                    <div className="reply-content">
-                                                        <div className="postedBy">ExpressMatch:</div>
-                                                        <div className="content">{reply.content}</div>
-                                                    </div>
-                                                    <div className="reply-actions">
-                                                        <div className="action">Like</div>
-                                                    </div>
-                                                </div>
-                                            );
-                                        })}
-                                    </div>
-                                </div>
-                            );
-                        })}
-                    </div>
-                </div>
+                <CommentsContainer
+                    post={post}
+                    showPostComment={!!this.state.showNewComment[post._id]}/>
             </article>
         );
     }

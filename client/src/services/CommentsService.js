@@ -1,20 +1,21 @@
 import axios from 'axios';
 
-let getPosts = (() => {
+let getComments = (() => {
 
     const processResponse = (response) => {
 
         return response;
     };
 
-    return (filters) => {
+    return (postId, commentId) => {
         return new Promise((resolve, reject) => {
             axios({
                 method: 'POST',
-                url: '/api/posts',
+                url: '/api/comments',
                 headers: {'Content-type': 'application/json'},
                 data: {
-                    filters
+                    postId,
+                    commentId
                 }
             }).then(response => {
                 resolve(processResponse(response.data));
@@ -25,15 +26,18 @@ let getPosts = (() => {
     };
 })();
 
-let createPost = (() => {
-
-    return (post) => {
+let postComment = (() => {
+    return (postId, commentId, comment) => {
         return new Promise((resolve, reject) => {
             axios({
                 method: 'POST',
-                url: '/post/create',
+                url: '/api/comment',
                 headers: {'Content-type': 'application/json'},
-                data: post
+                data: {
+                    postId,
+                    commentId,
+                    comment
+                }
             }).then(response => {
                 resolve(response.data);
             }).catch(error => {
@@ -43,13 +47,13 @@ let createPost = (() => {
     };
 })();
 
-let likePost = (() => {
+let likeComment = (() => {
 
-    return (postId) => {
+    return (commentId) => {
         return new Promise((resolve, reject) => {
             axios({
                 method: 'POST',
-                url: `/post/${postId}/like`,
+                url: `/comment/${commentId}/like`,
                 headers: {'Content-type': 'application/json'},
                 data: {}
             }).then(response => {
@@ -61,10 +65,10 @@ let likePost = (() => {
     };
 })();
 
-const PostsService = {
-    getPosts,
-    createPost,
-    likePost
+const CommentsService = {
+    getComments,
+    postComment,
+    likeComment
 };
 
-export default PostsService;
+export default CommentsService;

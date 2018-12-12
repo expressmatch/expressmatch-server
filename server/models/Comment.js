@@ -27,10 +27,10 @@ const CommentSchema = new mongoose.Schema({
 }, {timestamps: true});
 
 CommentSchema.methods.isLikedByUser = function (user) {
-    // if(user){
-    //     return this.likes.indexOf(user._id) >= 0;
-    // }
-    // return false;
+    if(user){
+        return this.likes.indexOf(user._id) >= 0;
+    }
+    return false;
 };
 
 module.exports = mongoose.model("Comment", CommentSchema);

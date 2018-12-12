@@ -5,15 +5,44 @@ const Comment = require('../models/Comment');
 
 module.exports = function (app) {
 
-    app.get('/api/post/:postId/comment/', getPostComments);
+    app.post('/api/comments', getAllPostComments);
     app.post('/api/comment', postComment);
-    app.post('/api/comment/like', likeComment);
+    app.post('/comment/:commentId/like', likeComment);
 
     return router;
 };
 
-const getPostComments = function (req, res, next) {
+const getAllPostComments = function (req, res, next) {
+    let postId = req.body.postId,
+        commentId = req.body.commentId;
 
+    if(!!commentId){
+
+        Comment.findOne({_id: commentId}, function (err, comment) {
+            if (err) next(err);
+
+            if (comment) {
+                res.status(200).json(comment.comments);
+            }
+        }).populate({
+            path: 'comments'
+        });
+    }else if(!!postId) {
+
+        Post.findOne({_id: postId}, function(err, post){
+            if (err) next(err);
+
+            if (post) {
+                res.status(200).json(post.comments);
+            }
+        }).populate({
+            path: 'comments',
+            populate: {
+                path: 'comments',
+                model: 'Comment'
+            }
+        });
+    }
 };
 
 const postComment = function (req, res, next) {
@@ -42,7 +71,7 @@ const postComment = function (req, res, next) {
                         if (err) {
                             next(err);
                         }
-                        res.status(200).json({});
+                        res.status(200).json(savedComment);
                     });
                 });
             }
@@ -64,7 +93,7 @@ const postComment = function (req, res, next) {
                     if(err) {
                         next(err);
                     }
-                    res.status(200).json({});
+                    res.status(200).json(savedComment);
                 })
             });
         });
@@ -72,5 +101,23 @@ const postComment = function (req, res, next) {
 }
 
 const likeComment = function (req, res, next) {
+    let commentRes = null;
 
+    Comment.findOne({_id: req.params.commentId}, function (err, comment) {
+        if (comment.likes.indexOf(req.user._id) < 0) {
+            comment.likes.push(req.user._id);
+        } else {
+            comment.likes.splice(comment.likes.indexOf(req.user._id), 1);
+        }
+        comment.save(function (err, savedcomment) {
+            if (err) {
+                next(err);
+            }
+            commentRes = {
+                ...savedcomment.toJSON(),
+                'isLikedByUser': savedcomment.isLikedByUser(req.user)
+            };
+            res.status(200).json(commentRes);
+        });
+    });
 };

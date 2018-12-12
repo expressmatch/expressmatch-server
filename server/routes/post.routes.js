@@ -11,7 +11,7 @@ module.exports = function (app) {
     app.post('/api/posts', getAllPosts);
     app.post('/post/create', createNewPost);
     app.get('/api/posts/:postId', getPost);
-    app.post('/post/:postId/like', likePost)
+    app.post('/post/:postId/like', likePost);
 
     return router;
 };
@@ -32,13 +32,14 @@ const getAllPosts = function (req, res, next) {
     }else{
         query = Post.find({});
     }
-    query.populate({
-        path: 'comments',
-        populate: {
-            path: 'comments',
-            model: 'Comment'
-        }
-    }).sort({createdAt: 'desc'}).exec(function (err, posts) {
+    // query.populate({
+    //     path: 'comments',
+    //     populate: {
+    //         path: 'comments',
+    //         model: 'Comment'
+    //     }
+    // }).sort
+    query.sort({createdAt: 'desc'}).exec(function (err, posts) {
         if (err)
             next(err);
 
@@ -101,12 +102,13 @@ const likePost = (req, res, next) => {
             };
             res.status(200).json(postRes);
         });
-    }).populate({
-        path: 'comments',
-        populate: {
-            path: 'comments',
-            model: 'Comment'
-        }
-    });
+    })
+    // .populate({
+    //     path: 'comments',
+    //     populate: {
+    //         path: 'comments',
+    //         model: 'Comment'
+    //     }
+    // });
 
 };

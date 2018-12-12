@@ -149,7 +149,10 @@
         .header{
           padding: 5px 0;
           text-decoration: underline;
-          //text-transform: uppercase;
+          -webkit-user-select: none;
+          -moz-user-select: none;
+          -ms-user-select: none;
+          user-select: none;
           font-size: 11px;
         }
         .new-comment-container{
@@ -220,7 +223,10 @@
               .header {
                 padding: 5px 0;
                 text-decoration: underline;
-                //text-transform: uppercase;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
                 font-size: 11px;
               }
               .new-reply-container{
@@ -246,7 +252,6 @@
                 }
               }
               .reply-item {
-                padding: 5px 0;
                 margin: 5px 0;
                 font-size: 12px;
                 letter-spacing: 0.5px;

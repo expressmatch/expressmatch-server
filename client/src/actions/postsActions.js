@@ -73,30 +73,6 @@ export function likePostFailure(error){
 }
 /*-------- LIKE POST - END ---------*/
 
-
-/*-------- POST COMMENT - START ---------*/
-export function postComment(postId, commentId, comment) {
-    return (dispatch, getState ) => {
-        dispatch(postCommentRequest());
-
-        return postsService.postComment(postId, commentId, comment).then(() => {
-            dispatch(postCommentSuccess());
-        }).catch(error => {
-            dispatch(postCommentFailure(error));
-        })
-    };
-}
-export function postCommentRequest(){
-    return { type: types.POST_COMMENT_REQUEST };
-}
-export function postCommentSuccess(){
-    return { type: types.POST_COMMENT_SUCCESS };
-}
-export function postCommentFailure(error){
-    return { type: types.POST_COMMENT_FAILURE, error };
-}
-/*-------- POST COMMENT - END ---------*/
-
 export function uiDateFilter(date){
     return { type: types.UI_DATE_FILTER, date };
 }
