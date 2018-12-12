@@ -128,7 +128,7 @@ class Comments extends React.Component {
                                         </div>
                                         <div className="comment-actions">
                                             <div className="action" onClick={this.likeComment}>
-                                                Like {comment.likes.length && ( '(' + comment.likes.length + ')' )}
+                                                Like {!!comment.likes.length && ( '(' + comment.likes.length + ')' )}
                                             </div>
                                             <div className="action" onClick={this.reply}>
                                                 Reply
@@ -155,7 +155,7 @@ class Comments extends React.Component {
                                                         </div>
                                                         <div className="reply-actions">
                                                             <div className="action" onClick={this.likeReply}>
-                                                                Like {reply.likes.length && ( '(' + reply.likes.length + ')' )}
+                                                                Like {!!reply.likes.length && ( '(' + reply.likes.length + ')' )}
                                                             </div>
                                                         </div>
                                                     </div>

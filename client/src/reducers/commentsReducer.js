@@ -26,7 +26,6 @@ const commentsReducer = (state = initialState.posts.entities.comments, action) =
             allIds: [...state.allIds, ...comments.allIds]
         };
     } else if (action.type === types.POST_COMMENT_SUCCESS) {
-        debugger;
         if (!!action.commentId) {
             return {
                 byId: {
@@ -49,7 +48,16 @@ const commentsReducer = (state = initialState.posts.entities.comments, action) =
         }
 
     } else if (action.type === types.LIKE_COMMENT_SUCCESS) {
-        return state;
+        return {
+            ...state,
+            byId: {
+                ...state.byId,
+                [action.commentId]: {
+                    ...state.byId[action.commentId],
+                    likes: action.comment.likes
+                }
+            }
+        };
     } else {
         return state;
     }

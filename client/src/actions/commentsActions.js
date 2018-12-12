@@ -55,7 +55,7 @@ export function likeComment(commentId) {
         dispatch(likeCommentRequest());
 
         return commentsService.likeComment(commentId).then(data => {
-            dispatch(likeCommentSuccess(data));
+            dispatch(likeCommentSuccess(commentId, data));
         }).catch(error => {
             dispatch(likeCommentFailure(error));
         })
@@ -64,8 +64,8 @@ export function likeComment(commentId) {
 export function likeCommentRequest(){
     return { type: types.LIKE_COMMENT_REQUEST };
 }
-export function likeCommentSuccess(comment){
-    return { type: types.LIKE_COMMENT_SUCCESS, comment };
+export function likeCommentSuccess(commentId, comment){
+    return { type: types.LIKE_COMMENT_SUCCESS, commentId, comment };
 }
 export function likeCommentFailure(error){
     return { type: types.LIKE_COMMENT_FAILURE, error };

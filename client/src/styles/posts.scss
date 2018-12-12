@@ -156,7 +156,7 @@
           font-size: 11px;
         }
         .new-comment-container{
-          .new-comment{
+          textarea.new-comment{
             height: 60px;
             width: 100%;
             resize: none;
@@ -230,8 +230,8 @@
                 font-size: 11px;
               }
               .new-reply-container{
-                .new-reply{
-                  height: 60px;
+                textarea.new-reply{
+                  height: 46px;
                   width: 100%;
                   resize: none;
                   border-radius: 5px;
