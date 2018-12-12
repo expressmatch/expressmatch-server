@@ -151,7 +151,7 @@ class Comments extends React.Component {
                                                     <div className="reply-item" key={reply._id} data-id={reply._id}>
                                                         <div className="reply-content">
                                                             <span className="postedBy">ExpressMatch</span>:&nbsp;
-                                                            <span className="content">{comment.content}</span>
+                                                            <span className="content">{reply.content}</span>
                                                         </div>
                                                         <div className="reply-actions">
                                                             <div className="action" onClick={this.likeReply}>
