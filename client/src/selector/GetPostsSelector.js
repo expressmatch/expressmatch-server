@@ -14,7 +14,7 @@ export const makeGetPosts = () => createSelector(
         return posts.map(post => {
             return {
                 ...post,
-                dateCreated: post.dateCreated,
+                createdAt: new Date(post.createdAt).toUTCString(),
                 //dateSelected: filters.date
             }
         }).sort();

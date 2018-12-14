@@ -1,5 +1,6 @@
 import * as types from '../constants/actionTypes';
 import postsService from '../services/PostsService';
+import delay from '../services/delay';
 
 /*-------- FETCH POSTS - START---------*/
 export function getPosts(filters) {
@@ -9,7 +10,7 @@ export function getPosts(filters) {
         return postsService.getPosts(filters).then(data => {
             setTimeout(() => {
                 return dispatch(getPostsSuccess(data));
-            }, 2000);
+            }, delay);
         }).catch(error => {
             dispatch(getPostsFailure(error));
         })
@@ -32,7 +33,9 @@ export function createPost(post) {
         dispatch(createPostRequest());
 
         return postsService.createPost(post).then(data => {
-            dispatch(createPostSuccess(data));
+            setTimeout(() => {
+                return dispatch(createPostSuccess(data));;
+            }, delay);
         }).catch(error => {
             dispatch(createPostFailure(error));
         })
@@ -56,7 +59,9 @@ export function likePost(postId) {
         dispatch(likePostRequest());
 
         return postsService.likePost(postId).then(data => {
-            dispatch(likePostSuccess(data));
+            setTimeout(() => {
+                return dispatch(likePostSuccess(data));
+            }, delay);
         }).catch(error => {
             dispatch(likePostFailure(error));
         })

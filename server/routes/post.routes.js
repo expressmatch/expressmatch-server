@@ -47,6 +47,7 @@ const getAllPosts = function (req, res, next) {
             postsRes = posts.map(post => {
                 let obj = post.toJSON();
                 obj.isLikedByUser = post.isLikedByUser(req.user);
+                obj.isCreatedByUser = post.isCreatedByUser(req.user);
                 return obj;
             });
             res.status(200).json(postsRes);

@@ -1,5 +1,6 @@
 import * as types from '../constants/actionTypes';
 import commentsService from '../services/CommentsService';
+import delay from '../services/delay';
 
 /*-------- GET COMMENTS - START ---------*/
 export function getComments(postId, commentId) {
@@ -9,7 +10,7 @@ export function getComments(postId, commentId) {
         return commentsService.getComments(postId, commentId).then((data) => {
             setTimeout(() => {
                 return dispatch(getCommentsSuccess(data));
-            }, 1000);
+            }, delay);
         }).catch(error => {
             dispatch(getCommentsFailure(error));
         })
@@ -32,7 +33,9 @@ export function postComment(postId, commentId, comment) {
         dispatch(postCommentRequest());
 
         return commentsService.postComment(postId, commentId, comment).then(data => {
-            dispatch(postCommentSuccess(postId, commentId, data));
+            setTimeout(() => {
+                return dispatch(postCommentSuccess(postId, commentId, data));
+            }, delay);
         }).catch(error => {
             dispatch(postCommentFailure(error));
         })
@@ -55,7 +58,9 @@ export function likeComment(commentId) {
         dispatch(likeCommentRequest());
 
         return commentsService.likeComment(commentId).then(data => {
-            dispatch(likeCommentSuccess(commentId, data));
+            setTimeout(() => {
+                return dispatch(likeCommentSuccess(commentId, data));
+            }, delay);
         }).catch(error => {
             dispatch(likeCommentFailure(error));
         })

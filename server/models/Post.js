@@ -40,13 +40,20 @@ const PostSchema = new mongoose.Schema({
         subCaste: String,
         city: String
     },
-}, { timestamps: true });
+}, {timestamps: true});
 
-PostSchema.methods.isLikedByUser = function(user){
-   if(user){
-       return this.likes.indexOf(user._id) >= 0;
-   }
-   return false;
+PostSchema.methods.isCreatedByUser = function (user) {
+    if (user) {
+        return mongoose.Types.ObjectId(this.postedBy.userId).equals(mongoose.Types.ObjectId(user._id));
+    }
+    return false;
+};
+
+PostSchema.methods.isLikedByUser = function (user) {
+    if (user) {
+        return this.likes.indexOf(user._id) >= 0;
+    }
+    return false;
 };
 
 module.exports = mongoose.model("Post", PostSchema);
