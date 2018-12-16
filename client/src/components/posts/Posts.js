@@ -58,13 +58,16 @@ class Posts extends React.Component {
                 <div className="post-header">
                     <div className="post-details">
                         <div className="post-date detail">
-                            {post.createdAt}
+                            {post.displayDate}, {post.displayTime}
                         </div>
                         <div className="post-place detail">
                             {post.postedBy.city}
                         </div>
                         <div className="post-caste detail">
-                            {post.postedBy.caste}{post.postedBy.caste && post.postedBy.subCaste && ', '}{post.postedBy.subCaste}
+                            {post.postedBy.caste}
+                        </div>
+                        <div className="post-sub-caste detail">
+                           {post.postedBy.subCaste}
                         </div>
                     </div>
                     <div className="post-action">

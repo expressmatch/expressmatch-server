@@ -1,39 +1,62 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
+import {withRouter} from 'react-router-dom';
 
 class CreatePost extends React.Component {
 
-    constructor(props){
+    constructor(props) {
         super(props);
 
+        this.state = {
+            post: '',
+            charCount: 0,
+            wordCount: 0,
+            minCharCount: 500
+        };
         this.onReset = this.onReset.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
         this.onChange = this.onChange.bind(this);
     }
 
-    onReset(e){
+    onReset(e) {
         e.target.reset();
-    }
 
-    onSubmit(e){
-        e.preventDefault();
-
-        //FIXME
-        let data = {
-            content: e.target.querySelector('textarea[name=\'content\']').value
-        };
-        this.props.actions.createPost(data).then(()=>{
-            this.props.history.push('/posts');
+        this.setState({
+            post: '',
+            charCount: 0,
+            wordCount: 0
         });
     }
-    onChange(e){
+
+    onSubmit(e) {
+        e.preventDefault();
+
+        if (this.state.charCount >= this.state.minCharCount) {
+            let data = {
+                content: this.state.post.trim()
+            };
+            this.props.actions.createPost(data).then(() => {
+                this.props.history.push('/posts');
+            });
+        }
 
     }
-    // componentWillUnmount(){
-    //     this.setState({
-    //         remainingCharCount: this.state.maxLimit
-    //     });
-    // }
+
+    onChange(e) {
+        this.setState({
+            post: e.currentTarget.value,
+            charCount: e.currentTarget.value.trim().length,
+            wordCount: e.currentTarget.value.trim().replace(/\s\s+/g, ' ').split(' ').length
+        })
+    };
+
+    componentWillUnmount() {
+        this.setState({
+            post: '',
+            charCount: 0,
+            wordCount: 0
+        });
+    }
+
     render() {
         return (
             <div id="create-post">
@@ -45,12 +68,21 @@ class CreatePost extends React.Component {
                         </div>
                         <div className="field-value">
                             <textarea name="content" onChange={this.onChange}></textarea>
+                            {this.state.charCount < this.state.minCharCount &&
+                            <div className="sub-text">
+                                Enter at least {this.state.minCharCount - this.state.charCount} more characters
+                            </div>}
+                            {this.state.charCount >= this.state.minCharCount &&
+                            <div className="sub-text">
+                                {this.state.wordCount} {this.state.wordCount > 1 ? ' words' : ' word'} used
+                            </div>}
                         </div>
                     </div>
                     <div className="em-form-control">
                         <div className="field-value">
-                            <input type="reset" value="Reset" />
-                            <input type="submit" value="Submit" />
+                            <input type="reset" disabled={!this.state.post.length} value="Reset"/>
+                            <input type="submit" disabled={this.state.charCount < this.state.minCharCount}
+                                   value="Submit"/>
                         </div>
                     </div>
                 </form>

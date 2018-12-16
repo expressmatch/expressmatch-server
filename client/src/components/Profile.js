@@ -1,6 +1,7 @@
 import React from 'react';
 import PlacesAutocomplete from 'react-places-autocomplete';
-
+import {Typeahead} from 'react-bootstrap-typeahead';
+import Languages from '../api/languageApi';
 import DatePicker from "react-datepicker";
 
 class Profile extends React.Component {
@@ -22,6 +23,7 @@ class Profile extends React.Component {
         this.handleProfileChange = this.handleProfileChange.bind(this);
         this.handleDOBChange = this.handleDOBChange.bind(this);
         this.handleDOBSelect = this.handleDOBSelect.bind(this);
+        this.handleLanguageChange = this.handleLanguageChange.bind(this);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -59,6 +61,14 @@ class Profile extends React.Component {
 
     handleDOBSelect() {
 
+    }
+
+    handleLanguageChange(e) {
+        if (e.length) {
+            this.setState({
+                motherTongue: e[0]
+            });
+        }
     }
 
     resetForm(e) {
@@ -186,8 +196,15 @@ class Profile extends React.Component {
                     <div className="em-form-control">
                         <div className="field-label">What is your mother tongue?</div>
                         <div className="field-value">
-                            <input type="text" data-name="motherTongue" value={this.state.motherTongue}
-                                   onChange={this.handleProfileChange}/>
+                            {/*<input type="text" data-name="motherTongue" value={this.state.motherTongue}*/}
+                            {/*onChange={this.handleProfileChange}/>*/}
+                            <Typeahead
+                                data-name="motherTongue"
+                                options={Languages}
+                                selected={[this.state.motherTongue]}
+                                onChange={this.handleLanguageChange}
+                                placeholder="Enter your native spoken language"
+                            />
                         </div>
                     </div>
                     <div className="em-form-control">

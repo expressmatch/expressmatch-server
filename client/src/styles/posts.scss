@@ -32,24 +32,28 @@
 
           .post-date{
             background-color: #fff;
-            padding: 0 5px;
+            padding: 0;
             font-size: 11px;
           }
         }
 
         .post-action{
-          cursor: pointer;
 
           .dropdown-menu {
             max-width: 200px;
+            -moz-box-shadow: 2px 2px 5px 2px #ececec;
+            -webkit-box-shadow: 2px 2px 5px 2px #ececec;
+            box-shadow: 2px 2px 5px 2px #ececec;
+
             .menu-item {
-              font-size: 12px;
+              font-size: 11px;
               white-space: nowrap;
               overflow: hidden;
               text-overflow: ellipsis;
               color: #888da8;
               cursor: pointer;
-              line-height: 15px;
+              line-height: 16px;
+              font-weight: bold;
 
               &:hover{
                 background-color: #edf2f6;
