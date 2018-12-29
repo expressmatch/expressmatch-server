@@ -18,6 +18,7 @@ export const makeGetPosts = () => createSelector(
             return {
                 ...post,
                 displayDate: new Date(post.createdAt) >= today ? 'Today' : new Date(post.createdAt).toDateString(),
+                //displayDate: new Date(post.createdAt) >= today ? Math.abs(Math.round(((new Date().getTime() - new Date(post.createdAt).getTime()) / (1000*60*60)))) : new Date(post.createdAt).toDateString(),
                 displayTime: new Date(post.createdAt).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}),
                 //dateSelected: filters.date
             }

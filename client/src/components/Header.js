@@ -10,8 +10,7 @@ class Header extends React.Component {
                 <div className="left-content">
                     <a href="/posts">
                         <div className="app-logo">
-                            EXPRESS MATCH&nbsp;
-                            <i className="fas fa-kiss-wink-heart"></i>
+                            EXPRESS MATCH
                         </div>
                     </a>
                 </div>

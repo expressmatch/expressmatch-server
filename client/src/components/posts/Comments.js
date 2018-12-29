@@ -130,6 +130,7 @@ class Comments extends React.Component {
                                             <div className="action" onClick={this.likeComment}>
                                                 Like {!!comment.likes.length && ( '(' + comment.likes.length + ')' )}
                                             </div>
+                                            |&nbsp;
                                             <div className="action" onClick={this.reply}>
                                                 Reply
                                             </div>
@@ -143,7 +144,7 @@ class Comments extends React.Component {
                                                 <textarea
                                                     autoFocus
                                                     className="new-reply"
-                                                    placeholder="Write a comment..."
+                                                    placeholder="Write a reply..."
                                                     onKeyDown={this.postReply}/>}
                                             </div>
                                             {comment.comments.map(reply => {

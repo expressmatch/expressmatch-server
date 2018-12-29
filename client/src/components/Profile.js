@@ -98,7 +98,22 @@ class Profile extends React.Component {
             <div id="profile">
                 <form>
                     <div className="em-form-control">
-                        <div className="field-label">Date of Birth</div>
+                        <div className="field-label">
+                            <div>About me</div>
+                            <div className="sub-text">
+                                introduce yourself, for your friends, in 200 words
+                            </div>
+                        </div>
+                        <div className="field-value">
+                            <textarea
+                                maxlength="200"
+                                data-name="about"
+                                value={this.state.about}
+                                onChange={this.handleProfileChange}/>
+                        </div>
+                    </div>
+                    <div className="em-form-control">
+                        <div className="field-label">Birthday</div>
                         <div className="field-value">
                             <DatePicker
                                 data-name="age"
@@ -110,7 +125,7 @@ class Profile extends React.Component {
                         </div>
                     </div>
                     <div className="em-form-control">
-                        <div className="field-label">What is your gender?</div>
+                        <div className="field-label">Gender</div>
                         <div className="field-value">
                             <select data-name="gender" value={this.state.gender} onChange={this.handleProfileChange}>
                                 <option>-Select-</option>
@@ -120,7 +135,7 @@ class Profile extends React.Component {
                         </div>
                     </div>
                     <div className="em-form-control">
-                        <div className="field-label">In which city do you live currently?</div>
+                        <div className="field-label">Current City</div>
                         <div className="field-value">
                             <PlacesAutocomplete
                                 value={this.state.currentCity}
@@ -157,7 +172,7 @@ class Profile extends React.Component {
                         </div>
                     </div>
                     <div className="em-form-control">
-                        <div className="field-label">What is your hometown?</div>
+                        <div className="field-label">Hometown</div>
                         <div className="field-value">
                             <PlacesAutocomplete
                                 value={this.state.homeTown}
@@ -194,7 +209,7 @@ class Profile extends React.Component {
                         </div>
                     </div>
                     <div className="em-form-control">
-                        <div className="field-label">What is your mother tongue?</div>
+                        <div className="field-label">Mother tongue</div>
                         <div className="field-value">
                             {/*<input type="text" data-name="motherTongue" value={this.state.motherTongue}*/}
                             {/*onChange={this.handleProfileChange}/>*/}
@@ -208,14 +223,24 @@ class Profile extends React.Component {
                         </div>
                     </div>
                     <div className="em-form-control">
-                        <div className="field-label">If you wish, enter your caste details</div>
+                        <div className="field-label">
+                            <div>Caste details</div>
+                            <div className="sub-text">
+                                for caste matches, enter this value
+                            </div>
+                        </div>
                         <div className="field-value">
                             <input type="text" data-name="caste" value={this.state.caste}
                                    onChange={this.handleProfileChange}/>
                         </div>
                     </div>
                     <div className="em-form-control">
-                        <div className="field-label">If you wish, enter your sub caste details</div>
+                        <div className="field-label">
+                            <div>Sub-caste details</div>
+                            <div className="sub-text">
+                                for sub-caste matches, enter this value
+                            </div>
+                        </div>
                         <div className="field-value">
                             <input type="text" data-name="subCaste" value={this.state.subCaste}
                                    onChange={this.handleProfileChange}/>
@@ -229,14 +254,19 @@ class Profile extends React.Component {
                         </div>
                     </div>
                     <div className="em-form-control">
-                        <div className="field-label">What is the nature of your job?</div>
+                        <div className="field-label">Nature of your job</div>
                         <div className="field-value">
                             <input type="text" data-name="job" value={this.state.job}
                                    onChange={this.handleProfileChange}/>
                         </div>
                     </div>
                     <div className="em-form-control">
-                        <div className="field-label">What are your interests?</div>
+                        <div className="field-label">
+                            <div>Interests</div>
+                            <div className="sub-text">
+                                (choose up to 10 interests)
+                            </div>
+                        </div>
                         <div className="field-value">
                             <textarea data-name="interests" value={this.state.interests} disabled></textarea>
                         </div>

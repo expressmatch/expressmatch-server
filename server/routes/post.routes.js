@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const ObjectId = require('mongoose').Types.ObjectId;
 const Post = require('../models/Post');
+const Comment = require('../models/Comment');
 const User = require('../models/User');
 
 module.exports = function (app) {
@@ -12,6 +13,7 @@ module.exports = function (app) {
     app.post('/post/create', createNewPost);
     app.get('/api/posts/:postId', getPost);
     app.post('/post/:postId/like', likePost);
+    app.post('/post/:postId/delete', deletePost);
 
     return router;
 };
@@ -29,7 +31,7 @@ const getAllPosts = function (req, res, next) {
 
     if (predicate.length > 0) {
         query = Post.find({$or: predicate});
-    }else{
+    } else {
         query = Post.find({});
     }
     // query.populate({
@@ -60,10 +62,11 @@ const createNewPost = function (req, res, next) {
         post = new Post(data);
 
     post.postedBy = {
-        userId  : req.user._id,
-        caste   : req.user.profile.caste,
+        userId: req.user._id,
+        caste: req.user.profile.caste,
         subCaste: req.user.profile.subCaste,
-        city    : req.user.profile.currentCity
+        city: req.user.profile.currentCity,
+        motherTongue: req.user.profile.motherTongue
     };
     post.save(function (err, savedPost) {
         if (err)
@@ -112,4 +115,25 @@ const likePost = (req, res, next) => {
     //     }
     // });
 
+};
+
+const deletePost = function (req, res, next) {
+    Post.findOne({
+        _id: new ObjectId(req.params.postId),
+        "postedBy.userId": new ObjectId(req.user._id)
+    }, function (err, post) {
+        if (err) next(err);
+
+        if (post) {
+            Post.remove({_id: req.params.postId}, function (err) {
+                if (err) next(err);
+
+                Comment.remove({postId: new ObjectId(req.params.postId)}, function (err) {
+                    if (err) next(err);
+
+                    res.status(200).json({});
+                });
+            });
+        }
+    });
 };

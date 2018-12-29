@@ -43,6 +43,23 @@ let createPost = (() => {
     };
 })();
 
+let deletePost = (() => {
+
+    return (postId) => {
+        return new Promise((resolve, reject) => {
+            axios({
+                method: 'POST',
+                url: `/post/${postId}/delete`,
+                headers: {'Content-type': 'application/json'}
+            }).then(response => {
+                resolve(response.data);
+            }).catch(error => {
+                reject(error);
+            });
+        });
+    };
+})();
+
 let likePost = (() => {
 
     return (postId) => {
@@ -64,6 +81,7 @@ let likePost = (() => {
 const PostsService = {
     getPosts,
     createPost,
+    deletePost,
     likePost
 };
 

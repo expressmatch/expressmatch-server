@@ -52,6 +52,30 @@ export function createPostFailure(error){
 }
 /*-------- SUBMIT POST - END ---------*/
 
+/*-------- DELETE POST - START ---------*/
+export function deletePost(postId) {
+    return (dispatch, getState ) => {
+        dispatch(deletePostRequest());
+
+        return postsService.deletePost(postId).then(data => {
+            setTimeout(() => {
+                return dispatch(deletePostSuccess(postId));
+            }, delay);
+        }).catch(error => {
+            dispatch(deletePostFailure(error));
+        })
+    };
+}
+export function deletePostRequest(){
+    return { type: types.DELETE_POST_REQUEST };
+}
+export function deletePostSuccess(postId){
+    return { type: types.DELETE_POST_SUCCESS, postId };
+}
+export function deletePostFailure(error){
+    return { type: types.DELETE_POST_FAILURE, error };
+}
+/*-------- LIKE POST - END ---------*/
 
 /*-------- LIKE POST - START ---------*/
 export function likePost(postId) {

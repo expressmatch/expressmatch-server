@@ -38,7 +38,8 @@ const PostSchema = new mongoose.Schema({
         userId: Schema.Types.ObjectId,
         caste: String,
         subCaste: String,
-        city: String
+        city: String,
+        motherTongue: String
     },
 }, {timestamps: true});
 

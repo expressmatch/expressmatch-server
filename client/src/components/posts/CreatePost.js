@@ -10,7 +10,7 @@ class CreatePost extends React.Component {
             post: '',
             charCount: 0,
             wordCount: 0,
-            minCharCount: 500
+            minCharCount: 300
         };
         this.onReset = this.onReset.bind(this);
         this.onSubmit = this.onSubmit.bind(this);

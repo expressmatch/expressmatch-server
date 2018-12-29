@@ -44,6 +44,32 @@ const postsReducer = (state = initialState.posts, action) => {
                 }
             }
         }
+    } else if (action.type === types.DELETE_POST_SUCCESS) {
+
+        //FIXME: Deep Clone, use lodash
+        let byId = {
+            ...state.entities.posts.byId,
+            [action.postId]: {
+                ...state.entities.posts.byId[action.postId]
+            }
+        };
+        delete byId[action.postId];
+
+        let allIds = state.entities.posts.allIds.filter(id => {
+            return id !== action.postId;
+        });
+
+        return {
+            ...state,
+            entities: {
+                ...state.entities,
+                posts: {
+                    ...state.entities.posts,
+                    byId: byId,
+                    allIds: allIds
+                }
+            }
+        }
     } else if (action.type === types.POST_COMMENT_SUCCESS) {
 
         if(!!action.commentId){

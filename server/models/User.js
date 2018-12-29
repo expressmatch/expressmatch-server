@@ -46,6 +46,9 @@ const UserSchema = new mongoose.Schema({
         //     type: Number,
         //     //required: true
         // },
+        about: {
+          type: String
+        },
         dob: {
             type: String,
             //required: true
