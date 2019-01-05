@@ -23,16 +23,28 @@ const getAllPosts = function (req, res, next) {
     let filters = req.body.filters,
         predicate = [],
         postsRes = [],
-        query = null;
+        query = null,
+        startDate = null,
+        endDate = null;
 
     if (filters.quick.caste) predicate.push({'postedBy.caste': req.user.profile.caste});
     if (filters.quick.city) predicate.push({'postedBy.city': req.user.profile.currentCity});
     if (filters.quick.motherTongue) predicate.push({'postedBy.motherTongue': req.user.profile.motherTongue});
 
+    if (filters.date) {
+        startDate = new Date(filters.date);
+        startDate.setHours(0, 0, 0, 0);
+        endDate = new Date(filters.date);
+        endDate.setDate(endDate.getDate() + 1);
+        endDate.setHours(0, 0, 0, 0);
+    }
+    console.log(startDate);
+    console.log(endDate);
+
     if (predicate.length > 0) {
-        query = Post.find({$or: predicate});
+        query = Post.find({$and: [{'createdAt': {"$gte": startDate, "$lt": endDate}}, {$or: predicate}]});
     } else {
-        query = Post.find({});
+        query = Post.find({'createdAt': {"$gte": startDate, "$lt": endDate}});
     }
     // query.populate({
     //     path: 'comments',

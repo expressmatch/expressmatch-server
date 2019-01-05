@@ -127,12 +127,34 @@ class Comments extends React.Component {
                                             <span className="content">{comment.content}</span>
                                         </div>
                                         <div className="comment-actions">
-                                            <div className="action" onClick={this.likeComment}>
-                                                Like {!!comment.likes.length && ( '(' + comment.likes.length + ')' )}
+                                            <div className="action">
+                                                <span className="primary" onClick={this.likeComment}>Like</span>
+                                                <span className="label">
+                                                    {!!comment.likes.length &&
+                                                        (
+                                                            <React.Fragment>
+                                                                &nbsp;
+                                                                {'(' + comment.likes.length + ')'}
+                                                            </React.Fragment>
+                                                        )
+                                                    }
+                                                </span>
                                             </div>
                                             |&nbsp;
-                                            <div className="action" onClick={this.reply}>
-                                                Reply
+                                            <div className="action">
+                                                <span className="primary" onClick={this.reply}>Reply</span>
+                                                <span className="label info">
+                                                    {!!comment.comments.length &&
+                                                        (
+                                                            <React.Fragment>
+                                                                &nbsp;|&nbsp;
+                                                                {comment.comments.length}
+                                                                {comment.comments.length === 1 && ' Reply'}
+                                                                {comment.comments.length !== 1 && ' Replies'}
+                                                            </React.Fragment>
+                                                        )
+                                                    }
+                                                </span>
                                             </div>
                                         </div>
                                     </div>
@@ -155,8 +177,9 @@ class Comments extends React.Component {
                                                             <span className="content">{reply.content}</span>
                                                         </div>
                                                         <div className="reply-actions">
-                                                            <div className="action" onClick={this.likeReply}>
-                                                                Like {!!reply.likes.length && ( '(' + reply.likes.length + ')' )}
+                                                            <div className="action">
+                                                                <span className="primary" onClick={this.likeReply}>Like</span>&nbsp;
+                                                                <span className="label">{!!reply.likes.length && ( '(' + reply.likes.length + ')' )}</span>
                                                             </div>
                                                         </div>
                                                     </div>

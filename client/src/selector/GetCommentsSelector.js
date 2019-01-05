@@ -1,11 +1,17 @@
 import {createSelector} from 'reselect';
 
 const getComments = (state, props) => {
-    let comments = [];
+    let comment = null,
+        comments = [];
 
-    props.post.comments.map(id => {
-        if (state.comments.byId[id]) {
-            comments.push(state.comments.byId[id]);
+    props.post.comments.map(commentId => {
+        comment = {...state.comments.byId[commentId]};
+
+        if (state.comments.byId[commentId]) {
+            comment.comments = comment.comments.map(replyId => {
+                return state.comments.byId[replyId]
+            });
+            comments.push(comment);
         }
     });
     return comments;

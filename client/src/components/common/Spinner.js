@@ -30,7 +30,7 @@ export default class Spinner extends React.Component {
                             className={override}
                             sizeUnit={"px"}
                             size={150}
-                            color={'#888da8'}
+                            color={'#545566'}
                             loading={this.state.loading}
                         />
                     </div>

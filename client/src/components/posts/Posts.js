@@ -93,7 +93,7 @@ class Posts extends React.Component {
                             <UncontrolledDropdown className="menu-toggle">
                                 <DropdownToggle tag="div" className="post-action-menu">...</DropdownToggle>
                                 <DropdownMenu right>
-                                    <DropdownItem className="menu-item">Add to favourites</DropdownItem>
+                                    {/*<DropdownItem className="menu-item">Add to favourites</DropdownItem>*/}
                                     {post.isCreatedByUser &&
                                     <DropdownItem className="menu-item" onClick={this.delete}>Delete post</DropdownItem>}
                                     <DropdownItem className="menu-item">Report spam</DropdownItem>

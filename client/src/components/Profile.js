@@ -106,7 +106,7 @@ class Profile extends React.Component {
                         </div>
                         <div className="field-value">
                             <textarea
-                                maxlength="200"
+                                maxLength="200"
                                 data-name="about"
                                 value={this.state.about}
                                 onChange={this.handleProfileChange}/>

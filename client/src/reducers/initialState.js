@@ -13,7 +13,7 @@ export default {
             }
         },
         filters: {
-            date: null,
+            date: new Date(),
             quick: {
                 city: false,
                 caste: false,
