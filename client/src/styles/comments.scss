@@ -5,7 +5,6 @@
 
   .header{
     padding: 5px 0;
-    //text-decoration: underline;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
@@ -41,13 +40,10 @@
       //letter-spacing: 0.5px;
       //word-spacing: 0.1px;
       line-height: 13px;
+      border-top: 1px solid #edf2f6;
 
       .comment-bubble{
-
-        //background-color: #edf2f6;
         padding: 10px;
-        //border-radius: 10px;
-        border-bottom: 1px solid #edf2f6;
 
         .comment-content{
           .postedBy{
@@ -97,8 +93,7 @@
 
         margin: 0 0 0 20px;
         .header {
-          padding: 5px 0;
-          //text-decoration: underline;
+          padding: 5px 10px;
           -webkit-user-select: none;
           -moz-user-select: none;
           -ms-user-select: none;
@@ -133,9 +128,7 @@
           //letter-spacing: 0.5px;
           //word-spacing: 0.1px;
           line-height: 13px;
-          //background-color: #edf2f6;
           padding: 5px 10px;
-          //border-radius: 10px;
           border-bottom: 1px solid #edf2f6;
 
           .reply-content {
@@ -171,7 +164,14 @@
               }
             }
           }
+          &:last-child{
+            border-bottom: none;
+          }
         }
+      }
+
+      &:first-child {
+        border-top: none;
       }
     }
   }

@@ -5,12 +5,14 @@ class Comments extends React.Component {
         super(props);
 
         this.state = {
-            showNewComment: {}
+            showNewComment: {},
+            comment: ""
         };
 
         this.comment = this.comment.bind(this);
         this.postComment = this.postComment.bind(this);
         this.likeComment = this.likeComment.bind(this);
+        this.onCommentChange = this.onCommentChange.bind(this);
 
         this.reply = this.reply.bind(this);
         this.postReply = this.postReply.bind(this);
@@ -42,13 +44,9 @@ class Comments extends React.Component {
                 postId = post && post.dataset['id'],
                 commentStr = target.value;
 
-            // this.setState({
-            //     showNewComment: {
-            //         ...this.state.showNewComment,
-            //         [postId]: false
-            //     }
-            // });
-            //e.currentTarget.value = "";
+            this.setState({
+                comment: ""
+            });
             this.props.actions.postComment(postId, null, commentStr).then(() => {
 
             });
@@ -60,6 +58,15 @@ class Comments extends React.Component {
             commentId = target.dataset['id'];
 
         this.props.actions.likeComment(commentId);
+    }
+
+    onCommentChange(e) {
+        let target = e.currentTarget,
+            value = target.value;
+
+        this.setState({
+            comment: value
+        });
     }
 
     reply(e) {
@@ -114,7 +121,10 @@ class Comments extends React.Component {
                             autoFocus
                             className="new-comment"
                             placeholder="Write a comment..."
-                            onKeyDown={this.postComment}/>
+                            onKeyDown={this.postComment}
+                            onChange={this.onCommentChange}
+                            value={this.state.comment}
+                        />
                     </div>
                     {this.props.loading && <div>Loading...</div>}
                     <div className="comments-list">
