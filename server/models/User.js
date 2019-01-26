@@ -22,32 +22,25 @@ const UserSchema = new mongoose.Schema({
     username: {
       type: String
     },
-    gender: {
-      type: String
-    },
-    name: {
-      type: String
-    },
     token: {
       type: String
-    },
-    email: {
-      type: String
-    },
-    photos: {
-      type: [{ value: String}]
-    },
-    // photo: {
-    //   type: String
+    }
+    // photos: {
+    //   type: [{ value: String}]
     // }
   },
     profile: {
-        // age: {
-        //     type: Number,
-        //     //required: true
-        // },
+        name: {
+            type: String
+        },
+        email: {
+            type: String
+        },
         about: {
           type: String
+        },
+        photo: {
+            type: String
         },
         dob: {
             type: String,
@@ -80,9 +73,9 @@ const UserSchema = new mongoose.Schema({
         organization: {
             type: String
         },
-        interests: {
-            type: [String]
-        }
+        // interests: {
+        //     type: [String]
+        // }
     }
 }, { timestamps: true });
 

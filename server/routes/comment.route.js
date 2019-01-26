@@ -13,23 +13,11 @@ module.exports = function (app) {
 };
 
 const getAllPostComments = function (req, res, next) {
-    let postId = req.body.postId,
-        commentId = req.body.commentId;
+    let postId = req.body.postId;
 
-    if(!!commentId){
+    if (!!postId) {
 
-        Comment.findOne({_id: commentId}, function (err, comment) {
-            if (err) next(err);
-
-            if (comment) {
-                res.status(200).json(comment.comments);
-            }
-        }).populate({
-            path: 'comments'
-        });
-    }else if(!!postId) {
-
-        Post.findOne({_id: postId}, function(err, post){
+        Post.findOne({_id: postId}, function (err, post) {
             if (err) next(err);
 
             if (post) {
@@ -37,10 +25,20 @@ const getAllPostComments = function (req, res, next) {
             }
         }).populate({
             path: 'comments',
-            populate: {
+            populate: [{
                 path: 'comments',
-                model: 'Comment'
-            }
+                model: 'Comment',
+                populate: {
+                    path: 'postedBy',
+                    model: 'User',
+                    select: { 'profile.name': 1, 'profile.photo': 1, 'profile.email': 1 }
+                }
+            },
+            {
+                path: 'postedBy',
+                model: 'User',
+                select: { 'profile.name': 1, 'profile.photo': 1, 'profile.email': 1 }
+            }]
         });
     }
 };
@@ -50,7 +48,7 @@ const postComment = function (req, res, next) {
         commentId = req.body.commentId,
         commentStr = req.body.comment;
 
-    if(!!commentId){
+    if (!!commentId) {
 
         Comment.findOne({_id: commentId}, function (err, comment) {
             if (err) next(err);
@@ -71,14 +69,19 @@ const postComment = function (req, res, next) {
                         if (err) {
                             next(err);
                         }
-                        res.status(200).json(savedComment);
+                        Comment.populate(savedComment, {
+                            path: "postedBy",
+                            select: { 'profile.name': 1, 'profile.photo': 1, 'profile.email': 1 }
+                        }, function (err) {
+                            res.status(200).json(savedComment);
+                        });
                     });
                 });
             }
         });
-    }else if(!!postId) {
+    } else if (!!postId) {
 
-        Post.findOne({_id: postId}, function(err, post){
+        Post.findOne({_id: postId}, function (err, post) {
             let newComment = new Comment({
                 postId: postId,
                 content: commentStr,
@@ -89,11 +92,16 @@ const postComment = function (req, res, next) {
                     next(err);
                 }
                 post.comments.push(newComment);
-                post.save(function(err, savedPost){
-                    if(err) {
+                post.save(function (err, savedPost) {
+                    if (err) {
                         next(err);
                     }
-                    res.status(200).json(savedComment);
+                    Comment.populate(savedComment, {
+                        path: "postedBy",
+                        select: { 'profile.name': 1, 'profile.photo': 1, 'profile.email': 1 }
+                    }, function (err, comment) {
+                        res.status(200).json(comment);
+                    });
                 })
             });
         });

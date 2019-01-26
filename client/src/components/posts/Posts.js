@@ -7,6 +7,7 @@ import {UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem} from '
 import Spinner from '../common/Spinner';
 import CommentsContainer from "../../containers/CommentsContainer";
 import DeletePostModal from '../modals/deletePost/deletePostModal';
+import ReportSpamModal from '../modals/reportSpam/reportSpamModal';
 
 class Posts extends React.Component {
     constructor(props) {
@@ -14,7 +15,12 @@ class Posts extends React.Component {
 
         this.state = {
             showNewComment: {},
-            deleteModal: []
+            // deleteModal: [],
+            // reportSpamModal: [],
+            modal: {
+                delete: false,
+                spam: false
+            }
         };
 
         this.renderPost = this.renderPost.bind(this);
@@ -22,7 +28,9 @@ class Posts extends React.Component {
         this.copyLink = this.copyLink.bind(this);
 
         this.comment = this.comment.bind(this);
-        this.delete = this.delete.bind(this);
+        // this.delete = this.delete.bind(this);
+        // this.reportSpam = this.reportSpam.bind(this);
+        this.toggleModal = this.toggleModal.bind(this);
     }
 
     componentWillReceiveProps(newProps) {
@@ -56,17 +64,37 @@ class Posts extends React.Component {
         });
     }
 
-    delete(e) {
-        let target = e.currentTarget.closest('.post'),
-            postId = target.dataset['id'];
+    // delete(e) {
+    //     let target = e.currentTarget.closest('.post'),
+    //         postId = target.dataset['id'];
+    //
+    //     console.log({postId});
+    //
+    //     this.setState({
+    //         deleteModal: {
+    //             ...this.state.deleteModal,
+    //             [postId]: true
+    //         }
+    //     });
+    // }
+    //
+    // reportSpam(e) {
+    //     let target = e.currentTarget.closest('.post'),
+    //         postId = target.dataset['id'];
+    //
+    //     this.setState({
+    //         reportSpamModal: {
+    //             ...this.state.reportSpamModal,
+    //             [postId]: true
+    //         }
+    //     });
+    // }
 
-        console.log({postId});
-
+    toggleModal(type) {
         this.setState({
-            deleteModal: {
-                ...this.state.deleteModal,
-                [postId]: true
-            }
+           modal: {
+               [type]: !this.state.modal[type]
+           }
         });
     }
 
@@ -95,8 +123,8 @@ class Posts extends React.Component {
                                 <DropdownMenu right>
                                     {/*<DropdownItem className="menu-item">Add to favourites</DropdownItem>*/}
                                     {post.isCreatedByUser &&
-                                    <DropdownItem className="menu-item" onClick={this.delete}>Delete post</DropdownItem>}
-                                    <DropdownItem className="menu-item">Report spam</DropdownItem>
+                                    <DropdownItem className="menu-item" onClick={this.toggleModal}>Delete post</DropdownItem>}
+                                    <DropdownItem className="menu-item" onClick={this.toggleModal}>Report spam</DropdownItem>
                                 </DropdownMenu>
                             </UncontrolledDropdown>
                         </div>
@@ -151,8 +179,13 @@ class Posts extends React.Component {
                     post={post}
                     showPostComment={!!this.state.showNewComment[post._id]}/>
                 <DeletePostModal
-                    isOpen={this.state.deleteModal[post._id]}
-                    postId={post._id}/>
+                    isOpen={this.state.modal['delete']}
+                    postId={post._id}
+                    onClose={this.toggleModal}/>
+                <ReportSpamModal
+                    isOpen={this.state.modal['spam']}
+                    postId={post._id}
+                    onClose={this.toggleModal}/>
             </article>
         );
     }
@@ -182,10 +215,10 @@ class Posts extends React.Component {
     }
 
     componentWillUnmount() {
-        this.state = {
-            showNewComment: {},
-            deleteModal: []
-        };
+        // this.state = {
+        //     showNewComment: {},
+        //     deleteModal: []
+        // };
     }
 }
 

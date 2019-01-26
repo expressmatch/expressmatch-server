@@ -1,6 +1,6 @@
-const FacebookStrategy  = require('passport-facebook').Strategy;
-const User              = require('../models/User');
-const configAuth        = require('../config/auth');
+const FacebookStrategy = require('passport-facebook').Strategy;
+const User = require('../models/User');
+const configAuth = require('../config/auth');
 
 module.exports = function (passport) {
 
@@ -9,67 +9,59 @@ module.exports = function (passport) {
     // =========================================================================
     passport.use(new FacebookStrategy({
 
-        clientID: configAuth.facebookAuth.clientID,
-        clientSecret: configAuth.facebookAuth.clientSecret,
-        callbackURL: configAuth.facebookAuth.callbackURL,
-        profileFields: configAuth.facebookAuth.profileFields
-    },
+            clientID: configAuth.facebookAuth.clientID,
+            clientSecret: configAuth.facebookAuth.clientSecret,
+            callbackURL: configAuth.facebookAuth.callbackURL,
+            profileFields: configAuth.facebookAuth.profileFields
+        },
 
-    function (token, refreshToken, profile, done) {
+        function (token, refreshToken, profile, done) {
 
-        process.nextTick(function () {
+            process.nextTick(function () {
 
-            User.findOne({'facebook.id': profile.id}, function (err, user) {
+                User.findOne({'facebook.id': profile.id}, function (err, user) {
 
-                if (err)
-                    throw err;
+                    if (err)
+                        throw err;
 
-                if (user) {
-                    return done(null, user);
-                } else {
-                    var newUser = new User();
+                    if (user) {
+                        return done(null, user);
+                    } else {
+                        var newUser = new User();
 
-                    newUser.facebook = {
-                        id: profile.id,
-                        token: token,
-                        name: profile.name.givenName + ' ' + profile.name.familyName,
-                        email: profile.emails && profile.emails[0].value,
-                        username: profile.username,
-                        gender: profile.gender,
-                        photos: profile.photos
-                    };
+                        newUser.facebook = {
+                            id: profile.id,
+                            token: token,
+                            username: profile.username
+                        };
 
 
-                    //TODO: Update User Schema Unified to both FB and E-mail login
-                    newUser.profile = {
-                        // age: 21,
-                        dob: "",
-                        gender: "male",
-                        currentCity: "",
-                        homeTown: "",
-                        motherTongue: "",
-                        caste: "",
-                        subCaste: "",
-                        organization: "",
-                        job: "",
-                        interests: []
-                    };
+                        //TODO: Update User Schema Unified to both FB and E-mail login
+                        debugger;
+                        newUser.profile = {
+                            name: profile.displayName || (profile.emails && profile.emails[0].value),
+                            email: profile.emails && profile.emails[0].value,
+                            about: "",
+                            photo: profile.photos[0] && profile.photos[0].value || "",
+                            dob: profile.birthday || "",
+                            gender: profile.gender || "",
+                            currentCity: profile.location || "",
+                            homeTown: profile.hometown || "",
+                            motherTongue: "",
+                            caste: "",
+                            subCaste: "",
+                            job: "",
+                            organization: ""
+                        }
 
-                    if(profile.birthday){
-                        newUser.dob = profile.birthday;
+                        newUser.save(function (err) {
+                            if (err)
+                                throw err;
+
+                            return done(null, newUser);
+                        });
                     }
-
-                    console.log(newUser.profile.birthday);
-
-
-                    newUser.save(function (err) {
-                        if (err)
-                            throw err;
-
-                        return done(null, newUser);
-                    });
-                }
+                });
             });
-        });
-    }));
+        }));
 };

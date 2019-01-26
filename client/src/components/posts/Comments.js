@@ -1,4 +1,5 @@
 import React from 'react';
+import Spinner from '../common/Spinner';
 
 class Comments extends React.Component {
     constructor(props) {
@@ -114,7 +115,6 @@ class Comments extends React.Component {
         if(!!this.props.showPostComment) {
             return (
                 <div className="comments-control">
-                    <div className="header">View comments:</div>
                     <div className="new-comment-container">
 
                         <textarea
@@ -126,46 +126,52 @@ class Comments extends React.Component {
                             value={this.state.comment}
                         />
                     </div>
-                    {this.props.loading && <div>Loading...</div>}
+                    <div className="header">View comments:</div>
+                    <Spinner loading={this.props.loading}/>
                     <div className="comments-list">
                         {this.props.comments.map(comment => {
                             return (
                                 <div className="comment-item" key={comment._id} data-id={comment._id}>
                                     <div className="comment-bubble">
                                         <div className="comment-content">
-                                            <span className="postedBy">ExpressMatch</span>:&nbsp;
-                                            <span className="content">{comment.content}</span>
-                                        </div>
-                                        <div className="comment-actions">
-                                            <div className="action">
-                                                <span className="primary" onClick={this.likeComment}>Like</span>
-                                                <span className="label">
-                                                    {!!comment.likes.length &&
-                                                        (
-                                                            <React.Fragment>
-                                                                &nbsp;
-                                                                {'(' + comment.likes.length + ')'}
-                                                            </React.Fragment>
-                                                        )
-                                                    }
-                                                </span>
-                                            </div>
-                                            |&nbsp;
-                                            <div className="action">
-                                                <span className="primary" onClick={this.reply}>Reply</span>
-                                                <span className="label info">
-                                                    {!!comment.comments.length &&
-                                                        (
-                                                            <React.Fragment>
-                                                                &nbsp;|&nbsp;
-                                                                {comment.comments.length}
-                                                                {comment.comments.length === 1 && ' Reply'}
-                                                                {comment.comments.length !== 1 && ' Replies'}
-                                                            </React.Fragment>
-                                                        )
-                                                    }
-                                                </span>
-                                            </div>
+                                            <span className="comment-photo">
+                                                <img src={comment.postedBy.profile.photo}/>
+                                            </span>
+                                            <span className="comment-details">
+                                                <div className="name">{comment.displayName}</div>
+                                                <div className="content">{comment.content}</div>
+                                                <div className="comment-actions">
+                                                    <div className="action">
+                                                        <span className="primary" onClick={this.likeComment}>Like</span>
+                                                        <span className="label">
+                                                            {!!comment.likes.length &&
+                                                            (
+                                                                <React.Fragment>
+                                                                    &nbsp;
+                                                                    {'(' + comment.likes.length + ')'}
+                                                                </React.Fragment>
+                                                            )
+                                                            }
+                                                        </span>
+                                                    </div>
+                                                    |&nbsp;
+                                                            <div className="action">
+                                                        <span className="primary" onClick={this.reply}>Reply</span>
+                                                        <span className="label info">
+                                                            {!!comment.comments.length &&
+                                                            (
+                                                                <React.Fragment>
+                                                                    &nbsp;|&nbsp;
+                                                                    {comment.comments.length}
+                                                                    {comment.comments.length === 1 && ' Reply'}
+                                                                    {comment.comments.length !== 1 && ' Replies'}
+                                                                </React.Fragment>
+                                                            )
+                                                            }
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </span>
                                         </div>
                                     </div>
                                     {
@@ -183,14 +189,19 @@ class Comments extends React.Component {
                                                 return (
                                                     <div className="reply-item" key={reply._id} data-id={reply._id}>
                                                         <div className="reply-content">
-                                                            <span className="postedBy">ExpressMatch</span>:&nbsp;
-                                                            <span className="content">{reply.content}</span>
-                                                        </div>
-                                                        <div className="reply-actions">
-                                                            <div className="action">
-                                                                <span className="primary" onClick={this.likeReply}>Like</span>&nbsp;
-                                                                <span className="label">{!!reply.likes.length && ( '(' + reply.likes.length + ')' )}</span>
-                                                            </div>
+                                                            <span className="reply-photo">
+                                                                <img src={reply.postedBy.profile.photo}/>
+                                                            </span>
+                                                            <span className="reply-details">
+                                                                <div className="name">{reply.displayName}</div>
+                                                                <div className="content">{reply.content}</div>
+                                                                <div className="reply-actions">
+                                                                    <div className="action">
+                                                                        <span className="primary" onClick={this.likeReply}>Like</span>&nbsp;
+                                                                        <span className="label">{!!reply.likes.length && ( '(' + reply.likes.length + ')' )}</span>
+                                                                    </div>
+                                                                </div>
+                                                            </span>
                                                         </div>
                                                     </div>
                                                 );

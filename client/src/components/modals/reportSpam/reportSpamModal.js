@@ -1,9 +1,9 @@
 import React from 'react';
 import EmModal from '../modal';
-import {deletePost} from '../../../actions/postsActions';
+import {reportSpam} from '../../../actions/postsActions';
 import {connect} from 'react-redux';
 
-class DeletePostModal extends React.Component {
+class ReportSpamModal extends React.Component {
 
     constructor(props) {
         super(props);
@@ -11,10 +11,10 @@ class DeletePostModal extends React.Component {
         // this.state = {
         //     isOpen: false
         // };
-        //this.toggle = this.toggle.bind(this);
+        // this.toggle = this.toggle.bind(this);
         this.header = this.header.bind(this);
         this.content = this.content.bind(this);
-        this.delete = this.delete.bind(this);
+        this.reportSpam = this.reportSpam.bind(this);
     }
 
     // componentWillReceiveProps(nextProps){
@@ -32,16 +32,16 @@ class DeletePostModal extends React.Component {
     // }
 
     header(){
-        return <div>Delete Post</div>;
+        return <div>Report Spam</div>;
     }
 
     content(){
-        return <div>Are  you sure you want to delete this post and all of its comments?</div>;
+        return <div>Are  you sure you want to report post spam and not view it anymore?</div>;
     }
 
-    delete(){
+    reportSpam(){
         this.props.onClose();
-        this.props.deletePost(this.props.postId);
+        this.props.reportSpam(this.props.postId);
     }
 
     render() {
@@ -49,21 +49,19 @@ class DeletePostModal extends React.Component {
         return (
             <EmModal isOpen={this.props.isOpen}
                      toggle={this.props.onClose}
-                     className="deletePost"
+                     className="reportSpam"
                      backdrop={true}
                      header={this.header()}
                      content={this.content()}
-                     submit={this.delete}
-                     submitButton='Delete'/>
+                     submit={this.reportSpam}
+                     submitButton='Proceed'/>
         );
     }
 
     componentWillUnmount(){
-        // this.setState({
-        //     isOpen: false
-        // });
+
     }
 }
 
 const mapStateToProps = (state) => ({});
-export default connect(mapStateToProps, {deletePost})(DeletePostModal);
+export default connect(mapStateToProps, {reportSpam})(ReportSpamModal);

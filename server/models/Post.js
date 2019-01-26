@@ -41,6 +41,10 @@ const PostSchema = new mongoose.Schema({
         city: String,
         motherTongue: String
     },
+    spam: [{
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+    }]
 }, {timestamps: true});
 
 PostSchema.methods.isCreatedByUser = function (user) {

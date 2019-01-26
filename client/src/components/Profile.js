@@ -260,17 +260,17 @@ class Profile extends React.Component {
                                    onChange={this.handleProfileChange}/>
                         </div>
                     </div>
-                    <div className="em-form-control">
-                        <div className="field-label">
-                            <div>Interests</div>
-                            <div className="sub-text">
-                                (choose up to 10 interests)
-                            </div>
-                        </div>
-                        <div className="field-value">
-                            <textarea data-name="interests" value={this.state.interests} disabled></textarea>
-                        </div>
-                    </div>
+                    {/*<div className="em-form-control">*/}
+                        {/*<div className="field-label">*/}
+                            {/*<div>Interests</div>*/}
+                            {/*<div className="sub-text">*/}
+                                {/*(choose up to 10 interests)*/}
+                            {/*</div>*/}
+                        {/*</div>*/}
+                        {/*<div className="field-value">*/}
+                            {/*<textarea data-name="interests" value={this.state.interests} disabled></textarea>*/}
+                        {/*</div>*/}
+                    {/*</div>*/}
                     <div className="em-form-control">
                         <div className="field-value">
                             <input type="reset" onClick={this.resetForm} value="Reset"/>

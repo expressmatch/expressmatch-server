@@ -9,7 +9,10 @@ const getComments = (state, props) => {
 
         if (state.comments.byId[commentId]) {
             comment.comments = comment.comments.map(replyId => {
-                return state.comments.byId[replyId]
+                return {
+                    ...state.comments.byId[replyId],
+                    displayName: state.comments.byId[replyId].postedBy.profile.name || state.comments.byId[replyId].postedBy.profile.email
+                }
             });
             comments.push(comment);
         }
@@ -22,7 +25,8 @@ export const makeGetComments = () => createSelector(
     (comments) => {
         return comments.map(comment => {
             return {
-                ...comment
+                ...comment,
+                displayName: comment.postedBy.profile.name || comment.postedBy.profile.email
             }
         }).sort();
     }

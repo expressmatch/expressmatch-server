@@ -78,11 +78,29 @@ let likePost = (() => {
     };
 })();
 
+let reportSpam = (() => {
+
+    return (postId) => {
+        return new Promise((resolve, reject) => {
+            axios({
+                method: 'POST',
+                url: `/post/${postId}/spam`,
+                headers: {'Content-type': 'application/json'}
+            }).then(response => {
+                resolve(response.data);
+            }).catch(error => {
+                reject(error);
+            });
+        });
+    };
+})();
+
 const PostsService = {
     getPosts,
     createPost,
     deletePost,
-    likePost
+    likePost,
+    reportSpam
 };
 
 export default PostsService;

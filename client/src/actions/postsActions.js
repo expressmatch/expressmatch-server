@@ -101,6 +101,30 @@ export function likePostFailure(error){
     return { type: types.LIKE_POST_FAILURE, error };
 }
 /*-------- LIKE POST - END ---------*/
+/*-------- DELETE POST - START ---------*/
+export function reportSpam(postId) {
+    return (dispatch, getState ) => {
+        dispatch(reportSpamRequest());
+
+        return postsService.reportSpam(postId).then(data => {
+            setTimeout(() => {
+                return dispatch(reportSpamSuccess(postId));
+            }, delay);
+        }).catch(error => {
+            dispatch(reportSpamFailure(error));
+        })
+    };
+}
+export function reportSpamRequest(){
+    return { type: types.REPORT_SPAM_REQUEST };
+}
+export function reportSpamSuccess(postId){
+    return { type: types.REPORT_SPAM_SUCCESS, postId };
+}
+export function reportSpamFailure(error){
+    return { type: types.REPORT_SPAM_FAILURE, error };
+}
+/*-------- LIKE POST - END ---------*/
 
 export function uiDateFilter(date){
     return { type: types.UI_DATE_FILTER, date };

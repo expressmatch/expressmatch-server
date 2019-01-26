@@ -14,6 +14,7 @@ module.exports = function (app) {
     app.get('/api/posts/:postId', getPost);
     app.post('/post/:postId/like', likePost);
     app.post('/post/:postId/delete', deletePost);
+    app.post('/post/:postId/spam', reportSpam);
 
     return router;
 };
@@ -25,7 +26,10 @@ const getAllPosts = function (req, res, next) {
         postsRes = [],
         query = null,
         startDate = null,
-        endDate = null;
+        endDate = null,
+        filterPredicate,
+        spamPredicate,
+        datePredicate;
 
     if (filters.quick.caste) predicate.push({'postedBy.caste': req.user.profile.caste});
     if (filters.quick.city) predicate.push({'postedBy.city': req.user.profile.currentCity});
@@ -38,21 +42,19 @@ const getAllPosts = function (req, res, next) {
         endDate.setDate(endDate.getDate() + 1);
         endDate.setHours(0, 0, 0, 0);
     }
-    console.log(startDate);
-    console.log(endDate);
+    console.debug(startDate);
+    console.debug(endDate);
+
+    filterPredicate = {$or: predicate};
+    datePredicate = {'createdAt': {"$gte": startDate, "$lt": endDate}};
+    spamPredicate = {$and: [{spam: {$nin: [req.user]}}, {'spam.5': {$exists: false}}]};
 
     if (predicate.length > 0) {
-        query = Post.find({$and: [{'createdAt': {"$gte": startDate, "$lt": endDate}}, {$or: predicate}]});
+        query = Post.find({$and: [datePredicate, spamPredicate, filterPredicate]});
     } else {
-        query = Post.find({'createdAt': {"$gte": startDate, "$lt": endDate}});
+        query = Post.find({$and: [datePredicate, spamPredicate]});
     }
-    // query.populate({
-    //     path: 'comments',
-    //     populate: {
-    //         path: 'comments',
-    //         model: 'Comment'
-    //     }
-    // }).sort
+
     query.sort({createdAt: 'desc'}).exec(function (err, posts) {
         if (err)
             next(err);
@@ -148,4 +150,20 @@ const deletePost = function (req, res, next) {
             });
         }
     });
+};
+
+const reportSpam = (req, res, next) => {
+
+    Post.findOne({_id: req.params.postId}, function (err, post) {
+        if (post.spam.indexOf(req.user._id) < 0) {
+            post.spam.push(req.user._id);
+        }
+        post.save(function (err, savedPost) {
+            if (err) {
+                next(err);
+            }
+            res.status(200).json({});
+        });
+    })
+
 };

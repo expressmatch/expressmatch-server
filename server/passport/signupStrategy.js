@@ -29,16 +29,19 @@ module.exports = function(passport) {
                     newUser.local.email = email;
                     newUser.local.password = newUser.generateHash(password);
                     newUser.profile = {
-                        age: 21,
-                        gender: "male",
+                        name: "",
+                        email: email,
+                        about: "",
+                        photo: "",
+                        dob: "",
+                        gender: "",
                         currentCity: "",
                         homeTown: "",
                         motherTongue: "",
                         caste: "",
                         subCaste: "",
-                        organization: "",
                         job: "",
-                        interests: []
+                        organization: ""
                     };
 
                     newUser.save(function(err) {
