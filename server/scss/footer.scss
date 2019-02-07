@@ -1,0 +1,32 @@
+footer{
+  background-color: #3f4257;
+  z-index: 1001;
+  padding: 10px;
+
+  .footer-container{
+    margin: auto;
+    width: 80%;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+    min-width: 820px;
+
+    .subscription{
+      display: flex;
+
+      .left-panel,.right-panel{
+        width: 50%;
+        padding: 10px;
+        color: #fff;
+      }
+    }
+    .links{
+      padding: 10px;
+      color: #fff;
+    }
+    .social{
+      padding: 10px;
+      color: #fff;
+    }
+  }
+}

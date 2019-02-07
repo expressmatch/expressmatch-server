@@ -2,18 +2,14 @@
 <html>
 <head>
     <title>Express Match - Express and find your partner</title>
-    <style>
-
-    </style>
+    <link href="/public/css/main.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
 <div class="container">
-    <header>
-        <% include partial/header.ejs %>
-    </header>
-    <article>
-        <div class="login-container">
-            <div class="login-header">
+    <% include partial/header.ejs %>
+    <article class="sign-up">
+        <div class="sign-up-container">
+            <div class="header">
                 <div class="main-title">Sign Up</div>
                 <div class="sub-title">
                     <span class="login-text">Already a member? </span>
@@ -22,7 +18,7 @@
                         </span>
                 </div>
             </div>
-            <div class="login-content-local">
+            <div class="content-local">
                 <form action="/signup" method="post">
                     <!-- show any messages that come back with authentication -->
                     <% if (message.length > 0) { %>
@@ -49,16 +45,16 @@
                     </div>
                 </form>
             </div>
-            <div class="login-content-social">
+            <div class="content-social">
                 <a href="/auth/facebook" class="">
                     <span class="">Log in with</span> Facebook
                 </a>
             </div>
         </div>
     </article>
-    <footer>
-        <% include partial/footer.ejs %>
-    </footer>
+
+    <% include partial/footer.ejs %>
+
 </div>
 </body>
 </html>

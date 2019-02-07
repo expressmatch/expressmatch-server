@@ -1,0 +1,42 @@
+#content{
+  //flex: 1 1 auto;
+  margin: auto;
+  width: 80%;
+  min-width: 820px;
+  padding: 10px;
+  text-align: center;
+  min-height: 300px;
+
+  .main-content{
+    font-weight: bold;
+    font-size: 42px;
+  }
+  .sub-content{
+    font-weight: bold;
+    font-size: 20px;
+  }
+  .sign-up{
+    padding: 10px;
+    margin-top: 36px;
+    button{
+      font-size: 16px;
+      width: auto;
+      cursor: pointer;
+      border-radius: 3px;
+      border-color: #3f4257;
+      font-weight: 600;
+      min-height: 36px;
+      outline: 0;
+      padding: .75em 7em;
+      vertical-align: middle;
+      border: 1px solid rgba(0,0,0,.12);
+      color: #fff;
+      background: #5c5f72;
+
+      &:hover{
+        background: #3f4257;
+        transition: all .4s cubic-bezier(.165,.84,.44,1);
+      }
+    }
+  }
+}

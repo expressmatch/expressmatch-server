@@ -126,92 +126,97 @@ class Comments extends React.Component {
                             value={this.state.comment}
                         />
                     </div>
-                    <div className="header">View comments:</div>
                     <Spinner loading={this.props.loading}/>
-                    <div className="comments-list">
-                        {this.props.comments.map(comment => {
-                            return (
-                                <div className="comment-item" key={comment._id} data-id={comment._id}>
-                                    <div className="comment-bubble">
-                                        <div className="comment-content">
-                                            <span className="comment-photo">
-                                                <img src={comment.postedBy.profile.photo}/>
-                                            </span>
-                                            <span className="comment-details">
-                                                <div className="name">{comment.displayName}</div>
-                                                <div className="content">{comment.content}</div>
-                                                <div className="comment-actions">
-                                                    <div className="action">
-                                                        <span className="primary" onClick={this.likeComment}>Like</span>
-                                                        <span className="label">
-                                                            {!!comment.likes.length &&
-                                                            (
-                                                                <React.Fragment>
-                                                                    &nbsp;
-                                                                    {'(' + comment.likes.length + ')'}
-                                                                </React.Fragment>
-                                                            )
-                                                            }
-                                                        </span>
-                                                    </div>
-                                                    |&nbsp;
+                    {this.props.comments.length ?
+                    (
+                        <React.Fragment>
+                            <div className="header">View comments:</div>
+                            <div className="comments-list">
+                                {this.props.comments.map(comment => {
+                                    return (
+                                        <div className="comment-item" key={comment._id} data-id={comment._id}>
+                                            <div className="comment-bubble">
+                                                <div className="comment-content">
+                                                    <span className="comment-photo">
+                                                        <img src={comment.postedBy.profile.photo}/>
+                                                    </span>
+                                                    <span className="comment-details">
+                                                        <div className="name">{comment.displayName}</div>
+                                                        <div className="content">{comment.content}</div>
+                                                        <div className="comment-actions">
                                                             <div className="action">
-                                                        <span className="primary" onClick={this.reply}>Reply</span>
-                                                        <span className="label info">
-                                                            {!!comment.comments.length &&
-                                                            (
-                                                                <React.Fragment>
-                                                                    &nbsp;|&nbsp;
-                                                                    {comment.comments.length}
-                                                                    {comment.comments.length === 1 && ' Reply'}
-                                                                    {comment.comments.length !== 1 && ' Replies'}
-                                                                </React.Fragment>
-                                                            )
-                                                            }
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                            </span>
-                                        </div>
-                                    </div>
-                                    {
-                                        <div className="reply-list">
-                                        {comment.comments.length ? <div className="header">View replies:</div> : null}
-                                            <div className="new-reply-container">
-                                                {!!this.state.showNewComment[comment._id] &&
-                                                <textarea
-                                                    autoFocus
-                                                    className="new-reply"
-                                                    placeholder="Write a reply..."
-                                                    onKeyDown={this.postReply}/>}
-                                            </div>
-                                            {comment.comments.map(reply => {
-                                                return (
-                                                    <div className="reply-item" key={reply._id} data-id={reply._id}>
-                                                        <div className="reply-content">
-                                                            <span className="reply-photo">
-                                                                <img src={reply.postedBy.profile.photo}/>
-                                                            </span>
-                                                            <span className="reply-details">
-                                                                <div className="name">{reply.displayName}</div>
-                                                                <div className="content">{reply.content}</div>
-                                                                <div className="reply-actions">
+                                                                <span className="primary" onClick={this.likeComment}>Like</span>
+                                                                <span className="label">
+                                                                    {!!comment.likes.length &&
+                                                                    (
+                                                                        <React.Fragment>
+                                                                            &nbsp;
+                                                                            {'(' + comment.likes.length + ')'}
+                                                                        </React.Fragment>
+                                                                    )
+                                                                    }
+                                                                </span>
+                                                            </div>
+                                                            |&nbsp;
                                                                     <div className="action">
-                                                                        <span className="primary" onClick={this.likeReply}>Like</span>&nbsp;
-                                                                        <span className="label">{!!reply.likes.length && ( '(' + reply.likes.length + ')' )}</span>
-                                                                    </div>
-                                                                </div>
-                                                            </span>
+                                                                <span className="primary" onClick={this.reply}>Reply</span>
+                                                                <span className="label info">
+                                                                    {!!comment.comments.length &&
+                                                                    (
+                                                                        <React.Fragment>
+                                                                            &nbsp;|&nbsp;
+                                                                            {comment.comments.length}
+                                                                            {comment.comments.length === 1 && ' Reply'}
+                                                                            {comment.comments.length !== 1 && ' Replies'}
+                                                                        </React.Fragment>
+                                                                    )
+                                                                    }
+                                                                </span>
+                                                            </div>
                                                         </div>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            {
+                                                <div className="reply-list">
+                                                {comment.comments.length ? <div className="header">View replies:</div> : null}
+                                                    <div className="new-reply-container">
+                                                        {!!this.state.showNewComment[comment._id] &&
+                                                        <textarea
+                                                            autoFocus
+                                                            className="new-reply"
+                                                            placeholder="Write a reply..."
+                                                            onKeyDown={this.postReply}/>}
                                                     </div>
-                                                );
-                                            })}
+                                                    {comment.comments.map(reply => {
+                                                        return (
+                                                            <div className="reply-item" key={reply._id} data-id={reply._id}>
+                                                                <div className="reply-content">
+                                                                    <span className="reply-photo">
+                                                                        <img src={reply.postedBy.profile.photo}/>
+                                                                    </span>
+                                                                    <span className="reply-details">
+                                                                        <div className="name">{reply.displayName}</div>
+                                                                        <div className="content">{reply.content}</div>
+                                                                        <div className="reply-actions">
+                                                                            <div className="action">
+                                                                                <span className="primary" onClick={this.likeReply}>Like</span>&nbsp;
+                                                                                <span className="label">{!!reply.likes.length && ( '(' + reply.likes.length + ')' )}</span>
+                                                                            </div>
+                                                                        </div>
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                        );
+                                                    })}
+                                                </div>
+                                            }
                                         </div>
-                                    }
-                                </div>
-                            );
-                        })}
-                    </div>
+                                    );
+                                })}
+                            </div>
+                        </React.Fragment>
+                    ) : null}
                 </div>
             );
         }else {

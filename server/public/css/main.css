@@ -1,0 +1,256 @@
+#header {
+  height: 60px;
+  min-height: 60px;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #ccc;
+  background-color: #fff;
+  background-color: #3f4257;
+  z-index: 1001; }
+  #header .left-content {
+    flex: 0 0 200px; }
+    #header .left-content a {
+      text-decoration: none; }
+      #header .left-content a .app-logo {
+        min-width: 100px;
+        color: #fff;
+        margin: 0 10px;
+        font-weight: bold; }
+        #header .left-content a .app-logo:hover {
+          color: #ececec; }
+  #header .right-content {
+    display: flex;
+    flex-flow: row; }
+    #header .right-content .menu-items {
+      display: flex;
+      flex-flow: row nowrap;
+      align-items: center; }
+      #header .right-content .menu-items .menu-item a {
+        padding: 0 10px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        color: #fff;
+        text-decoration: none;
+        font-weight: 600; }
+        #header .right-content .menu-items .menu-item a:hover {
+          color: #ececec; }
+        #header .right-content .menu-items .menu-item a:active {
+          color: #ccc; }
+    #header .right-content .profile {
+      margin: 0 10px; }
+      #header .right-content .profile .menu-toggle {
+        height: 30px;
+        width: 30px;
+        border-radius: 50%; }
+        #header .right-content .profile .menu-toggle .profile-picture {
+          height: 30px;
+          width: 30px;
+          border-radius: 50%;
+          border: 1px solid #ccc; }
+        #header .right-content .profile .menu-toggle .dropdown-menu {
+          max-width: 200px; }
+          #header .right-content .profile .menu-toggle .dropdown-menu .menu-item {
+            font-size: 13px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            padding: 5px 10px;
+            color: gray; }
+            #header .right-content .profile .menu-toggle .dropdown-menu .menu-item:hover {
+              background-color: #ececec; }
+            #header .right-content .profile .menu-toggle .dropdown-menu .menu-item.header {
+              font-weight: bold;
+              padding: 0 10px;
+              color: #3f4257; }
+              #header .right-content .profile .menu-toggle .dropdown-menu .menu-item.header:hover {
+                background-color: #fff;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none; }
+
+#content {
+  margin: auto;
+  width: 80%;
+  min-width: 820px;
+  padding: 10px;
+  text-align: center;
+  min-height: 300px; }
+  #content .main-content {
+    font-weight: bold;
+    font-size: 42px; }
+  #content .sub-content {
+    font-weight: bold;
+    font-size: 20px; }
+  #content .sign-up {
+    padding: 10px;
+    margin-top: 36px; }
+    #content .sign-up button {
+      font-size: 16px;
+      width: auto;
+      cursor: pointer;
+      border-radius: 3px;
+      border-color: #3f4257;
+      font-weight: 600;
+      min-height: 36px;
+      outline: 0;
+      padding: .75em 7em;
+      vertical-align: middle;
+      border: 1px solid rgba(0, 0, 0, 0.12);
+      color: #fff;
+      background: #5c5f72; }
+      #content .sign-up button:hover {
+        background: #3f4257;
+        transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); }
+
+footer {
+  background-color: #3f4257;
+  z-index: 1001;
+  padding: 10px; }
+  footer .footer-container {
+    margin: auto;
+    width: 80%;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+    min-width: 820px; }
+    footer .footer-container .subscription {
+      display: flex; }
+      footer .footer-container .subscription .left-panel, footer .footer-container .subscription .right-panel {
+        width: 50%;
+        padding: 10px;
+        color: #fff; }
+    footer .footer-container .links {
+      padding: 10px;
+      color: #fff; }
+    footer .footer-container .social {
+      padding: 10px;
+      color: #fff; }
+
+article.login {
+  display: flex;
+  justify-content: center;
+  min-height: 560px; }
+  article.login .login-container {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin: 80px;
+    min-width: 380px;
+    width: 380px;
+    display: flex;
+    flex-flow: column;
+    font-weight: bold;
+    font-size: 12px;
+    background-color: #fff;
+    height: 100%; }
+    article.login .login-container .header {
+      padding: 20px;
+      border-bottom: 1px solid #ccc; }
+      article.login .login-container .header .main-title {
+        font-size: 28px; }
+    article.login .login-container .content-local {
+      padding: 20px;
+      border-bottom: 1px solid #ccc; }
+      article.login .login-container .content-local .form-group {
+        padding-bottom: 10px; }
+        article.login .login-container .content-local .form-group:last-child {
+          padding-bottom: 0px; }
+        article.login .login-container .content-local .form-group input[type="text"], article.login .login-container .content-local .form-group input[type="password"] {
+          width: 100%; }
+        article.login .login-container .content-local .form-group button[type="submit"] {
+          font-size: 16px;
+          width: auto;
+          cursor: pointer;
+          border-radius: 3px;
+          border-color: #3f4257;
+          font-weight: 600;
+          min-height: 36px;
+          outline: 0;
+          padding: 0 16px;
+          vertical-align: middle;
+          border: 1px solid rgba(0, 0, 0, 0.12);
+          color: #fff;
+          background: #5c5f72; }
+          article.login .login-container .content-local .form-group button[type="submit"]:hover {
+            background: #3f4257;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); }
+    article.login .login-container .content-social {
+      padding: 20px; }
+
+article.sign-up {
+  display: flex;
+  justify-content: center;
+  min-height: 560px; }
+  article.sign-up .sign-up-container {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin: 80px;
+    min-width: 380px;
+    width: 380px;
+    display: flex;
+    flex-flow: column;
+    font-weight: bold;
+    font-size: 12px;
+    background-color: #fff;
+    height: 100%; }
+    article.sign-up .sign-up-container .header {
+      padding: 20px;
+      border-bottom: 1px solid #ccc; }
+      article.sign-up .sign-up-container .header .main-title {
+        font-size: 28px; }
+    article.sign-up .sign-up-container .content-local {
+      padding: 20px;
+      border-bottom: 1px solid #ccc; }
+      article.sign-up .sign-up-container .content-local .form-group {
+        padding-bottom: 10px; }
+        article.sign-up .sign-up-container .content-local .form-group:last-child {
+          padding-bottom: 0px; }
+        article.sign-up .sign-up-container .content-local .form-group input[type="text"], article.sign-up .sign-up-container .content-local .form-group input[type="password"] {
+          width: 100%; }
+        article.sign-up .sign-up-container .content-local .form-group button[type="submit"] {
+          font-size: 16px;
+          width: auto;
+          cursor: pointer;
+          border-radius: 3px;
+          border-color: #3f4257;
+          font-weight: 600;
+          min-height: 36px;
+          outline: 0;
+          padding: 0 16px;
+          vertical-align: middle;
+          border: 1px solid rgba(0, 0, 0, 0.12);
+          color: #fff;
+          background: #5c5f72; }
+          article.sign-up .sign-up-container .content-local .form-group button[type="submit"]:hover {
+            background: #3f4257;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); }
+    article.sign-up .sign-up-container .content-social {
+      padding: 20px; }
+
+::selection {
+  background-color: #e6e6e6; }
+
+html {
+  height: 100%; }
+
+body {
+  margin: 0;
+  font-family: sans-serif;
+  font-size: 13px;
+  color: #888da8;
+  background-color: #edf2f6;
+  height: 100%; }
+
+body, input, textarea, select, header, article, section, aside, pre {
+  line-height: 1.6;
+  letter-spacing: 0.5px;
+  font-size: 13px;
+  color: #888da8; }
+
+.container {
+  display: flex;
+  flex-flow: column nowrap;
+  height: 100%; }

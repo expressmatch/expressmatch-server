@@ -58,7 +58,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
 
-app.use(express.static(path.resolve(__dirname,'../client/dist')));
+app.use('/public', express.static("server/public"));
 
 //-------Routes---------//
 initRoutes(app, passport);

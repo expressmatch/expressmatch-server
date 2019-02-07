@@ -2,19 +2,16 @@
 <html>
 <head>
     <title>Express Match - Express and find your partner</title>
-    <style>
-
-    </style>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="/public/css/main.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
     <div class="container">
-        <header>
-            <% include partial/header.ejs %>
-        </header>
-        <article>
+        <% include partial/header.ejs %>
+        <article class="login">
             <div class="login-container">
-                <div class="login-header">
-                    <div class="main-title">Log In</div>
+                <div class="header">
+                    <div class="main-title">Log In<i class="fas fa-lock"></i></div>
                     <div class="sub-title">
                         <span class="signup-text">Not registered with our site yet?</span>
                         <span class="signup-link">
@@ -22,7 +19,7 @@
                         </span>
                     </div>
                 </div>
-                <div class="login-content-local">
+                <div class="content-local">
                     <form action="/login" method="post">
                         <!-- show any messages that come back with authentication -->
                         <% if (message.length > 0) { %>
@@ -41,27 +38,30 @@
                                 Password:
                             </label>
                             <div class="em-form-control">
-                                <a href="#">Forgot Password?</a>
+                                <a href="#">Forgot your Password?</a>
                             </div>
                             <div class="em-form-control">
                                 <input type="password" name="password" />
                             </div>
                         </div>
                         <div class="form-group">
+                            <input type="checkbox" /><label>Keep me signed in</label>
+                        </div>
+                        <div class="form-group">
                             <button type="submit" class="em-form-control">Login</button>
                         </div>
                     </form>
                 </div>
-                <div class="login-content-social">
+                <div class="content-social">
                     <a href="/auth/facebook" class="">
                         <span class="">Log in with</span> Facebook
                     </a>
                 </div>
             </div>
         </article>
-        <footer>
-            <% include partial/footer.ejs %>
-        </footer>
+
+        <% include partial/footer.ejs %>
+
     </div>
 </body>
 </html>

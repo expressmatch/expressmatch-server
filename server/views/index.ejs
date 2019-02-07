@@ -3,25 +3,29 @@
 <html>
 <head>
     <title>Express Match</title>
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
-    <style>
-        body        { padding-top:80px; }
-    </style>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="/public/css/main.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div class="container">
 
-    <div class="jumbotron text-center">
-        <h1><span class="fa fa-lock"></span> Express Match</h1>
+    <% include partial/header.ejs %>
 
-        <p>Login or Register with:</p>
+    <section id="content">
+        <div class="main-content">
+            Looking for a partner?
+        </div>
+        <div class="sub-content">
+            Find your love using Express Match
+        </div>
+        <div class="sign-up">
+            <a href="/signup">
+                <button>Sign Up</button>
+            </a>
+        </div>
+    </section>
 
-        <a href="/login" class="btn btn-default"><span class="fa fa-user"></span> E-mail</a>
-        <a href="/signup" class="btn btn-default"><span class="fa fa-user"></span> SignUp</a>
-          <a href="/auth/facebook" class="btn btn-primary"><span class="fa fa-facebook"></span> Facebook</a>
-
-    </div>
+    <% include partial/footer.ejs %>
 
 </div>
 </body>

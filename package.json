@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "nodemon server/srcServer.js",
+    "build-css": "node-sass --watch --include-path server/scss server/scss/main.scss server/public/css/main.css --outputStyle expanded",
     "debug": "nodemon --inspect server/srcServer.js",
     "prod": "node_modules/webpack/bin/webpack.js --config webpack.config.prod.js --mode production",
     "test": "echo \"Error: no test specified\" && exit 1"

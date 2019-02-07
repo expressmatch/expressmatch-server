@@ -1,0 +1,107 @@
+#header {
+  height: 60px;
+  min-height: 60px;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid $em-border-gray;
+  background-color: $em-bg-white;
+  //position: sticky;
+  //position: -webkit-sticky;
+  //position: -moz-sticky;
+  //position: -ms-sticky;
+  //position: -o-sticky;
+  //top: 0px;
+  background-color: #3f4257;
+  z-index: 1001;
+
+  .left-content {
+    flex: 0 0 200px;
+    a{
+      text-decoration: none;
+
+      .app-logo {
+        min-width: 100px;
+        color: #fff;
+        margin: 0 10px;
+        font-weight: bold;
+
+        &:hover{
+          color: #ececec;
+        }
+      }
+    }
+  }
+  .right-content {
+    display: flex;
+    flex-flow: row;
+
+    .menu-items {
+      display: flex;
+      flex-flow: row nowrap;
+      align-items: center;
+
+      .menu-item a {
+        padding: 0 10px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        color: #fff;
+        text-decoration: none;
+        font-weight: 600;
+
+        &:hover {
+          color: #ececec;
+        }
+        &:active {
+          color: #ccc;
+        }
+      }
+    }
+    .profile {
+      margin: 0 10px;
+      .menu-toggle {
+        height: 30px;
+        width: 30px;
+        border-radius: 50%;
+
+        .profile-picture {
+          height: 30px;
+          width: 30px;
+          border-radius: 50%;
+          border: 1px solid $em-border-gray;
+        }
+        .dropdown-menu {
+          max-width: 200px;
+          .menu-item {
+            font-size: 13px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            padding: 5px 10px;
+            color: gray;
+
+            &:hover{
+              background-color: #ececec;
+            }
+
+            &.header{
+              font-weight: bold;
+              padding: 0 10px;
+              color: #3f4257;
+
+              &:hover{
+                background-color: #fff;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

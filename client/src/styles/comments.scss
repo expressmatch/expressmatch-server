@@ -1,10 +1,10 @@
 .comments-control{
-  padding: 0 25px 5px 25px;
+  padding: 0 25px;
   background-color: #f9fafd;
   border-top: 1px solid #e6ecf5;
 
   .header{
-    padding: 5px 0;
+    padding-bottom: 5px;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
@@ -18,7 +18,7 @@
       resize: none;
       border-radius: 5px;
       border: 1px solid rgba(0,0,0,.12);
-      margin: 5px 0;
+      margin: 10px 0;
       padding: 8px;
       background-color: $em-bg-gray;
       font-size: 12px;
@@ -43,7 +43,7 @@
       border-top: 1px solid #edf2f6;
 
       .comment-bubble{
-        padding: 10px;
+        //padding: 10px;
 
         .comment-content{
           display: flex;
@@ -105,9 +105,9 @@
 
       .reply-list {
 
-        margin: 0 0 0 20px;
+        margin: 0 0 0 40px;
         .header {
-          padding: 5px 10px;
+          padding: 5px 0;
           -webkit-user-select: none;
           -moz-user-select: none;
           -ms-user-select: none;
@@ -142,7 +142,7 @@
           //letter-spacing: 0.5px;
           //word-spacing: 0.1px;
           //line-height: 13px;
-          padding: 5px 10px;
+          padding: 5px 0px;
           border-bottom: 1px solid #edf2f6;
 
           .reply-content {
