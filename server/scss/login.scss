@@ -25,10 +25,29 @@ article.login{
       .main-title{
         font-size: 28px;
       }
+      a{
+        font-weight: normal;
+        text-decoration: none;
+        cursor: hand;
+
+        &:hover{
+          text-decoration: underline;
+        }
+        &:active{
+          color:#181ca0;
+        }
+        &:visited{
+          color:#1f24cc;
+        }
+      }
     }
     .content-local{
       padding: 20px;
       border-bottom: 1px solid #ccc;
+
+      .form-error{
+        color: red;
+      }
 
       .form-group{
         padding-bottom: 10px;
@@ -38,6 +57,21 @@ article.login{
         }
         input[type="text"], input[type="password"]{
           width: 100%;
+        }
+        a{
+          font-weight: normal;
+          text-decoration: none;
+          cursor: hand;
+
+          &:hover{
+            text-decoration: underline;
+          }
+          &:active{
+            color:#181ca0;
+          }
+          &:visited{
+            color:#1f24cc;
+          }
         }
         button[type="submit"]{
           font-size: 16px;

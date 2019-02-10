@@ -9,7 +9,7 @@ const router = express.Router();
 module.exports = function(app, passport) {
 
     app.use("/auth", authRoutes(app, passport));
-    app.use("/user", userRoutes);
+    app.use("/user", userRoutes(app));
     app.use("/profile", profileRoutes(app));
     app.use("/", postRoutes(app));
     app.use("/", commentRoutes(app));

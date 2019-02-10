@@ -115,6 +115,7 @@ class Comments extends React.Component {
         if(!!this.props.showPostComment) {
             return (
                 <div className="comments-control">
+                    <Spinner loading={this.props.loading}/>
                     <div className="new-comment-container">
 
                         <textarea
@@ -126,7 +127,6 @@ class Comments extends React.Component {
                             value={this.state.comment}
                         />
                     </div>
-                    <Spinner loading={this.props.loading}/>
                     {this.props.comments.length ?
                     (
                         <React.Fragment>

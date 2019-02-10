@@ -8,6 +8,7 @@ import Spinner from '../common/Spinner';
 import CommentsContainer from "../../containers/CommentsContainer";
 import DeletePostModal from '../modals/deletePost/deletePostModal';
 import ReportSpamModal from '../modals/reportSpam/reportSpamModal';
+import * as constants from '../../constants/constants';
 
 class Posts extends React.Component {
     constructor(props) {
@@ -15,11 +16,9 @@ class Posts extends React.Component {
 
         this.state = {
             showNewComment: {},
-            // deleteModal: [],
-            // reportSpamModal: [],
             modal: {
-                delete: false,
-                spam: false
+                [constants.DELETE_POST]: false,
+                [constants.REPORT_SPAM]: false
             }
         };
 
@@ -28,8 +27,7 @@ class Posts extends React.Component {
         this.copyLink = this.copyLink.bind(this);
 
         this.comment = this.comment.bind(this);
-        // this.delete = this.delete.bind(this);
-        // this.reportSpam = this.reportSpam.bind(this);
+        this.handleMenuClick = this.handleMenuClick.bind(this);
         this.toggleModal = this.toggleModal.bind(this);
     }
 
@@ -64,33 +62,15 @@ class Posts extends React.Component {
         });
     }
 
-    // delete(e) {
-    //     let target = e.currentTarget.closest('.post'),
-    //         postId = target.dataset['id'];
-    //
-    //     console.log({postId});
-    //
-    //     this.setState({
-    //         deleteModal: {
-    //             ...this.state.deleteModal,
-    //             [postId]: true
-    //         }
-    //     });
-    // }
-    //
-    // reportSpam(e) {
-    //     let target = e.currentTarget.closest('.post'),
-    //         postId = target.dataset['id'];
-    //
-    //     this.setState({
-    //         reportSpamModal: {
-    //             ...this.state.reportSpamModal,
-    //             [postId]: true
-    //         }
-    //     });
-    // }
+    handleMenuClick(e) {
+        let target = e.target,
+            type = target.dataset['type'];
+
+        this.toggleModal(type);
+    }
 
     toggleModal(type) {
+
         this.setState({
            modal: {
                [type]: !this.state.modal[type]
@@ -123,8 +103,8 @@ class Posts extends React.Component {
                                 <DropdownMenu right>
                                     {/*<DropdownItem className="menu-item">Add to favourites</DropdownItem>*/}
                                     {post.isCreatedByUser &&
-                                    <DropdownItem className="menu-item" onClick={this.toggleModal}>Delete post</DropdownItem>}
-                                    <DropdownItem className="menu-item" onClick={this.toggleModal}>Report spam</DropdownItem>
+                                    <DropdownItem className="menu-item" onClick={this.handleMenuClick} data-type={constants.DELETE_POST}>Delete post</DropdownItem>}
+                                    <DropdownItem className="menu-item" onClick={this.handleMenuClick} data-type={constants.REPORT_SPAM}>Report spam</DropdownItem>
                                 </DropdownMenu>
                             </UncontrolledDropdown>
                         </div>
@@ -179,11 +159,11 @@ class Posts extends React.Component {
                     post={post}
                     showPostComment={!!this.state.showNewComment[post._id]}/>
                 <DeletePostModal
-                    isOpen={this.state.modal['delete']}
+                    isOpen={this.state.modal[constants.DELETE_POST]}
                     postId={post._id}
                     onClose={this.toggleModal}/>
                 <ReportSpamModal
-                    isOpen={this.state.modal['spam']}
+                    isOpen={this.state.modal[constants.REPORT_SPAM]}
                     postId={post._id}
                     onClose={this.toggleModal}/>
             </article>

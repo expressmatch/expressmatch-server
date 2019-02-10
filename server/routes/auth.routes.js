@@ -21,7 +21,7 @@ module.exports = function(app, passport){
         if(req.isAuthenticated()){
             res.redirect('/posts');
         }else{
-            res.render('emlogin.ejs', { message: req.flash('loginMessage') });
+            res.render('emlogin.ejs', { message: req.flash('error') });
         }
     });
     app.post('/login', passport.authenticate('local-login', {
@@ -34,10 +34,10 @@ module.exports = function(app, passport){
     // SIGN UP =============================
     // =====================================
     app.get('/signup', function(req, res) {
-        res.render('emsignup.ejs', { message: req.flash('signupMessage') });
+        res.render('emsignup.ejs', { message: req.flash('error') });
     });
     app.post('/signup', passport.authenticate('local-signup', {
-        successRedirect : '/posts', // redirect to the secure profile section
+        successRedirect : '/profile', // redirect to the secure profile section
         failureRedirect : '/signup', // redirect back to the signup page if there is an error
         failureFlash : true // allow flash messages
     }));

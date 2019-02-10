@@ -67,10 +67,12 @@
         border-radius: 50%;
 
         .profile-picture {
-          height: 30px;
-          width: 30px;
-          border-radius: 50%;
-          border: 1px solid $em-border-gray;
+          img{
+            height: 32px;
+            width: 32px;
+            border-radius: 50%;
+            margin-right: 10px;
+          }
         }
         .dropdown-menu {
           max-width: 200px;

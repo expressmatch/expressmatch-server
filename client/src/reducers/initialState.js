@@ -1,4 +1,9 @@
 export default {
+    user: {
+        name: null,
+        email: null,
+        photo: null
+    },
     posts: {
         entities: {
             posts: {

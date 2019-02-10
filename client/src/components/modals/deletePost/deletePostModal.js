@@ -1,6 +1,7 @@
 import React from 'react';
 import EmModal from '../modal';
 import {deletePost} from '../../../actions/postsActions';
+import * as constants from '../../../constants/constants';
 import {connect} from 'react-redux';
 
 class DeletePostModal extends React.Component {
@@ -8,47 +9,34 @@ class DeletePostModal extends React.Component {
     constructor(props) {
         super(props);
 
-        // this.state = {
-        //     isOpen: false
-        // };
-        //this.toggle = this.toggle.bind(this);
         this.header = this.header.bind(this);
         this.content = this.content.bind(this);
         this.delete = this.delete.bind(this);
+        this.onClose = this.onClose.bind(this);
     }
 
-    // componentWillReceiveProps(nextProps){
-    //     if (nextProps.isOpen !== this.props.isOpen) {
-    //         this.setState({
-    //             isOpen: nextProps.isOpen
-    //         });
-    //     }
-    // }
-    //
-    // toggle(){
-    //     this.setState({
-    //         isOpen: !this.state.isOpen
-    //     });
-    // }
-
-    header(){
+    header() {
         return <div>Delete Post</div>;
     }
 
-    content(){
-        return <div>Are  you sure you want to delete this post and all of its comments?</div>;
+    content() {
+        return <div>Are you sure you want to delete this post and all of its comments?</div>;
     }
 
-    delete(){
+    delete() {
         this.props.onClose();
         this.props.deletePost(this.props.postId);
+    }
+
+    onClose() {
+        this.props.onClose(constants.DELETE_POST);
     }
 
     render() {
 
         return (
             <EmModal isOpen={this.props.isOpen}
-                     toggle={this.props.onClose}
+                     onClose={this.onClose}
                      className="deletePost"
                      backdrop={true}
                      header={this.header()}
@@ -56,12 +44,6 @@ class DeletePostModal extends React.Component {
                      submit={this.delete}
                      submitButton='Delete'/>
         );
-    }
-
-    componentWillUnmount(){
-        // this.setState({
-        //     isOpen: false
-        // });
     }
 }
 
