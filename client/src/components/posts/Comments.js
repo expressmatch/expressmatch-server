@@ -18,10 +18,28 @@ class Comments extends React.Component {
         this.reply = this.reply.bind(this);
         this.postReply = this.postReply.bind(this);
         this.likeReply = this.likeReply.bind(this);
+
+        this.newCommentRef = React.createRef();
+        this.newReplyRef - React.createRef();
     }
 
     componentWillReceiveProps(newProps) {
 
+    }
+
+    componentDidUpdate(prevProps) {
+        // if (this.props.comments.length !== prevProps.comments.length) {
+        //     this.newCommentRef.current.scrollIntoView({
+        //         behavior: 'smooth',
+        //         block: 'end'
+        //     });
+        // }
+        if (this.props.comments.length !== prevProps.comments.length) {
+            this.resetNewComment();
+            // this.setState({
+            //     comment: ""
+            // });
+        }
     }
 
     comment(e) {
@@ -45,11 +63,10 @@ class Comments extends React.Component {
                 postId = post && post.dataset['id'],
                 commentStr = target.value;
 
-            this.setState({
-                comment: ""
-            });
             this.props.actions.postComment(postId, null, commentStr).then(() => {
-
+                // this.setState({
+                //     comment: ""
+                // });
             });
         }
     }
@@ -67,6 +84,12 @@ class Comments extends React.Component {
 
         this.setState({
             comment: value
+        });
+    }
+
+    resetNewComment(e){
+        this.setState({
+            comment: ""
         });
     }
 
@@ -112,7 +135,7 @@ class Comments extends React.Component {
     }
 
     render() {
-        if(!!this.props.showPostComment) {
+        if (!!this.props.showPostComment) {
             return (
                 <div className="comments-control">
                     <Spinner loading={this.props.loading}/>
@@ -128,19 +151,20 @@ class Comments extends React.Component {
                         />
                     </div>
                     {this.props.comments.length ?
-                    (
-                        <React.Fragment>
-                            <div className="header">View comments:</div>
-                            <div className="comments-list">
-                                {this.props.comments.map(comment => {
-                                    return (
-                                        <div className="comment-item" key={comment._id} data-id={comment._id}>
-                                            <div className="comment-bubble">
-                                                <div className="comment-content">
+                        (
+                            <React.Fragment>
+                                <div className="header">View comments:</div>
+                                <div className="comments-list">
+                                    {this.props.comments.map(comment => {
+                                        return (
+                                            <div className="comment-item" key={comment._id} data-id={comment._id}
+                                                 ref={this.newCommentRef}>
+                                                <div className="comment-bubble">
+                                                    <div className="comment-content">
                                                     <span className="comment-photo">
                                                         <img src={comment.postedBy.profile.photo}/>
                                                     </span>
-                                                    <span className="comment-details">
+                                                        <span className="comment-details">
                                                         <div className="name">{comment.displayName}</div>
                                                         <div className="content">{comment.content}</div>
                                                         <div className="comment-actions">
@@ -158,8 +182,9 @@ class Comments extends React.Component {
                                                                 </span>
                                                             </div>
                                                             |&nbsp;
-                                                                    <div className="action">
-                                                                <span className="primary" onClick={this.reply}>Reply</span>
+                                                            <div className="action">
+                                                                <span className="primary"
+                                                                      onClick={this.reply}>Reply</span>
                                                                 <span className="label info">
                                                                     {!!comment.comments.length &&
                                                                     (
@@ -175,51 +200,55 @@ class Comments extends React.Component {
                                                             </div>
                                                         </div>
                                                     </span>
-                                                </div>
-                                            </div>
-                                            {
-                                                <div className="reply-list">
-                                                {comment.comments.length ? <div className="header">View replies:</div> : null}
-                                                    <div className="new-reply-container">
-                                                        {!!this.state.showNewComment[comment._id] &&
-                                                        <textarea
-                                                            autoFocus
-                                                            className="new-reply"
-                                                            placeholder="Write a reply..."
-                                                            onKeyDown={this.postReply}/>}
                                                     </div>
-                                                    {comment.comments.map(reply => {
-                                                        return (
-                                                            <div className="reply-item" key={reply._id} data-id={reply._id}>
-                                                                <div className="reply-content">
+                                                </div>
+                                                {
+                                                    <div className="reply-list">
+                                                        {comment.comments.length ?
+                                                            <div className="header">View replies:</div> : null}
+                                                        <div className="new-reply-container">
+                                                            {!!this.state.showNewComment[comment._id] &&
+                                                            <textarea
+                                                                autoFocus
+                                                                className="new-reply"
+                                                                placeholder="Write a reply..."
+                                                                onKeyDown={this.postReply}/>}
+                                                        </div>
+                                                        {comment.comments.map(reply => {
+                                                            return (
+                                                                <div className="reply-item" key={reply._id}
+                                                                     data-id={reply._id}>
+                                                                    <div className="reply-content">
                                                                     <span className="reply-photo">
                                                                         <img src={reply.postedBy.profile.photo}/>
                                                                     </span>
-                                                                    <span className="reply-details">
+                                                                        <span className="reply-details">
                                                                         <div className="name">{reply.displayName}</div>
                                                                         <div className="content">{reply.content}</div>
                                                                         <div className="reply-actions">
                                                                             <div className="action">
-                                                                                <span className="primary" onClick={this.likeReply}>Like</span>&nbsp;
-                                                                                <span className="label">{!!reply.likes.length && ( '(' + reply.likes.length + ')' )}</span>
+                                                                                <span className="primary"
+                                                                                      onClick={this.likeReply}>Like</span>&nbsp;
+                                                                                <span
+                                                                                    className="label">{!!reply.likes.length && ( '(' + reply.likes.length + ')' )}</span>
                                                                             </div>
                                                                         </div>
                                                                     </span>
+                                                                    </div>
                                                                 </div>
-                                                            </div>
-                                                        );
-                                                    })}
-                                                </div>
-                                            }
-                                        </div>
-                                    );
-                                })}
-                            </div>
-                        </React.Fragment>
-                    ) : null}
+                                                            );
+                                                        })}
+                                                    </div>
+                                                }
+                                            </div>
+                                        );
+                                    })}
+                                </div>
+                            </React.Fragment>
+                        ) : null}
                 </div>
             );
-        }else {
+        } else {
             return null;
         }
     }

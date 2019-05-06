@@ -49,7 +49,10 @@
           height: 32px;
           width: 32px;
           border-radius: 50%;
-          margin-right: 10px; }
+          margin-right: 10px;
+          transition: transform .2s; }
+          #header .right-content .profile .menu-toggle .profile-picture img:hover {
+            transform: scale(1.1); }
         #header .right-content .profile .menu-toggle .dropdown-menu {
           max-width: 200px; }
           #header .right-content .profile .menu-toggle .dropdown-menu .menu-item {
@@ -170,7 +173,7 @@ article.login {
         padding-bottom: 10px; }
         article.login .login-container .content-local .form-group:last-child {
           padding-bottom: 0px; }
-        article.login .login-container .content-local .form-group input[type="text"], article.login .login-container .content-local .form-group input[type="password"] {
+        article.login .login-container .content-local .form-group input[type="text"], article.login .login-container .content-local .form-group input[type="password"], article.login .login-container .content-local .form-group input[type="email"] {
           width: 100%; }
         article.login .login-container .content-local .form-group a {
           font-weight: normal;
@@ -242,7 +245,7 @@ article.sign-up {
         padding-bottom: 10px; }
         article.sign-up .sign-up-container .content-local .form-group:last-child {
           padding-bottom: 0px; }
-        article.sign-up .sign-up-container .content-local .form-group input[type="text"], article.sign-up .sign-up-container .content-local .form-group input[type="password"] {
+        article.sign-up .sign-up-container .content-local .form-group input[type="text"], article.sign-up .sign-up-container .content-local .form-group input[type="password"], article.sign-up .sign-up-container .content-local .form-group input[type="email"] {
           width: 100%; }
         article.sign-up .sign-up-container .content-local .form-group button[type="submit"] {
           font-size: 16px;
