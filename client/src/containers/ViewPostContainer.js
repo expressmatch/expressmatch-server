@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as actions from '../actions/postsActions';
 import Posts from '../components/posts/Posts';
+import Spinner from '../components/common/Spinner';
 import {makeGetPosts} from '../selector/GetPostsSelector';
 
 class ViewPostContainer extends React.Component {
@@ -12,13 +13,7 @@ class ViewPostContainer extends React.Component {
     }
 
     componentDidMount(){
-        this.props.actions.getPosts(this.props.filters);
-    }
-
-    componentWillReceiveProps(nextProps) {
-        if (this.props.filters !== nextProps.filters) {
-            this.props.actions.getPosts(nextProps.filters);
-        }
+        this.props.actions.getPost(this.props.match.params.postId);
     }
 
     componentWillMount() {
@@ -27,10 +22,17 @@ class ViewPostContainer extends React.Component {
 
     render() {
         return (
-            <Posts
-                posts={this.props.posts}
-                filters={this.props.filters}
-                actions={this.props.actions}/>
+            <div className="posts">
+                <div className="left-content">
+                    <Spinner loading={this.props.loading}/>
+                    <Posts
+                        posts={this.props.posts}
+                        filters={this.props.filters}
+                        actions={this.props.actions}
+                        loading={this.props.loading}/>
+                </div>
+                <div className="right-content" />
+            </div>
         );
     }
 }

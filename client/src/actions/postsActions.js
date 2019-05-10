@@ -27,6 +27,32 @@ export function getPostsFailure(error){
 }
 /*-------- FETCH POSTS - END ---------*/
 
+
+/*-------- FETCH SINGLE POST - START---------*/
+export function getPost(postId) {
+    return (dispatch, getState ) => {
+        dispatch(getPostRequest());
+
+        return postsService.getPostById(postId).then(data => {
+            setTimeout(() => {
+                return dispatch(getPostSuccess(data));
+            }, delay);
+        }).catch(error => {
+            dispatch(getPostFailure(error));
+        })
+    };
+}
+export function getPostRequest(){
+    return { type: types.GET_POST_REQUEST };
+}
+export function getPostSuccess(post){
+    return { type: types.GET_POST_SUCCESS, post };
+}
+export function getPostFailure(error){
+    return { type: types.GET_POST_FAILURE, error };
+}
+/*-------- FETCH SINGLE POST - END ---------*/
+
 /*-------- SUBMIT POST - START ---------*/
 export function createPost(post) {
     return (dispatch, getState ) => {

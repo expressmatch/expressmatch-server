@@ -30,6 +30,19 @@ const postsReducer = (state = initialState.posts, action) => {
                 }
             }
         };
+    } else if (action.type === types.GET_POST_SUCCESS) {
+        return {
+            ...state,
+            entities: {
+                ...state.entities,
+                posts: {
+                    byId: {
+                        [action.post._id]: action.post
+                    },
+                    allIds: [action.post._id]
+                }
+            }
+        }
     } else if (action.type === types.LIKE_POST_SUCCESS) {
         return {
             ...state,

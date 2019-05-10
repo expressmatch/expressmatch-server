@@ -11,7 +11,7 @@ module.exports = function (app) {
 
     app.post('/api/posts', getAllPosts);
     app.post('/post/create', createNewPost);
-    app.get('/api/posts/:postId', getPost);
+    app.get('/api/post/:postId', getPost);
     app.post('/post/:postId/like', likePost);
     app.post('/post/:postId/delete', deletePost);
     app.post('/post/:postId/spam', reportSpam);
@@ -98,7 +98,6 @@ const getPost = function (req, res, next) {
             res.status(200).json(post);
         }
     });
-    req.json({});
 };
 
 const likePost = (req, res, next) => {

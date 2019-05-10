@@ -1,10 +1,6 @@
 import React from 'react';
-import QuickFilter from './filters/QuickFilter';
-import DateFilter from './filters/DateFilter';
-import Filters from './filters/Filters';
 import {withRouter} from 'react-router-dom';
 import {UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem} from 'reactstrap';
-import Spinner from '../common/Spinner';
 import CommentsContainer from "../../containers/CommentsContainer";
 import DeletePostModal from '../modals/deletePost/deletePostModal';
 import ReportSpamModal from '../modals/reportSpam/reportSpamModal';
@@ -46,7 +42,7 @@ class Posts extends React.Component {
         let target = e.currentTarget.closest('.post'),
             postId = target.dataset['id'];
 
-        this.props.history.push('/posts/' + postId);
+        this.props.history.push('/post/' + postId);
         //TODO: Implement Deep Links
     }
 
@@ -171,26 +167,14 @@ class Posts extends React.Component {
     }
 
     render() {
-        return (
-            <div className="posts">
-                <div className="left-content">
-                    <Spinner loading={this.props.loading}/>
-                    {this.props.posts && this.props.posts.map(post => {
-                        return this.renderPost(post);
-                    })}
-                    {!this.props.loading && this.props.posts.length === 0 &&
-                    <div className="empty-message">No Posts To Display</div>}
-                </div>
-                <div className="right-content">
-                    <DateFilter actions={this.props.actions} selected={this.props.filters.date}/>
-                    <QuickFilter
-                        actions={this.props.actions}
-                        filters={this.props.filters.quick}/>
-                    {/*<div className="panel">*/}
-                    {/*<Filters />*/}
-                    {/*</div>*/}
-                </div>
-            </div>
+        return(
+            <React.Fragment>
+            {this.props.posts && this.props.posts.map(post => {
+                return this.renderPost(post);
+            })}
+            {!this.props.loading && this.props.posts.length === 0 &&
+                <div className="empty-message">No Posts To Display</div>}
+            </React.Fragment>
         );
     }
 

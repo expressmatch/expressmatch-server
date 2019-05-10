@@ -4,6 +4,10 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as actions from '../actions/postsActions';
 import Posts from '../components/posts/Posts';
+import QuickFilter from '../components/posts/filters/QuickFilter';
+import DateFilter from '../components/posts/filters//DateFilter';
+import Filters from '../components/posts/filters/Filters';
+import Spinner from '../components/common/Spinner';
 import {makeGetPosts} from '../selector/GetPostsSelector';
 
 class PostsContainer extends React.Component {
@@ -28,11 +32,25 @@ class PostsContainer extends React.Component {
 
     render() {
         return (
-            <Posts
-                posts={this.props.posts}
-                filters={this.props.filters}
-                actions={this.props.actions}
-                loading={this.props.loading}/>
+            <div className="posts">
+                <div className="left-content">
+                    <Spinner loading={this.props.loading}/>
+                    <Posts
+                        posts={this.props.posts}
+                        filters={this.props.filters}
+                        actions={this.props.actions}
+                        loading={this.props.loading}/>
+                </div>
+                <div className="right-content">
+                    <DateFilter actions={this.props.actions} selected={this.props.filters.date}/>
+                    <QuickFilter
+                        actions={this.props.actions}
+                        filters={this.props.filters.quick}/>
+                    {/*<div className="panel">*/}
+                    {/*<Filters />*/}
+                    {/*</div>*/}
+                </div>
+            </div>
         );
     }
 }

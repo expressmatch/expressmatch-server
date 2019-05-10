@@ -4,9 +4,9 @@
   "description": "Express Match",
   "main": "index.js",
   "scripts": {
-    "build": "nodemon server/srcServer.js",
+    "build": "nodemon server/server.js",
     "build-css": "node-sass --watch --include-path server/scss server/scss/main.scss server/public/css/main.css --outputStyle expanded",
-    "debug": "nodemon --inspect server/srcServer.js",
+    "debug": "nodemon --inspect server/server.js",
     "prod": "node_modules/webpack/bin/webpack.js --config webpack.config.prod.js --mode production",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -37,7 +37,7 @@
     "react-dom": "^16.4.1",
     "react-places-autocomplete": "^7.2.0",
     "react-redux": "^5.0.7",
-    "react-router-dom": "^4.3.1",
+    "react-router-dom": "^5.0.0",
     "react-spinners": "^0.4.7",
     "reactstrap": "^6.4.0",
     "redux-thunk": "^2.3.0",

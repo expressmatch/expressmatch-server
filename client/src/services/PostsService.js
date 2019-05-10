@@ -25,6 +25,28 @@ let getPosts = (() => {
     };
 })();
 
+let getPostById = (() => {
+
+    const processResponse = (response) => {
+
+        return response;
+    };
+
+    return (postId) => {
+        return new Promise((resolve, reject) => {
+            axios({
+                method: 'GET',
+                url: '/api/post/' + postId,
+                headers: {'Content-type': 'application/json'}
+            }).then(response => {
+                resolve(processResponse(response.data));
+            }).catch(error => {
+                reject(error);
+            });
+        });
+    };
+})();
+
 let createPost = (() => {
 
     return (post) => {
@@ -97,6 +119,7 @@ let reportSpam = (() => {
 
 const PostsService = {
     getPosts,
+    getPostById,
     createPost,
     deletePost,
     likePost,
