@@ -15,6 +15,7 @@ class CreatePost extends React.Component {
         this.onReset = this.onReset.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
         this.onChange = this.onChange.bind(this);
+        this.onCancel = this.onCancel.bind(this);
     }
 
     onReset(e) {
@@ -39,6 +40,10 @@ class CreatePost extends React.Component {
             });
         }
 
+    }
+
+    onCancel(e){
+        this.props.history.push('/posts');
     }
 
     onChange(e) {
@@ -83,6 +88,7 @@ class CreatePost extends React.Component {
                             <input type="reset" disabled={!this.state.post.length} value="Reset"/>
                             <input type="submit" disabled={this.state.charCount < this.state.minCharCount}
                                    value="Submit"/>
+                            <input type="button" className="cancel" value="Cancel" onClick={this.onCancel}/>
                         </div>
                     </div>
                 </form>

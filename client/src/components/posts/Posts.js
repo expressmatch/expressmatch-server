@@ -42,8 +42,22 @@ class Posts extends React.Component {
         let target = e.currentTarget.closest('.post'),
             postId = target.dataset['id'];
 
-        this.props.history.push('/post/' + postId);
-        //TODO: Implement Deep Links
+        const el = document.createElement('textarea');
+        el.value = window.location.origin + '/post/' + postId;
+        el.setAttribute('readonly', '');
+        el.style.position = 'absolute';
+        el.style.left = '-9999px';
+        document.body.appendChild(el);
+        el.select();
+        try {
+            let successful = document.execCommand('copy');
+            if( successful){
+                console.log('Link copied to clipboard');
+            }
+        } catch (err) {
+            alert('Error during copying link');
+        }
+        document.body.removeChild(el);
     }
 
     comment(e) {
@@ -172,8 +186,6 @@ class Posts extends React.Component {
             {this.props.posts && this.props.posts.map(post => {
                 return this.renderPost(post);
             })}
-            {!this.props.loading && this.props.posts.length === 0 &&
-                <div className="empty-message">No Posts To Display</div>}
             </React.Fragment>
         );
     }

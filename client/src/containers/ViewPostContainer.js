@@ -24,6 +24,7 @@ class ViewPostContainer extends React.Component {
         return (
             <div className="posts">
                 <div className="left-content">
+                    {this.props.loading && <div>Loading...</div>}
                     <Spinner loading={this.props.loading}/>
                     <Posts
                         posts={this.props.posts}

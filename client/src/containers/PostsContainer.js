@@ -40,6 +40,8 @@ class PostsContainer extends React.Component {
                         filters={this.props.filters}
                         actions={this.props.actions}
                         loading={this.props.loading}/>
+                    {!this.props.loading && this.props.posts.length === 0 &&
+                    <div className="empty-message">No Posts To Display</div>}
                 </div>
                 <div className="right-content">
                     <DateFilter actions={this.props.actions} selected={this.props.filters.date}/>

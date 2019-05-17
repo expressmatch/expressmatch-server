@@ -30,7 +30,18 @@ const postsReducer = (state = initialState.posts, action) => {
                 }
             }
         };
-    } else if (action.type === types.GET_POST_SUCCESS) {
+    } else if (action.type === types.GET_POST_REQUEST) {
+        return {
+            ...state,
+            loading: true
+        };
+    }
+    else if (action.type === types.GET_POST_FAILURE) {
+        return {
+            ...state,
+            loading: false
+        };
+    }else if (action.type === types.GET_POST_SUCCESS) {
         return {
             ...state,
             entities: {
