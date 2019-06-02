@@ -1,5 +1,6 @@
 import * as types from '../constants/actionTypes';
 import profileService from '../services/ProfileService';
+import delay from '../services/delay';
 
 /*-------- FETCH POSTS - START---------*/
 export function getProfile() {
@@ -7,7 +8,9 @@ export function getProfile() {
         dispatch(getProfileRequest());
 
         profileService.getProfile().then(data => {
-            dispatch(getProfileSuccess(data));
+            setTimeout(() => {
+                return dispatch(getProfileSuccess(data));
+            }, delay);
         }).catch(error => {
             dispatch(getProfileFailure(error));
         })
@@ -30,7 +33,9 @@ export function updateProfile(profile) {
         dispatch(updateProfileRequest());
 
         profileService.updateProfile(profile).then(data => {
-            dispatch(updateProfileSuccess(data));
+            setTimeout(() => {
+                return dispatch(updateProfileSuccess(data));
+            }, delay);
         }).catch(error => {
             dispatch(updateProfileFailure(error));
         })

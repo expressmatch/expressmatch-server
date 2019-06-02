@@ -6,6 +6,9 @@
   border: 1px solid #e6ecf5;
 
   form{
+    .form-control{
+      box-shadow: none;
+    }
     .em-form-control{
       padding: 20px;
       display: flex;

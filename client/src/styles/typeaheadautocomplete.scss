@@ -1,0 +1,32 @@
+.rbt-menu.dropdown-menu{
+  padding: 5px;
+  position: absolute;
+  top: 30px;
+  overflow-x: auto;
+  width: 100%;
+  border-radius: 3px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  z-index: 999;
+  background-color: #fff;
+
+  li{
+
+    a.dropdown-item{
+      height: 26px;
+      line-height: 26px;
+      border-radius: 3px;
+      padding: 0 5px;
+      cursor: pointer;
+      font-size: 13px;
+
+      &:hover,&:focus{
+        background-color: #edf2f6;
+      }
+
+      span,mark{
+        font-size: 13px;
+        color: #888da8;
+      }
+    }
+  }
+}

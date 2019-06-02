@@ -28,6 +28,7 @@ export default {
         }
     },
     profile: {
+        loading: false,
         age: 21,
         gender: "male",
         currentCity: "",

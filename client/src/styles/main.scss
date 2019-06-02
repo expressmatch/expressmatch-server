@@ -4,7 +4,7 @@
 @import './calendar.scss';
 @import './spinner.scss';
 @import './placesautocomplete.scss';
-
+@import './typeaheadautocomplete.scss';
 @import './header.scss';
 @import './content.scss';
 @import './profile.scss';
@@ -28,7 +28,7 @@ body{
 }
 body, input, textarea, select, header, article, section, aside, pre {
   line-height: 1.6;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.7px;
   font-size: 13px;
   color: #888da8;
 }

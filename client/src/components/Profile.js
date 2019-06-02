@@ -3,6 +3,7 @@ import PlacesAutocomplete from 'react-places-autocomplete';
 import {Typeahead} from 'react-bootstrap-typeahead';
 import Languages from '../api/languageApi';
 import DatePicker from "react-datepicker";
+import Spinner from './common/Spinner';
 
 class Profile extends React.Component {
     constructor(props) {
@@ -96,6 +97,7 @@ class Profile extends React.Component {
     render() {
         return (
             <div id="profile">
+                <Spinner loading={this.state.loading}/>
                 <form>
                     <div className="em-form-control">
                         <div className="field-label">
