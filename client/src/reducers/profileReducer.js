@@ -4,12 +4,10 @@ import * as types from '../constants/actionTypes';
 const profileReducer = (state = initialState.profile, action) => {
     if( action.type === types.GET_PROFILE_REQUEST) {
         return {
-            ...state,
             loading: true
         }
     } else if( action.type === types.UPDATE_PROFILE_REQUEST) {
         return {
-            ...state,
             loading: true
         }
     } else if( action.type === types.GET_PROFILE_SUCCESS) {

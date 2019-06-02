@@ -57,7 +57,7 @@
             background-color: $em-bg-white;
           }
         }
-        input[type="reset"], input[type="submit"]{
+        input[type="reset"], input[type="submit"],input[type="button"]{
           border-radius: 10px;
           margin-right: 5px;
           color: #888da8;
@@ -78,6 +78,40 @@
         font-weight: normal;
         font-size: 12px;
       }
+    }
+  }
+
+  &.readonly{
+    input, select, textarea {
+      pointer-events: none !important;
+      border: none !important;
+      background: none !important;
+      user-select: none !important;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      -webkit-user-select: none !important;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      -ms-progress-appearance: none;
+    }
+    select{
+      padding: 8px;
+    }
+    ::-webkit-input-placeholder { /* WebKit browsers */
+      color: transparent;
+    }
+    :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+      color: transparent;
+    }
+    ::-moz-placeholder { /* Mozilla Firefox 19+ */
+      color: transparent;
+    }
+    :-ms-input-placeholder { /* Internet Explorer 10+ */
+      color: transparent;
+    }
+
+    input[type="reset"], input[type="submit"], input[type="button"] {
+      display: none;
     }
   }
 }

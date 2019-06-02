@@ -4,17 +4,20 @@ import {Typeahead} from 'react-bootstrap-typeahead';
 import Languages from '../api/languageApi';
 import DatePicker from "react-datepicker";
 import Spinner from './common/Spinner';
+import { NavLink } from 'react-router-dom';
+import {withRouter} from 'react-router-dom';
 
 class Profile extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            ...props.profile,
+            ...props.profile
         };
 
         this.resetForm = this.resetForm.bind(this);
-        this.handleSave = this.handleSave.bind(this);
+        this.onSubmit = this.onSubmit.bind(this);
+        this.onCancel = this.onCancel.bind(this);
         this.validateForm = this.validateForm.bind(this);
 
         this.handleCurrentCityChange = this.handleCurrentCityChange.bind(this);
@@ -78,14 +81,20 @@ class Profile extends React.Component {
 
     }
 
-    handleSave(e) {
+    onSubmit(e) {
         e.preventDefault();
 
         this.validateForm().then(() => {
-            this.props.actions.updateProfile(this.state);
+            this.props.actions.updateProfile(this.state).then(() => {
+                this.props.history.push('/profile');
+            });
         }).catch((e) => {
             console.log(e);
         });
+    }
+
+    onCancel(e){
+        this.props.history.push('/profile');
     }
 
     validateForm() {
@@ -96,7 +105,7 @@ class Profile extends React.Component {
 
     render() {
         return (
-            <div id="profile">
+            <div id="profile" className={this.props.readonly ? "readonly" : ""} >
                 <Spinner loading={this.state.loading}/>
                 <form>
                     <div className="em-form-control">
@@ -273,16 +282,22 @@ class Profile extends React.Component {
                             {/*<textarea data-name="interests" value={this.state.interests} disabled></textarea>*/}
                         {/*</div>*/}
                     {/*</div>*/}
-                    <div className="em-form-control">
+                    {this.props.readonly && <div className="em-form-control">
+                        <div className="field-value">
+                            <NavLink to="/editprofile">Edit Profile</NavLink>
+                        </div>
+                    </div>}
+                    {!this.props.readonly && <div className="em-form-control">
                         <div className="field-value">
                             <input type="reset" onClick={this.resetForm} value="Reset"/>
-                            <input type="submit" onClick={this.handleSave} value="Submit"/>
+                            <input type="submit" onClick={this.onSubmit} value="Submit"/>
+                            <input type="button" onClick={this.onCancel} value="Cancel" />
                         </div>
-                    </div>
+                    </div>}
                 </form>
             </div>
         );
     }
 }
 
-export default Profile;
+export default withRouter(Profile);

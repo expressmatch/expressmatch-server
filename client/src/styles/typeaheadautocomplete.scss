@@ -19,7 +19,7 @@
       cursor: pointer;
       font-size: 13px;
 
-      &:hover,&:focus{
+      &.active, &:hover,&:focus{
         background-color: #edf2f6;
       }
 

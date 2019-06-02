@@ -32,9 +32,9 @@ export function updateProfile(profile) {
     return (dispatch, getState ) => {
         dispatch(updateProfileRequest());
 
-        profileService.updateProfile(profile).then(data => {
+        return profileService.updateProfile(profile).then(data => {
             setTimeout(() => {
-                return dispatch(updateProfileSuccess(data));
+                dispatch(updateProfileSuccess(data));
             }, delay);
         }).catch(error => {
             dispatch(updateProfileFailure(error));

@@ -16,7 +16,10 @@ class ProfileContainer extends React.Component {
 
     render() {
         return (
-            <Profile profile={this.props.profile} actions={this.props.actions} />
+            <Profile
+                profile={this.props.profile}
+                actions={this.props.actions}
+                readonly={this.props.readonly}/>
         );
     }
 }

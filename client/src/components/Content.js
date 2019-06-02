@@ -5,6 +5,7 @@ import CreatePostContainer from '../containers/CreatePostContainer';
 import ProfileContainer from '../containers/ProfileContainer';
 import ViewPostContainer from '../containers/ViewPostContainer';
 import NotFoundPage from './NotFoundPage';
+import Profile from "./Profile";
 
 class Content extends React.Component {
     render() {
@@ -13,7 +14,21 @@ class Content extends React.Component {
                 <Switch>
                     <Route exact path="/posts" component={PostsContainer} />
                     <Route path="/createpost" component={CreatePostContainer} />
-                    <Route path="/profile" component={ProfileContainer} />
+                    <Route exact path="/profile" render={props => {
+                        return (
+                            <ProfileContainer
+                                {...props}
+                                readonly={true} />
+                        );
+                    }}/>
+                    <Route exact path="/profile/:userId" render={props => {
+                        return (
+                            <ProfileContainer
+                                {...props}
+                                readonly={true} />
+                        );
+                    }}/>
+                    <Route path="/editprofile" component={ProfileContainer} />
                     <Route path="/post/:postId" component={ViewPostContainer} />
                     <Route component={NotFoundPage} />
                 </Switch>
