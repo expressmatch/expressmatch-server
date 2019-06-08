@@ -1,0 +1,29 @@
+.modal {
+  .modal-dialog{
+    .modal-content{
+      .modal-header{
+        .modal-title{
+          font-weight: bold;
+          font-size: 15px;
+          color: #545566;
+        }
+      }
+      .modal-footer{
+        .btn{
+          &.btn-primary{
+            background-color: #888da8;
+            border-color: #888da8;
+
+            &:hover,&:active{
+              background-color: #8885a8;
+              border-color: #8885a8;
+            }
+          }
+          &.btn-secondary{
+
+          }
+        }
+      }
+    }
+  }
+}

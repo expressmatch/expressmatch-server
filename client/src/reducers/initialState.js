@@ -30,7 +30,7 @@ export default {
     profile: {
         loading: false,
         age: 21,
-        gender: "male",
+        gender: "",
         currentCity: "",
         homeTown: "",
         motherTongue: "",

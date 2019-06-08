@@ -77,8 +77,9 @@ class Profile extends React.Component {
 
     resetForm(e) {
         e.preventDefault();
-        alert('reset');
-
+        this.setState({
+            ...this.props.profile
+        });
     }
 
     onSubmit(e) {
@@ -107,7 +108,7 @@ class Profile extends React.Component {
         return (
             <div id="profile" className={this.props.readonly ? "readonly" : ""} >
                 <Spinner loading={this.state.loading}/>
-                <form>
+                <form spellcheck="false">
                     <div className="em-form-control">
                         <div className="field-label">
                             <div>About me</div>

@@ -1,7 +1,6 @@
 article.sign-up{
   display: flex;
   justify-content: center;
-  min-height: 500px;
   //flex: 1 1 auto;
 
 
@@ -16,7 +15,7 @@ article.sign-up{
     font-weight: bold;
     font-size: 12px;
     background-color: #fff;
-    //height: 100%;
+    min-height: 400px;
 
     .header{
       padding: 20px;

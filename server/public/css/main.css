@@ -135,8 +135,7 @@ footer {
 
 article.login {
   display: flex;
-  justify-content: center;
-  min-height: 560px; }
+  justify-content: center; }
   article.login .login-container {
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -147,7 +146,8 @@ article.login {
     flex-flow: column;
     font-weight: bold;
     font-size: 12px;
-    background-color: #fff; }
+    background-color: #fff;
+    min-height: 400px; }
     article.login .login-container .header {
       padding: 20px;
       border-bottom: 1px solid #ccc; }
@@ -206,8 +206,7 @@ article.login {
 
 article.sign-up {
   display: flex;
-  justify-content: center;
-  min-height: 500px; }
+  justify-content: center; }
   article.sign-up .sign-up-container {
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -218,7 +217,8 @@ article.sign-up {
     flex-flow: column;
     font-weight: bold;
     font-size: 12px;
-    background-color: #fff; }
+    background-color: #fff;
+    min-height: 400px; }
     article.sign-up .sign-up-container .header {
       padding: 20px;
       border-bottom: 1px solid #ccc; }
