@@ -44,6 +44,7 @@ const postsReducer = (state = initialState.posts, action) => {
     }else if (action.type === types.GET_POST_SUCCESS) {
         return {
             ...state,
+            loading: false,
             entities: {
                 ...state.entities,
                 posts: {
@@ -54,9 +55,20 @@ const postsReducer = (state = initialState.posts, action) => {
                 }
             }
         }
+    } else if (action.type === types.LIKE_POST_REQUEST) {
+        return {
+            ...state,
+            loading: true
+        };
+    } else if (action.type === types.LIKE_POST_FAILURE) {
+        return {
+            ...state,
+            loading: false
+        };
     } else if (action.type === types.LIKE_POST_SUCCESS) {
         return {
             ...state,
+            loading: false,
             entities: {
                 ...state.entities,
                 posts: {

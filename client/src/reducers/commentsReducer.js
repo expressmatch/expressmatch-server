@@ -35,6 +35,16 @@ const commentsReducer = (state = initialState.posts.entities.comments, action) =
             },
             allIds: [...state.allIds, ...comments.allIds]
         };
+    } else if (action.type === types.POST_COMMENT_REQUEST) {
+        return {
+            ...state,
+            loading: true
+        };
+    } else if (action.type === types.POST_COMMENT_FAILURE) {
+        return {
+            ...state,
+            loading: false
+        };
     } else if (action.type === types.POST_COMMENT_SUCCESS) {
         // if (!!action.commentId) {
         //     return {
@@ -58,7 +68,8 @@ const commentsReducer = (state = initialState.posts.entities.comments, action) =
                     },
                     [action.comment._id]: action.comment
                 },
-                allIds: [...state.allIds, action.comment._id]
+                allIds: [...state.allIds, action.comment._id],
+                loading: false
             }
         } else {
             return {
@@ -66,11 +77,22 @@ const commentsReducer = (state = initialState.posts.entities.comments, action) =
                     ...state.byId,
                     [action.comment._id]: action.comment
                 },
-                allIds: [...state.allIds, action.comment._id]
+                allIds: [...state.allIds, action.comment._id],
+                loading: false
             };
         }
         // }
 
+    } else if (action.type === types.LIKE_COMMENT_REQUEST) {
+        return {
+            ...state,
+            loading: true
+        };
+    } else if (action.type === types.LIKE_COMMENT_FAILURE) {
+        return {
+            ...state,
+            loading: false
+        };
     } else if (action.type === types.LIKE_COMMENT_SUCCESS) {
         return {
             ...state,
@@ -80,7 +102,8 @@ const commentsReducer = (state = initialState.posts.entities.comments, action) =
                     ...state.byId[action.commentId],
                     likes: action.comment.likes
                 }
-            }
+            },
+            loading: false
         };
     } else {
         return state;

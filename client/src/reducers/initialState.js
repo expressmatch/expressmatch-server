@@ -5,11 +5,11 @@ export default {
         photo: null
     },
     posts: {
+        loading: false,
         entities: {
             posts: {
                 byId: {},
-                allIds: [],
-                loading: false
+                allIds: []
             },
             comments: {
                 byId: {},
