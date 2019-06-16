@@ -4,6 +4,7 @@ import {UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem} from '
 import CommentsContainer from "../../containers/CommentsContainer";
 import DeletePostModal from '../modals/deletePost/deletePostModal';
 import ReportSpamModal from '../modals/reportSpam/reportSpamModal';
+import PostLikesModal from '../modals/postLikes/postLikesModal';
 import * as constants from '../../constants/constants';
 
 class Posts extends React.Component {
@@ -14,7 +15,8 @@ class Posts extends React.Component {
             showNewComment: {},
             modal: {
                 [constants.DELETE_POST]: false,
-                [constants.REPORT_SPAM]: false
+                [constants.REPORT_SPAM]: false,
+                [constants.POST_LIKES]: false
             }
         };
 
@@ -24,6 +26,7 @@ class Posts extends React.Component {
 
         this.comment = this.comment.bind(this);
         this.handleMenuClick = this.handleMenuClick.bind(this);
+        this.showPostLikes = this.showPostLikes.bind(this);
         this.toggleModal = this.toggleModal.bind(this);
     }
 
@@ -79,6 +82,13 @@ class Posts extends React.Component {
         this.toggleModal(type);
     }
 
+    showPostLikes(e){
+        let target = e.currentTarget,
+            type = target.dataset['type'];
+
+        this.toggleModal(type);
+    }
+
     toggleModal(type) {
 
         this.setState({
@@ -123,7 +133,7 @@ class Posts extends React.Component {
                         <pre>{post.content}</pre>
                     </div>
                     <div className="post-meta">
-                        <div className="likes">
+                        <div className="likes" data-type={constants.POST_LIKES} onClick={this.showPostLikes}>
                             <span className="logo">
                                 {post.isLikedByUser && <i className="fas fa-heart"></i>}
                                 {!post.isLikedByUser && <i className="far fa-heart"></i>}
@@ -174,6 +184,10 @@ class Posts extends React.Component {
                     onClose={this.toggleModal}/>
                 <ReportSpamModal
                     isOpen={this.state.modal[constants.REPORT_SPAM]}
+                    postId={post._id}
+                    onClose={this.toggleModal}/>
+                <PostLikesModal
+                    isOpen={this.state.modal[constants.POST_LIKES]}
                     postId={post._id}
                     onClose={this.toggleModal}/>
             </article>

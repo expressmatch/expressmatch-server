@@ -112,6 +112,7 @@
 
           .likes{
             display: flex;
+            cursor: pointer;
             .logo,.count {
               padding: 0 5px;
             }

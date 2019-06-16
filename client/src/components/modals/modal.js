@@ -19,10 +19,14 @@ class EmModal extends React.Component {
                 <ModalBody>
                     {this.props.content}
                 </ModalBody>
+                {!this.props.hideButtons &&
                 <ModalFooter>
-                    <Button color="primary" onClick={this.props.submit}>{this.props.submitButton || 'Ok'}</Button>{' '}
-                    <Button color="secondary" onClick={this.props.onClose}>Cancel</Button>
+                    {!this.props.hideSubmitButton &&
+                    <Button color="primary" onClick={this.props.submit}>{this.props.submitButton || 'Ok'}</Button>}
+                    {!this.props.hideCancelButton &&
+                    <Button color="secondary" onClick={this.props.onClose}>Cancel</Button>}
                 </ModalFooter>
+                }
             </Modal>
         );
     }

@@ -127,6 +127,32 @@ export function likePostFailure(error){
     return { type: types.LIKE_POST_FAILURE, error };
 }
 /*-------- LIKE POST - END ---------*/
+
+/*-------- GET POST LIKES - START ---------*/
+export function getPostLikes(postId) {
+    return (dispatch, getState ) => {
+        dispatch(getPostLikesRequest());
+
+        return postsService.getPostLikes(postId).then(data => {
+            setTimeout(() => {
+                return dispatch(getPostLikesSuccess(postId));
+            }, delay);
+        }).catch(error => {
+            dispatch(getPostLikesFailure(error));
+        })
+    };
+}
+export function getPostLikesRequest(){
+    return { type: types.GET_POST_LIKES_REQUEST };
+}
+export function getPostLikesSuccess(postId){
+    return { type: types.GET_POST_LIKES_SUCCESS, postId };
+}
+export function getPostLikesFailure(error){
+    return { type: types.GET_POST_LIKES_FAILURE, error };
+}
+/*-------- GET POST LIKES - END ---------*/
+
 /*-------- DELETE POST - START ---------*/
 export function reportSpam(postId) {
     return (dispatch, getState ) => {

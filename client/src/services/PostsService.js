@@ -82,6 +82,23 @@ let deletePost = (() => {
     };
 })();
 
+let getPostLikes = (() => {
+
+    return (postId) => {
+        return new Promise((resolve, reject) => {
+            axios({
+                method: 'GET',
+                url: `/api/post/${postId}/likes`,
+                headers: {'Content-type': 'application/json'}
+            }).then(response => {
+                resolve(response.data);
+            }).catch(error => {
+                reject(error);
+            });
+        });
+    };
+})();
+
 let likePost = (() => {
 
     return (postId) => {
@@ -122,6 +139,7 @@ const PostsService = {
     getPostById,
     createPost,
     deletePost,
+    getPostLikes,
     likePost,
     reportSpam
 };

@@ -12,6 +12,7 @@ module.exports = function (app) {
     app.post('/api/posts', getAllPosts);
     app.post('/post/create', createNewPost);
     app.get('/api/post/:postId', getPost);
+    app.get('/api/post/:postId/likes', getPostLikes);
     app.post('/post/:postId/like', likePost);
     app.post('/post/:postId/delete', deletePost);
     app.post('/post/:postId/spam', reportSpam);
@@ -97,6 +98,20 @@ const getPost = function (req, res, next) {
         if (post) {
             res.status(200).json(post);
         }
+    });
+};
+
+const getPostLikes = function(req, res, next){
+    Post.findOne({_id: new ObjectId(req.params.postId)}, function (err, post) {
+        if (err) next(err);
+
+        if (post) {
+            res.status(200).json(post.likes);
+        }
+    }).populate({
+        path: 'likes',
+        model: 'User',
+        select: { 'profile.name': 1, 'profile.photo': 1, 'profile.email': 1 }
     });
 };
 
