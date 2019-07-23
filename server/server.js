@@ -7,6 +7,7 @@ const morgan       			= require('morgan');
 const cookieParser 			= require('cookie-parser');
 const bodyParser 			= require('body-parser');
 const session      			= require('express-session');
+const mongoStore 			= require('connect-mongo')(session);
 const flash    				= require('connect-flash');
 const webpack 				= require('webpack');
 const webpackDevMiddleware 	= require('webpack-dev-middleware');
@@ -53,7 +54,25 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
 // required for passport
-app.use(session({ secret: 'my_express_app_idea' }));
+app.use(session({
+	secret: 'my_express_app_idea',
+    saveUninitialized: false,
+	resave: false,
+    name: "em.sid",
+    store: new mongoStore({
+		mongooseConnection: mongoose.connection,
+        touchAfter: 24 * 3600, //1 day in seconds
+        secret: 'my_express_app_idea_session',
+		//Not needed as maxAge is set
+        //ttl: (7 * 24 * 60 * 60) //7 days, no need cookie maxAge is this is set, also need this as session cookie has no expiry
+	}),
+	cookie: {
+		path: "/",
+        maxAge: 7 * 24 * 60 * 60 * 1000, //7 day in milliseconds
+        httpOnly: true,
+    	sameSite: true
+	}
+}));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
