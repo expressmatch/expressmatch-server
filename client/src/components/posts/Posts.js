@@ -7,7 +7,19 @@ import ReportSpamModal from '../modals/reportSpam/reportSpamModal';
 import PostLikesModal from '../modals/postLikes/postLikesModal';
 import * as constants from '../../constants/constants';
 
-class Posts extends React.Component {
+const Posts = (props) => {
+
+    return(
+        <React.Fragment>
+            {props.posts && props.posts.map(post => {
+                return <Post post={post} key={post._id} {...props}/>
+            })}
+        </React.Fragment>
+    );
+}
+
+class Post extends React.Component {
+
     constructor(props) {
         super(props);
 
@@ -20,7 +32,6 @@ class Posts extends React.Component {
             }
         };
 
-        this.renderPost = this.renderPost.bind(this);
         this.likePost = this.likePost.bind(this);
         this.copyLink = this.copyLink.bind(this);
 
@@ -92,29 +103,29 @@ class Posts extends React.Component {
     toggleModal(type) {
 
         this.setState({
-           modal: {
-               [type]: !this.state.modal[type]
-           }
+            modal: {
+                [type]: !this.state.modal[type]
+            }
         });
     }
 
-    renderPost(post) {
+    render(){
         return (
-            <article className="post" key={post._id} data-id={post._id}>
+            <article className="post" key={this.props.post._id} data-id={this.props.post._id}>
                 <div className="post-body">
                     <div className="post-header">
                         <div className="post-details">
                             <div className="post-date detail">
-                                {post.displayDate} at {post.displayTime}
+                                {this.props.post.displayDate} at {this.props.post.displayTime}
                             </div>
                             <div className="post-place detail">
-                                {post.postedBy.city}
+                                {this.props.post.postedBy.city}
                             </div>
                             <div className="post-caste detail">
-                                {post.postedBy.caste}
+                                {this.props.post.postedBy.caste}
                             </div>
                             <div className="post-sub-caste detail">
-                                {post.postedBy.subCaste}
+                                {this.props.post.postedBy.subCaste}
                             </div>
                         </div>
                         <div className="post-action">
@@ -122,7 +133,7 @@ class Posts extends React.Component {
                                 <DropdownToggle tag="div" className="post-action-menu">...</DropdownToggle>
                                 <DropdownMenu right>
                                     {/*<DropdownItem className="menu-item">Add to favourites</DropdownItem>*/}
-                                    {post.isCreatedByUser &&
+                                    {this.props.post.isCreatedByUser &&
                                     <DropdownItem className="menu-item" onClick={this.handleMenuClick} data-type={constants.DELETE_POST}>Delete post</DropdownItem>}
                                     <DropdownItem className="menu-item" onClick={this.handleMenuClick} data-type={constants.REPORT_SPAM}>Report spam</DropdownItem>
                                 </DropdownMenu>
@@ -130,37 +141,37 @@ class Posts extends React.Component {
                         </div>
                     </div>
                     <div className="content">
-                        <pre>{post.content}</pre>
+                        <pre>{this.props.post.content}</pre>
                     </div>
                     <div className="post-meta">
                         <div className="likes" data-type={constants.POST_LIKES} onClick={this.showPostLikes}>
                             <span className="logo">
-                                {post.isLikedByUser && <i className="fas fa-heart"></i>}
-                                {!post.isLikedByUser && <i className="far fa-heart"></i>}
+                                {this.props.post.isLikedByUser && <i className="fas fa-heart"></i>}
+                                {!this.props.post.isLikedByUser && <i className="far fa-heart"></i>}
                             </span>
                             <span className="count">
-                                {post.likes.length} {post.likes.length === 1 && ' Like'}{post.likes.length !== 1 && ' Likes'}
+                                {this.props.post.likes.length} {this.props.post.likes.length === 1 && ' Like'}{this.props.post.likes.length !== 1 && ' Likes'}
                             </span>
                         </div>
                         <div className="liked">
-                            {/*{post.likes.length === 0 && 'Be the first one to like this proposal'}*/}
-                            {/*{post.likes.length === 1 && `Express Match likes this`}*/}
-                            {/*{post.likes.length > 1 && `Express Match and ${post.likes.length - 1} others likes this`}*/}
+                            {/*{this.props.post.likes.length === 0 && 'Be the first one to like this proposal'}*/}
+                            {/*{this.props.post.likes.length === 1 && `Express Match likes this`}*/}
+                            {/*{this.props.post.likes.length > 1 && `Express Match and ${this.props.post.likes.length - 1} others likes this`}*/}
                         </div>
                         <div className="comments">
                             <span className="logo">
                                 <i className="fas fa-comments"></i>
                             </span>
                             <span className="count">
-                                {post.comments.length}{post.comments.length === 1 && ' Comment'}{post.comments.length !== 1 && ' Comments'}
+                                {this.props.post.comments.length}{this.props.post.comments.length === 1 && ' Comment'}{this.props.post.comments.length !== 1 && ' Comments'}
                             </span>
                         </div>
                     </div>
                     <div className="post-controls">
                         <div className="post-control like">
                             <button className="btn btn-control" onClick={this.likePost}>
-                                {!post.isLikedByUser && 'Like'}
-                                {post.isLikedByUser && 'Liked'}
+                                {!this.props.post.isLikedByUser && 'Like'}
+                                {this.props.post.isLikedByUser && 'Liked'}
                             </button>
                         </div>
                         <div className="post-control copy">
@@ -176,39 +187,22 @@ class Posts extends React.Component {
                     </div>
                 </div>
                 <CommentsContainer
-                    post={post}
-                    showPostComment={!!this.state.showNewComment[post._id]}/>
+                    post={this.props.post}
+                    showPostComment={!!this.state.showNewComment[this.props.post._id]}/>
                 <DeletePostModal
                     isOpen={this.state.modal[constants.DELETE_POST]}
-                    postId={post._id}
+                    postId={this.props.post._id}
                     onClose={this.toggleModal}/>
                 <ReportSpamModal
                     isOpen={this.state.modal[constants.REPORT_SPAM]}
-                    postId={post._id}
+                    postId={this.props.post._id}
                     onClose={this.toggleModal}/>
                 <PostLikesModal
                     isOpen={this.state.modal[constants.POST_LIKES]}
-                    postId={post._id}
+                    postId={this.props.post._id}
                     onClose={this.toggleModal}/>
             </article>
         );
-    }
-
-    render() {
-        return(
-            <React.Fragment>
-            {this.props.posts && this.props.posts.map(post => {
-                return this.renderPost(post);
-            })}
-            </React.Fragment>
-        );
-    }
-
-    componentWillUnmount() {
-        // this.state = {
-        //     showNewComment: {},
-        //     deleteModal: []
-        // };
     }
 }
 
