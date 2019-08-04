@@ -165,7 +165,9 @@ class Comments extends React.Component {
                                                         <img src={comment.postedBy.profile.photo}/>
                                                     </span>
                                                         <span className="comment-details">
-                                                            <div className="name"><a target="_blank" href={`/profile/` + comment.postedBy._id}>{comment.displayName}</a></div>
+                                                            <div className="name">
+                                                                <a target="_blank" href={`/profile/` + comment.postedBy._id}>{comment.displayName}</a>
+                                                            </div>
                                                         <div className="content">{comment.content}</div>
                                                         <div className="comment-actions">
                                                             <div className="action">
@@ -223,7 +225,9 @@ class Comments extends React.Component {
                                                                         <img src={reply.postedBy.profile.photo}/>
                                                                     </span>
                                                                         <span className="reply-details">
-                                                                        <div className="name">{reply.displayName}</div>
+                                                                        <div className="name">
+                                                                            <a target="_blank" href={`/profile/` + reply.postedBy._id}>{reply.displayName}</a>
+                                                                        </div>
                                                                         <div className="content">{reply.content}</div>
                                                                         <div className="reply-actions">
                                                                             <div className="action">

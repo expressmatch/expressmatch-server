@@ -59,7 +59,7 @@
             }
           }
           .comment-details {
-            .name{
+            .name a{
               color: #545566;
               font-weight: bold;
               &:hover {
@@ -159,7 +159,7 @@
               }
             }
             .reply-details {
-              .name{
+              .name a{
                 color: #545566;
                 font-weight: bold;
                 &:hover {
