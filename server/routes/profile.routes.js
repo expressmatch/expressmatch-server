@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const User = require('../models/User');
 
+const ObjectId = require('mongoose').Types.ObjectId;
+
 module.exports = function (app) {
     app.get('/userprofile', getProfile);
     app.post('/updateprofile', updateProfile);
@@ -15,7 +17,16 @@ module.exports = function (app) {
 
 
 const getProfile = function (req, res) {
-    if (req.user) {
+    if (req.query.userId) {
+        User.findOne({_id: new ObjectId(req.query.userId)}, function (err, user) {
+            if (err) next(err);
+
+            if (user) {
+                res.status(200).json(user.profile);
+            }
+        });
+    }
+    else if (req.user) {
         res.status(200).json(req.user.profile);
     }
 };

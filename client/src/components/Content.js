@@ -24,8 +24,10 @@ class Content extends React.Component {
                     <Route exact path="/profile/:userId" render={props => {
                         return (
                             <ProfileContainer
+                                userId={props.match.params.userId}
                                 {...props}
-                                readonly={true} />
+                                readonly={true}
+                                otherProfile={true}/>
                         );
                     }}/>
                     <Route path="/editprofile" component={ProfileContainer} />

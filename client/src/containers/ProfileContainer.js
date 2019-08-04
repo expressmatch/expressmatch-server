@@ -11,7 +11,7 @@ class ProfileContainer extends React.Component {
     }
 
     componentDidMount(){
-        this.props.actions.getProfile();
+        this.props.actions.getProfile(this.props.userId);
     }
 
     render() {
@@ -19,7 +19,8 @@ class ProfileContainer extends React.Component {
             <Profile
                 profile={this.props.profile}
                 actions={this.props.actions}
-                readonly={this.props.readonly}/>
+                readonly={this.props.readonly}
+                otherProfile={this.props.otherProfile}/>
         );
     }
 }

@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-let getProfile = (() => {
+let getCurrentProfile = (() => {
 
     return () => {
         return new Promise((resolve, reject) => {
@@ -17,6 +17,27 @@ let getProfile = (() => {
         });
     };
 })();
+
+let getOtherProfile = (() => {
+
+    return (userId) => {
+        return new Promise((resolve, reject) => {
+            axios({
+                method: 'GET',
+                url: '/userprofile',
+                headers: {'Content-type': ' application/json'},
+                params: {
+                    userId
+                }
+            }).then(response => {
+                resolve(response.data);
+            }).catch(error => {
+                reject(error);
+            });
+        });
+    };
+})();
+
 
 let updateProfile = (() => {
 
@@ -39,7 +60,8 @@ let updateProfile = (() => {
 })();
 
 const ProfileService = {
-    getProfile,
+    getCurrentProfile,
+    getOtherProfile,
     updateProfile
 };
 

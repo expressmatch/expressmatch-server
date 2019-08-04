@@ -165,7 +165,7 @@ class Comments extends React.Component {
                                                         <img src={comment.postedBy.profile.photo}/>
                                                     </span>
                                                         <span className="comment-details">
-                                                        <div className="name">{comment.displayName}</div>
+                                                            <div className="name"><a target="_blank" href={`/profile/` + comment.postedBy._id}>{comment.displayName}</a></div>
                                                         <div className="content">{comment.content}</div>
                                                         <div className="comment-actions">
                                                             <div className="action">

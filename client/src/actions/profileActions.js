@@ -3,11 +3,13 @@ import profileService from '../services/ProfileService';
 import delay from '../services/delay';
 
 /*-------- FETCH POSTS - START---------*/
-export function getProfile() {
+export function getProfile(userId) {
     return (dispatch, getState ) => {
         dispatch(getProfileRequest());
 
-        profileService.getProfile().then(data => {
+        let getProfile = userId ? profileService.getOtherProfile(userId) : profileService.getCurrentProfile();
+
+        getProfile.then(data => {
             setTimeout(() => {
                 return dispatch(getProfileSuccess(data));
             }, delay);

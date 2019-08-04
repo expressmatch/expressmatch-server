@@ -283,12 +283,12 @@ class Profile extends React.Component {
                             {/*<textarea data-name="interests" value={this.state.interests} disabled></textarea>*/}
                         {/*</div>*/}
                     {/*</div>*/}
-                    {this.props.readonly && <div className="em-form-control">
+                    {!this.props.otherProfile && this.props.readonly && <div className="em-form-control">
                         <div className="field-value">
                             <NavLink to="/editprofile">Edit Profile</NavLink>
                         </div>
                     </div>}
-                    {!this.props.readonly && <div className="em-form-control">
+                    {!this.props.otherProfile && !this.props.readonly && <div className="em-form-control">
                         <div className="field-value">
                             <input type="reset" onClick={this.resetForm} value="Reset"/>
                             <input type="submit" onClick={this.onSubmit} value="Submit"/>
