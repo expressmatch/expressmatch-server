@@ -111,7 +111,7 @@ const getPostLikes = function(req, res, next){
     }).populate({
         path: 'likes',
         model: 'User',
-        select: { 'profile.name': 1, 'profile.photo': 1, 'profile.email': 1 }
+        select: { '_id': 1, 'profile.name': 1, 'profile.photo': 1, 'profile.email': 1 }
     });
 };
 

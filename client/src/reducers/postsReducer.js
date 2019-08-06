@@ -154,6 +154,34 @@ const postsReducer = (state = initialState.posts, action) => {
                 }
             }
         }
+    } else if (action.type === types.GET_POST_LIKES_REQUEST) {
+        return {
+            ...state,
+            //loading: true
+        };
+    } else if (action.type === types.GET_POST_LIKES_FAILURE) {
+        return {
+            ...state,
+            //loading: false
+        };
+    } else if (action.type === types.GET_POST_LIKES_SUCCESS) {
+        return {
+            ...state,
+            //loading: false,
+            entities: {
+                ...state.entities,
+                posts: {
+                    ...state.entities.posts,
+                    byId: {
+                        ...state.entities.posts.byId,
+                        [action.postId]: {
+                            ...state.entities.posts.byId[action.postId],
+                            likedBy: action.likes
+                        }
+                    }
+                }
+            }
+        }
     } else if (action.type === types.UI_DATE_FILTER) {
 
         return {

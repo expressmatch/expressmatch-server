@@ -12,20 +12,53 @@ class PostLikesModal extends React.Component {
         this.header = this.header.bind(this);
         this.content = this.content.bind(this);
         this.onClose = this.onClose.bind(this);
+
+        this.state = {
+            dataRequested: false
+        }
     }
     componentWillReceiveProps(nextProps){
-        this.props.getPostLikes(this.props.postId);
-        //if(nextProps.isOpen === true && nextProps.postId === this.props.postId){
-            //this.props.getPostLikes(this.props.postId);
-        //}
+        if(nextProps.isOpen === true
+            && nextProps.postId === this.props.postId
+            && !this.state.dataRequested){
+
+            this.props.getPostLikes(this.props.postId);
+            this.setState({
+                dataRequested: true
+            })
+        }
+        if(nextProps.isOpen === false){
+            this.setState({
+                dataRequested: false
+            })
+        }
     }
 
     header() {
-        return <div>Liked By</div>;
+        return <div>Likes</div>;
     }
 
     content() {
-        return <div>List of users who likes this post</div>;
+        return (
+            <div className="likes-container">
+                {this.props.posts.byId[this.props.postId].likedBy && this.props.posts.byId[this.props.postId].likedBy.length ?
+                    (
+                        this.props.posts.byId[this.props.postId].likedBy.map((value) => {
+                            return (
+                                <div className="profile" key={value._id}>
+                                    <div className="display-pic">
+                                        <img src={value.profile.photo}/>
+                                    </div>
+                                    <div className="display-name">
+                                        <a href="#">{value.profile.name}</a>
+                                    </div>
+                                </div>
+                            );
+                        })
+                    ): <div>No Likes Yet. Be the first one to like this post.</div>
+                }
+            </div>
+        )
     }
 
     onClose() {
@@ -33,7 +66,6 @@ class PostLikesModal extends React.Component {
     }
 
     render() {
-
         return (
             <EmModal
                  isOpen={this.props.isOpen}
@@ -47,5 +79,7 @@ class PostLikesModal extends React.Component {
     }
 }
 
-const mapStateToProps = (state) => ({});
+const mapStateToProps = (state) => ({
+    posts: state.posts.entities.posts || []
+});
 export default connect(mapStateToProps, {getPostLikes})(PostLikesModal);

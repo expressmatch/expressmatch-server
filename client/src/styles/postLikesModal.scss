@@ -1,0 +1,30 @@
+.likes-container{
+  overflow-y: auto;
+  max-height: 250px;
+
+  .profile{
+    display: flex;
+    align-items: center;
+    height: 40px;
+    margin: 0 0 5px 0;
+
+    .display-pic{
+      img{
+        height: 40px;
+        width: 40px;
+        border-radius: 5px;
+      }
+    }
+    .display-name{
+      padding: 0 0 0 5px;
+      a {
+        color: #545566;
+        font-weight: bold;
+        &:hover {
+          text-decoration: underline;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}

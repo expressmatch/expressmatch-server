@@ -135,7 +135,7 @@ export function getPostLikes(postId) {
 
         return postsService.getPostLikes(postId).then(data => {
             setTimeout(() => {
-                return dispatch(getPostLikesSuccess(postId));
+                return dispatch(getPostLikesSuccess(postId, data));
             }, delay);
         }).catch(error => {
             dispatch(getPostLikesFailure(error));
@@ -145,8 +145,8 @@ export function getPostLikes(postId) {
 export function getPostLikesRequest(){
     return { type: types.GET_POST_LIKES_REQUEST };
 }
-export function getPostLikesSuccess(postId){
-    return { type: types.GET_POST_LIKES_SUCCESS, postId };
+export function getPostLikesSuccess(postId, likes){
+    return { type: types.GET_POST_LIKES_SUCCESS, postId, likes };
 }
 export function getPostLikesFailure(error){
     return { type: types.GET_POST_LIKES_FAILURE, error };
