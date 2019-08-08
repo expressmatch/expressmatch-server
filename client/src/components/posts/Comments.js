@@ -1,5 +1,8 @@
 import React from 'react';
 import Spinner from '../common/Spinner';
+import * as constants from '../../constants/constants';
+import CommentLikesModal from '../modals/commentLikes/commentLikesModal';
+import ReplyLikesModal from '../modals/commentLikes/replyLikesModal';
 
 class Comments extends React.Component {
     constructor(props) {
@@ -7,7 +10,11 @@ class Comments extends React.Component {
 
         this.state = {
             showNewComment: {},
-            comment: ""
+            comment: "",
+            modal: {
+                [constants.COMMENT_LIKES]: false,
+                [constants.REPLY_LIKES]: false
+            }
         };
 
         this.comment = this.comment.bind(this);
@@ -18,6 +25,9 @@ class Comments extends React.Component {
         this.reply = this.reply.bind(this);
         this.postReply = this.postReply.bind(this);
         this.likeReply = this.likeReply.bind(this);
+
+        this.showCommentLikes = this.showCommentLikes.bind(this);
+        this.toggleModal = this.toggleModal.bind(this);
 
         this.newCommentRef = React.createRef();
         this.newReplyRef - React.createRef();
@@ -134,6 +144,22 @@ class Comments extends React.Component {
         this.props.actions.likeComment(commentId);
     }
 
+    showCommentLikes(e){
+        let target = e.currentTarget,
+            type = target.dataset['type'];
+
+        this.toggleModal(type);
+    }
+
+    toggleModal(type) {
+
+        this.setState({
+            modal: {
+                [type]: !this.state.modal[type]
+            }
+        });
+    }
+
     render() {
         if (!!this.props.showPostComment) {
             return (
@@ -172,7 +198,7 @@ class Comments extends React.Component {
                                                         <div className="comment-actions">
                                                             <div className="action">
                                                                 <span className="primary" onClick={this.likeComment}>Like</span>
-                                                                <span className="label">
+                                                                <span className ="label" data-type={constants.COMMENT_LIKES} onClick={this.showCommentLikes}>
                                                                     {!!comment.likes.length &&
                                                                     (
                                                                         <React.Fragment>
@@ -204,6 +230,10 @@ class Comments extends React.Component {
                                                     </span>
                                                     </div>
                                                 </div>
+                                                <CommentLikesModal
+                                                    isOpen={this.state.modal[constants.COMMENT_LIKES]}
+                                                    commentId={comment._id}
+                                                    onClose={this.toggleModal}/>
                                                 {
                                                     <div className="reply-list">
                                                         {comment.comments.length ?
@@ -233,12 +263,16 @@ class Comments extends React.Component {
                                                                             <div className="action">
                                                                                 <span className="primary"
                                                                                       onClick={this.likeReply}>Like</span>&nbsp;
-                                                                                <span
-                                                                                    className="label">{!!reply.likes.length && ( '(' + reply.likes.length + ')' )}</span>
+                                                                                <span className="label" data-type={constants.REPLY_LIKES} onClick={this.showCommentLikes}>
+                                                                                    {!!reply.likes.length && ( '(' + reply.likes.length + ')' )}</span>
                                                                             </div>
                                                                         </div>
                                                                     </span>
                                                                     </div>
+                                                                    <ReplyLikesModal
+                                                                        isOpen={this.state.modal[constants.REPLY_LIKES]}
+                                                                        commentId={reply._id}
+                                                                        onClose={this.toggleModal}/>
                                                                 </div>
                                                             );
                                                         })}

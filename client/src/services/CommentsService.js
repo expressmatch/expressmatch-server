@@ -64,11 +64,28 @@ let likeComment = (() => {
         });
     };
 })();
+let getCommentLikes = (() => {
+
+    return (commentId) => {
+        return new Promise((resolve, reject) => {
+            axios({
+                method: 'GET',
+                url: `/api/comment/${commentId}/likes`,
+                headers: {'Content-type': 'application/json'}
+            }).then(response => {
+                resolve(response.data);
+            }).catch(error => {
+                reject(error);
+            });
+        });
+    };
+})();
 
 const CommentsService = {
     getComments,
     postComment,
-    likeComment
+    likeComment,
+    getCommentLikes
 };
 
 export default CommentsService;

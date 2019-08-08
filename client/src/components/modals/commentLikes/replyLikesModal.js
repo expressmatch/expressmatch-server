@@ -1,10 +1,10 @@
 import React from 'react';
 import EmModal from '../modal';
-import {getPostLikes} from '../../../actions/postsActions';
+import {getCommentLikes} from '../../../actions/commentsActions';
 import * as constants from '../../../constants/constants';
 import {connect} from 'react-redux';
 
-class PostLikesModal extends React.Component {
+class ReplyLikesModal extends React.Component {
 
     constructor(props) {
         super(props);
@@ -19,10 +19,10 @@ class PostLikesModal extends React.Component {
     }
     componentWillReceiveProps(nextProps){
         if(nextProps.isOpen === true
-            && nextProps.postId === this.props.postId
+            && nextProps.commentId === this.props.commentId
             && !this.state.dataRequested){
 
-            this.props.getPostLikes(this.props.postId);
+            this.props.getCommentLikes(this.props.commentId);
             this.setState({
                 dataRequested: true
             })
@@ -41,9 +41,11 @@ class PostLikesModal extends React.Component {
     content() {
         return (
             <div className="likes-container">
-                {this.props.posts.byId[this.props.postId].likedBy && this.props.posts.byId[this.props.postId].likedBy.length ?
+                {this.props.comments.byId[this.props.commentId] &&
+                this.props.comments.byId[this.props.commentId].likedBy &&
+                this.props.comments.byId[this.props.commentId].likedBy.length ?
                     (
-                        this.props.posts.byId[this.props.postId].likedBy.map((value) => {
+                        this.props.comments.byId[this.props.commentId].likedBy.map((value) => {
                             return (
                                 <div className="profile" key={value._id}>
                                     <div className="display-pic">
@@ -62,24 +64,24 @@ class PostLikesModal extends React.Component {
     }
 
     onClose() {
-        this.props.onClose(constants.POST_LIKES);
+        this.props.onClose(constants.REPLY_LIKES);
     }
 
     render() {
         return (
             <EmModal
-                 isOpen={this.props.isOpen}
-                 onClose={this.onClose}
-                 className="postLikes"
-                 backdrop={true}
-                 header={this.header()}
-                 content={this.content()}
-                 hideButtons={true}/>
+                isOpen={this.props.isOpen}
+                onClose={this.onClose}
+                className="commentLikes"
+                backdrop={true}
+                header={this.header()}
+                content={this.content()}
+                hideButtons={true}/>
         );
     }
 }
 
 const mapStateToProps = (state) => ({
-    posts: state.posts.entities.posts || []
+    comments: state.comments || []
 });
-export default connect(mapStateToProps, {getPostLikes})(PostLikesModal);
+export default connect(mapStateToProps, {getCommentLikes})(ReplyLikesModal);

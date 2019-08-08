@@ -76,3 +76,27 @@ export function likeCommentFailure(error){
     return { type: types.LIKE_COMMENT_FAILURE, error };
 }
 /*-------- LIKE COMMENT - END ---------*/
+/*-------- GET POST LIKES - START ---------*/
+export function getCommentLikes(commentId) {
+    return (dispatch, getState ) => {
+        dispatch(getCommentLikesRequest());
+
+        return commentsService.getCommentLikes(commentId).then(data => {
+            setTimeout(() => {
+                return dispatch(getCommentLikesSuccess(commentId, data));
+            }, delay);
+        }).catch(error => {
+            dispatch(getCommentLikesFailure(error));
+        })
+    };
+}
+export function getCommentLikesRequest(){
+    return { type: types.GET_COMMENT_LIKES_REQUEST };
+}
+export function getCommentLikesSuccess(commentId, likes){
+    return { type: types.GET_COMMENT_LIKES_SUCCESS, commentId, likes };
+}
+export function getCommentLikesFailure(error){
+    return { type: types.GET_COMMENT_LIKES_FAILURE, error };
+}
+/*-------- GET POST LIKES - END ---------*/

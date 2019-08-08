@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const ObjectId = require('mongoose').Types.ObjectId;
 const Post = require('../models/Post');
 const Comment = require('../models/Comment');
 
@@ -8,6 +9,7 @@ module.exports = function (app) {
     app.post('/api/comments', getAllPostComments);
     app.post('/api/comment', postComment);
     app.post('/comment/:commentId/like', likeComment);
+    app.get('/api/comment/:commentId/likes', getCommentLikes);
 
     return router;
 };
@@ -127,5 +129,19 @@ const likeComment = function (req, res, next) {
             };
             res.status(200).json(commentRes);
         });
+    });
+};
+
+const getCommentLikes = function(req, res, next){
+    Comment.findOne({_id: new ObjectId(req.params.commentId)}, function (err, comment) {
+        if (err) next(err);
+
+        if (comment) {
+            res.status(200).json(comment.likes);
+        }
+    }).populate({
+        path: 'likes',
+        model: 'User',
+        select: { '_id': 1, 'profile.name': 1, 'profile.photo': 1, 'profile.email': 1 }
     });
 };
