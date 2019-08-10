@@ -10,40 +10,15 @@ class Comments extends React.Component {
 
         this.state = {
             showNewComment: {},
-            comment: "",
-            modal: {
-                [constants.COMMENT_LIKES]: false,
-                [constants.REPLY_LIKES]: false
-            }
+            comment: ""
         };
 
         this.comment = this.comment.bind(this);
         this.postComment = this.postComment.bind(this);
-        this.likeComment = this.likeComment.bind(this);
         this.onCommentChange = this.onCommentChange.bind(this);
-
-        this.reply = this.reply.bind(this);
-        this.postReply = this.postReply.bind(this);
-        this.likeReply = this.likeReply.bind(this);
-
-        this.showCommentLikes = this.showCommentLikes.bind(this);
-        this.toggleModal = this.toggleModal.bind(this);
-
-        this.newCommentRef = React.createRef();
-        this.newReplyRef - React.createRef();
     }
 
-    componentWillReceiveProps(newProps) {
-
-    }
-
-    componentDidUpdate(prevProps) {
-        // if (this.props.comments.length !== prevProps.comments.length) {
-        //     this.newCommentRef.current.scrollIntoView({
-        //         behavior: 'smooth',
-        //         block: 'end'
-        //     });
-        // }
+   componentDidUpdate(prevProps) {
         if (this.props.comments.length !== prevProps.comments.length) {
             this.resetNewComment();
             // this.setState({
@@ -81,13 +56,6 @@ class Comments extends React.Component {
         }
     }
 
-    likeComment(e) {
-        let target = e.currentTarget.closest('.comment-item'),
-            commentId = target.dataset['id'];
-
-        this.props.actions.likeComment(commentId);
-    }
-
     onCommentChange(e) {
         let target = e.currentTarget,
             value = target.value;
@@ -101,6 +69,96 @@ class Comments extends React.Component {
         this.setState({
             comment: ""
         });
+    }
+
+    render() {
+        if (!!this.props.showPostComment) {
+            return (
+                <div className="comments-control">
+                    <Spinner loading={this.props.loading}/>
+                    <div className="new-comment-container">
+
+                        <textarea
+                            autoFocus
+                            className="new-comment"
+                            placeholder="Write a comment..."
+                            onKeyDown={this.postComment}
+                            onChange={this.onCommentChange}
+                            value={this.state.comment}
+                        />
+                    </div>
+                    {this.props.comments.length ?
+                        (
+                            <React.Fragment>
+                                <div className="header">View comments:</div>
+                                <div className="comments-list">
+                                    {this.props.comments.map(comment => {
+                                        return (
+                                            <CommentItem key={comment._id}
+                                                comment={comment}
+                                                actions={this.props.actions}/>
+                                        );
+                                    })}
+                                </div>
+                            </React.Fragment>
+                        ) : null}
+                </div>
+            );
+        } else {
+            return null;
+        }
+    }
+
+    componentWillUnmount() {
+        this.state = {
+            showNewComment: {}
+        };
+    }
+}
+
+class CommentItem extends React.Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            showNewComment: {},
+            comment: "",
+            modal: {
+                [constants.COMMENT_LIKES]: false,
+                [constants.REPLY_LIKES]: false
+            }
+        };
+        this.showCommentLikes = this.showCommentLikes.bind(this);
+        this.toggleModal = this.toggleModal.bind(this);
+
+        this.likeComment = this.likeComment.bind(this);
+
+        this.reply = this.reply.bind(this);
+        this.postReply = this.postReply.bind(this);
+
+        this.newCommentRef = React.createRef();
+    }
+
+    showCommentLikes(e){
+        let target = e.currentTarget,
+            type = target.dataset['type'];
+
+        this.toggleModal(type);
+    }
+
+    toggleModal(type) {
+
+        this.setState({
+            modal: {
+                [type]: !this.state.modal[type]
+            }
+        });
+    }
+
+    likeComment(e) {
+        let target = e.currentTarget.closest('.comment-item'),
+            commentId = target.dataset['id'];
+
+        this.props.actions.likeComment(commentId);
     }
 
     reply(e) {
@@ -137,11 +195,98 @@ class Comments extends React.Component {
         }
     }
 
-    likeReply(e) {
-        let target = e.currentTarget.closest('.reply-item'),
-            commentId = target.dataset['id'];
+    render() {
+        return (
+            <div className="comment-item" data-id={this.props.comment._id}
+                 ref={this.newCommentRef}>
+                <div className="comment-bubble">
+                    <div className="comment-content">
+                        <span className="comment-photo">
+                            <img src={this.props.comment.postedBy.profile.photo}/>
+                        </span>
+                        <span className="comment-details">
+                            <div className="name">
+                                <a target="_blank" href={`/profile/` + this.props.comment.postedBy._id}>{this.props.comment.displayName}</a>
+                            </div>
+                            <div className="content">{this.props.comment.content}</div>
+                            <div className="comment-actions">
+                                <div className="action">
+                                    <span className="primary" onClick={this.likeComment}>Like</span>
+                                    <span className ="label" data-type={constants.COMMENT_LIKES} onClick={this.showCommentLikes}>
+                                        {!!this.props.comment.likes.length &&
+                                        (
+                                            <React.Fragment>
+                                                &nbsp;
+                                                {'(' + this.props.comment.likes.length + ')'}
+                                            </React.Fragment>
+                                        )
+                                        }
+                                    </span>
+                                </div>
+                                |&nbsp;
+                                <div className="action">
+                                    <span className="primary"
+                                          onClick={this.reply}>Reply</span>
+                                    <span className="label info">
+                                        {!!this.props.comment.comments.length &&
+                                        (
+                                            <React.Fragment>
+                                                &nbsp;|&nbsp;
+                                                {this.props.comment.comments.length}
+                                                {this.props.comment.comments.length === 1 && ' Reply'}
+                                                {this.props.comment.comments.length !== 1 && ' Replies'}
+                                            </React.Fragment>
+                                        )
+                                        }
+                                    </span>
+                                </div>
+                            </div>
+                        </span>
+                    </div>
+                </div>
+                <CommentLikesModal
+                    isOpen={this.state.modal[constants.COMMENT_LIKES]}
+                    commentId={this.props.comment._id}
+                    onClose={this.toggleModal}/>
+                {
+                    <div className="reply-list">
+                        {this.props.comment.comments.length ?
+                            <div className="header">View replies:</div> : null}
+                        <div className="new-reply-container">
+                            {!!this.state.showNewComment[this.props.comment._id] &&
+                            <textarea
+                                autoFocus
+                                className="new-reply"
+                                placeholder="Write a reply..."
+                                onKeyDown={this.postReply}/>}
+                        </div>
+                        {this.props.comment.comments.map(reply => {
+                            return (
+                                <ReplyItem key={reply._id}
+                                    reply={reply}
+                                    actions={this.props.actions}/>
+                            );
+                        })}
+                    </div>
+                }
+            </div>
+        );
+    }
+}
 
-        this.props.actions.likeComment(commentId);
+class ReplyItem extends React.Component {
+
+    constructor(props){
+        super(props);
+        this.state = {
+            modal: {
+                [constants.REPLY_LIKES]: false
+            }
+        };
+        this.showCommentLikes = this.showCommentLikes.bind(this);
+        this.toggleModal = this.toggleModal.bind(this);
+
+        this.likeReply = this.likeReply.bind(this);
     }
 
     showCommentLikes(e){
@@ -160,141 +305,41 @@ class Comments extends React.Component {
         });
     }
 
-    render() {
-        if (!!this.props.showPostComment) {
-            return (
-                <div className="comments-control">
-                    <Spinner loading={this.props.loading}/>
-                    <div className="new-comment-container">
+    likeReply(e) {
+        let target = e.currentTarget.closest('.reply-item'),
+            commentId = target.dataset['id'];
 
-                        <textarea
-                            autoFocus
-                            className="new-comment"
-                            placeholder="Write a comment..."
-                            onKeyDown={this.postComment}
-                            onChange={this.onCommentChange}
-                            value={this.state.comment}
-                        />
-                    </div>
-                    {this.props.comments.length ?
-                        (
-                            <React.Fragment>
-                                <div className="header">View comments:</div>
-                                <div className="comments-list">
-                                    {this.props.comments.map(comment => {
-                                        return (
-                                            <div className="comment-item" key={comment._id} data-id={comment._id}
-                                                 ref={this.newCommentRef}>
-                                                <div className="comment-bubble">
-                                                    <div className="comment-content">
-                                                    <span className="comment-photo">
-                                                        <img src={comment.postedBy.profile.photo}/>
-                                                    </span>
-                                                        <span className="comment-details">
-                                                            <div className="name">
-                                                                <a target="_blank" href={`/profile/` + comment.postedBy._id}>{comment.displayName}</a>
-                                                            </div>
-                                                        <div className="content">{comment.content}</div>
-                                                        <div className="comment-actions">
-                                                            <div className="action">
-                                                                <span className="primary" onClick={this.likeComment}>Like</span>
-                                                                <span className ="label" data-type={constants.COMMENT_LIKES} onClick={this.showCommentLikes}>
-                                                                    {!!comment.likes.length &&
-                                                                    (
-                                                                        <React.Fragment>
-                                                                            &nbsp;
-                                                                            {'(' + comment.likes.length + ')'}
-                                                                        </React.Fragment>
-                                                                    )
-                                                                    }
-                                                                </span>
-                                                            </div>
-                                                            |&nbsp;
-                                                            <div className="action">
-                                                                <span className="primary"
-                                                                      onClick={this.reply}>Reply</span>
-                                                                <span className="label info">
-                                                                    {!!comment.comments.length &&
-                                                                    (
-                                                                        <React.Fragment>
-                                                                            &nbsp;|&nbsp;
-                                                                            {comment.comments.length}
-                                                                            {comment.comments.length === 1 && ' Reply'}
-                                                                            {comment.comments.length !== 1 && ' Replies'}
-                                                                        </React.Fragment>
-                                                                    )
-                                                                    }
-                                                                </span>
-                                                            </div>
-                                                        </div>
-                                                    </span>
-                                                    </div>
-                                                </div>
-                                                <CommentLikesModal
-                                                    isOpen={this.state.modal[constants.COMMENT_LIKES]}
-                                                    commentId={comment._id}
-                                                    onClose={this.toggleModal}/>
-                                                {
-                                                    <div className="reply-list">
-                                                        {comment.comments.length ?
-                                                            <div className="header">View replies:</div> : null}
-                                                        <div className="new-reply-container">
-                                                            {!!this.state.showNewComment[comment._id] &&
-                                                            <textarea
-                                                                autoFocus
-                                                                className="new-reply"
-                                                                placeholder="Write a reply..."
-                                                                onKeyDown={this.postReply}/>}
-                                                        </div>
-                                                        {comment.comments.map(reply => {
-                                                            return (
-                                                                <div className="reply-item" key={reply._id}
-                                                                     data-id={reply._id}>
-                                                                    <div className="reply-content">
-                                                                    <span className="reply-photo">
-                                                                        <img src={reply.postedBy.profile.photo}/>
-                                                                    </span>
-                                                                        <span className="reply-details">
-                                                                        <div className="name">
-                                                                            <a target="_blank" href={`/profile/` + reply.postedBy._id}>{reply.displayName}</a>
-                                                                        </div>
-                                                                        <div className="content">{reply.content}</div>
-                                                                        <div className="reply-actions">
-                                                                            <div className="action">
-                                                                                <span className="primary"
-                                                                                      onClick={this.likeReply}>Like</span>&nbsp;
-                                                                                <span className="label" data-type={constants.REPLY_LIKES} onClick={this.showCommentLikes}>
-                                                                                    {!!reply.likes.length && ( '(' + reply.likes.length + ')' )}</span>
-                                                                            </div>
-                                                                        </div>
-                                                                    </span>
-                                                                    </div>
-                                                                    <ReplyLikesModal
-                                                                        isOpen={this.state.modal[constants.REPLY_LIKES]}
-                                                                        commentId={reply._id}
-                                                                        onClose={this.toggleModal}/>
-                                                                </div>
-                                                            );
-                                                        })}
-                                                    </div>
-                                                }
-                                            </div>
-                                        );
-                                    })}
-                                </div>
-                            </React.Fragment>
-                        ) : null}
-                </div>
-            );
-        } else {
-            return null;
-        }
+        this.props.actions.likeComment(commentId);
     }
 
-    componentWillUnmount() {
-        this.state = {
-            showNewComment: {}
-        };
+    render() {
+        return (
+            <div className="reply-item" data-id={this.props.reply._id}>
+                <div className="reply-content">
+                    <span className="reply-photo">
+                        <img src={this.props.reply.postedBy.profile.photo}/>
+                    </span>
+                    <span className="reply-details">
+                        <div className="name">
+                            <a target="_blank" href={`/profile/` + this.props.reply.postedBy._id}>{this.props.reply.displayName}</a>
+                        </div>
+                        <div className="content">{this.props.reply.content}</div>
+                        <div className="reply-actions">
+                            <div className="action">
+                                <span className="primary"
+                                      onClick={this.likeReply}>Like</span>&nbsp;
+                                <span className="label" data-type={constants.REPLY_LIKES} onClick={this.showCommentLikes}>
+                                    {!!this.props.reply.likes.length && ( '(' + this.props.reply.likes.length + ')' )}</span>
+                            </div>
+                        </div>
+                    </span>
+                </div>
+                <ReplyLikesModal
+                    isOpen={this.state.modal[constants.REPLY_LIKES]}
+                    commentId={this.props.reply._id}
+                    onClose={this.toggleModal}/>
+            </div>
+        );
     }
 }
 

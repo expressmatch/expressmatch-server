@@ -22,9 +22,10 @@ class ReplyLikesModal extends React.Component {
             && nextProps.commentId === this.props.commentId
             && !this.state.dataRequested){
 
-            this.props.getCommentLikes(this.props.commentId);
             this.setState({
                 dataRequested: true
+            }, () => {
+                this.props.getCommentLikes(this.props.commentId);
             })
         }
         if(nextProps.isOpen === false){
