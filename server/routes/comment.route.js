@@ -15,15 +15,34 @@ module.exports = function (app) {
 };
 
 const getAllPostComments = function (req, res, next) {
-    let postId = req.body.postId;
+    let postId = req.body.postId,
+        commentRes = [],
+        replies = [],
+        replyRes = {};
 
     if (!!postId) {
 
         Post.findOne({_id: postId}, function (err, post) {
             if (err) next(err);
 
+            commentRes = post.comments.map(comment => {
+                let obj = comment.toJSON();
+                obj.isLikedByUser = comment.isLikedByUser(req.user);
+                obj.isCreatedByUser = comment.isCreatedByUser(req.user);
+
+                replies = comment.comments.map(reply => {
+                    replyRes = reply.toJSON();
+                    replyRes.isLikedByUser = reply.isLikedByUser(req.user);
+                    replyRes.isCreatedByUser = reply.isCreatedByUser(req.user);
+
+                    return replyRes;
+                });
+                obj.comments = replies;
+                return obj;
+            });
+
             if (post) {
-                res.status(200).json(post.comments);
+                res.status(200).json(commentRes);
             }
         }).populate({
             path: 'comments',

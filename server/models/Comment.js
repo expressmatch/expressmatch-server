@@ -26,6 +26,13 @@ const CommentSchema = new mongoose.Schema({
     }
 }, {timestamps: true});
 
+CommentSchema.methods.isCreatedByUser = function (user) {
+    if (user) {
+        return mongoose.Types.ObjectId(this.postedBy._id).equals(mongoose.Types.ObjectId(user._id));
+    }
+    return false;
+};
+
 CommentSchema.methods.isLikedByUser = function (user) {
     if(user){
         return this.likes.indexOf(user._id) >= 0;

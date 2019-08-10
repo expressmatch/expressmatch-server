@@ -100,7 +100,8 @@ const commentsReducer = (state = initialState.posts.entities.comments, action) =
                 ...state.byId,
                 [action.commentId]: {
                     ...state.byId[action.commentId],
-                    likes: action.comment.likes
+                    likes: action.comment.likes,
+                    isLikedByUser: action.comment.isLikedByUser
                 }
             },
             loading: false
