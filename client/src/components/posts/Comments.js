@@ -211,6 +211,10 @@ class CommentItem extends React.Component {
                             <div className="content">{this.props.comment.content}</div>
                             <div className="comment-actions">
                                 <div className="action">
+                                    <span className="logo">
+                                        {this.props.comment.isLikedByUser && <i className="fas fa-heart"></i>}
+                                        {!this.props.comment.isLikedByUser && <i className="far fa-heart"></i>}
+                                    </span>
                                     <span className="primary" onClick={this.likeComment}>
                                         {!this.props.comment.isLikedByUser && 'Like'}
                                         {this.props.comment.isLikedByUser && 'Liked'}
@@ -329,6 +333,10 @@ class ReplyItem extends React.Component {
                         <div className="content">{this.props.reply.content}</div>
                         <div className="reply-actions">
                             <div className="action">
+                                <span className="logo">
+                                    {this.props.reply.isLikedByUser && <i className="fas fa-heart"></i>}
+                                    {!this.props.reply.isLikedByUser && <i className="far fa-heart"></i>}
+                                </span>
                                 <span className="primary" onClick={this.likeReply}>
                                     {!this.props.reply.isLikedByUser && 'Like'}
                                     {this.props.reply.isLikedByUser && 'Liked'}
