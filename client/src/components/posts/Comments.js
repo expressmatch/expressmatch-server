@@ -3,6 +3,7 @@ import Spinner from '../common/Spinner';
 import * as constants from '../../constants/constants';
 import CommentLikesModal from '../modals/commentLikes/commentLikesModal';
 import ReplyLikesModal from '../modals/commentLikes/replyLikesModal';
+import noReplyImage from '../../images/no_image_available.svg';
 
 class Comments extends React.Component {
     constructor(props) {
@@ -202,7 +203,10 @@ class CommentItem extends React.Component {
                 <div className="comment-bubble">
                     <div className="comment-content">
                         <span className="comment-photo">
-                            <img src={this.props.comment.postedBy.profile.photo}/>
+                            <picture>
+                                <source srcset={this.props.comment.postedBy.profile.photo}/>
+                                <img srcset={noReplyImage}/>
+                            </picture>
                         </span>
                         <span className="comment-details">
                             <div className="name">
@@ -324,7 +328,10 @@ class ReplyItem extends React.Component {
             <div className="reply-item" data-id={this.props.reply._id}>
                 <div className="reply-content">
                     <span className="reply-photo">
-                        <img src={this.props.reply.postedBy.profile.photo}/>
+                        <picture>
+                            <source srcset={this.props.reply.postedBy.profile.photo}/>
+                            <img srcset={noReplyImage}/>
+                        </picture>
                     </span>
                     <span className="reply-details">
                         <div className="name">

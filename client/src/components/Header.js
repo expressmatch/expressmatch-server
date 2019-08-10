@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
+import noReplyImage from '../images/no_image_available.svg';
 
 class Header extends React.Component {
 
@@ -26,7 +27,10 @@ class Header extends React.Component {
                     <div className="profile">
                         <UncontrolledDropdown className="menu-toggle">
                             <DropdownToggle tag="div" className="profile-picture">
-                                <img src={this.props.user.photo}/>
+                                <picture>
+                                    <source srcset={this.props.user.photo}/>
+                                    <img srcset={noReplyImage}/>
+                                </picture>
                             </DropdownToggle>
                             <DropdownMenu right>
                                 <DropdownItem className="menu-item header" header>

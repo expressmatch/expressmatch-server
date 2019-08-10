@@ -33,8 +33,8 @@ module.exports = {
 		        }
 	    	},
 	    	{
-	    		test: /\.(jpe?g|png|gif)$/i, 
-	    		loader: 'file-loader?name=[name].[ext]'
+	    		test: /\.(jpe?g|png|svg|gif)$/i,
+	    		loader: 'url-loader?name=[name].[ext]'
 	    	},
 	    	{
 	    		test: /(\.css|\.scss|\.sass)$/, 
