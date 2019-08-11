@@ -4,79 +4,109 @@
   margin: 10px auto;
   background-color: $em-bg-white;
   border: 1px solid #e6ecf5;
+  display: flex;
+  justify-content: center;
 
-  form{
-    .form-control{
-      box-shadow: none;
+  .left-content {
+    width: 200px;
+    min-width: 200px;
+    padding: 10px 20px;
+
+    .display-pic{
+      border: 1px solid #ececec;
+      height: 200px;
+
+      picture img {
+        height: 100%;
+        width: 100%;
+        padding: 5px;
+      }
     }
-    .em-form-control{
-      padding: 10px 20px;
-      display: flex;
-      align-items: center;
-      border-bottom: 1px solid #e6ecf5;
+  }
+  .right-content{
+    width: 450px;
+    min-width: 450px;
+    padding: 10px 20px 10px 0;
+    flex: 1 0 0;
 
-      .field-label{
-        padding: 5px 0;
-        width: 45%;
-        min-width: 200px;
-        font-weight: bold;
-        color: #545566;
+    form {
+      .form-control {
+        box-shadow: none;
       }
-      .field-value{
-        //padding: 10px 0 0 0;
+      .em-form-control {
+        padding: 10px 20px;
+        display: flex;
+        align-items: center;
+        border-bottom: 1px solid #e6ecf5;
 
-        input, select, textarea{
-          height: 30px;
+        .field-label {
+          padding: 5px 0;
+          width: 45%;
+          min-width: 250px;
+          font-weight: bold;
+          color: #545566;
+
+        }
+        .field-value {
+          //padding: 10px 0 0 0;
+
+          input, select, textarea {
+            height: 30px;
+            font-size: 12px;
+            width: 300px;
+            outline: none;
+            border: 1px solid #e6ecf5;
+            color: #888da8;
+
+            &:disabled {
+              cursor: default;
+              opacity: 0.6;
+            }
+          }
+          textarea {
+            height: 120px;
+            resize: none;
+          }
+
+          input[type="text"], textarea {
+            background-color: $em-bg-gray;;
+            border-radius: 3px;
+            border: 1px solid rgba(0, 0, 0, .12);
+            margin: 0 0 4px;
+            max-width: 100%;
+            padding: 8px;
+            -webkit-outline: none;
+            outline: none;
+
+            &:focus {
+              background-color: $em-bg-white;
+            }
+          }
+          input[type="reset"], input[type="submit"], input[type="button"] {
+            border-radius: 10px;
+            margin-right: 5px;
+            color: #888da8;
+            outline: none;
+            width: 100px;
+            background: none;
+
+            &:active {
+              font-weight: 600;
+            }
+            &:hover {
+              opacity: 0.8;
+            }
+          }
+        }
+        .sub-text {
+          color: #9a9c9b;
+          font-weight: normal;
           font-size: 12px;
-          width: 300px;
-          outline: none;
-          border: 1px solid #e6ecf5;
-          color: #888da8;
-
-          &:disabled{
-            cursor: default;
-            opacity: 0.6;
-          }
-        }
-        textarea{
-          height: 120px;
-          resize: none;
         }
 
-        input[type="text"], textarea{
-          background-color: $em-bg-gray;;
-          border-radius: 3px;
-          border: 1px solid rgba(0,0,0,.12);
-          margin: 0 0 4px;
-          max-width: 100%;
-          padding: 8px;
-          -webkit-outline: none;
-          outline: none;
-
-          &:focus{
-            background-color: $em-bg-white;
-          }
+        &:last-child{
+          border-bottom: none;
         }
-        input[type="reset"], input[type="submit"],input[type="button"]{
-          border-radius: 10px;
-          margin-right: 5px;
-          color: #888da8;
-          outline: none;
-          width: 100px;
-          background: none;
-
-          &:active{
-            font-weight: 600;
-          }
-          &:hover{
-            opacity: 0.8;
-          }
-        }
-      }
-      .sub-text{
-        color: #9a9c9b;
-        font-weight: normal;
-        font-size: 12px;
       }
     }
   }
@@ -113,6 +143,5 @@
     input[type="reset"], input[type="submit"], input[type="button"] {
       display: none;
     }
-
   }
 }

@@ -6,6 +6,7 @@ import DatePicker from "react-datepicker";
 import Spinner from './common/Spinner';
 import { NavLink } from 'react-router-dom';
 import {withRouter} from 'react-router-dom';
+import noImageAvailable from '../images/no_image_available.svg';
 
 class Profile extends React.Component {
     constructor(props) {
@@ -108,194 +109,204 @@ class Profile extends React.Component {
         return (
             <div id="profile" className={this.props.readonly ? "readonly" : ""} >
                 <Spinner loading={this.state.loading}/>
-                <form spellcheck="false">
-                    <div className="em-form-control">
-                        <div className="field-label">
-                            <div>About me</div>
-                            <div className="sub-text">
-                                introduce yourself, for your friends, in 200 words
+                <div className="left-content">
+                    <div className="display-pic">
+                        <picture>
+                            <source srcset={this.state.photo}/>
+                            <img srcset={noImageAvailable}/>
+                        </picture>
+                    </div>
+                </div>
+                <div className="right-content">
+                    <form spellcheck="false">
+                        <div className="em-form-control">
+                            <div className="field-label">
+                                <div>About me</div>
+                                <div className="sub-text">
+                                    introduce yourself, for your friends, in 200 words
+                                </div>
                             </div>
-                        </div>
-                        <div className="field-value">
+                            <div className="field-value">
                             <textarea
                                 maxLength="200"
                                 data-name="about"
                                 value={this.state.about}
                                 onChange={this.handleProfileChange}/>
-                        </div>
-                    </div>
-                    <div className="em-form-control">
-                        <div className="field-label">Birthday</div>
-                        <div className="field-value">
-                            <DatePicker
-                                data-name="age"
-                                selected={this.state.dob}
-                                onSelect={this.handleDOBSelect}
-                                onChange={this.handleDOBChange}
-                            />
-                            {/*<input type="text" data-name="age" value={this.state.age} onChange={this.handleProfileChange}/>*/}
-                        </div>
-                    </div>
-                    <div className="em-form-control">
-                        <div className="field-label">Gender</div>
-                        <div className="field-value">
-                            <select data-name="gender" value={this.state.gender} onChange={this.handleProfileChange}>
-                                <option>-Select-</option>
-                                <option value="male">Male</option>
-                                <option value="female">Female</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div className="em-form-control">
-                        <div className="field-label">Current City</div>
-                        <div className="field-value">
-                            <PlacesAutocomplete
-                                value={this.state.currentCity}
-                                date-name="currentCity"
-                                onChange={this.handleCurrentCityChange}
-                                onSelect={this.handleCurrentCitySelect}
-                                searchOptions={{types: ['(cities)']}}>
-                                {({getInputProps, suggestions, getSuggestionItemProps, loading}) => (
-                                    <div>
-                                        <input
-                                            {...getInputProps({
-                                                placeholder: 'Enter city',
-                                                className: 'location-search-input',
-                                            })}
-                                        />
-                                        <div className="autocomplete-dropdown-container">
-                                            {loading && <div className="suggestion-item">Loading...</div>}
-                                            {suggestions.map(suggestion => {
-                                                const className = 'suggestion-item '.concat(suggestion.active ? 'active' : '');
-                                                return (
-                                                    <div
-                                                        {...getSuggestionItemProps(suggestion, {
-                                                            className
-                                                        })}
-                                                    >
-                                                        <span>{suggestion.description}</span>
-                                                    </div>
-                                                );
-                                            })}
-                                        </div>
-                                    </div>
-                                )}
-                            </PlacesAutocomplete>
-                        </div>
-                    </div>
-                    <div className="em-form-control">
-                        <div className="field-label">Hometown</div>
-                        <div className="field-value">
-                            <PlacesAutocomplete
-                                value={this.state.homeTown}
-                                date-name="homeTown"
-                                onChange={this.handleHomeTownChange}
-                                onSelect={this.handleHomeTownSelect}
-                                searchOptions={{types: ['(cities)']}}>
-                                {({getInputProps, suggestions, getSuggestionItemProps, loading}) => (
-                                    <div>
-                                        <input
-                                            {...getInputProps({
-                                                placeholder: 'Enter Hometown',
-                                                className: 'location-search-input',
-                                            })}
-                                        />
-                                        <div className="autocomplete-dropdown-container">
-                                            {loading && <div className="suggestion-item">Loading...</div>}
-                                            {suggestions.map(suggestion => {
-                                                const className = 'suggestion-item '.concat(suggestion.active ? 'active' : '');
-                                                return (
-                                                    <div
-                                                        {...getSuggestionItemProps(suggestion, {
-                                                            className
-                                                        })}
-                                                    >
-                                                        <span>{suggestion.description}</span>
-                                                    </div>
-                                                );
-                                            })}
-                                        </div>
-                                    </div>
-                                )}
-                            </PlacesAutocomplete>
-                        </div>
-                    </div>
-                    <div className="em-form-control">
-                        <div className="field-label">Mother tongue</div>
-                        <div className="field-value">
-                            {/*<input type="text" data-name="motherTongue" value={this.state.motherTongue}*/}
-                            {/*onChange={this.handleProfileChange}/>*/}
-                            <Typeahead
-                                data-name="motherTongue"
-                                options={Languages}
-                                selected={[this.state.motherTongue]}
-                                onChange={this.handleLanguageChange}
-                                placeholder="Enter your native spoken language"
-                            />
-                        </div>
-                    </div>
-                    <div className="em-form-control">
-                        <div className="field-label">
-                            <div>Caste details</div>
-                            <div className="sub-text">
-                                for caste matches, enter this value
                             </div>
                         </div>
-                        <div className="field-value">
-                            <input type="text" data-name="caste" value={this.state.caste}
-                                   onChange={this.handleProfileChange}/>
-                        </div>
-                    </div>
-                    <div className="em-form-control">
-                        <div className="field-label">
-                            <div>Sub-caste details</div>
-                            <div className="sub-text">
-                                for sub-caste matches, enter this value
+                        <div className="em-form-control">
+                            <div className="field-label">Birthday</div>
+                            <div className="field-value">
+                                <DatePicker
+                                    data-name="age"
+                                    selected={this.state.dob}
+                                    onSelect={this.handleDOBSelect}
+                                    onChange={this.handleDOBChange}
+                                />
+                                {/*<input type="text" data-name="age" value={this.state.age} onChange={this.handleProfileChange}/>*/}
                             </div>
                         </div>
-                        <div className="field-value">
-                            <input type="text" data-name="subCaste" value={this.state.subCaste}
-                                   onChange={this.handleProfileChange}/>
+                        <div className="em-form-control">
+                            <div className="field-label">Gender</div>
+                            <div className="field-value">
+                                <select data-name="gender" value={this.state.gender} onChange={this.handleProfileChange}>
+                                    <option>-Select-</option>
+                                    <option value="male">Male</option>
+                                    <option value="female">Female</option>
+                                </select>
+                            </div>
                         </div>
-                    </div>
-                    <div className="em-form-control">
-                        <div className="field-label">Where do you work?</div>
-                        <div className="field-value">
-                            <input type="text" data-name="organization" value={this.state.organization}
-                                   onChange={this.handleProfileChange}/>
+                        <div className="em-form-control">
+                            <div className="field-label">Current City</div>
+                            <div className="field-value">
+                                <PlacesAutocomplete
+                                    value={this.state.currentCity}
+                                    date-name="currentCity"
+                                    onChange={this.handleCurrentCityChange}
+                                    onSelect={this.handleCurrentCitySelect}
+                                    searchOptions={{types: ['(cities)']}}>
+                                    {({getInputProps, suggestions, getSuggestionItemProps, loading}) => (
+                                        <div>
+                                            <input
+                                                {...getInputProps({
+                                                    placeholder: 'Enter city',
+                                                    className: 'location-search-input',
+                                                })}
+                                            />
+                                            <div className="autocomplete-dropdown-container">
+                                                {loading && <div className="suggestion-item">Loading...</div>}
+                                                {suggestions.map(suggestion => {
+                                                    const className = 'suggestion-item '.concat(suggestion.active ? 'active' : '');
+                                                    return (
+                                                        <div
+                                                            {...getSuggestionItemProps(suggestion, {
+                                                                className
+                                                            })}
+                                                        >
+                                                            <span>{suggestion.description}</span>
+                                                        </div>
+                                                    );
+                                                })}
+                                            </div>
+                                        </div>
+                                    )}
+                                </PlacesAutocomplete>
+                            </div>
                         </div>
-                    </div>
-                    <div className="em-form-control">
-                        <div className="field-label">Nature of your job</div>
-                        <div className="field-value">
-                            <input type="text" data-name="job" value={this.state.job}
-                                   onChange={this.handleProfileChange}/>
+                        <div className="em-form-control">
+                            <div className="field-label">Hometown</div>
+                            <div className="field-value">
+                                <PlacesAutocomplete
+                                    value={this.state.homeTown}
+                                    date-name="homeTown"
+                                    onChange={this.handleHomeTownChange}
+                                    onSelect={this.handleHomeTownSelect}
+                                    searchOptions={{types: ['(cities)']}}>
+                                    {({getInputProps, suggestions, getSuggestionItemProps, loading}) => (
+                                        <div>
+                                            <input
+                                                {...getInputProps({
+                                                    placeholder: 'Enter Hometown',
+                                                    className: 'location-search-input',
+                                                })}
+                                            />
+                                            <div className="autocomplete-dropdown-container">
+                                                {loading && <div className="suggestion-item">Loading...</div>}
+                                                {suggestions.map(suggestion => {
+                                                    const className = 'suggestion-item '.concat(suggestion.active ? 'active' : '');
+                                                    return (
+                                                        <div
+                                                            {...getSuggestionItemProps(suggestion, {
+                                                                className
+                                                            })}
+                                                        >
+                                                            <span>{suggestion.description}</span>
+                                                        </div>
+                                                    );
+                                                })}
+                                            </div>
+                                        </div>
+                                    )}
+                                </PlacesAutocomplete>
+                            </div>
                         </div>
-                    </div>
-                    {/*<div className="em-form-control">*/}
+                        <div className="em-form-control">
+                            <div className="field-label">Mother tongue</div>
+                            <div className="field-value">
+                                {/*<input type="text" data-name="motherTongue" value={this.state.motherTongue}*/}
+                                {/*onChange={this.handleProfileChange}/>*/}
+                                <Typeahead
+                                    data-name="motherTongue"
+                                    options={Languages}
+                                    selected={[this.state.motherTongue]}
+                                    onChange={this.handleLanguageChange}
+                                    placeholder="Enter your native spoken language"
+                                />
+                            </div>
+                        </div>
+                        <div className="em-form-control">
+                            <div className="field-label">
+                                <div>Caste details</div>
+                                <div className="sub-text">
+                                    for caste matches, enter this value
+                                </div>
+                            </div>
+                            <div className="field-value">
+                                <input type="text" data-name="caste" value={this.state.caste}
+                                       onChange={this.handleProfileChange}/>
+                            </div>
+                        </div>
+                        <div className="em-form-control">
+                            <div className="field-label">
+                                <div>Sub-caste details</div>
+                                <div className="sub-text">
+                                    for sub-caste matches, enter this value
+                                </div>
+                            </div>
+                            <div className="field-value">
+                                <input type="text" data-name="subCaste" value={this.state.subCaste}
+                                       onChange={this.handleProfileChange}/>
+                            </div>
+                        </div>
+                        <div className="em-form-control">
+                            <div className="field-label">Where do you work?</div>
+                            <div className="field-value">
+                                <input type="text" data-name="organization" value={this.state.organization}
+                                       onChange={this.handleProfileChange}/>
+                            </div>
+                        </div>
+                        <div className="em-form-control">
+                            <div className="field-label">Nature of your job</div>
+                            <div className="field-value">
+                                <input type="text" data-name="job" value={this.state.job}
+                                       onChange={this.handleProfileChange}/>
+                            </div>
+                        </div>
+                        {/*<div className="em-form-control">*/}
                         {/*<div className="field-label">*/}
-                            {/*<div>Interests</div>*/}
-                            {/*<div className="sub-text">*/}
-                                {/*(choose up to 10 interests)*/}
-                            {/*</div>*/}
+                        {/*<div>Interests</div>*/}
+                        {/*<div className="sub-text">*/}
+                        {/*(choose up to 10 interests)*/}
+                        {/*</div>*/}
                         {/*</div>*/}
                         {/*<div className="field-value">*/}
-                            {/*<textarea data-name="interests" value={this.state.interests} disabled></textarea>*/}
+                        {/*<textarea data-name="interests" value={this.state.interests} disabled></textarea>*/}
                         {/*</div>*/}
-                    {/*</div>*/}
-                    {!this.props.otherProfile && this.props.readonly && <div className="em-form-control">
-                        <div className="field-value">
-                            <NavLink to="/editprofile">Edit Profile</NavLink>
-                        </div>
-                    </div>}
-                    {!this.props.otherProfile && !this.props.readonly && <div className="em-form-control">
-                        <div className="field-value">
-                            <input type="reset" onClick={this.resetForm} value="Reset"/>
-                            <input type="submit" onClick={this.onSubmit} value="Submit"/>
-                            <input type="button" onClick={this.onCancel} value="Cancel" />
-                        </div>
-                    </div>}
-                </form>
+                        {/*</div>*/}
+                        {!this.props.otherProfile && this.props.readonly && <div className="em-form-control">
+                            <div className="field-value">
+                                <NavLink to="/editprofile">Edit Profile</NavLink>
+                            </div>
+                        </div>}
+                        {!this.props.otherProfile && !this.props.readonly && <div className="em-form-control">
+                            <div className="field-value">
+                                <input type="reset" onClick={this.resetForm} value="Reset"/>
+                                <input type="submit" onClick={this.onSubmit} value="Submit"/>
+                                <input type="button" onClick={this.onCancel} value="Cancel" />
+                            </div>
+                        </div>}
+                    </form>
+                </div>
             </div>
         );
     }
