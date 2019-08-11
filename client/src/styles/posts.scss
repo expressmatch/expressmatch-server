@@ -116,6 +116,9 @@
             .logo,.count {
               padding: 0 5px;
             }
+            .logo{
+              zoom: 1.2;
+            }
           }
           .liked{
             text-align: center;
@@ -125,6 +128,9 @@
             display: flex;
             .logo,.count {
               padding: 0 5px;
+            }
+            .logo{
+              zoom: 1.2;
             }
           }
           i{

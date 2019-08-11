@@ -160,7 +160,8 @@ class Post extends React.Component {
                         </div>
                         <div className="comments">
                             <span className="logo">
-                                <i className="fas fa-comments"></i>
+                                {!!this.props.post.comments.length && <i className="fas fa-comments"></i>}
+                                {!this.props.post.comments.length && <i className="far fa-comments"></i>}
                             </span>
                             <span className="count">
                                 {this.props.post.comments.length}{this.props.post.comments.length === 1 && ' Comment'}{this.props.post.comments.length !== 1 && ' Comments'}
