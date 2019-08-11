@@ -59,6 +59,8 @@
             }
           }
           .comment-details {
+            flex: 1 0 0;
+
             .name a{
               color: #545566;
               font-weight: bold;
@@ -68,7 +70,7 @@
               }
             }
             .content{
-              //padding: 5px 0;
+
             }
             .comment-actions{
               .action{
@@ -162,6 +164,8 @@
               }
             }
             .reply-details {
+              flex: 1 0 0;
+
               .name a{
                 color: #545566;
                 font-weight: bold;
@@ -171,7 +175,7 @@
                 }
               }
               .content{
-                //padding: 5px 0;
+
               }
               .reply-actions {
                 .action{

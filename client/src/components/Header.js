@@ -28,8 +28,8 @@ class Header extends React.Component {
                         <UncontrolledDropdown className="menu-toggle">
                             <DropdownToggle tag="div" className="profile-picture">
                                 <picture>
-                                    <source srcset={this.props.user.photo}/>
-                                    <img srcset={noReplyImage}/>
+                                    <source srcSet={this.props.user.photo}/>
+                                    <img srcSet={noReplyImage}/>
                                 </picture>
                             </DropdownToggle>
                             <DropdownMenu right>
