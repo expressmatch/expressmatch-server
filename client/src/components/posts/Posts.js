@@ -4,7 +4,7 @@ import {UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem} from '
 import CommentsContainer from "../../containers/CommentsContainer";
 import DeletePostModal from '../modals/deletePost/deletePostModal';
 import ReportSpamModal from '../modals/reportSpam/reportSpamModal';
-import PostLikesModal from '../modals/postLikes/postLikesModal';
+import PostLikesModal from '../modals/likes/postLikesModal';
 import * as constants from '../../constants/constants';
 
 const Posts = (props) => {

@@ -1,6 +1,6 @@
 import React from 'react';
 import * as constants from '../../constants/constants';
-import ReplyLikesModal from '../modals/commentLikes/replyLikesModal';
+import ReplyLikesModal from '../modals/likes/replyLikesModal';
 import noReplyImage from '../../images/no_image_available.svg';
 
 class ReplyItem extends React.Component {

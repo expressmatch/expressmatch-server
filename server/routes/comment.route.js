@@ -67,7 +67,8 @@ const getAllPostComments = function (req, res, next) {
 const postComment = function (req, res, next) {
     let postId = req.body.postId,
         commentId = req.body.commentId,
-        commentStr = req.body.comment;
+        commentStr = req.body.comment,
+        commentRes = {};
 
     if (!!commentId) {
 
@@ -94,7 +95,11 @@ const postComment = function (req, res, next) {
                             path: "postedBy",
                             select: { 'profile.name': 1, 'profile.photo': 1, 'profile.email': 1 }
                         }, function (err) {
-                            res.status(200).json(savedComment);
+                            commentRes = {
+                                ...savedComment.toJSON(),
+                                'isCreatedByUser': savedComment.isCreatedByUser(req.user)
+                            };
+                            res.status(200).json(commentRes);
                         });
                     });
                 });
@@ -121,7 +126,11 @@ const postComment = function (req, res, next) {
                         path: "postedBy",
                         select: { 'profile.name': 1, 'profile.photo': 1, 'profile.email': 1 }
                     }, function (err, comment) {
-                        res.status(200).json(comment);
+                        commentRes = {
+                            ...comment.toJSON(),
+                            'isCreatedByUser': comment.isCreatedByUser(req.user)
+                        };
+                        res.status(200).json(commentRes);
                     });
                 })
             });

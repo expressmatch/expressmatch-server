@@ -1,6 +1,6 @@
 import React from 'react';
 import * as constants from '../../constants/constants';
-import CommentLikesModal from '../modals/commentLikes/commentLikesModal';
+import CommentLikesModal from '../modals/likes/commentLikesModal';
 import ReplyItem from './ReplyItem';
 import noReplyImage from '../../images/no_image_available.svg';
 
@@ -121,15 +121,6 @@ class CommentItem extends React.Component {
                                         }
                                     </span>
                                 </div>
-                                {!!this.props.comment.isCreatedByUser &&
-                                <React.Fragment>|&nbsp;
-                                    <div className="action">
-                                        <div className="primary">
-                                            <i className="fas fa-trash-alt"></i>
-                                        </div>
-                                    </div>
-                                </React.Fragment>
-                                }
                                 |&nbsp;
                                 <div className="action">
                                     <span className="primary"
@@ -147,6 +138,15 @@ class CommentItem extends React.Component {
                                         }
                                     </span>
                                 </div>
+                                {!!this.props.comment.isCreatedByUser &&
+                                <React.Fragment>|&nbsp;
+                                    <div className="action">
+                                        <div className="primary">
+                                            <i className="fas fa-trash-alt"></i>
+                                        </div>
+                                    </div>
+                                </React.Fragment>
+                                }
                             </div>
                         </span>
                     </div>
