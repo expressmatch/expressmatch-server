@@ -8,6 +8,7 @@ module.exports = function (app) {
 
     app.post('/api/comments', getAllPostComments);
     app.post('/api/comment', postComment);
+    app.post('/comment/:commentId/delete', deleteComment);
     app.post('/comment/:commentId/like', likeComment);
     app.get('/api/comment/:commentId/likes', getCommentLikes);
 
@@ -157,6 +158,70 @@ const likeComment = function (req, res, next) {
             };
             res.status(200).json(commentRes);
         });
+    });
+};
+
+const deleteComment = function (req, res, next) {
+    Comment.findOne({
+        _id: new ObjectId(req.params.commentId),
+        "postedBy": new ObjectId(req.user._id)
+    }, function (err, comment) {
+        if (err) next(err);
+
+        if (comment) {
+            Comment.remove({_id: req.params.commentId}, function (err) {
+                if (err) next(err);
+
+                if (comment.comments.length) {
+                    Comment.deleteMany({_id: {$in: comment.comments}}, function (err) {
+                        if (err) next(err);
+                    });
+                }
+
+                let postId = req.body.postId,
+                    parentCommentId = req.body.parentCommentId,
+                    commentId = req.params.commentId;
+
+                if (!!parentCommentId) {
+                    Comment.findOne({_id: parentCommentId}, function (err, parentComment) {
+                        if (err) {
+                            next(err);
+                        }
+                        if (parentComment) {
+                            let comments = parentComment.comments.filter(id => {
+                                id != commentId
+                            });
+                            parentComment.comments = comments;
+                            parentComment.save(function (err, savedParentComment) {
+                                if (err) {
+                                    next(err);
+                                }
+                                res.status(200).json({});
+                            })
+                        }
+                    });
+                } else if (!!postId) {
+                    Post.findOne({_id: postId}, function (err, post) {
+                        if (err) {
+                            next(err);
+                        }
+                        if (post) {
+                            let comments = post.comments.filter(id => {
+                                id != commentId
+                            });
+                            post.comments = comments;
+                            post.save(function (err, savedPost) {
+                                if (err) {
+                                    next(err);
+                                }
+
+                                res.status(200).json({});
+                            })
+                        }
+                    });
+                }
+            });
+        }
     });
 };
 

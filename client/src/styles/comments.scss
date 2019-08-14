@@ -70,7 +70,26 @@
               }
             }
             .content{
-
+              display: flex;
+              justify-content: space-between;
+              .text{ }
+              .del-icon{
+                cursor: pointer;
+                opacity: 1;
+                visibility: visible;
+                transition-duration: 300ms, 300ms;
+                transition-property: opacity, visibility;
+                transition-delay: 0, 200ms;
+              }
+              &:not(:hover){
+                .del-icon{
+                  opacity: 0;
+                  visibility: hidden;
+                  transition-duration: 300ms, 300ms;
+                  transition-property: opacity, visibility;
+                  transition-delay: 200ms, 0;
+                }
+              }
             }
             .comment-actions{
               .action{
@@ -175,7 +194,26 @@
                 }
               }
               .content{
-
+                display: flex;
+                justify-content: space-between;
+                .text{  }
+                .del-icon{
+                  cursor: pointer;
+                  opacity: 1;
+                  visibility: visible;
+                  transition-duration: 300ms, 300ms;
+                  transition-property: opacity, visibility;
+                  transition-delay: 0, 200ms;
+                }
+                &:not(:hover){
+                  .del-icon{
+                    opacity: 0;
+                    visibility: hidden;
+                    transition-duration: 0ms, 300ms;
+                    transition-property: opacity, visibility;
+                    transition-delay: 200ms, 0;
+                  }
+                }
               }
               .reply-actions {
                 .action{

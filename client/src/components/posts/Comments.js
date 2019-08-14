@@ -93,6 +93,7 @@ class Comments extends React.Component {
                                     {this.props.comments.map(comment => {
                                         return (
                                             <CommentItem key={comment._id}
+                                                post={this.props.post}
                                                 comment={comment}
                                                 actions={this.props.actions}/>
                                         );

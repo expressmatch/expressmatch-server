@@ -1,6 +1,7 @@
 import React from 'react';
 import * as constants from '../../constants/constants';
 import ReplyLikesModal from '../modals/likes/replyLikesModal';
+import DeleteCommentModal from '../modals/delete/deleteCommentModal';
 import noReplyImage from '../../images/no_image_available.svg';
 
 class ReplyItem extends React.Component {
@@ -9,16 +10,25 @@ class ReplyItem extends React.Component {
         super(props);
         this.state = {
             modal: {
-                [constants.REPLY_LIKES]: false
+                [constants.REPLY_LIKES]: false,
+                [constants.DELETE_COMMENT]: false
             }
         };
         this.showCommentLikes = this.showCommentLikes.bind(this);
+        this.deleteComment = this.deleteComment.bind(this);
         this.toggleModal = this.toggleModal.bind(this);
 
         this.likeReply = this.likeReply.bind(this);
     }
 
     showCommentLikes(e){
+        let target = e.currentTarget,
+            type = target.dataset['type'];
+
+        this.toggleModal(type);
+    }
+
+    deleteComment(e){
         let target = e.currentTarget,
             type = target.dataset['type'];
 
@@ -72,7 +82,7 @@ class ReplyItem extends React.Component {
                             {!!this.props.reply.isCreatedByUser &&
                             <React.Fragment>|&nbsp;
                                 <div className="action">
-                                    <div className="primary">
+                                    <div className="primary" data-type={constants.DELETE_COMMENT} onClick={this.deleteComment}>
                                         <i className="fas fa-trash-alt"></i>
                                     </div>
                                 </div>
@@ -83,6 +93,11 @@ class ReplyItem extends React.Component {
                 </div>
                 <ReplyLikesModal
                     isOpen={this.state.modal[constants.REPLY_LIKES]}
+                    commentId={this.props.reply._id}
+                    onClose={this.toggleModal}/>
+                <DeleteCommentModal
+                    isOpen={this.state.modal[constants.DELETE_COMMENT]}
+                    parentCommentId={this.props.comment._id}
                     commentId={this.props.reply._id}
                     onClose={this.toggleModal}/>
             </div>

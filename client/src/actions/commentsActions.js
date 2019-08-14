@@ -52,6 +52,31 @@ export function postCommentFailure(error){
 }
 /*-------- POST COMMENT - END ---------*/
 
+/*-------- DELETE COMMENT - START ---------*/
+export function deleteComment(commentId, postId, parentCommentId) {
+    return (dispatch, getState ) => {
+        dispatch(deleteCommentRequest());
+
+        return commentsService.deleteComment(commentId, postId, parentCommentId).then(data => {
+            setTimeout(() => {
+                return dispatch(deleteCommentSuccess(commentId, postId, parentCommentId));
+            }, delay);
+        }).catch(error => {
+            dispatch(deleteCommentFailure(error));
+        })
+    };
+}
+export function deleteCommentRequest(){
+    return { type: types.DELETE_COMMENT_REQUEST };
+}
+export function deleteCommentSuccess(commentId, postId, parentCommentId){
+    return { type: types.DELETE_COMMENT_SUCCESS, commentId, postId, parentCommentId};
+}
+export function deleteCommentFailure(error){
+    return { type: types.DELETE_COMMENT_FAILURE, error };
+}
+/*-------- LIKE COMMENT - END ---------*/
+
 /*-------- LIKE COMMENT - START ---------*/
 export function likeComment(commentId) {
     return (dispatch, getState ) => {

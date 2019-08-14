@@ -47,6 +47,27 @@ let postComment = (() => {
     };
 })();
 
+let deleteComment = (() => {
+
+    return (commentId, postId, parentCommentId) => {
+        return new Promise((resolve, reject) => {
+            axios({
+                method: 'POST',
+                url: `/comment/${commentId}/delete`,
+                headers: {'Content-type': 'application/json'},
+                data:{
+                    postId,
+                    parentCommentId
+                }
+            }).then(response => {
+                resolve(response.data);
+            }).catch(error => {
+                reject(error);
+            });
+        });
+    };
+})();
+
 let likeComment = (() => {
 
     return (commentId) => {
@@ -84,6 +105,7 @@ let getCommentLikes = (() => {
 const CommentsService = {
     getComments,
     postComment,
+    deleteComment,
     likeComment,
     getCommentLikes
 };

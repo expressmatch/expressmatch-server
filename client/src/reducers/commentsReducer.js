@@ -106,6 +106,45 @@ const commentsReducer = (state = initialState.posts.entities.comments, action) =
             },
             loading: false
         };
+    } else if (action.type === types.DELETE_COMMENT_REQUEST) {
+        return {
+            ...state,
+            loading: true
+        };
+    } else if (action.type === types.DELETE_COMMENT_FAILURE) {
+        return {
+            ...state,
+            loading: false
+        };
+    } else if (action.type === types.DELETE_COMMENT_SUCCESS) {
+
+        //FIXME: Deep Clone, use lodash
+        let byId = {
+            ...state.byId,
+            [action.commentId]: {
+                ...state.byId[action.commentId]
+            }
+        };
+        if(!!action.parentCommentId) {
+            byId[action.parentCommentId] = {
+                ...byId[action.parentCommentId],
+                comments: byId[action.parentCommentId].comments.filter(id => {
+                    return id !== action.commentId;
+                })
+            };
+        }
+        delete byId[action.commentId];
+
+        let allIds = state.allIds.filter(id => {
+            return id !== action.commentId;
+        });
+
+        return {
+            ...state,
+            loading: false,
+            byId: byId,
+            allIds: allIds
+        }
     } else if (action.type === types.GET_COMMENT_LIKES_REQUEST) {
         return {
             ...state,

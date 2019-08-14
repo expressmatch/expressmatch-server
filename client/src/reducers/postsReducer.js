@@ -154,6 +154,31 @@ const postsReducer = (state = initialState.posts, action) => {
                 }
             }
         }
+    } else if (action.type === types.DELETE_COMMENT_SUCCESS) {
+
+        if(!!action.parentCommentId){
+            return state;
+        }else if(action.postId) {
+
+            return {
+                ...state,
+                entities: {
+                    ...state.entities,
+                    posts: {
+                        ...state.entities.posts,
+                        byId: {
+                            ...state.entities.posts.byId,
+                            [action.postId]: {
+                                ...state.entities.posts.byId[action.postId],
+                                comments: state.entities.posts.byId[action.postId].comments.filter(id => {
+                                    return id !== action.commentId;
+                                })
+                            }
+                        }
+                    }
+                }
+            }
+        }
     } else if (action.type === types.GET_POST_LIKES_REQUEST) {
         return {
             ...state,

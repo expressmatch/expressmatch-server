@@ -1,6 +1,7 @@
 import React from 'react';
 import * as constants from '../../constants/constants';
 import CommentLikesModal from '../modals/likes/commentLikesModal';
+import DeleteCommentModal from '../modals/delete/deleteCommentModal';
 import ReplyItem from './ReplyItem';
 import noReplyImage from '../../images/no_image_available.svg';
 
@@ -12,10 +13,12 @@ class CommentItem extends React.Component {
             comment: "",
             modal: {
                 [constants.COMMENT_LIKES]: false,
-                [constants.REPLY_LIKES]: false
+                [constants.REPLY_LIKES]: false,
+                [constants.DELETE_COMMENT]: false
             }
         };
         this.showCommentLikes = this.showCommentLikes.bind(this);
+        this.deleteComment = this.deleteComment.bind(this);
         this.toggleModal = this.toggleModal.bind(this);
 
         this.likeComment = this.likeComment.bind(this);
@@ -27,6 +30,13 @@ class CommentItem extends React.Component {
     }
 
     showCommentLikes(e){
+        let target = e.currentTarget,
+            type = target.dataset['type'];
+
+        this.toggleModal(type);
+    }
+
+    deleteComment(e){
         let target = e.currentTarget,
             type = target.dataset['type'];
 
@@ -141,7 +151,7 @@ class CommentItem extends React.Component {
                                 {!!this.props.comment.isCreatedByUser &&
                                 <React.Fragment>|&nbsp;
                                     <div className="action">
-                                        <div className="primary">
+                                        <div className="primary" data-type={constants.DELETE_COMMENT} onClick={this.deleteComment}>
                                             <i className="fas fa-trash-alt"></i>
                                         </div>
                                     </div>
@@ -153,6 +163,11 @@ class CommentItem extends React.Component {
                 </div>
                 <CommentLikesModal
                     isOpen={this.state.modal[constants.COMMENT_LIKES]}
+                    commentId={this.props.comment._id}
+                    onClose={this.toggleModal}/>
+                <DeleteCommentModal
+                    isOpen={this.state.modal[constants.DELETE_COMMENT]}
+                    postId={this.props.post._id}
                     commentId={this.props.comment._id}
                     onClose={this.toggleModal}/>
                 {
@@ -170,6 +185,7 @@ class CommentItem extends React.Component {
                         {this.props.comment.comments.map(reply => {
                             return (
                                 <ReplyItem key={reply._id}
+                                    comment={this.props.comment}
                                     reply={reply}
                                     actions={this.props.actions}/>
                             );

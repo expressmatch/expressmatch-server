@@ -2,7 +2,7 @@ import React from 'react';
 import {withRouter} from 'react-router-dom';
 import {UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem} from 'reactstrap';
 import CommentsContainer from "../../containers/CommentsContainer";
-import DeletePostModal from '../modals/deletePost/deletePostModal';
+import DeletePostModal from '../modals/delete/deletePostModal';
 import ReportSpamModal from '../modals/reportSpam/reportSpamModal';
 import PostLikesModal from '../modals/likes/postLikesModal';
 import * as constants from '../../constants/constants';
