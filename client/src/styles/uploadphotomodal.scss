@@ -1,0 +1,40 @@
+.upload-photo-container{
+  display: flex;
+
+  .left-content{
+    width: 200px;
+
+    .display-pic{
+      border: 1px solid #ececec;
+      height: 200px;
+      position: relative;
+
+      picture img {
+        height: 100%;
+        width: 100%;
+        padding: 5px;
+      }
+    }
+  }
+  .right-content{
+    margin: 10px;
+
+    .actions{
+      padding: 0 10px;
+
+      .action-item{
+        button{
+          background:none;
+          margin: 10px;
+          width: 150px;
+          padding: 5px;
+          border-radius: 5px;
+          cursor: pointer;
+          outline: none;
+          font-size: 13px;
+          color: #888da8;
+        }
+      }
+    }
+  }
+}

@@ -7,19 +7,26 @@ import Spinner from './common/Spinner';
 import { NavLink } from 'react-router-dom';
 import {withRouter} from 'react-router-dom';
 import noImageAvailable from '../images/no_image_available.svg';
+import * as constants from '../constants/constants';
+import UploadPhotoModal from '../components/modals/profile/uploadPhotoModal';
 
 class Profile extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            ...props.profile
+            ...props.profile,
+            modal: {
+                [constants.UPLOAD_PHOTO]: false
+            }
         };
 
         this.resetForm = this.resetForm.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
         this.onCancel = this.onCancel.bind(this);
         this.validateForm = this.validateForm.bind(this);
+        this.changeDisplay = this.changeDisplay.bind(this);
+        this.toggleModal = this.toggleModal.bind(this);
 
         this.handleCurrentCityChange = this.handleCurrentCityChange.bind(this);
         this.handleHomeTownChange = this.handleHomeTownChange.bind(this);
@@ -105,6 +112,22 @@ class Profile extends React.Component {
         });
     }
 
+    changeDisplay(e){
+        let target = e.currentTarget,
+            type = target.dataset['type'];
+
+        this.toggleModal(type);
+    }
+
+    toggleModal(type) {
+
+        this.setState({
+            modal: {
+                [type]: !this.state.modal[type]
+            }
+        });
+    }
+
     render() {
         return (
             <div id="profile" className={this.props.readonly ? "readonly" : ""} >
@@ -115,6 +138,11 @@ class Profile extends React.Component {
                             <source srcset={this.state.photo}/>
                             <img srcset={noImageAvailable}/>
                         </picture>
+                        <div className="change-pic">
+                            <span className="action-item" data-type={constants.UPLOAD_PHOTO} onClick={this.changeDisplay}>
+                                Change Display Image
+                            </span>
+                        </div>
                     </div>
                 </div>
                 <div className="right-content">
@@ -307,6 +335,10 @@ class Profile extends React.Component {
                         </div>}
                     </form>
                 </div>
+                <UploadPhotoModal
+                    photo={this.state.photo}
+                    isOpen={this.state.modal[constants.UPLOAD_PHOTO]}
+                    onClose={this.toggleModal}/>
             </div>
         );
     }

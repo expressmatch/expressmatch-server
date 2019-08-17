@@ -15,11 +15,28 @@
     .display-pic{
       border: 1px solid #ececec;
       height: 200px;
+      position: relative;
 
       picture img {
         height: 100%;
         width: 100%;
         padding: 5px;
+      }
+      .change-pic{
+        position: absolute;
+        top: 0;
+        left: 0;
+        .action-item{
+          background-color: #a9a9a9;
+          color: #fff;
+          padding: 6px;
+          cursor: pointer;
+        }
+      }
+      &:not(:hover){
+        .change-pic{
+          display: none;
+        }
       }
     }
   }

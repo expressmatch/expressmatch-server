@@ -5,6 +5,7 @@ import {bindActionCreators} from 'redux';
 import * as actions from '../actions/appActions';
 import Header from './Header';
 import Content from './Content';
+import Footer from './Footer';
 
 class App extends React.Component {
 
@@ -16,6 +17,7 @@ class App extends React.Component {
             <div className="main-container">
                 <Header {...this.props}/>
                 <Content/>
+                {/*<Footer/>*/}
             </div>
         );
     }
