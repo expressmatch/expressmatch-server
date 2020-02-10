@@ -151,7 +151,7 @@ class Profile extends React.Component {
                             <div className="field-label">
                                 <div>About me</div>
                                 <div className="sub-text">
-                                    introduce yourself, for your friends, in 200 words
+                                    introduce yourself, in 200 words or less
                                 </div>
                             </div>
                             <div className="field-value">
