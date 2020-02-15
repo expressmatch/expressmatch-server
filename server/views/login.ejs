@@ -1,41 +1,67 @@
 <!doctype html>
 <html>
 <head>
-    <title>Express Match | Login</title>
+    <title>Express Match - Express and find your partner</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link href="/public/css/main.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-<div class="container">
+    <div class="container">
+        <% include partial/header.ejs %>
+        <article class="login">
+            <div class="login-container">
+                <div class="header">
+                    <div class="main-title">Log In</div>
+                    <div class="sub-title">
+                        <span class="signup-text">Not registered with our site yet?</span>
+                        <span class="signup-link">
+                            <a href="/signup">Sign Up</a>
+                        </span>
+                    </div>
+                </div>
+                <div class="content-local">
+                    <form action="/login" method="post">
+                        <div class="form-group">
+                            <label for="email">
+                                Email address:
+                            </label>
+                            <div class="em-form-control">
+                                <input type="email" name="email" required/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">
+                                Password:
+                            </label>
+                            <div class="em-form-control">
+                                <a href="/forgot">Forgot your Password?</a>
+                            </div>
+                            <div class="em-form-control">
+                                <input type="password" name="password" required/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="checkbox" /><label>Keep me signed in</label>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="em-form-control">Login</button>
+                        </div>
+                        <!-- show any messages that come back with authentication -->
+                        <% if (error.length > 0) { %>
+                        <div class="form-error"><%= error %></div>
+                        <% } %>
+                    </form>
+                </div>
+                <div class="content-social">
+                    <a href="/auth/facebook" class="">
+                        <span class="btn-fb-login">Log in with Facebook</span>
+                    </a>
+                </div>
+            </div>
+        </article>
 
-<div class="col-sm-6 col-sm-offset-3">
+        <% include partial/footer.ejs %>
 
-    <h1><span class="fa fa-sign-in"></span> Login</h1>
-
-    <!-- show any messages that come back with authentication -->
-    <% if (message.length > 0) { %>
-        <div class="alert alert-danger"><%= message %></div>
-    <% } %>
-
-    <!-- LOGIN FORM -->
-    <form action="/login" method="post">
-        <div class="form-group">
-            <label>Email</label>
-            <input type="text" class="em-form-control" name="email">
-        </div>
-        <div class="form-group">
-            <label>Password</label>
-            <input type="password" class="em-form-control" name="password">
-        </div>
-
-        <button type="submit" class="btn btn-warning btn-lg">Login</button>
-    </form>
-
-    <hr>
-
-    <p>Need an account? <a href="/signup">Signup</a></p>
-    <p>Or go <a href="/">home</a>.</p>
-
-</div>
-
-</div>
+    </div>
 </body>
-</html> 
+</html>

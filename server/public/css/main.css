@@ -265,6 +265,104 @@ article.sign-up {
     article.sign-up .sign-up-container .content-social {
       padding: 20px; }
 
+article.forgot-password {
+  display: flex;
+  justify-content: center; }
+  article.forgot-password .forgot-password-container {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin: 80px;
+    min-width: 380px;
+    width: 380px;
+    display: flex;
+    flex-flow: column;
+    font-weight: bold;
+    font-size: 12px;
+    background-color: #fff; }
+    article.forgot-password .forgot-password-container .header {
+      padding: 20px;
+      border-bottom: 1px solid #ccc; }
+      article.forgot-password .forgot-password-container .header .main-title {
+        font-size: 28px; }
+    article.forgot-password .forgot-password-container .content {
+      padding: 20px;
+      border-bottom: 1px solid #ccc; }
+      article.forgot-password .forgot-password-container .content .form-error {
+        color: red; }
+      article.forgot-password .forgot-password-container .content .form-success {
+        color: green; }
+      article.forgot-password .forgot-password-container .content .form-group {
+        padding-bottom: 10px; }
+        article.forgot-password .forgot-password-container .content .form-group:last-child {
+          padding-bottom: 0px; }
+        article.forgot-password .forgot-password-container .content .form-group input[type="text"], article.forgot-password .forgot-password-container .content .form-group input[type="password"], article.forgot-password .forgot-password-container .content .form-group input[type="email"] {
+          width: 100%; }
+        article.forgot-password .forgot-password-container .content .form-group button[type="submit"] {
+          font-size: 16px;
+          width: auto;
+          cursor: pointer;
+          border-radius: 3px;
+          border-color: #3f4257;
+          font-weight: 600;
+          min-height: 36px;
+          outline: 0;
+          padding: 0 16px;
+          vertical-align: middle;
+          border: 1px solid rgba(0, 0, 0, 0.12);
+          color: #fff;
+          background: #5c5f72; }
+          article.forgot-password .forgot-password-container .content .form-group button[type="submit"]:hover {
+            background: #3f4257;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); }
+
+article.reset-password {
+  display: flex;
+  justify-content: center; }
+  article.reset-password .reset-password-container {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin: 80px;
+    min-width: 380px;
+    width: 380px;
+    display: flex;
+    flex-flow: column;
+    font-weight: bold;
+    font-size: 12px;
+    background-color: #fff; }
+    article.reset-password .reset-password-container .header {
+      padding: 20px;
+      border-bottom: 1px solid #ccc; }
+      article.reset-password .reset-password-container .header .main-title {
+        font-size: 28px; }
+    article.reset-password .reset-password-container .content {
+      padding: 20px;
+      border-bottom: 1px solid #ccc; }
+      article.reset-password .reset-password-container .content .form-error {
+        color: red; }
+      article.reset-password .reset-password-container .content .form-group {
+        padding-bottom: 10px; }
+        article.reset-password .reset-password-container .content .form-group:last-child {
+          padding-bottom: 0px; }
+        article.reset-password .reset-password-container .content .form-group input[type="text"], article.reset-password .reset-password-container .content .form-group input[type="password"], article.reset-password .reset-password-container .content .form-group input[type="email"] {
+          width: 100%; }
+        article.reset-password .reset-password-container .content .form-group button[type="submit"] {
+          font-size: 16px;
+          width: auto;
+          cursor: pointer;
+          border-radius: 3px;
+          border-color: #3f4257;
+          font-weight: 600;
+          min-height: 36px;
+          outline: 0;
+          padding: 0 16px;
+          vertical-align: middle;
+          border: 1px solid rgba(0, 0, 0, 0.12);
+          color: #fff;
+          background: #5c5f72; }
+          article.reset-password .reset-password-container .content .form-group button[type="submit"]:hover {
+            background: #3f4257;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); }
+
 ::selection {
   background-color: #e6e6e6; }
 

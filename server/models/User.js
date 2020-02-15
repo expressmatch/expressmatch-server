@@ -76,7 +76,9 @@ const UserSchema = new mongoose.Schema({
         // interests: {
         //     type: [String]
         // }
-    }
+    },
+    resetPasswordToken: String,
+    resetPasswordExpires: Date
 }, { timestamps: true });
 
 // UserSchema.statics.authenticate = function (username, password, callback) {
