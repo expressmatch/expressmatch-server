@@ -107,8 +107,7 @@ module.exports = function(app, passport){
                     }
                 });
                 var mailOptions = {
-                    to: 'expresstomatch@gmail.com',
-                    //to: user.profile.email,
+                    to: user.profile.email,
                     from: 'Express To Match <expresstomatch@gmail.com>',
                     subject: 'Node.js Password Reset',
                     text: 'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
@@ -176,8 +175,7 @@ module.exports = function(app, passport){
                     }
                 });
                 var mailOptions = {
-                    to: 'expresstomatch@gmail.com',
-                    //to: user.profile.email,
+                    to: user.profile.email,
                     from: 'Express To Match <expresstomatch@gmail.com>',
                     subject: 'Your password has been changed',
                     text: 'Hello,\n\n' +
