@@ -1,6 +1,7 @@
 const webpack = require('webpack');
 const path = require('path');
 const cleanWebpackPlugin = require('clean-webpack-plugin');
+const bundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = {
 	devtool: 'source-map',
@@ -19,6 +20,7 @@ module.exports = {
 		new cleanWebpackPlugin(['client/dist']),
 		new webpack.NamedModulesPlugin(),
 		new webpack.HotModuleReplacementPlugin(),
+        new bundleAnalyzerPlugin(),
     	new webpack.NoEmitOnErrorsPlugin()
 	],
 	module: {

@@ -1,11 +1,11 @@
 const webpack = require('webpack');
 const path = require('path');
 const cleanWebpackPlugin = require('clean-webpack-plugin');
+const htmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     devtool: 'source-map',
     entry: [
-        'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&overlay=false',
         './client/src/index'
     ],
     output: {
@@ -18,8 +18,10 @@ module.exports = {
     plugins: [
         new cleanWebpackPlugin(['client/dist']),
         new webpack.NamedModulesPlugin(),
-        new webpack.HotModuleReplacementPlugin(),
-        new webpack.NoEmitOnErrorsPlugin()
+        new webpack.NoEmitOnErrorsPlugin(),
+        new htmlWebpackPlugin({
+            template: 'client/index.html'
+        })
     ],
     module: {
         rules: [
@@ -33,8 +35,8 @@ module.exports = {
                 }
             },
             {
-                test: /\.(jpe?g|png|gif)$/i,
-                loader: 'file-loader?name=[name].[ext]'
+	    		test: /\.(jpe?g|png|svg|gif)$/i,
+	    		loader: 'url-loader?name=[name].[ext]'
             },
             {
                 test: /(\.css|\.scss|\.sass)$/,
