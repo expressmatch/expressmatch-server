@@ -53,7 +53,7 @@ let createPost = (() => {
         return new Promise((resolve, reject) => {
             axios({
                 method: 'POST',
-                url: '/post/create',
+                url: '/api/post/create',
                 headers: {'Content-type': 'application/json'},
                 data: post
             }).then(response => {
@@ -71,7 +71,7 @@ let deletePost = (() => {
         return new Promise((resolve, reject) => {
             axios({
                 method: 'POST',
-                url: `/post/${postId}/delete`,
+                url: `/api/post/${postId}/delete`,
                 headers: {'Content-type': 'application/json'}
             }).then(response => {
                 resolve(response.data);
@@ -105,7 +105,7 @@ let likePost = (() => {
         return new Promise((resolve, reject) => {
             axios({
                 method: 'POST',
-                url: `/post/${postId}/like`,
+                url: `/api/post/${postId}/like`,
                 headers: {'Content-type': 'application/json'},
                 data: {}
             }).then(response => {
@@ -123,7 +123,7 @@ let reportSpam = (() => {
         return new Promise((resolve, reject) => {
             axios({
                 method: 'POST',
-                url: `/post/${postId}/spam`,
+                url: `/api/post/${postId}/spam`,
                 headers: {'Content-type': 'application/json'}
             }).then(response => {
                 resolve(response.data);

@@ -8,8 +8,8 @@ module.exports = function (app) {
 
     app.post('/api/comments', getAllPostComments);
     app.post('/api/comment', postComment);
-    app.post('/comment/:commentId/delete', deleteComment);
-    app.post('/comment/:commentId/like', likeComment);
+    app.post('/api/comment/:commentId/delete', deleteComment);
+    app.post('/api/comment/:commentId/like', likeComment);
     app.get('/api/comment/:commentId/likes', getCommentLikes);
 
     return router;

@@ -10,12 +10,12 @@ module.exports = function (app) {
     //TODO: Change all the apis to router
 
     app.post('/api/posts', getAllPosts);
-    app.post('/post/create', createNewPost);
+    app.post('/api/post/create', createNewPost);
     app.get('/api/post/:postId', getPost);
     app.get('/api/post/:postId/likes', getPostLikes);
-    app.post('/post/:postId/like', likePost);
-    app.post('/post/:postId/delete', deletePost);
-    app.post('/post/:postId/spam', reportSpam);
+    app.post('/api/post/:postId/like', likePost);
+    app.post('/api/post/:postId/delete', deletePost);
+    app.post('/api/post/:postId/spam', reportSpam);
 
     return router;
 };

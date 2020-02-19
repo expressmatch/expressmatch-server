@@ -5,8 +5,8 @@ const User = require('../models/User');
 const ObjectId = require('mongoose').Types.ObjectId;
 
 module.exports = function (app) {
-    app.get('/userprofile', getProfile);
-    app.post('/updateprofile', updateProfile);
+    app.get('/api/userprofile', getProfile);
+    app.post('/api/updateprofile', updateProfile);
 
     return router;
 };

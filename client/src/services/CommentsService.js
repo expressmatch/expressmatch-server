@@ -53,7 +53,7 @@ let deleteComment = (() => {
         return new Promise((resolve, reject) => {
             axios({
                 method: 'POST',
-                url: `/comment/${commentId}/delete`,
+                url: `/api/comment/${commentId}/delete`,
                 headers: {'Content-type': 'application/json'},
                 data:{
                     postId,
@@ -74,7 +74,7 @@ let likeComment = (() => {
         return new Promise((resolve, reject) => {
             axios({
                 method: 'POST',
-                url: `/comment/${commentId}/like`,
+                url: `/api/comment/${commentId}/like`,
                 headers: {'Content-type': 'application/json'},
                 data: {}
             }).then(response => {

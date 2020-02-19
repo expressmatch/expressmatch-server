@@ -6,7 +6,7 @@ let getCurrentProfile = (() => {
         return new Promise((resolve, reject) => {
             axios({
                 method: 'GET',
-                url: '/userprofile',
+                url: '/api/userprofile',
                 headers: {'Content-type': ' application/json'},
                 data: {}
             }).then(response => {
@@ -24,7 +24,7 @@ let getOtherProfile = (() => {
         return new Promise((resolve, reject) => {
             axios({
                 method: 'GET',
-                url: '/userprofile',
+                url: '/api/userprofile',
                 headers: {'Content-type': ' application/json'},
                 params: {
                     userId
@@ -45,7 +45,7 @@ let updateProfile = (() => {
         return new Promise((resolve, reject) => {
             axios({
                 method: 'POST',
-                url: '/updateProfile',
+                url: '/api/updateProfile',
                 headers: {'Content-type': ' application/json'},
                 data: {
                     profile
