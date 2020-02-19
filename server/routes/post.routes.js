@@ -43,10 +43,8 @@ const getAllPosts = function (req, res, next) {
         endDate.setDate(endDate.getDate() + 1);
         endDate.setHours(0, 0, 0, 0);
     }
-    console.debug(startDate);
-    console.debug(endDate);
 
-    filterPredicate = {$or: predicate};
+    filterPredicate = {$and: predicate};
     datePredicate = {'createdAt': {"$gte": startDate, "$lt": endDate}};
     spamPredicate = {$and: [{spam: {$nin: [req.user]}}, {'spam.5': {$exists: false}}]};
 
