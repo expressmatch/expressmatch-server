@@ -6,13 +6,18 @@ import DeletePostModal from '../modals/delete/deletePostModal';
 import ReportSpamModal from '../modals/reportSpam/reportSpamModal';
 import PostLikesModal from '../modals/likes/postLikesModal';
 import * as constants from '../../constants/constants';
+import LazyLoad from 'react-lazyload';
 
 const Posts = (props) => {
 
     return(
         <React.Fragment>
             {props.posts && props.posts.map(post => {
-                return <Post post={post} key={post._id} {...props}/>
+                return (
+                    <LazyLoad height={100} offset={100}>
+                        <Post post={post} key={post._id} {...props}/>
+                    </LazyLoad>
+                );
             })}
         </React.Fragment>
     );
