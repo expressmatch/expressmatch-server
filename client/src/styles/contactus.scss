@@ -1,4 +1,4 @@
-#create-post{
+#contact-us{
   width: 80%;
   min-width: 700px;
   margin: 10px auto;
@@ -7,7 +7,7 @@
 
   form{
     .em-form-control{
-      padding: 20px;
+      padding: 10px 20px;
       display: flex;
       align-items: center;
       border-bottom: 1px solid #e6ecf5;
@@ -25,7 +25,7 @@
         input, select, textarea{
           height: 30px;
           font-size: 12px;
-          width: 450px;
+          width: 250px;
           outline: none;
           border: 1px solid #e6ecf5;
           color: #888da8;
@@ -36,12 +36,13 @@
           }
         }
         textarea{
-          height: 250px;
+          height: 150px;
           resize: none;
+          width: 420px;
           font-size: 12px;
         }
 
-        input[type="text"], textarea{
+        input[type="text"], input[type="email"], textarea{
           background-color: $em-bg-gray;;
           border-radius: 3px;
           border: 1px solid rgba(0,0,0,.12);

@@ -20,6 +20,9 @@ class Header extends React.Component {
                         <div className="menu-item">
                             <NavLink to="/createpost">Create new post</NavLink>
                         </div>
+                        <div className="menu-item">
+                            <NavLink to="/contactus">Contact us</NavLink>
+                        </div>
                         {/*<div className="menu-item">*/}
                             {/*<a href="#">Messages</a>*/}
                         {/*</div>*/}

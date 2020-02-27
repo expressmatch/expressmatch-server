@@ -56,6 +56,17 @@ article.login{
         }
         input[type="text"], input[type="password"], input[type="email"]{
           width: 100%;
+          background: #fff;
+          line-height: 1.45;
+          padding: 4px;
+          border: 1px solid #ccc;
+        }
+        input, textarea{
+          &:focus{
+            border-color: #1f24cc;
+            box-shadow: none;
+            outline: 0;
+          }
         }
         a{
           font-weight: normal;
@@ -77,25 +88,59 @@ article.login{
           width: auto;
           cursor: pointer;
           border-radius: 3px;
-          border-color: #3f4257;
           font-weight: 600;
           min-height: 36px;
           outline: 0;
           padding: 0 16px;
           vertical-align: middle;
-          border: 1px solid rgba(0,0,0,.12);
+          border: 1px solid #ff5e3a;
+          background-color: #ff5e3a;
           color: #fff;
-          background: #5c5f72;
 
           &:hover{
-            background: #3f4257;
-            transition: all .4s cubic-bezier(.165,.84,.44,1);
+            opacity: 0.8;
           }
         }
       }
     }
     .content-social{
       padding: 20px;
+
+      .facebook-button{
+        color: #fff !important;
+        background: #3b5998;
+        border-radius: 3px;
+        position: relative;
+        text-align: center;
+        padding: 16px 14px 13px 40px;
+        text-decoration: none;
+        cursor: pointer;
+        width: 85%;
+        display: inline-block;
+
+        &::before{
+          content: '\00a0';
+          background: url(../images/f-logo.png) center center no-repeat;
+          position: absolute;
+          display: block;
+          border-right: 1px solid #768bb7;
+          left: 0;
+          top: 0;
+          text-align: center;
+          padding: 16px 18px 7px;
+          font-size: 16px!important;
+        }
+
+        span{
+          color: #fff;
+          background: #3b5998;
+          border-radius: 3px;
+          position: relative;
+          padding-top: 16px;
+          padding-bottom: 13px;
+          text-align: center;
+        }
+      }
     }
   }
 }

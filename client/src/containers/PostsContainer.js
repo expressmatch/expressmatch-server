@@ -30,6 +30,17 @@ class PostsContainer extends React.Component {
 
     }
 
+    scrollToTop(e) {
+        e.preventDefault();
+
+        // window.scroll({
+        //     top: 0,
+        //     behavior: 'smooth'
+        // });
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+
     render() {
         return (
             <div className="posts">
@@ -51,6 +62,9 @@ class PostsContainer extends React.Component {
                     {/*<div className="panel">*/}
                     {/*<Filters />*/}
                     {/*</div>*/}
+                    <a className="back-to-top" onClick={this.scrollToTop}>
+                        <i className="fas fa-arrow-up"></i>
+                    </a>
                 </div>
             </div>
         );

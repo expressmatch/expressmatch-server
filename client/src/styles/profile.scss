@@ -84,8 +84,10 @@
             height: 160px;
             resize: none;
           }
-
-          input[type="text"], textarea {
+          select.react-datepicker__month-select, select.react-datepicker__year-select{
+            width: auto;
+          }
+          input[type="text"], input[type="email"], textarea {
             background-color: $em-bg-gray;;
             border-radius: 3px;
             border: 1px solid rgba(0, 0, 0, .12);
@@ -106,6 +108,7 @@
             outline: none;
             width: 100px;
             background: none;
+            font-weight: bold;
 
             &:active {
               font-weight: 600;
@@ -113,6 +116,11 @@
             &:hover {
               opacity: 0.8;
             }
+          }
+          input[type="submit"]{
+            background-color: #ff5e3a;
+            border-color: #ff5e3a;
+            color: #fff;
           }
         }
         .sub-text {

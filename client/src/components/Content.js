@@ -4,6 +4,7 @@ import PostsContainer from '../containers/PostsContainer';
 import CreatePostContainer from '../containers/CreatePostContainer';
 import ProfileContainer from '../containers/ProfileContainer';
 import ViewPostContainer from '../containers/ViewPostContainer';
+import ContactUs from '../components/ContactUs';
 import NotFoundPage from './NotFoundPage';
 import Profile from "./Profile";
 
@@ -14,6 +15,7 @@ class Content extends React.Component {
                 <Switch>
                     <Route exact path="/posts" component={PostsContainer} />
                     <Route path="/createpost" component={CreatePostContainer} />
+                    <Route path="/contactus" component={ContactUs} />
                     <Route exact path="/profile" render={props => {
                         return (
                             <ProfileContainer

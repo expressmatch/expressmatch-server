@@ -14,6 +14,6 @@ module.exports = {
         'clientSecret'  : '4878553a250968e8cb0c02a16405cada', // your App Secret
         'callbackURL'   : 'http://localhost:8080/auth/facebook/callback',
         'profileURL'    : 'https://graph.facebook.com/v2.5/me?',
-        'profileFields' : ['id', 'displayName', 'email', 'birthday', 'friends', 'first_name', 'last_name', 'middle_name', 'gender', 'link', 'photos'] // For requesting permissions from Facebook API
+        'profileFields' : ['id', 'displayName', 'email', 'birthday', 'friends', 'first_name', 'last_name', 'middle_name', 'gender', 'link', 'picture.type(large)'] // For requesting permissions from Facebook API
     }
 };

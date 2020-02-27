@@ -135,8 +135,8 @@ class Profile extends React.Component {
                 <div className="left-content">
                     <div className="display-pic">
                         <picture>
-                            <source srcset={this.state.photo}/>
-                            <img srcset={noImageAvailable}/>
+                            <source srcSet={this.state.photo}/>
+                            <img srcSet={noImageAvailable}/>
                         </picture>
                         <div className="change-pic">
                             <span className="action-item" data-type={constants.UPLOAD_PHOTO} onClick={this.changeDisplay}>
@@ -146,7 +146,7 @@ class Profile extends React.Component {
                     </div>
                 </div>
                 <div className="right-content">
-                    <form spellcheck="false">
+                    <form spellCpheck="false">
                         <div className="em-form-control">
                             <div className="field-label">
                                 <div>About me</div>
@@ -170,6 +170,9 @@ class Profile extends React.Component {
                                     selected={this.state.dob}
                                     onSelect={this.handleDOBSelect}
                                     onChange={this.handleDOBChange}
+                                    showMonthDropdown
+                                    showYearDropdown
+                                    dropdownMode="select"
                                 />
                                 {/*<input type="text" data-name="age" value={this.state.age} onChange={this.handleProfileChange}/>*/}
                             </div>

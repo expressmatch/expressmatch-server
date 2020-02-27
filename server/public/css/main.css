@@ -96,18 +96,16 @@
       width: auto;
       cursor: pointer;
       border-radius: 3px;
-      border-color: #3f4257;
       font-weight: 600;
       min-height: 36px;
       outline: 0;
       padding: .75em 7em;
       vertical-align: middle;
-      border: 1px solid rgba(0, 0, 0, 0.12);
-      color: #fff;
-      background: #5c5f72; }
+      border: 1px solid #ff5e3a;
+      background-color: #ff5e3a;
+      color: #fff; }
       #content .sign-up button:hover {
-        background: #3f4257;
-        transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); }
+        opacity: 0.8; }
 
 footer {
   background-color: #3f4257;
@@ -173,7 +171,15 @@ article.login {
         article.login .login-container .content-local .form-group:last-child {
           padding-bottom: 0px; }
         article.login .login-container .content-local .form-group input[type="text"], article.login .login-container .content-local .form-group input[type="password"], article.login .login-container .content-local .form-group input[type="email"] {
-          width: 100%; }
+          width: 100%;
+          background: #fff;
+          line-height: 1.45;
+          padding: 4px;
+          border: 1px solid #ccc; }
+        article.login .login-container .content-local .form-group input:focus, article.login .login-container .content-local .form-group textarea:focus {
+          border-color: #1f24cc;
+          box-shadow: none;
+          outline: 0; }
         article.login .login-container .content-local .form-group a {
           font-weight: normal;
           text-decoration: none;
@@ -189,20 +195,48 @@ article.login {
           width: auto;
           cursor: pointer;
           border-radius: 3px;
-          border-color: #3f4257;
           font-weight: 600;
           min-height: 36px;
           outline: 0;
           padding: 0 16px;
           vertical-align: middle;
-          border: 1px solid rgba(0, 0, 0, 0.12);
-          color: #fff;
-          background: #5c5f72; }
+          border: 1px solid #ff5e3a;
+          background-color: #ff5e3a;
+          color: #fff; }
           article.login .login-container .content-local .form-group button[type="submit"]:hover {
-            background: #3f4257;
-            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); }
+            opacity: 0.8; }
     article.login .login-container .content-social {
       padding: 20px; }
+      article.login .login-container .content-social .facebook-button {
+        color: #fff !important;
+        background: #3b5998;
+        border-radius: 3px;
+        position: relative;
+        text-align: center;
+        padding: 16px 14px 13px 40px;
+        text-decoration: none;
+        cursor: pointer;
+        width: 85%;
+        display: inline-block; }
+        article.login .login-container .content-social .facebook-button::before {
+          content: '\00a0';
+          background: url(../images/f-logo.png) center center no-repeat;
+          position: absolute;
+          display: block;
+          border-right: 1px solid #768bb7;
+          left: 0;
+          top: 0;
+          text-align: center;
+          padding: 16px 18px 7px;
+          font-size: 16px !important; }
+        article.login .login-container .content-social .facebook-button span {
+          color: #fff;
+          background: #3b5998;
+          border-radius: 3px;
+          position: relative;
+          padding-top: 16px;
+          padding-bottom: 13px;
+          text-align: center; }
 
 article.sign-up {
   display: flex;
@@ -244,26 +278,62 @@ article.sign-up {
         article.sign-up .sign-up-container .content-local .form-group:last-child {
           padding-bottom: 0px; }
         article.sign-up .sign-up-container .content-local .form-group input[type="text"], article.sign-up .sign-up-container .content-local .form-group input[type="password"], article.sign-up .sign-up-container .content-local .form-group input[type="email"] {
-          width: 100%; }
+          width: 100%;
+          background: #fff;
+          line-height: 1.45;
+          padding: 4px;
+          border: 1px solid #ccc; }
+        article.sign-up .sign-up-container .content-local .form-group input:focus, article.sign-up .sign-up-container .content-local .form-group textarea:focus {
+          border-color: #1f24cc;
+          box-shadow: none;
+          outline: 0; }
         article.sign-up .sign-up-container .content-local .form-group button[type="submit"] {
           font-size: 16px;
           width: auto;
           cursor: pointer;
           border-radius: 3px;
-          border-color: #3f4257;
           font-weight: 600;
           min-height: 36px;
           outline: 0;
           padding: 0 16px;
           vertical-align: middle;
-          border: 1px solid rgba(0, 0, 0, 0.12);
-          color: #fff;
-          background: #5c5f72; }
+          border: 1px solid #ff5e3a;
+          background-color: #ff5e3a;
+          color: #fff; }
           article.sign-up .sign-up-container .content-local .form-group button[type="submit"]:hover {
-            background: #3f4257;
-            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); }
+            opacity: 0.8; }
     article.sign-up .sign-up-container .content-social {
       padding: 20px; }
+      article.sign-up .sign-up-container .content-social .facebook-button {
+        color: #fff !important;
+        background: #3b5998;
+        border-radius: 3px;
+        position: relative;
+        text-align: center;
+        padding: 16px 14px 13px 40px;
+        text-decoration: none;
+        cursor: pointer;
+        width: 85%;
+        display: inline-block; }
+        article.sign-up .sign-up-container .content-social .facebook-button::before {
+          content: '\00a0';
+          background: url(../images/f-logo.png) center center no-repeat;
+          position: absolute;
+          display: block;
+          border-right: 1px solid #768bb7;
+          left: 0;
+          top: 0;
+          text-align: center;
+          padding: 16px 18px 7px;
+          font-size: 16px !important; }
+        article.sign-up .sign-up-container .content-social .facebook-button span {
+          color: #fff;
+          background: #3b5998;
+          border-radius: 3px;
+          position: relative;
+          padding-top: 16px;
+          padding-bottom: 13px;
+          text-align: center; }
 
 article.forgot-password {
   display: flex;
@@ -296,24 +366,30 @@ article.forgot-password {
         article.forgot-password .forgot-password-container .content .form-group:last-child {
           padding-bottom: 0px; }
         article.forgot-password .forgot-password-container .content .form-group input[type="text"], article.forgot-password .forgot-password-container .content .form-group input[type="password"], article.forgot-password .forgot-password-container .content .form-group input[type="email"] {
-          width: 100%; }
+          width: 100%;
+          background: #fff;
+          line-height: 1.45;
+          padding: 4px;
+          border: 1px solid #ccc; }
+        article.forgot-password .forgot-password-container .content .form-group input:focus, article.forgot-password .forgot-password-container .content .form-group textarea:focus {
+          border-color: #1f24cc;
+          box-shadow: none;
+          outline: 0; }
         article.forgot-password .forgot-password-container .content .form-group button[type="submit"] {
           font-size: 16px;
           width: auto;
           cursor: pointer;
           border-radius: 3px;
-          border-color: #3f4257;
           font-weight: 600;
           min-height: 36px;
           outline: 0;
           padding: 0 16px;
           vertical-align: middle;
-          border: 1px solid rgba(0, 0, 0, 0.12);
-          color: #fff;
-          background: #5c5f72; }
+          border: 1px solid #ff5e3a;
+          background-color: #ff5e3a;
+          color: #fff; }
           article.forgot-password .forgot-password-container .content .form-group button[type="submit"]:hover {
-            background: #3f4257;
-            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); }
+            opacity: 0.8; }
 
 article.reset-password {
   display: flex;
@@ -339,29 +415,37 @@ article.reset-password {
       border-bottom: 1px solid #ccc; }
       article.reset-password .reset-password-container .content .form-error {
         color: red; }
+      article.reset-password .reset-password-container .content .form-success {
+        color: green; }
       article.reset-password .reset-password-container .content .form-group {
         padding-bottom: 10px; }
         article.reset-password .reset-password-container .content .form-group:last-child {
           padding-bottom: 0px; }
         article.reset-password .reset-password-container .content .form-group input[type="text"], article.reset-password .reset-password-container .content .form-group input[type="password"], article.reset-password .reset-password-container .content .form-group input[type="email"] {
-          width: 100%; }
+          width: 100%;
+          background: #fff;
+          line-height: 1.45;
+          padding: 4px;
+          border: 1px solid #ccc; }
+        article.reset-password .reset-password-container .content .form-group input:focus, article.reset-password .reset-password-container .content .form-group textarea:focus {
+          border-color: #1f24cc;
+          box-shadow: none;
+          outline: 0; }
         article.reset-password .reset-password-container .content .form-group button[type="submit"] {
           font-size: 16px;
           width: auto;
           cursor: pointer;
           border-radius: 3px;
-          border-color: #3f4257;
           font-weight: 600;
           min-height: 36px;
           outline: 0;
           padding: 0 16px;
           vertical-align: middle;
-          border: 1px solid rgba(0, 0, 0, 0.12);
-          color: #fff;
-          background: #5c5f72; }
+          border: 1px solid #ff5e3a;
+          background-color: #ff5e3a;
+          color: #fff; }
           article.reset-password .reset-password-container .content .form-group button[type="submit"]:hover {
-            background: #3f4257;
-            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); }
+            opacity: 0.8; }
 
 ::selection {
   background-color: #e6e6e6; }

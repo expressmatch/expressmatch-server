@@ -52,6 +52,7 @@
 
         &:hover {
           color: #ececec;
+          outline: none;
         }
         &:active {
           color: #ccc;
@@ -92,6 +93,9 @@
             &:hover{
               background-color: #ececec;
             }
+            &:focus{
+              outline: none;
+            }
 
             &.header{
               font-weight: bold;
@@ -104,6 +108,9 @@
                 -moz-user-select: none;
                 -ms-user-select: none;
                 user-select: none;
+              }
+              &:focus{
+                outline: none;
               }
             }
           }
