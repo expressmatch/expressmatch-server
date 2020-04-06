@@ -45,7 +45,7 @@ let updateProfile = (() => {
         return new Promise((resolve, reject) => {
             axios({
                 method: 'POST',
-                url: '/api/updateProfile',
+                url: '/api/updateprofile',
                 headers: {'Content-type': ' application/json'},
                 data: {
                     profile
@@ -59,10 +59,30 @@ let updateProfile = (() => {
     };
 })();
 
+let uploadphoto = (() => {
+   return (picture) => {
+        return new Promise((resolve, reject) => {
+            axios({
+                method: 'POST',
+                url: '/api/uploadphoto',
+                headers: {'Content-type': ' application/json'},
+                data: {
+                    picture
+                }
+            }).then(response => {
+                resolve(response);
+            }).catch(error => {
+                reject(error);
+            })
+        });
+   };
+})();
+
 const ProfileService = {
     getCurrentProfile,
     getOtherProfile,
-    updateProfile
+    updateProfile,
+    uploadphoto
 };
 
 export default ProfileService;

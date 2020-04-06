@@ -3,8 +3,8 @@ const nodemailer = require("nodemailer");
 const mailUtil = () => {
     let mailOptions = {
         to: user.profile.email,
-        from: 'Express To Match <expresstomatch@gmail.com>',
-        subject: 'Node.js Password Reset',
+        from: process.env.GMAILUN,
+        subject: 'Express To Match - Password Reset',
         text: 'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
         'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
         'http://' + req.headers.host + '/reset/' + token + '\n\n' +

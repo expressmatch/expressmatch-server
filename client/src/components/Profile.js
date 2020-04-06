@@ -146,7 +146,7 @@ class Profile extends React.Component {
                     </div>
                 </div>
                 <div className="right-content">
-                    <form spellCpheck="false">
+                    <form spellCheck="false">
                         <div className="em-form-control">
                             <div className="field-label">
                                 <div>About me</div>

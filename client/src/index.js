@@ -5,6 +5,8 @@ import App from './components/App';
 import configureStore from './store/configureStore';
 import { BrowserRouter } from 'react-router-dom';
 import './styles/main.scss';
+import smoothscroll from 'smoothscroll-polyfill';
+smoothscroll.polyfill();
 
 const store = configureStore();
 
@@ -20,4 +22,3 @@ ReactDOM.render(
 if(module.hot){
     module.hot.accept();
 }
-//TODO: Enhance

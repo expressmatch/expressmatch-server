@@ -33,12 +33,12 @@ class PostsContainer extends React.Component {
     scrollToTop(e) {
         e.preventDefault();
 
-        // window.scroll({
-        //     top: 0,
-        //     behavior: 'smooth'
-        // });
-        document.body.scrollTop = 0;
-        document.documentElement.scrollTop = 0;
+        window.scroll({
+            top: 0,
+            behavior: 'smooth'
+        });
+        // document.body.scrollTop = 0;
+        // document.documentElement.scrollTop = 0;
     }
 
     render() {

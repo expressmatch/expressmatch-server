@@ -3,6 +3,7 @@ import EmModal from '../modal';
 import * as constants from '../../../constants/constants';
 import {connect} from 'react-redux';
 import noImageAvailable from '../../../images/no_image_available.svg';
+import profileService from '../../../services/ProfileService';
 
 class UploadPhotoModal extends React.Component {
 
@@ -12,12 +13,16 @@ class UploadPhotoModal extends React.Component {
         this.header = this.header.bind(this);
         this.content = this.content.bind(this);
         this.onClose = this.onClose.bind(this);
+        this.onFileChange = this.onFileChange.bind(this);
+        this.onSubmit = this.onSubmit.bind(this);
 
         this.state = {
-            dataRequested: false
+            dataRequested: false,
+            selectedFile: null
         }
     }
-    componentWillReceiveProps(nextProps){
+
+    componentWillReceiveProps(nextProps) {
 
     }
 
@@ -38,15 +43,18 @@ class UploadPhotoModal extends React.Component {
                 </div>
                 <div className="right-content">
                     <div className="actions">
-                        {/*<div className="action-item fb-photo">*/}
-                            {/*<button>Use my Facebook Photo</button>*/}
-                        {/*</div>*/}
-                        <div className="action-item new-photo">
-                            <button>Upload a new Photo</button>
-                        </div>
-                        <div className="action-item no-photo">
-                            <button>Don't show a photo</button>
-                        </div>
+                        <form action="/api/uploadphoto"
+                              method="POST"
+                              encType="multipart/form-data"
+                              onSubmit={this.onSubmit}>
+                            <div className="action-item new-photo">
+                                <input type="file"
+                                       name="picture"
+                                       onChange={this.onFileChange}
+                                       accept=".jpg, .png, .jpeg, .gif, .bmp, .tif, .tiff|image/*"/>
+                            </div>
+                            <input type="submit" value="Upload"/>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -69,9 +77,33 @@ class UploadPhotoModal extends React.Component {
                 hideButtons={true}/>
         );
     }
+
+    onFileChange(e) {
+        let file = e.target.files[0],
+            size = Math.round((file.size / 1024));
+
+        if (size >= 256) {
+            alert("File too Big, please select a file less than 256KB");
+            return;
+        }
+        this.setState({
+            selectedFile: file
+        });
+    }
+
+    onSubmit(e) {
+        e.preventDefault();
+
+        if (this.state.selectedFile) {
+            const data = new FormData();
+            data.append('picture', this.state.selectedFile);
+
+            profileService.uploadphoto(data);
+        }
+    }
 }
 
-const mapStateToProps = (state) => ({
+export default UploadPhotoModal;
 
-});
-export default connect(mapStateToProps, {})(UploadPhotoModal);
+// const mapStateToProps = (state) => ({});
+// export default connect(mapStateToProps, {})(UploadPhotoModal);

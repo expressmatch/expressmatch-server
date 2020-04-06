@@ -7,6 +7,7 @@ const ObjectId = require('mongoose').Types.ObjectId;
 module.exports = function (app) {
     app.get('/api/userprofile', getProfile);
     app.post('/api/updateprofile', updateProfile);
+    app.post('/api/uploadphoto', uploadphoto);
 
     return router;
 };
@@ -16,7 +17,7 @@ module.exports = function (app) {
 
 
 
-const getProfile = function (req, res) {
+const getProfile = function (req, res, next) {
     if (req.query.userId) {
         User.findOne({_id: new ObjectId(req.query.userId)}, function (err, user) {
             if (err) next(err);
@@ -33,6 +34,17 @@ const getProfile = function (req, res) {
 
 const updateProfile = function (req, res, next) {
     User.findOneAndUpdate({_id: req.user._id}, {$set: {profile: req.body.profile}}, {new: true}, function(err, user) {
+        if (err)
+            next(err);
+
+        if (user) {
+            res.status(200).json(user.profile);
+        }
+    });
+};
+
+const uploadphoto = function (req, res, next) {
+    User.findOneAndUpdate({_id: req.user._id}, {$set: {photo: req.body.picture}}, {new: true}, function(err, user) {
         if (err)
             next(err);
 

@@ -2,7 +2,7 @@
   display: flex;
 
   .left-content{
-    width: 200px;
+    width: 160px;
 
     .display-pic{
       border: 1px solid #ececec;
@@ -22,18 +22,27 @@
     .actions{
       padding: 0 10px;
 
-      .action-item{
-        button{
-          background:none;
-          margin: 10px;
-          width: 150px;
-          padding: 5px;
-          border-radius: 5px;
-          cursor: pointer;
-          outline: none;
-          font-size: 13px;
-          color: #888da8;
+      input[type="submit"], button{
+        font-size: 16px;
+        width: auto;
+        cursor: pointer;
+        border-radius: 3px;
+        font-weight: 600;
+        min-height: 36px;
+        outline: 0;
+        padding: 0 16px;
+        vertical-align: middle;
+        border: 1px solid #ff5e3a;
+        background-color: #ff5e3a;
+        color: #fff;
+
+        &:hover{
+          opacity: 0.8;
         }
+      }
+
+      .action-item{
+        padding: 10px 0;
       }
     }
   }

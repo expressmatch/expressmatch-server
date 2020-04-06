@@ -12,7 +12,7 @@ const UserSchema = new mongoose.Schema({
     },
     password: {
       type: String
-    },
+    }
   },
   facebook: {
     id: {
