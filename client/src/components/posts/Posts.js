@@ -139,8 +139,14 @@ class Post extends React.Component {
                                 <DropdownMenu right>
                                     {/*<DropdownItem className="menu-item">Add to favourites</DropdownItem>*/}
                                     {this.props.post.isCreatedByUser &&
-                                    <DropdownItem className="menu-item" onClick={this.handleMenuClick} data-type={constants.DELETE_POST}>Delete post</DropdownItem>}
-                                    <DropdownItem className="menu-item" onClick={this.handleMenuClick} data-type={constants.REPORT_SPAM}>Report spam</DropdownItem>
+                                    <DropdownItem className="menu-item" onClick={this.handleMenuClick} data-type={constants.DELETE_POST}>
+                                        <i className="far fa-trash-alt"></i>
+                                        <span className="item-text">Delete post</span>
+                                    </DropdownItem>}
+                                    <DropdownItem className="menu-item" onClick={this.handleMenuClick} data-type={constants.REPORT_SPAM}>
+                                        <i className="far fa-flag"></i>
+                                        <span className="item-text">Report spam</span>
+                                    </DropdownItem>
                                 </DropdownMenu>
                             </UncontrolledDropdown>
                         </div>

@@ -20,6 +20,11 @@
         font-weight: bold; }
         #header .left-content a .app-logo:hover {
           color: #ececec; }
+        #header .left-content a .app-logo .app-name {
+          padding: 0 10px; }
+        #header .left-content a .app-logo i {
+          font-size: 1.5rem;
+          vertical-align: middle; }
   #header .right-content {
     display: flex;
     flex-flow: row; }
@@ -74,6 +79,11 @@
                 -moz-user-select: none;
                 -ms-user-select: none;
                 user-select: none; }
+            #header .right-content .profile .menu-toggle .dropdown-menu .menu-item .item-text {
+              padding: 0 10px; }
+            #header .right-content .profile .menu-toggle .dropdown-menu .menu-item i {
+              zoom: 1.2;
+              vertical-align: middle; }
 
 #content {
   margin: auto;

@@ -20,6 +20,9 @@ const initRoutes			= require("./routes");
 const mongoose 				= require('mongoose');
 const dbConfig 				= require('./config/database');
 const port 					= process.env.PORT || 8080;
+const dotenv				= require('dotenv');
+
+dotenv.config({ path: path.resolve(__dirname, '../.env') });
 
 //-------Configurations---------//
 
@@ -78,6 +81,11 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
+app.use(function(req, res, next){
+    res.locals.success = req.flash('success');
+    res.locals.error = req.flash('error');
+    next();
+});
 
 app.use('/public', express.static("server/public"));
 

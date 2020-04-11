@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import * as actions from '../actions/appActions';
+import * as actions from '../actions/userActions';
 import Header from './Header';
 import Content from './Content';
 import Footer from './Footer';

@@ -30,6 +30,13 @@
         &:hover{
           color: #ececec;
         }
+        .app-name{
+          padding: 0 10px;
+        }
+        i{
+          font-size: 1.5rem;
+          vertical-align: middle;
+        }
       }
     }
   }
@@ -105,6 +112,13 @@
                 -ms-user-select: none;
                 user-select: none;
               }
+            }
+            .item-text{
+              padding: 0 10px;
+            }
+            i{
+              zoom: 1.2;
+              vertical-align: middle;
             }
           }
         }

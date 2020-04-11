@@ -32,7 +32,7 @@ ProfileContainer.propTypes = {
 
 function mapStateToProps(state, ownProps) {
     return {
-        profile: state.profile,
+        profile: state.profile
     };
 }
 

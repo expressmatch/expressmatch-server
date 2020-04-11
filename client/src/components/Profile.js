@@ -138,11 +138,11 @@ class Profile extends React.Component {
                             <source srcSet={this.state.photo}/>
                             <img srcSet={noImageAvailable}/>
                         </picture>
-                        <div className="change-pic">
+                        {!this.props.otherProfile && <div className="change-pic">
                             <span className="action-item" data-type={constants.UPLOAD_PHOTO} onClick={this.changeDisplay}>
                                 Change Display Image
                             </span>
-                        </div>
+                        </div>}
                     </div>
                 </div>
                 <div className="right-content">
@@ -341,7 +341,8 @@ class Profile extends React.Component {
                 <UploadPhotoModal
                     photo={this.state.photo}
                     isOpen={this.state.modal[constants.UPLOAD_PHOTO]}
-                    onClose={this.toggleModal}/>
+                    onClose={this.toggleModal}
+                    uploadPhoto={this.props.actions.uploadPhoto}/>
             </div>
         );
     }

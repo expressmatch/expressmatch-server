@@ -11,7 +11,8 @@ class Header extends React.Component {
                 <div className="left-content">
                     <a href="/posts">
                         <div className="app-logo">
-                            EXPRESS MATCH
+                            <i className="fas fa-link"></i>
+                            <span className="app-name">EXPRESS MATCH</span>
                         </div>
                     </a>
                 </div>
@@ -40,8 +41,14 @@ class Header extends React.Component {
                                     {this.props.user.name ? this.props.user.name : this.props.user.email}
                                 </DropdownItem>
                                 <DropdownItem divider />
-                                <DropdownItem tag="a" href="/profile" className="menu-item">Profile</DropdownItem>
-                                <DropdownItem tag="a" href="/logout" className="menu-item">Logout</DropdownItem>
+                                <DropdownItem tag="a" href="/profile" className="menu-item">
+                                    <i className="far fa-user-circle"></i>
+                                    <span className="item-text">Profile</span>
+                                </DropdownItem>
+                                <DropdownItem tag="a" href="/logout" className="menu-item">
+                                    <i className="fas fa-sign-out-alt"></i>
+                                    <span className="item-text">Logout</span>
+                                </DropdownItem>
                             </DropdownMenu>
                         </UncontrolledDropdown>
                     </div>

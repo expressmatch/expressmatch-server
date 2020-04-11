@@ -53,3 +53,28 @@ export function updateProfileFailure(error){
     return { type: types.UPDATE_PROFILE_FAILURE, error };
 }
 /*-------- LIKE POST - END ---------*/
+
+/*-------- UPLOAD PHOTO - START ---------*/
+export function uploadPhoto(profile) {
+    return (dispatch, getState ) => {
+        dispatch(getUploadPhotoRequest());
+
+        return profileService.uploadphoto(profile).then((data) => {
+            setTimeout(() => {
+                return dispatch(getUploadPhotoSuccess(data));
+            }, delay);
+        }).catch(error => {
+            dispatch(getUploadPhotoFailure(error));
+        })
+    };
+}
+export function getUploadPhotoRequest(){
+    return { type: types.UPLOAD_PHOTO_REQUEST };
+}
+export function getUploadPhotoSuccess(user){
+    return { type: types.UPLOAD_PHOTO_SUCCESS, user };
+}
+export function getUploadPhotoFailure(error){
+    return { type: types.UPLOAD_PHOTO_FAILURE, error };
+}
+/*-------- UPLOAD PHOTO - END ---------*/

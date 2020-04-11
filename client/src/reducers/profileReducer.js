@@ -30,6 +30,22 @@ const profileReducer = (state = initialState.profile, action) => {
             ...state,
             loading: false
         }
+    } else if (action.type === types.UPLOAD_PHOTO_REQUEST) {
+        return {
+            ...state,
+            loading: true
+        };
+    } else if (action.type === types.UPLOAD_PHOTO_SUCCESS) {
+        return {
+            ...state,
+            photo: action.user.profile.url + '?' + + new Date().getTime(),
+            loading: false
+        };
+    } else if (action.type === types.UPLOAD_PHOTO_FAILURE) {
+        return {
+            ...state,
+            loading: false
+        };
     } else{
         return state;
     }

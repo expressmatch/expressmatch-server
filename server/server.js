@@ -20,7 +20,9 @@ const initRoutes			= require("./routes");
 const mongoose 				= require('mongoose');
 const dbConfig 				= require('./config/database');
 const port 					= process.env.PORT || 8080;
-const dotenv				= require('dotenv').config();
+const dotenv				= require('dotenv');
+
+console.log(dotenv.config({ path: path.resolve(__dirname, '../.env.development') }));
 
 //-------Configurations---------//
 

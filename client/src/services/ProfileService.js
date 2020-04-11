@@ -60,17 +60,15 @@ let updateProfile = (() => {
 })();
 
 let uploadphoto = (() => {
-   return (picture) => {
+   return (data) => {
         return new Promise((resolve, reject) => {
             axios({
                 method: 'POST',
                 url: '/api/uploadphoto',
                 headers: {'Content-type': ' application/json'},
-                data: {
-                    picture
-                }
+                data: data
             }).then(response => {
-                resolve(response);
+                resolve(response.data);
             }).catch(error => {
                 reject(error);
             })

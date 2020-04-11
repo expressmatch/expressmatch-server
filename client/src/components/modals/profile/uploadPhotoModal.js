@@ -1,9 +1,8 @@
 import React from 'react';
 import EmModal from '../modal';
 import * as constants from '../../../constants/constants';
-import {connect} from 'react-redux';
+// import {connect} from 'react-redux';
 import noImageAvailable from '../../../images/no_image_available.svg';
-import profileService from '../../../services/ProfileService';
 
 class UploadPhotoModal extends React.Component {
 
@@ -98,7 +97,9 @@ class UploadPhotoModal extends React.Component {
             const data = new FormData();
             data.append('picture', this.state.selectedFile);
 
-            profileService.uploadphoto(data);
+            this.props.uploadPhoto(data).then(() => {
+                this.props.onClose(constants.UPLOAD_PHOTO);
+            });
         }
     }
 }
