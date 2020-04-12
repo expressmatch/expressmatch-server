@@ -1,6 +1,7 @@
 #Env
 .env
 .env.test
+.env.development
 
 
 # Logs
