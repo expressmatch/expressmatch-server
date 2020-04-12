@@ -22,7 +22,7 @@ const dbConfig 				= require('./config/database');
 const port 					= process.env.PORT || 8080;
 const dotenv				= require('dotenv');
 
-console.log(dotenv.config({ path: path.resolve(__dirname, '../.env.development') }));
+dotenv.config({ path: path.resolve(__dirname, '../.env.development') });
 
 //-------Configurations---------//
 
