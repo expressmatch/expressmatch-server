@@ -9,11 +9,6 @@ const bodyParser 			= require('body-parser');
 const session      			= require('express-session');
 const mongoStore 			= require('connect-mongo')(session);
 const flash    				= require('connect-flash');
-const webpack 				= require('webpack');
-const webpackDevMiddleware 	= require('webpack-dev-middleware');
-const webpackHotMiddleware 	= require('webpack-hot-middleware');
-const webpackConfig 		= require('../webpack.config.dev');
-const compiler 				= webpack(webpackConfig);
 const passport 				= require('passport');
 const initPassport			= require("./passport");
 const initRoutes			= require("./routes");
@@ -36,14 +31,6 @@ mongoose.connection.on('error', function(err) {
 
 initPassport(passport);
 
-app.use(webpackDevMiddleware(compiler, {
-    publicPath: webpackConfig.output.publicPath
-}));
-app.use(webpackHotMiddleware(compiler, {
-    log: false,
-    path: '/__webpack_hmr',
-    heartbeat: 10 * 1000
-}));
 app.use(compression());
 app.use(helmet());
 app.use(morgan('dev'));
@@ -88,6 +75,7 @@ app.use(function(req, res, next){
 });
 
 app.use('/public', express.static("server/public"));
+app.use(express.static("client/dist"));
 
 //-------Routes---------//
 initRoutes(app, passport);

@@ -3,6 +3,9 @@
 .env.test
 .env.development
 
+#Dist
+*dist*
+
 
 # Logs
 logs
