@@ -13,11 +13,13 @@ const profileReducer = (state = initialState.profile, action) => {
     } else if( action.type === types.GET_PROFILE_SUCCESS) {
         return {
             ...action.profile,
+            dob: new Date(action.profile.dob),
             loading: false
         };
     } else if( action.type === types.UPDATE_PROFILE_SUCCESS) {
         return {
             ...action.profile,
+            dob: new Date(action.profile.dob),
             loading: false
         }
     } else if( action.type === types.GET_PROFILE_FAILURE) {

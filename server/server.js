@@ -96,8 +96,8 @@ app.get('*', function(req, res) {
 });
 
 //-------Launch---------//
-app.listen(8081, () => {
-	console.log('Express App server listening on post ' + 8081);
+app.listen(port, () => {
+	console.log('Express App server listening on post ' + port);
 });
 
 // function connect() {

@@ -44,7 +44,7 @@ module.exports = function(passport) {
                         email: email,
                         about: "",
                         photo: "",
-                        dob: "",
+                        dob: null,
                         gender: "",
                         currentCity: "",
                         homeTown: "",
