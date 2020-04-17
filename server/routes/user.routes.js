@@ -19,5 +19,5 @@ const getUser = function (req, res, next) {
 };
 
 const contactUs = function(req, res, next) {
-    res.redirect('back');
+    res.status(200).json({});
 };

@@ -5,3 +5,4 @@ export const POST_LIKES = 'POST_LIKES';
 export const COMMENT_LIKES = 'COMMENT_LIKES';
 export const REPLY_LIKES = 'REPLY_LIKES';
 export const UPLOAD_PHOTO = 'UPLOAD_PHOTO';
+export const SUGGESTION_RECEIVED = 'SUGGESTION_RECEIVED';
