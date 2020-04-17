@@ -228,6 +228,18 @@ const postsReducer = (state = initialState.posts, action) => {
                 }
             }
         };
+    } else if (action.type === types.CLEAR_QUICK_FILTER) {
+        return {
+            ...state,
+            filters: {
+                ...state.filters,
+                quick: {
+                    city: false,
+                    caste: false,
+                    motherTongue: false
+                }
+            }
+        };
     } else {
         return state;
     }

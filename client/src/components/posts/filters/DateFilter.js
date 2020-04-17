@@ -20,8 +20,8 @@ class DateFilter extends React.Component {
 
     render() {
         return (
-            <div className="date-filter-container">
-                <div className="panel date-filter">
+            <div className="panel">
+                <div className="date-filter">
                     <Calendar maxDate={new Date()}
                               value={this.props.selected ? new Date(this.props.selected) : new Date()}
                               onChange={this.onChange}/>

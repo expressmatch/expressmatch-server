@@ -192,14 +192,18 @@
     margin-left: 10px;
     padding: 10px 20px;
 
-    .date-filter-container{
+    .panel{
+      margin-bottom: 5px;
+      border: 1px solid #e6ecf5;
       display: flex;
       flex-flow: column;
 
-      .date-filter{
+      .date-filter,
+      .quick-filter{
         margin-bottom: 5px;
       }
-      .today-filter{
+      button.today-filter,
+      button.clear-quick-filter{
         align-self: flex-end;
         margin-bottom: 10px;
         background-color: #888da8;
@@ -217,17 +221,8 @@
           color: #888da8;
         }
       }
-    }
 
-    .panel{
-      margin-bottom: 20px;
-      border: 1px solid #e6ecf5;
-
-      &.date-filter{
-
-      }
-
-      &.quick-filter {
+      .quick-filter {
         display: flex;
         justify-content: flex-start;
         align-items: stretch;
@@ -253,7 +248,7 @@
         }
       }
 
-      &.more-filter{
+      .more-filter{
         background-color: #fff;
       }
     }

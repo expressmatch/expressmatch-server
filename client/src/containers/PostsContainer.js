@@ -59,9 +59,7 @@ class PostsContainer extends React.Component {
                     <QuickFilter
                         actions={this.props.actions}
                         filters={this.props.filters.quick}/>
-                    {/*<div className="panel">*/}
                     {/*<Filters />*/}
-                    {/*</div>*/}
                     <a className="back-to-top" onClick={this.scrollToTop}>
                         <i className="fas fa-arrow-up"></i>
                     </a>

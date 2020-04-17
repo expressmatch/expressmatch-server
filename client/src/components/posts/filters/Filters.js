@@ -13,8 +13,10 @@ class Filters extends React.Component {
 
     render() {
         return (
-            <div className="more-filter">
-                More Filters...
+            <div className="panel">
+                <div className="more-filter">
+                    More Filters...
+                </div>
             </div>
         );
     }

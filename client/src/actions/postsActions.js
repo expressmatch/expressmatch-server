@@ -184,3 +184,6 @@ export function uiDateFilter(date){
 export function uiQuickFilter(filter){
     return { type: types.UI_QUICK_FILTER, filter };
 }
+export function clearQuickFilter(){
+    return { type: types.CLEAR_QUICK_FILTER }
+}
