@@ -2,20 +2,18 @@ const aws = require('aws-sdk');
 const multerS3 = require('multer-s3');
 const multer = require('multer');
 const path = require('path');
-const dotenv = require('dotenv');
-
-dotenv.config({ path: path.resolve(__dirname, '../../.env') });
+const config = require('../config/config');
 
 const s3 = new aws.S3({
-    accessKeyId: process.env.AWS_S3_ACCESS_KEY_ID,
-    secretAccessKey: process.env.AWS_S3_SECRET_ACCESS_KEY,
-    Bucket: process.env.AWS_S3_BUCKET_NAME
+    accessKeyId: config.AWS_S3_ACCESS_KEY_ID,
+    secretAccessKey: config.AWS_S3_SECRET_ACCESS_KEY,
+    Bucket: config.AWS_S3_BUCKET_NAME
 });
 
 const profileImgUpload = multer({
     storage: multerS3({
         s3: s3,
-        bucket: process.env.AWS_S3_BUCKET_NAME,
+        bucket: config.AWS_S3_BUCKET_NAME,
         //acl: 'public-read',
         key: function (req, file, cb) {
             cb(null, 'profile-' + req.user._id.toString() + path.extname(file.originalname))

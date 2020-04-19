@@ -7,7 +7,7 @@ let contactUs = (() => {
             axios({
                 method: 'POST',
                 url: '/api/contactus',
-                headers: {'Content-type': 'application/json'},
+                headers: {'Content-type': 'multipart/form-data'},
                 data: data
             }).then(response => {
                 resolve(response.data);

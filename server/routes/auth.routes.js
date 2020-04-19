@@ -4,6 +4,7 @@ const User = require('../models/User');
 const async = require("async");
 const nodemailer = require("nodemailer");
 const crypto = require("crypto");
+const config = require('../config/config');
 
 module.exports = function(app, passport){
 
@@ -100,15 +101,15 @@ module.exports = function(app, passport){
                 var smtpTransport = nodemailer.createTransport({
                     service: 'gmail',//smtp.gmail.com  //in place of service use host...
                     auth: {
-                        user: process.env.GMAILUN,
-                        pass: process.env.GMAILPW
+                        user: config.NOREPLY_GMAILUN,
+                        pass: config.NOREPLY_GMAILPW
                     }, tls: {
                         rejectUnauthorized: false
                     }
                 });
                 var mailOptions = {
                     to: user.profile.email,
-                    from: process.env.GMAILUN,
+                    from: config.NOREPLY_GMAILUN,
                     subject: 'Express To Match - Password Reset',
                     text: 'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
                     'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
@@ -168,15 +169,15 @@ module.exports = function(app, passport){
                 var smtpTransport = nodemailer.createTransport({
                     service: 'gmail', //smtp.gmail.com  //in place of service use host...
                     auth: {
-                        user: process.env.GMAILUN,
-                        pass: process.env.GMAILPW
+                        user: config.NOREPLY_GMAILUN,
+                        pass: config.NOREPLY_GMAILPW
                     }, tls: {
                         rejectUnauthorized: false
                     }
                 });
                 var mailOptions = {
                     to: user.profile.email,
-                    from: process.env.GMAILUN,
+                    from: config.NOREPLY_GMAILUN,
                     subject: 'Express To Match - Your password has been changed',
                     text: 'Hello,\n\n' +
                     'This is a confirmation that the password for your account ' + user.profile.email + ' has just been changed.\n'
