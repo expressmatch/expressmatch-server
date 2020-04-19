@@ -79,17 +79,19 @@ class CommentItem extends React.Component {
                 comment = target.closest('.comment-item'),
                 postId = post && post.dataset['id'],
                 commentId = comment && comment.dataset['id'],
-                commentStr = target.value;
+                commentStr = target.value.trim();
 
-            this.setState({
-                showNewComment: {
-                    ...this.state.showNewComment,
-                    [commentId]: false
-                }
-            });
-            this.props.actions.postComment(postId, commentId, commentStr).then(() => {
+            if (commentStr.length > 0) {
+                this.setState({
+                    showNewComment: {
+                        ...this.state.showNewComment,
+                        [commentId]: false
+                    }
+                });
+                this.props.actions.postComment(postId, commentId, commentStr).then(() => {
 
-            });
+                });
+            }
         }
     }
 

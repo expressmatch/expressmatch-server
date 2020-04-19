@@ -44,13 +44,15 @@ class Comments extends React.Component {
             let target = e.currentTarget,
                 post = target.closest('.post'),
                 postId = post && post.dataset['id'],
-                commentStr = target.value;
+                commentStr = target.value.trim();
 
-            this.props.actions.postComment(postId, null, commentStr).then(() => {
-                // this.setState({
-                //     comment: ""
-                // });
-            });
+            if ( commentStr.length > 0 ) {
+                this.props.actions.postComment(postId, null, commentStr).then(() => {
+                    // this.setState({
+                    //     comment: ""
+                    // });
+                });
+            }
         }
     }
 
