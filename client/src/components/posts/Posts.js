@@ -92,7 +92,7 @@ class Post extends React.Component {
     }
 
     handleMenuClick(e) {
-        let target = e.target,
+        let target = e.currentTarget,
             type = target.dataset['type'];
 
         this.toggleModal(type);
