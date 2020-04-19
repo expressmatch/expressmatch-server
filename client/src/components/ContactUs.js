@@ -111,11 +111,11 @@ class ContactUs extends React.Component {
                     </div>
                     <div className="em-form-control">
                         <div className="field-label">
-                            <div>Feedback/Comments</div>
+                            <div>Feedback/Concerns</div>
                             <div className="sub-text">(Got any suggestions - Tell us)</div>
                         </div>
                         <div className="field-value">
-                            <textarea name="content" placeholder={"Enter your valuable feedback to improve this app"}
+                            <textarea name="content" placeholder={"Enter your valuable feedback or concern to improve this app"}
                                       onChange={this.onChange}></textarea>
                             {this.state.charCount < this.state.minCharCount &&
                             <div className="sub-text">

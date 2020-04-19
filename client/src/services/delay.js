@@ -1,1 +1,1 @@
-export default process.env.DELAY;
+export default 0;

@@ -32,10 +32,12 @@ class CreatePost extends React.Component {
         e.preventDefault();
 
         if (this.state.charCount >= this.state.minCharCount) {
+
             let data = {
                 content: this.state.post.trim()
             };
             this.props.actions.createPost(data).then(() => {
+                this.props.actions.uiDateFilter(new Date());
                 this.props.history.push('/posts');
             });
         }
