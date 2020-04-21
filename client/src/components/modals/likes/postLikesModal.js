@@ -50,7 +50,7 @@ class PostLikesModal extends React.Component {
                                         <img src={value.profile.photo}/>
                                     </div>
                                     <div className="display-name">
-                                        <a href="#">{value.profile.name}</a>
+                                        <a target="_blank" href={`/profile/` + value._id}>{value.profile.name}</a>
                                     </div>
                                 </div>
                             );
