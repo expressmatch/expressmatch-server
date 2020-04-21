@@ -26,7 +26,7 @@ const contactUs = function (req, res, next) {
         to: config.ADMIN_GMAILUN,
         from: `${req.body.name} <${req.body.email}>`,
         subject: 'Sugesstion Received',
-        text: `${req.body.content}\n\n From \n ${req.body.name}`,
+        text: `${req.body.content}\n\nFrom \n${req.body.name} \n\nEmail: ${req.body.email} `,
     });
     mailUtil.sendMail().then(() => {
         console.log('Mail sent successfully');
