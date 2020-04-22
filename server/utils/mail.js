@@ -30,10 +30,11 @@ const mailUtil = () => {
     const sendMail = () => {
         return new Promise((resolve, reject) => {
             smtpTransport.sendMail(mailOptions, function(err) {
+                smtpTransport.close();
+
                 if(err){
                     reject('Error during sending mail');
                 }
-                smtpTransport.close();
                 resolve('Mail Sent Successfully');
             });
         });

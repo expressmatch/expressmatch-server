@@ -1,5 +1,7 @@
-const LocalStrategy     = require('passport-local').Strategy;
-const User              = require('../models/User');
+const LocalStrategy = require('passport-local').Strategy;
+const User = require('../models/User');
+const config = require('../config/config');
+const mailUtil = require('../utils/mail')();
 //const Profile           = require('../models/Profile');
 
 module.exports = function(passport) {
@@ -67,6 +69,19 @@ module.exports = function(passport) {
                         //         return done(err);
                         //         //TODO: Delete User that has been created too
                         // });
+
+                        if (newUser.profile.email) {
+                            mailUtil.setOptions({
+                                to: newUser.profile.email,
+                                from: `Express To Match <${config.NOREPLY_GMAILUN}>`,
+                                subject: 'Welcome to Express To Match!',
+                                text: `Welcome! \n\nYou have signed up successfully. You can create posts, share comments, and reply to others comments now. \n\nFind your perfect match. Start Expressing yourself and be social. \n\nRegards\nExpress To Match`,
+                            });
+                            mailUtil.sendMail().then(() => {
+
+                            });
+                        }
+
                         return done(null, newUser);
                     });
                 }

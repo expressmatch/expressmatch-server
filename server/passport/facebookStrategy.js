@@ -1,6 +1,7 @@
 const FacebookStrategy = require('passport-facebook').Strategy;
 const User = require('../models/User');
 const config = require('../config/config');
+const mailUtil = require('../utils/mail')();
 
 module.exports = function (passport) {
 
@@ -55,6 +56,18 @@ module.exports = function (passport) {
                     newUser.save(function (err) {
                         if (err)
                             done(err);
+
+                        if (newUser.profile.email) {
+                            mailUtil.setOptions({
+                                to: newUser.profile.email,
+                                from: `Express To Match <${config.NOREPLY_GMAILUN}>`,
+                                subject: 'Welcome to Express To Match!',
+                                text: `Welcome! \n\nYou have signed up successfully. You can create posts, share comments, and reply to others comments now. \n\nFind your perfect match. Start Expressing yourself and be social. \n\nRegards\nExpress To Match`,
+                            });
+                            mailUtil.sendMail().then(() => {
+                                // console.log('Mail sent successfully');
+                            });
+                        }
 
                         return done(null, newUser);
                     });
