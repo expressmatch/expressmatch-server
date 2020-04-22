@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const User = require('../models/User');
 const imageUpload = require("./imageUpload");
+const mailUtil = require('../utils/mail')();
+const config = require('../config/config');
 const ObjectId = require('mongoose').Types.ObjectId;
 
 module.exports = function (app) {
@@ -37,6 +39,15 @@ const updateProfile = function (req, res, next) {
             next(err);
 
         if (user) {
+            mailUtil.setOptions({
+                to: user.profile.email,
+                from: `Express To Match <${config.NOREPLY_GMAILUN}>`,
+                subject: 'Profile Updated!',
+                text: `Dear user,\n\nYour profile has been successfully updated in our records. Enjoy using our website.\n\nRegards\nExpress To Match. `,
+            });
+            mailUtil.sendMail().then(() => {
+                // console.log('Mail sent successfully');
+            });
             res.status(200).json(user.profile);
         }
     });
@@ -71,6 +82,15 @@ const uploadphoto = function (req, res, next) {
                             if (err) {
                                 next(err);
                             }
+                            mailUtil.setOptions({
+                                to: savedUser.profile.email,
+                                from: `Express To Match <${config.NOREPLY_GMAILUN}>`,
+                                subject: 'Photo Updated!',
+                                text: `Dear user,\n\nYour picture has been successfully updated in our records. Enjoy using our website.\n\nRegards\nExpress To Match. `,
+                            });
+                            mailUtil.sendMail().then(() => {
+                                // console.log('Mail sent successfully');
+                            });
                             res.status(200).json({
                                 profile: {
                                     url: savedUser.profile.photo

@@ -109,8 +109,8 @@ module.exports = function(app, passport){
                 });
                 var mailOptions = {
                     to: user.profile.email,
-                    from: config.NOREPLY_GMAILUN,
-                    subject: 'Express To Match - Password Reset',
+                    from: `Express To Match <${config.NOREPLY_GMAILUN}`,
+                    subject: 'Password Reset',
                     text: 'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
                     'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
                     'http://' + req.headers.host + '/reset/' + token + '\n\n' +
@@ -177,8 +177,8 @@ module.exports = function(app, passport){
                 });
                 var mailOptions = {
                     to: user.profile.email,
-                    from: config.NOREPLY_GMAILUN,
-                    subject: 'Express To Match - Your password has been changed',
+                    from: `Express To Match <${config.NOREPLY_GMAILUN}`,
+                    subject: 'Your password has been changed',
                     text: 'Hello,\n\n' +
                     'This is a confirmation that the password for your account ' + user.profile.email + ' has just been changed.\n'
                 };
