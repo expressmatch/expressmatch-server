@@ -16,7 +16,24 @@ const config = {
 
     AWS_S3_ACCESS_KEY_ID: process.env.AWS_S3_ACCESS_KEY_ID,
     AWS_S3_SECRET_ACCESS_KEY: process.env.AWS_S3_SECRET_ACCESS_KEY,
-    AWS_S3_BUCKET_NAME: process.env.AWS_S3_BUCKET_NAME
+    AWS_S3_BUCKET_NAME: process.env.AWS_S3_BUCKET_NAME,
+
+    // Express App
+    // 'facebookAuth' : {
+    //     'clientID'      : '1903191953042147', // your App ID
+    //     'clientSecret'  : '5cca17782e72b62a68f7420010ec7484', // your App Secret
+    //     'callbackURL'   : 'http://localhost:8080/auth/facebook/callback',
+    //     'profileURL'    : 'https://graph.facebook.com/v2.5/me?fields=first_name,last_name,email',
+    //     'profileFields' : ['id', 'email', 'name'] // For requesting permissions from Facebook API
+    // },
+    // Express - Test App
+    facebookAuth : {
+        clientID      : process.env.fb_auth_clientID,
+        clientSecret  : process.env.fb_auth_clientSecret,
+        callbackURL   : process.env.fb_auth_callbackURL,
+        profileURL    : process.env.fb_auth_profileURL,
+        profileFields : process.env.fb_auth_profileFields.split(',')
+    }
 };
 
 module.exports = config;
