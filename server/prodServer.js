@@ -13,16 +13,13 @@ const passport 				= require('passport');
 const initPassport			= require("./passport");
 const initRoutes			= require("./routes");
 const mongoose 				= require('mongoose');
-const dbConfig 				= require('./config/database');
 const port 					= process.env.PORT || 8080;
-const dotenv				= require('dotenv');
-
-dotenv.config({ path: path.resolve(__dirname, '../.env') });
+const config 				= require('./config/config');
 
 //-------Configurations---------//
 
 //const db = connect();
-mongoose.connect(dbConfig.url, {}, () => {
+mongoose.connect(`mongodb://${config.DB_HOST}:${config.DB_PORT}/expressDB`, {}, () => {
     console.log("DB Connected Succesfully.");
 });
 mongoose.connection.on('error', function(err) {

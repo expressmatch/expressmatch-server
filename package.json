@@ -4,10 +4,10 @@
   "description": "Express Match",
   "main": "index.js",
   "scripts": {
-    "build": "nodemon server/server.js &",
+    "dev": "pm2 start server/server.js &",
     "build-css": "node_modules/node-sass/bin/node-sass --include-path server/scss server/scss/main.scss server/public/css/main.css --outputStyle expanded",
-    "debug": "nodemon --inspect server/server.js",
-    "prod:build": "node_modules/webpack/bin/webpack.js --config webpack.config.prod.js --mode production",
+    "debug:dev": "pm2 start --inspect server/server.js",
+    "prod:build": "NODE_ENV=production node_modules/webpack/bin/webpack.js --config webpack.config.prod.js --mode production",
     "prod": "npm run prod:build && node server/prodServer.js &",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
