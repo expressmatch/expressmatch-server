@@ -2,6 +2,8 @@
 .env
 .env.test
 .env.development
+.env.prod
+.env.production
 
 #Dist
 *dist*

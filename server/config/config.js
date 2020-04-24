@@ -1,13 +1,15 @@
 const path = require('path');
 const dotenv = require('dotenv');
 
-dotenv.config({ path: path.resolve(__dirname, '../../.env') });
+dotenv.config({ path: path.resolve(__dirname, `../../.env.${process.env.NODE_ENV}`) });
 
 const config = {
     DELAY: 0,
 
     DB_HOST: 'localhost',
     DB_PORT: '27017',
+    DB_USER: null,
+    DB_PASS: null,
 
     NOREPLY_GMAILUN: process.env.NOREPLY_GMAILUN,
     NOREPLY_GMAILPW: process.env.NOREPLY_GMAILPW,
@@ -22,7 +24,7 @@ const config = {
     // 'facebookAuth' : {
     //     'clientID'      : '1903191953042147', // your App ID
     //     'clientSecret'  : '5cca17782e72b62a68f7420010ec7484', // your App Secret
-    //     'callbackURL'   : 'http://localhost:8080/auth/facebook/callback',
+    //     'callbackURL'   : 'http://expresstomatch.com/auth/facebook/callback',
     //     'profileURL'    : 'https://graph.facebook.com/v2.5/me?fields=first_name,last_name,email',
     //     'profileFields' : ['id', 'email', 'name'] // For requesting permissions from Facebook API
     // },
