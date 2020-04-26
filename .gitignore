@@ -4,6 +4,7 @@
 .env.development
 .env.prod
 .env.production
+*.env*
 
 #Dist
 *dist*

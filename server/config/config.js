@@ -1,15 +1,15 @@
 const path = require('path');
 const dotenv = require('dotenv');
 
-dotenv.config({ path: path.resolve(__dirname, `../../.env.${process.env.NODE_ENV}`) });
+dotenv.config({ path: path.resolve(__dirname, '../../.env') });
 
 const config = {
     DELAY: 0,
 
-    DB_HOST: process.env.DB_HOST,
-    DB_PORT: process.env.DB_PORT,
-    DB_USER: process.env.DB_USER,
-    DB_PASS: process.env.DB_PASS,
+    DB_HOST: process.env.DB_HOST || 'localhost',
+    DB_PORT: process.env.DB_PORT || '27017',
+    DB_USER: process.env.DB_USER || null,
+    DB_PASS: process.env.DB_PASS || null,
 
     NOREPLY_GMAILUN: process.env.NOREPLY_GMAILUN,
     NOREPLY_GMAILPW: process.env.NOREPLY_GMAILPW,
