@@ -86,6 +86,7 @@ app.use('/public', express.static("server/public"));
 
 //-------Routes---------//
 initRoutes(app, passport);
+console.log(listRoutes(app));
 
 // Catch no route match, always at the end
 app.get('*', function(req, res) {
@@ -104,3 +105,28 @@ app.listen(port, () => {
 //   db.on("open", () => logger.connected(server.mongoUri));
 //   return db;
 // }
+
+function listRoutes(app, routes, stack, parent){
+
+    parent = parent || '';
+    if(stack){
+        stack.forEach(function(r){
+            if (r.route && r.route.path){
+                var method = '';
+
+                for(method in r.route.methods){
+                    if(r.route.methods[method]){
+                        routes.push({method: method.toUpperCase(), path: parent + r.route.path});
+                    }
+                }
+
+            } else if (r.handle && r.handle.name == 'router') {
+                const routerName = r.regexp.source.replace("^\\","").replace("\\/?(?=\\/|$)","");
+                return listRoutes(app, routes, r.handle.stack, parent + routerName);
+            }
+        });
+        return routes;
+    } else {
+        return listRoutes(app, [], app._router.stack);
+    }
+}
