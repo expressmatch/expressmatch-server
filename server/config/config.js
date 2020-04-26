@@ -6,10 +6,10 @@ dotenv.config({ path: path.resolve(__dirname, `../../.env.${process.env.NODE_ENV
 const config = {
     DELAY: 0,
 
-    DB_HOST: 'localhost',
-    DB_PORT: '27017',
-    DB_USER: null,
-    DB_PASS: null,
+    DB_HOST: process.env.DB_HOST,
+    DB_PORT: process.env.DB_PORT,
+    DB_USER: process.env.DB_USER,
+    DB_PASS: process.env.DB_PASS,
 
     NOREPLY_GMAILUN: process.env.NOREPLY_GMAILUN,
     NOREPLY_GMAILPW: process.env.NOREPLY_GMAILPW,
@@ -20,16 +20,7 @@ const config = {
     AWS_S3_SECRET_ACCESS_KEY: process.env.AWS_S3_SECRET_ACCESS_KEY,
     AWS_S3_BUCKET_NAME: process.env.AWS_S3_BUCKET_NAME,
 
-    // Express App
-    // 'facebookAuth' : {
-    //     'clientID'      : '1903191953042147', // your App ID
-    //     'clientSecret'  : '5cca17782e72b62a68f7420010ec7484', // your App Secret
-    //     'callbackURL'   : 'http://expresstomatch.com/auth/facebook/callback',
-    //     'profileURL'    : 'https://graph.facebook.com/v2.5/me?fields=first_name,last_name,email',
-    //     'profileFields' : ['id', 'email', 'name'] // For requesting permissions from Facebook API
-    // },
-    // Express - Test App
-    facebookAuth : {
+    facebookAuth: {
         clientID      : process.env.fb_auth_clientID,
         clientSecret  : process.env.fb_auth_clientSecret,
         callbackURL   : process.env.fb_auth_callbackURL,

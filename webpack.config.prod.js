@@ -20,7 +20,7 @@ module.exports = {
         new webpack.NamedModulesPlugin(),
         new webpack.NoEmitOnErrorsPlugin(),
         new webpack.DefinePlugin({
-            "process.env.NODE_ENV": JSON.stringify("development")
+            'process.env.NODE_ENV': JSON.stringify('production')
         }),
         new htmlWebpackPlugin({
             template: 'client/index.html'
@@ -38,8 +38,8 @@ module.exports = {
                 }
             },
             {
-	    		test: /\.(jpe?g|png|svg|gif)$/i,
-	    		loader: 'url-loader?name=[name].[ext]'
+                test: /\.(jpe?g|png|svg|gif)$/i,
+                loader: 'url-loader?name=[name].[ext]'
             },
             {
                 test: /(\.css|\.scss|\.sass)$/,
