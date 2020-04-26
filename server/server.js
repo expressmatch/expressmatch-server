@@ -24,7 +24,7 @@ const config 				= require('./config/config');
 //-------Configurations---------//
 
 //const db = connect();
-mongoose.connect(`mongodb://${config.DB_HOST}:${config.DB_PORT}/expressDB`, {}, () => {
+mongoose.connect(`mongodb://${config.DB_HOST}:${config.DB_PORT}/${config.DB_NAME}`, {}, () => {
 	console.log("DB Connected Succesfully.");
 });
 mongoose.connection.on('error', function(err) {
@@ -55,14 +55,14 @@ app.set('view engine', 'ejs');
 
 // required for passport
 app.use(session({
-	secret: 'my_express_app_idea',
+	secret: process.env.SESSION_SECRET,
     saveUninitialized: false,
 	resave: false,
     name: "em.sid",
     store: new mongoStore({
 		mongooseConnection: mongoose.connection,
         touchAfter: 24 * 3600, //1 day in seconds
-        secret: 'my_express_app_idea_session',
+        secret: process.env.SESSION_STORE_SECRET,
 		//Not needed as maxAge is set
         //ttl: (7 * 24 * 60 * 60) //7 days, no need cookie maxAge is this is set, also need this as session cookie has no expiry
 	}),
