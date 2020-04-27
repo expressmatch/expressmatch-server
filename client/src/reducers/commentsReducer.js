@@ -148,17 +148,17 @@ const commentsReducer = (state = initialState.posts.entities.comments, action) =
     } else if (action.type === types.GET_COMMENT_LIKES_REQUEST) {
         return {
             ...state,
-            //loading: true
+            loading: true
         };
     } else if (action.type === types.GET_COMMENT_LIKES_FAILURE) {
         return {
             ...state,
-            //loading: false
+            loading: false
         };
     } else if (action.type === types.GET_COMMENT_LIKES_SUCCESS) {
         return {
             ...state,
-            //loading: false,
+            loading: false,
 
             byId: {
                 ...state.byId,

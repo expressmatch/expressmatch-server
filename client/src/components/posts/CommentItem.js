@@ -166,7 +166,8 @@ class CommentItem extends React.Component {
                 <CommentLikesModal
                     isOpen={this.state.modal[constants.COMMENT_LIKES]}
                     commentId={this.props.comment._id}
-                    onClose={this.toggleModal}/>
+                    onClose={this.toggleModal}
+                    loading={this.props.loading}/>
                 <DeleteCommentModal
                     isOpen={this.state.modal[constants.DELETE_COMMENT]}
                     postId={this.props.post._id}
@@ -189,7 +190,8 @@ class CommentItem extends React.Component {
                                 <ReplyItem key={reply._id}
                                     comment={this.props.comment}
                                     reply={reply}
-                                    actions={this.props.actions}/>
+                                    actions={this.props.actions}
+                                    loading={this.props.loading}/>
                             );
                         })}
                     </div>

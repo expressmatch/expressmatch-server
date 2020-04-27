@@ -97,7 +97,8 @@ class Comments extends React.Component {
                                             <CommentItem key={comment._id}
                                                 post={this.props.post}
                                                 comment={comment}
-                                                actions={this.props.actions}/>
+                                                actions={this.props.actions}
+                                                loading={this.props.loading}/>
                                         );
                                     })}
                                 </div>

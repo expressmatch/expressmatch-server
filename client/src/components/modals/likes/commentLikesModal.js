@@ -41,7 +41,8 @@ class CommentLikesModal extends React.Component {
     content() {
         return (
             <div className="likes-container">
-                {this.props.comments.byId[this.props.commentId] &&
+                {this.props.loading && <div>Loading...</div>}
+                {!this.props.loading && this.props.comments.byId[this.props.commentId] &&
                     this.props.comments.byId[this.props.commentId].likedBy &&
                     this.props.comments.byId[this.props.commentId].likedBy.length ?
                     (
@@ -57,7 +58,7 @@ class CommentLikesModal extends React.Component {
                                 </div>
                             );
                         })
-                    ): null
+                    ): !this.props.loading && <div>No Likes yet. Be the first one to like it.</div>
                 }
             </div>
         )

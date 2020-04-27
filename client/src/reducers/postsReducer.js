@@ -182,17 +182,17 @@ const postsReducer = (state = initialState.posts, action) => {
     } else if (action.type === types.GET_POST_LIKES_REQUEST) {
         return {
             ...state,
-            //loading: true
+            loading: true
         };
     } else if (action.type === types.GET_POST_LIKES_FAILURE) {
         return {
             ...state,
-            //loading: false
+            loading: false
         };
     } else if (action.type === types.GET_POST_LIKES_SUCCESS) {
         return {
             ...state,
-            //loading: false,
+            loading: false,
             entities: {
                 ...state.entities,
                 posts: {

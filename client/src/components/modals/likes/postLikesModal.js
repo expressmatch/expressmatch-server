@@ -41,7 +41,8 @@ class PostLikesModal extends React.Component {
     content() {
         return (
             <div className="likes-container">
-                {this.props.posts.byId[this.props.postId].likedBy && this.props.posts.byId[this.props.postId].likedBy.length ?
+                {this.props.loading && <div>Loading...</div>}
+                {!this.props.loading && this.props.posts.byId[this.props.postId].likedBy && this.props.posts.byId[this.props.postId].likedBy.length ?
                     (
                         this.props.posts.byId[this.props.postId].likedBy.map((value) => {
                             return (
@@ -55,7 +56,7 @@ class PostLikesModal extends React.Component {
                                 </div>
                             );
                         })
-                    ): null
+                    ): !this.props.loading && <div>No Likes yet. Be the first one to like it.</div>
                 }
             </div>
         )

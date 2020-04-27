@@ -212,7 +212,8 @@ class Post extends React.Component {
                 <PostLikesModal
                     isOpen={this.state.modal[constants.POST_LIKES]}
                     postId={this.props.post._id}
-                    onClose={this.toggleModal}/>
+                    onClose={this.toggleModal}
+                    loading={this.props.loading}/>
             </article>
         );
     }

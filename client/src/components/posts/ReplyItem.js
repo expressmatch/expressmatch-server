@@ -94,7 +94,8 @@ class ReplyItem extends React.Component {
                 <ReplyLikesModal
                     isOpen={this.state.modal[constants.REPLY_LIKES]}
                     commentId={this.props.reply._id}
-                    onClose={this.toggleModal}/>
+                    onClose={this.toggleModal}
+                    loading={this.props.loading}/>
                 <DeleteCommentModal
                     isOpen={this.state.modal[constants.DELETE_COMMENT]}
                     parentCommentId={this.props.comment._id}
