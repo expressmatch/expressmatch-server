@@ -68,7 +68,7 @@ app.use(session({
 	cookie: {
 		path: "/",
         httpOnly: true,
-    	sameSite: true
+        sameSite: "none"
 	}
 }));
 app.use(passport.initialize());

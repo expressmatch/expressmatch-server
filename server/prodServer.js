@@ -60,7 +60,7 @@ app.use(session({
         //maxAge: 7 * 24 * 60 * 60 * 1000, //7 day in milliseconds
         httpOnly: true,
         secure: true,
-        sameSite: true
+        sameSite: "none"
     }
 }));
 app.use(passport.initialize());
