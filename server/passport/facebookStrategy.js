@@ -23,7 +23,7 @@ module.exports = function (passport) {
             User.findOne({'facebook.id': profile.id}, function (err, user) {
 
                 if (err)
-                    done(err);
+                    return done(err);
 
                 if (user) {
                     return done(null, user);
@@ -55,7 +55,7 @@ module.exports = function (passport) {
 
                     newUser.save(function (err) {
                         if (err)
-                            done(err);
+                            return done(err);
 
                         if (newUser.profile.email) {
                             mailUtil.setOptions({
