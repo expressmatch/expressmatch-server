@@ -25,9 +25,6 @@ const UserSchema = new mongoose.Schema({
     token: {
       type: String
     }
-    // photos: {
-    //   type: [{ value: String}]
-    // }
   },
     profile: {
         name: {
@@ -73,6 +70,9 @@ const UserSchema = new mongoose.Schema({
         organization: {
             type: String
         },
+        verified: {
+            type: Boolean
+        }
         // interests: {
         //     type: [String]
         // }

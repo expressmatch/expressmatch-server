@@ -50,7 +50,8 @@ module.exports = function (passport) {
                         caste: "",
                         subCaste: "",
                         job: "",
-                        organization: ""
+                        organization: "",
+                        verified: false
                     };
 
                     newUser.save(function (err) {
