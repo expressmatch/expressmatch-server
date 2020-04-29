@@ -58,17 +58,15 @@ app.use(session({
 	secret: process.env.SESSION_SECRET,
     saveUninitialized: false,
 	resave: false,
-    name: "em.sid",
+    name: process.env.SESSION_NAME,
     store: new mongoStore({
 		mongooseConnection: mongoose.connection,
         touchAfter: 24 * 3600, //1 day in seconds
         secret: process.env.SESSION_STORE_SECRET,
-		//Not needed as maxAge is set
-        //ttl: (7 * 24 * 60 * 60) //7 days, no need cookie maxAge is this is set, also need this as session cookie has no expiry
+		ttl: (7 * 24 * 60 * 60) //7 days, no need cookie maxAge is this is set, also need this as session cookie has no expiry
 	}),
 	cookie: {
 		path: "/",
-        maxAge: 7 * 24 * 60 * 60 * 1000, //7 day in milliseconds
         httpOnly: true,
     	sameSite: true
 	}

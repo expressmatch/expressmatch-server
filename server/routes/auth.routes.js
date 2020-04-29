@@ -26,7 +26,7 @@ module.exports = function(app, passport){
         if(req.isAuthenticated()){
             res.redirect('/posts');
         }else{
-            res.render('login.ejs', { message: req.flash('error') });
+            res.render('login.ejs');
         }
     });
     app.post('/login', passport.authenticate('local-login', {
@@ -63,6 +63,13 @@ module.exports = function(app, passport){
     // LOGOUT ==============================
     // =====================================
     app.get('/logout', function(req, res) {
+        if (req.sessionStore){
+            req.sessionStore.destroy(req.sessionID, function(error){
+                if (!error){
+                    console.log('Session store associated with the session has been destroyed');
+                }
+            });
+        }
         req.logOut();
         req.session.destroy();
         res.redirect('/');
@@ -72,7 +79,7 @@ module.exports = function(app, passport){
     // FORGOT PASSWORD =====================
     // =====================================
     app.get('/forgot', function(req, res) {
-        res.render('forgot');
+        res.render('forgot.ejs');
     });
     app.post('/forgot', function(req, res, next) {
         async.waterfall([
@@ -113,7 +120,7 @@ module.exports = function(app, passport){
                     subject: 'Password Reset',
                     text: 'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
                     'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
-                    'http://' + req.headers.host + '/reset/' + token + '\n\n' +
+                    req.protocol + '://' + req.headers.host + '/reset/' + token + '\n\n' +
                     'If you did not request this, please ignore this email and your password will remain unchanged.\n'
                 };
                 smtpTransport.sendMail(mailOptions, function(err) {
@@ -133,7 +140,7 @@ module.exports = function(app, passport){
                 req.flash('error', 'Password reset token is invalid or has expired.');
                 return res.redirect('/forgot');
             }
-            res.render('reset', {token: req.params.token});
+            res.render('reset.ejs', {token: req.params.token});
         });
     });
 

@@ -6,6 +6,10 @@ dotenv.config({ path: path.resolve(__dirname, '../../.env') });
 const config = {
     DELAY: 0,
 
+    SESSION_SECRET: process.env.SESSION_SECRET,
+    SESSION_STORE_SECRET: process.env.SESSION_STORE_SECRET,
+    SESSION_NAME: process.env.SESSION_NAME,
+
     DB_HOST: process.env.DB_HOST || 'localhost',
     DB_PORT: process.env.DB_PORT || '27017',
     DB_NAME: process.env.DB_NAME,
