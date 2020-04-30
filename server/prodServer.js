@@ -80,7 +80,7 @@ initRoutes(app, passport);
 
 // Catch no route match, always at the end
 app.get('*', function(req, res) {
-    res.sendFile(path.resolve(__dirname,'../client/index.html'));
+    res.sendFile(path.resolve(__dirname,'../client/dist/index.html'));
 });
 
 //-------Launch---------//
