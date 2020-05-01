@@ -27,8 +27,8 @@ body{
   margin: 0;
   font-family: sans-serif;
   font-size: 13px;
-  color: #888da8;
-  background-color: #edf2f6;
+  color: $em-color;
+  background-color: $em-bg-color;
   overflow-y: auto;
 
 }
@@ -36,7 +36,7 @@ body, input, textarea, select, header, article, section, aside, pre {
   line-height: 1.6;
   letter-spacing: 0.7px;
   font-size: 13px;
-  color: #888da8;
+  color: $em-color;
 }
 
 

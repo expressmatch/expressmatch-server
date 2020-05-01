@@ -12,12 +12,12 @@
         .btn{
           font-size: 13px;
           &.btn-primary{
-            background-color: #888da8;
-            border-color: #888da8;
+            background-color: $em-primary-btn-bg-color;
+            border-color: $em-primary-btn-border-color;
 
             &:hover,&:active{
-              background-color: #8885a8;
-              border-color: #8885a8;
+              background-color: $em-primary-btn-bg-color-hover;
+              border-color: $em-primary-btn-border-color-hover;
             }
           }
           &.btn-secondary{
