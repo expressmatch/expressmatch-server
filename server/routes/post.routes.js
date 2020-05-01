@@ -4,6 +4,7 @@ const ObjectId = require('mongoose').Types.ObjectId;
 const Post = require('../models/Post');
 const Comment = require('../models/Comment');
 const User = require('../models/User');
+const { ErrorHandler } = require('../utils/error');
 
 module.exports = function (app) {
 
@@ -149,6 +150,7 @@ const deletePost = function (req, res, next) {
         "postedBy.userId": new ObjectId(req.user._id)
     }, function (err, post) {
         if (err) next(err);
+        if (!post) next(new ErrorHandler(404, 'The item you requested for is not found'));
 
         if (post) {
             Post.remove({_id: req.params.postId}, function (err) {

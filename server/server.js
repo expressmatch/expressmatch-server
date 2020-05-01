@@ -20,6 +20,7 @@ const initRoutes			= require("./routes");
 const mongoose 				= require('mongoose');
 const port 					= process.env.PORT || 8080;
 const config 				= require('./config/config');
+const { handleError }       = require('./utils/error');
 
 //-------Configurations---------//
 
@@ -91,18 +92,13 @@ app.get('*', function(req, res) {
 	res.sendFile(path.resolve(__dirname,'../client/index.html'));
 });
 
+app.use((error, req, res, next) => {
+    handleError(error, res);
+});
 //-------Launch---------//
 app.listen(port, () => {
 	console.log('Express App server listening on post ' + port);
 });
-
-// function connect() {
-//   const options = { server: { socketOptions: { keepAlive: 1 } } };
-//   const db = mongoose.connect(server.mongoUri, options).connection;
-//   db.on("error", (err) => logger.error(err));
-//   db.on("open", () => logger.connected(server.mongoUri));
-//   return db;
-// }
 
 function listRoutes(app, routes, stack, parent){
 

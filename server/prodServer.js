@@ -15,6 +15,7 @@ const initRoutes			= require("./routes");
 const mongoose 				= require('mongoose');
 const port 					= process.env.PORT || 8080;
 const config 				= require('./config/config');
+const { handleError }       = require('./utils/error');
 
 //-------Configurations---------//
 
@@ -51,13 +52,10 @@ app.use(session({
         mongooseConnection: mongoose.connection,
         touchAfter: 24 * 3600, //1 day in seconds
         secret: process.env.SESSION_STORE_SECRET,
-        //Not needed as it uses the trust proxy setting from express
-        //proxy: true,
         ttl: (7 * 24 * 60 * 60) //7 days, no need cookie maxAge is this is set, also need this as session cookie has no expiry
     }),
     cookie: {
         path: "/",
-        //maxAge: 7 * 24 * 60 * 60 * 1000, //7 day in milliseconds
         httpOnly: true,
         secure: true,
         sameSite: "none"
@@ -80,18 +78,13 @@ initRoutes(app, passport);
 
 // Catch no route match, always at the end
 app.get('*', function(req, res) {
-    res.sendFile(path.resolve(__dirname,'../client/dist/index.html'));
+    res.sendFile(path.resolve(__dirname,'views/index.ejs'));
 });
 
+app.use((error, req, res, next) => {
+    handleError(error, res);
+});
 //-------Launch---------//
 app.listen(port, () => {
     console.log('Express App server listening on post ' + port);
 });
-
-// function connect() {
-//   const options = { server: { socketOptions: { keepAlive: 1 } } };
-//   const db = mongoose.connect(server.mongoUri, options).connection;
-//   db.on("error", (err) => logger.error(err));
-//   db.on("open", () => logger.connected(server.mongoUri));
-//   return db;
-// }

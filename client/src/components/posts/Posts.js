@@ -14,7 +14,7 @@ const Posts = (props) => {
         <React.Fragment>
             {props.posts && props.posts.map(post => {
                 return (
-                    <LazyLoad height={100} offset={100}>
+                    <LazyLoad height={100} offset={100} key={post._id}>
                         <Post post={post} key={post._id} {...props}/>
                     </LazyLoad>
                 );

@@ -6,6 +6,7 @@ import configureStore from './store/configureStore';
 import { BrowserRouter } from 'react-router-dom';
 import './styles/main.scss';
 import smoothscroll from 'smoothscroll-polyfill';
+import axiosInterceptor from './services/interceptor';
 smoothscroll.polyfill();
 
 const store = configureStore();

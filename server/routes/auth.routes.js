@@ -63,13 +63,6 @@ module.exports = function(app, passport){
     // LOGOUT ==============================
     // =====================================
     app.get('/logout', function(req, res) {
-        if (req.sessionStore){
-            req.sessionStore.destroy(req.sessionID, function(error){
-                if (!error){
-                    console.log('Session store associated with the session has been destroyed');
-                }
-            });
-        }
         req.logOut();
         req.session.destroy();
         res.redirect('/');

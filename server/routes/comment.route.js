@@ -189,7 +189,7 @@ const deleteComment = function (req, res, next) {
                         }
                         if (parentComment) {
                             let comments = parentComment.comments.filter(id => {
-                                id != commentId
+                                id.toString() !== commentId
                             });
                             parentComment.comments = comments;
                             parentComment.save(function (err, savedParentComment) {
@@ -207,7 +207,7 @@ const deleteComment = function (req, res, next) {
                         }
                         if (post) {
                             let comments = post.comments.filter(id => {
-                                id != commentId
+                                id.toString() !== commentId
                             });
                             post.comments = comments;
                             post.save(function (err, savedPost) {
