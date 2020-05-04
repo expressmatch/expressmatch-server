@@ -1,7 +1,18 @@
 #footer{
   width: 100%;
-  padding: 70px 55px 0;
   background-color: #fff;
   box-shadow: 0 0 34px 0 rgba(63, 66, 87, 0.1);
-  position: relative;
+  padding: 10px 0;
+  //position: sticky;
+  //position: -webkit-sticky;
+  //position: -moz-sticky;
+  //position: -ms-sticky;
+  //position: -o-sticky;
+  //bottom: 0;
+
+  .footer-message{
+    margin: 0 auto;
+    text-align: center;
+    font-size: 10px;
+  }
 }

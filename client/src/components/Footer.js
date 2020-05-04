@@ -5,7 +5,9 @@ class Footer extends React.Component {
     render() {
         return (
             <div id="footer">
-                Footer
+                <div className="footer-message">
+                     Copyright @ 2020 Express To Match, India. All rights reserved. <a href="/privacy">Privacy Policy</a>
+                </div>
             </div>
         );
     }

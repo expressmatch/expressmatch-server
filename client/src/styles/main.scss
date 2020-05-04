@@ -1,5 +1,6 @@
 @import '../../../node_modules/bootstrap/dist/css/bootstrap.css';
 @import './reset.scss';
+@import './layout.scss';
 @import './variables.scss';
 @import './calendar.scss';
 @import './spinner.scss';
@@ -46,5 +47,6 @@ body, input, textarea, select, header, article, section, aside, pre {
   .main-container{
     display: flex;
     flex-flow: column nowrap;
+    height: 100%;
   }
 }
