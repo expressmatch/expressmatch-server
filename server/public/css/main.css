@@ -87,7 +87,7 @@
               vertical-align: middle; }
 
 #content {
-  margin: 0 auto;
+  margin: auto;
   width: 80%;
   min-width: 820px;
   padding: 10px;
@@ -149,7 +149,7 @@ article.login {
   article.login .login-container {
     border: 1px solid #ccc;
     border-radius: 5px;
-    margin: 80px;
+    margin: auto;
     min-width: 380px;
     width: 380px;
     display: flex;
@@ -256,7 +256,7 @@ article.sign-up {
   article.sign-up .sign-up-container {
     border: 1px solid #ccc;
     border-radius: 5px;
-    margin: 80px;
+    margin: auto;
     min-width: 380px;
     width: 380px;
     display: flex;
