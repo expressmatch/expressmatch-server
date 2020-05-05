@@ -1,7 +1,7 @@
 article.sign-up{
   display: flex;
   justify-content: center;
-  //flex: 1 1 auto;
+  flex: 1 0 auto;
 
 
   .sign-up-container{
@@ -15,7 +15,6 @@ article.sign-up{
     font-weight: bold;
     font-size: 12px;
     background-color: #fff;
-    min-height: 440px;
 
     .header{
       padding: 20px;
