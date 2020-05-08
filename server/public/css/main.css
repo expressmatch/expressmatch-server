@@ -187,6 +187,10 @@ article.login {
           line-height: 1.45;
           padding: 4px;
           border: 1px solid #ccc; }
+        article.login .login-container .content-local .form-group input[type="checkbox"] {
+          height: 20px;
+          width: 20px;
+          vertical-align: middle; }
         article.login .login-container .content-local .form-group input:focus, article.login .login-container .content-local .form-group textarea:focus {
           border-color: #1f24cc;
           box-shadow: none;

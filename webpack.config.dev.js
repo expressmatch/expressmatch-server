@@ -20,7 +20,7 @@ module.exports = {
 		new cleanWebpackPlugin(['client/dist']),
 		new webpack.NamedModulesPlugin(),
 		new webpack.HotModuleReplacementPlugin(),
-        new bundleAnalyzerPlugin(),
+        //new bundleAnalyzerPlugin(),
     	new webpack.NoEmitOnErrorsPlugin(),
         new webpack.DefinePlugin({
 			'process.env.NODE_ENV': JSON.stringify('development')

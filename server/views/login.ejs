@@ -11,7 +11,7 @@
         <article class="login">
             <div class="login-container">
                 <div class="header">
-                    <div class="main-title">Log In</div>
+                    <div class="main-title">Log In <i class="fas fa-lock"></i> </div>
                     <div class="sub-title">
                         <span class="signup-text">Not registered with our site yet?</span>
                         <span class="signup-link">
@@ -41,7 +41,9 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <input type="checkbox" /><label>Keep me signed in</label>
+                            <label for="keepMeSignedIn">
+                                <input type="checkbox" id="keepMeSignedIn" name="keepMeSignedIn" checked/> Keep me signed in
+                            </label>
                         </div>
                         <div class="form-group">
                             <button type="submit" class="em-form-control">Log In</button>

@@ -29,11 +29,12 @@ module.exports = function(app, passport){
             res.render('login.ejs');
         }
     });
-    app.post('/login', passport.authenticate('local-login', {
-        successRedirect : '/posts', // redirect to the secure profile section
-        failureRedirect : '/login', // redirect back to the signup page if there is an error
-        failureFlash : true // allow flash messages
-    }));
+    app.post('/login', keepMeSignedIn, passport.authenticate('local-login', {
+            successRedirect : '/posts', // redirect to the secure profile section
+            failureRedirect : '/login', // redirect back to the signup page if there is an error
+            failureFlash : true // allow flash messages
+        })
+    );
 
     // =====================================
     // SIGN UP =============================
@@ -205,4 +206,12 @@ module.exports = function(app, passport){
     });
 
     return router;
+};
+
+
+const keepMeSignedIn = function( req, res, next) {
+    if (!req.body.keepMeSignedIn) {
+        req.session.cookie.expires = false;
+    }
+    next();
 };
