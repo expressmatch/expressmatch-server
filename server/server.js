@@ -23,13 +23,26 @@ const config 				= require('./config/config');
 const { handleError }       = require('./utils/error');
 
 //-------Configurations---------//
+const options = {
+    useFindAndModify: false,
+    useNewUrlParser: true,
+    useCreateIndex: true,
+    useUnifiedTopology: true,
+    poolSize: 10, // Maintain up to 10 socket connections
+    serverSelectionTimeoutMS: 5000, // Keep trying to send operations for 5 seconds
+    socketTimeoutMS: 45000 // Close sockets after 45 seconds of inactivity
+};
+const uri = `mongodb://${config.DB_HOST}:${config.DB_PORT}/${config.DB_NAME}`;
 
-//const db = connect();
-mongoose.connect(`mongodb://${config.DB_HOST}:${config.DB_PORT}/${config.DB_NAME}`, {}, () => {
-	console.log("DB Connected Succesfully.");
+mongoose.connect(uri,options, err => {
+    if (err){
+       console.error('MongoDB error: %s', err);
+       return;
+    }
+	console.log("MongoDB: Connected to the DB Succesfully.");
 });
-mongoose.connection.on('error', function(err) {
-    console.error('MongoDB error: %s', err);
+mongoose.connection.on('disconnected', function() {
+    console.error('MongoDB error: Mongo Server is not connected');
 });
 
 initPassport(passport);
