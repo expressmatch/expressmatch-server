@@ -166,8 +166,8 @@ class Post extends React.Component {
                         </div>
                         <div className="liked">
                             {/*{this.props.post.likes.length === 0 && 'Be the first one to like this proposal'}*/}
-                            {/*{this.props.post.likes.length === 1 && `Express Match likes this`}*/}
-                            {/*{this.props.post.likes.length > 1 && `Express Match and ${this.props.post.likes.length - 1} others likes this`}*/}
+                            {/*{this.props.post.likes.length === 1 && `Express To Match likes this`}*/}
+                            {/*{this.props.post.likes.length > 1 && `Express To Match and ${this.props.post.likes.length - 1} others likes this`}*/}
                         </div>
                         <div className="comments">
                             <span className="logo">

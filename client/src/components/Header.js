@@ -12,7 +12,7 @@ class Header extends React.Component {
                     <a href="/posts">
                         <div className="app-logo">
                             <i className="fas fa-link"></i>
-                            <span className="app-name">EXPRESS MATCH</span>
+                            <span className="app-name">EXPRESS TO MATCH</span>
                         </div>
                     </a>
                 </div>
