@@ -57,7 +57,7 @@ const getAllPosts = function (req, res, next) {
 
     query.sort({createdAt: 'desc'}).exec(function (err, posts) {
         if (err)
-            next(err);
+            return next(err);
 
         if (posts) {
             postsRes = posts.map(post => {
@@ -84,7 +84,7 @@ const createNewPost = function (req, res, next) {
     };
     post.save(function (err, savedPost) {
         if (err)
-            next(err);
+            return next(err);
 
         res.status(200).json(savedPost);
     });
@@ -92,7 +92,8 @@ const createNewPost = function (req, res, next) {
 
 const getPost = function (req, res, next) {
     Post.findOne({_id: new ObjectId(req.params.postId)}, function (err, post) {
-        if (err) next(err);
+        if (err) return next(err);
+        if (!post) return next(new ErrorHandler(404, 'The item you requested for is not found'));
 
         if (post) {
             res.status(200).json(post);
@@ -102,7 +103,8 @@ const getPost = function (req, res, next) {
 
 const getPostLikes = function(req, res, next){
     Post.findOne({_id: new ObjectId(req.params.postId)}, function (err, post) {
-        if (err) next(err);
+        if (err) return next(err);
+        if (!post) return next(new ErrorHandler(404, 'The item you requested for is not found'));
 
         if (post) {
             res.status(200).json(post.likes);
@@ -118,6 +120,9 @@ const likePost = (req, res, next) => {
     let postRes = null;
 
     Post.findOne({_id: req.params.postId}, function (err, post) {
+        if (err) return next(err);
+        if (!post) return next(new ErrorHandler(404, 'The item you requested for is not found'));
+
         if (post.likes.indexOf(req.user._id) < 0) {
             post.likes.push(req.user._id);
         } else {
@@ -125,7 +130,7 @@ const likePost = (req, res, next) => {
         }
         post.save(function (err, savedPost) {
             if (err) {
-                next(err);
+                return next(err);
             }
             postRes = {
                 ...savedPost.toJSON(),
@@ -149,8 +154,8 @@ const deletePost = function (req, res, next) {
         _id: new ObjectId(req.params.postId),
         "postedBy.userId": new ObjectId(req.user._id)
     }, function (err, post) {
-        if (err) next(err);
-        if (!post) next(new ErrorHandler(404, 'The item you requested for is not found'));
+        if (err) return next(err);
+        if (!post) return next(new ErrorHandler(404, 'The item you requested for is not found'));
 
         if (post) {
             Post.remove({_id: req.params.postId}, function (err) {
@@ -169,6 +174,9 @@ const deletePost = function (req, res, next) {
 const reportSpam = (req, res, next) => {
 
     Post.findOne({_id: req.params.postId}, function (err, post) {
+        if (err) return next(err);
+        if (!post) return next(new ErrorHandler(404, 'The item you requested for is not found'));
+
         if (post.spam.indexOf(req.user._id) < 0) {
             post.spam.push(req.user._id);
         }

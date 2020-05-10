@@ -149,6 +149,9 @@ const likeComment = function (req, res, next) {
     let commentRes = null;
 
     Comment.findOne({_id: req.params.commentId}, function (err, comment) {
+        if (err) return next(err);
+        if (!comment) return next(new ErrorHandler(404, 'The item you requested for is not found'));
+
         if (comment.likes.indexOf(req.user._id) < 0) {
             comment.likes.push(req.user._id);
         } else {
@@ -219,6 +222,7 @@ const getCommentLikes = function(req, res, next){
         if (err) {
             return next(err);
         }
+        if (!comment) return next(new ErrorHandler(404, 'The item you requested for is not found'));
 
         if (comment) {
             res.status(200).json(comment.likes);
