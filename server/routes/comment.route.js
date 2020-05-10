@@ -25,7 +25,8 @@ const getAllPostComments = function (req, res, next) {
     if (!!postId) {
 
         Post.findOne({_id: postId}, function (err, post) {
-            if (err) next(err);
+            if (err) return next(err);
+            if (!post) return next(new ErrorHandler(404, 'The item you requested for is not found'));
 
             commentRes = post.comments.map(comment => {
                 let obj = comment.toJSON();
@@ -75,7 +76,8 @@ const postComment = function (req, res, next) {
     if (!!commentId) {
 
         Comment.findOne({_id: commentId}, function (err, comment) {
-            if (err) next(err);
+            if (err) return next(err);
+            if (!comment) return next(new ErrorHandler(404, 'The item you requested for is not found'));
 
             if (comment) {
                 let newComment = new Comment({
@@ -110,6 +112,9 @@ const postComment = function (req, res, next) {
     } else if (!!postId) {
 
         Post.findOne({_id: postId}, function (err, post) {
+            if (err) return next(err);
+            if (!post) return next(new ErrorHandler(404, 'The item you requested for is not found'));
+
             let newComment = new Comment({
                 postId: postId,
                 content: commentStr,

@@ -114,6 +114,18 @@ app.listen(port, () => {
 	console.log('Express App server listening on post ' + port);
 });
 
+//-------Handle Uncaugt Exceptions---------//
+process
+    .on('unhandledRejection', (reason, promise) => {
+        console.error('\nERROR: Unhandled Rejection at:', promise, 'reason:', reason);
+        // Application specific logging, throwing an error, or other logic here
+    })
+    .on('uncaughtException', err => {
+        console.error(err, '\nERROR: Uncaught Exception thrown. Exiting Process.');
+        process.exit(1);
+    });
+
+//-------List Routes-----//
 function listRoutes(app, routes, stack, parent){
 
     parent = parent || '';
