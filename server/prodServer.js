@@ -98,7 +98,32 @@ app.get('*', function(req, res) {
 app.use((error, req, res, next) => {
     handleError(error, res);
 });
+
 //-------Launch---------//
 app.listen(port, () => {
     console.log('Express App server listening on post ' + port);
 });
+
+//-------Handle Uncaught Exceptions---------//
+function reportError(err, cb) {
+    console.error(err);
+    cb();
+}
+function shutDownGracefully(err, cb) {
+    //TODO: Quit accepting connections, clearing all resources
+    // server.close(function (){
+    //    reportError(err, cb);
+    // });
+    reportError(err, cb);
+}
+process
+    .on('unhandledRejection', (reason, promise) => {
+        console.error('Unhandled Rejection at:', promise, 'reason:', reason);
+        throw new Error('Unhandled Rejection');
+    })
+    .on('uncaughtException', err => {
+
+        shutDownGracefully(err, function () {
+            process.exit(1);
+        });
+    });

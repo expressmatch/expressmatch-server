@@ -109,20 +109,34 @@ app.get('*', function(req, res) {
 app.use((error, req, res, next) => {
     handleError(error, res);
 });
+
 //-------Launch---------//
 app.listen(port, () => {
-	console.log('Express App server listening on post ' + port);
+   console.log('Express App server listening on post ' + port);
 });
 
-//-------Handle Uncaugt Exceptions---------//
+//-------Handle Uncaught Exceptions---------//
+function reportError(err, cb) {
+    console.error(err);
+    cb();
+}
+function shutDownGracefully(err, cb) {
+    //TODO: Quit accepting connections, clearing all resources
+    // server.close(function (){
+    //    reportError(err, cb);
+    // });
+    reportError(err, cb);
+}
 process
     .on('unhandledRejection', (reason, promise) => {
-        console.error('\nERROR: Unhandled Rejection at:', promise, 'reason:', reason);
-        // Application specific logging, throwing an error, or other logic here
+        console.error('Unhandled Rejection at:', promise, 'reason:', reason);
+        throw new Error('Unhandled Rejection');
     })
     .on('uncaughtException', err => {
-        console.error(err, '\nERROR: Uncaught Exception thrown. Exiting Process.');
-        process.exit(1);
+
+        shutDownGracefully(err, function () {
+            process.exit(1);
+        });
     });
 
 //-------List Routes-----//
