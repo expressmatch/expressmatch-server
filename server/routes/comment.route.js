@@ -172,7 +172,7 @@ const likeComment = function (req, res, next) {
 
 const deleteComment = function(req, res, next) {
 
-    Comment.findOneAndRemove({
+    Comment.findOneAndDelete({
         _id: new ObjectId(req.params.commentId),
         "postedBy": new ObjectId(req.user._id)
     }).exec(function(err, comment) {

@@ -155,7 +155,7 @@ const likePost = (req, res, next) => {
 };
 
 const deletePost = function (req, res, next) {
-    Post.findOne({
+    Post.findOneAndDelete({
         _id: new ObjectId(req.params.postId),
         "postedBy.userId": new ObjectId(req.user._id)
     }, function (err, post) {
@@ -163,14 +163,10 @@ const deletePost = function (req, res, next) {
         if (!post) return next(new ErrorHandler(404, 'The item you requested for is not found'));
 
         if (post) {
-            Post.remove({_id: req.params.postId}, function (err) {
+            Comment.deleteMany({postId: new ObjectId(req.params.postId)}, function (err) {
                 if (err) next(err);
 
-                Comment.remove({postId: new ObjectId(req.params.postId)}, function (err) {
-                    if (err) next(err);
-
-                    res.status(200).json({});
-                });
+                res.status(200).json({});
             });
         }
     });
