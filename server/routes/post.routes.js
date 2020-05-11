@@ -96,7 +96,12 @@ const getPost = function (req, res, next) {
         if (!post) return next(new ErrorHandler(404, 'The item you requested for is not found'));
 
         if (post) {
-            res.status(200).json(post);
+            let postsRes = {
+                ...post.toJSON(),
+                isLikedByUser: post.isLikedByUser(req.user),
+                isCreatedByUser: post.isCreatedByUser(req.user)
+            };
+            res.status(200).json(postsRes);
         }
     });
 };
