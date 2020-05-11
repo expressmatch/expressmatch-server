@@ -79,7 +79,9 @@ module.exports = function(passport) {
                                 text: `Welcome! \n\nYou have signed up successfully. You can create posts, share comments, and reply to others comments now. \n\nFind your perfect match. Start Expressing yourself and be social. \n\nRegards\nExpress To Match`,
                             });
                             mailUtil.sendMail().then(() => {
-
+                                console.log('Mail sent: User signed Up with email successfully');
+                            }).catch(err => {
+                                console.error('Error sending mail: User Sign-up with email\n ', err);
                             });
                         }
 

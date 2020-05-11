@@ -66,7 +66,9 @@ module.exports = function (passport) {
                                 text: `Welcome! \n\nYou have signed up successfully. You can create posts, share comments, and reply to others comments now. \n\nFind your perfect match. Start Expressing yourself and be social. \n\nRegards\nExpress To Match`,
                             });
                             mailUtil.sendMail().then(() => {
-                                // console.log('Mail sent successfully');
+                                console.log('Mail sent: User Signed Up with facebook Successfully');
+                            }).catch(err => {
+                                console.error('Error sending mail: User sign-up with Facebook\n ', err);
                             });
                         }
 

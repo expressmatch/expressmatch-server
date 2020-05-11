@@ -29,7 +29,9 @@ const contactUs = function (req, res, next) {
         text: `${req.body.content}\n\nFrom \n${req.body.name} \n\nEmail: ${req.body.email} `,
     });
     mailUtil.sendMail().then(() => {
-        console.log('Mail sent successfully');
+        console.log('Mail sent: New message from Contact Us');
+    }).catch(err => {
+        console.error('Error sending mail: Contact Us\n ', err);
     });
     res.status(200).json({});
 };

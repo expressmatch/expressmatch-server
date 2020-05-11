@@ -49,7 +49,9 @@ const updateProfile = function (req, res, next) {
                 text: `Dear user,\n\nYour profile has been successfully updated in our records. Enjoy using our website.\n\nRegards\nExpress To Match. `,
             });
             mailUtil.sendMail().then(() => {
-                // console.log('Mail sent successfully');
+                console.log('Mail sent: Profile Updated successfully');
+            }).catch(err => {
+                console.error('Error sending mail: Profile Update\n ', err);
             });
             res.status(200).json(user.profile);
         }
@@ -93,7 +95,9 @@ const uploadphoto = function (req, res, next) {
                                 text: `Dear user,\n\nYour picture has been successfully updated in our records. Enjoy using our website.\n\nRegards\nExpress To Match. `,
                             });
                             mailUtil.sendMail().then(() => {
-                                // console.log('Mail sent successfully');
+                                console.log('Mail sent: Photo Uploaded successfully');
+                            }).catch(err => {
+                                console.error('Error sending mail: Photo Upload\n ', err);
                             });
                             res.status(200).json({
                                 profile: {
