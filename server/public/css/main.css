@@ -1,4 +1,5 @@
 #header {
+  min-height: 60px;
   height: 60px;
   min-height: 60px;
   display: flex;
@@ -14,7 +15,7 @@
     #header .left-content a {
       text-decoration: none; }
       #header .left-content a .app-logo {
-        min-width: 100px;
+        min-width: 200px;
         color: #fff;
         margin: 0 10px;
         font-weight: bold; }
@@ -143,19 +144,19 @@ footer {
 
 article.login {
   display: flex;
-  justify-content: center; }
+  justify-content: center;
+  flex: 1 0 auto; }
   article.login .login-container {
     border: 1px solid #ccc;
     border-radius: 5px;
-    margin: 80px;
+    margin: auto;
     min-width: 380px;
     width: 380px;
     display: flex;
     flex-flow: column;
     font-weight: bold;
     font-size: 12px;
-    background-color: #fff;
-    min-height: 440px; }
+    background-color: #fff; }
     article.login .login-container .header {
       padding: 20px;
       border-bottom: 1px solid #ccc; }
@@ -186,6 +187,10 @@ article.login {
           line-height: 1.45;
           padding: 4px;
           border: 1px solid #ccc; }
+        article.login .login-container .content-local .form-group input[type="checkbox"] {
+          height: 20px;
+          width: 20px;
+          vertical-align: middle; }
         article.login .login-container .content-local .form-group input:focus, article.login .login-container .content-local .form-group textarea:focus {
           border-color: #1f24cc;
           box-shadow: none;
@@ -250,19 +255,19 @@ article.login {
 
 article.sign-up {
   display: flex;
-  justify-content: center; }
+  justify-content: center;
+  flex: 1 0 auto; }
   article.sign-up .sign-up-container {
     border: 1px solid #ccc;
     border-radius: 5px;
-    margin: 80px;
+    margin: auto;
     min-width: 380px;
     width: 380px;
     display: flex;
     flex-flow: column;
     font-weight: bold;
     font-size: 12px;
-    background-color: #fff;
-    min-height: 440px; }
+    background-color: #fff; }
     article.sign-up .sign-up-container .header {
       padding: 20px;
       border-bottom: 1px solid #ccc; }

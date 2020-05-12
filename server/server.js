@@ -20,15 +20,29 @@ const initRoutes			= require("./routes");
 const mongoose 				= require('mongoose');
 const port 					= process.env.PORT || 8080;
 const config 				= require('./config/config');
+const { handleError }       = require('./utils/error');
 
 //-------Configurations---------//
+const options = {
+    useFindAndModify: false,
+    useNewUrlParser: true,
+    useCreateIndex: true,
+    useUnifiedTopology: true,
+    poolSize: 10, // Maintain up to 10 socket connections
+    serverSelectionTimeoutMS: 5000, // Keep trying to send operations for 5 seconds
+    socketTimeoutMS: 45000 // Close sockets after 45 seconds of inactivity
+};
+const uri = `mongodb://${config.DB_HOST}:${config.DB_PORT}/${config.DB_NAME}`;
 
-//const db = connect();
-mongoose.connect(`mongodb://${config.DB_HOST}:${config.DB_PORT}/${config.DB_NAME}`, {}, () => {
-	console.log("DB Connected Succesfully.");
+mongoose.connect(uri,options, err => {
+    if (err){
+       console.error('MongoDB error: %s', err);
+       return;
+    }
+	console.log("MongoDB: Connected to the DB Succesfully.");
 });
-mongoose.connection.on('error', function(err) {
-    console.error('MongoDB error: %s', err);
+mongoose.connection.on('disconnected', function() {
+    console.error('MongoDB error: Mongo Server is not connected');
 });
 
 initPassport(passport);
@@ -63,10 +77,11 @@ app.use(session({
 		mongooseConnection: mongoose.connection,
         touchAfter: 24 * 3600, //1 day in seconds
         secret: process.env.SESSION_STORE_SECRET,
-		ttl: (7 * 24 * 60 * 60) //7 days, no need cookie maxAge is this is set, also need this as session cookie has no expiry
+		//ttl: (7 * 24 * 60 * 60) //7 days, no need cookie maxAge is this is set, also need this as session cookie has no expiry
 	}),
 	cookie: {
 		path: "/",
+        maxAge: (7 * 24 * 60 * 60 * 1000),
         httpOnly: true,
         sameSite: "none"
 	}
@@ -91,19 +106,40 @@ app.get('*', function(req, res) {
 	res.sendFile(path.resolve(__dirname,'../client/index.html'));
 });
 
-//-------Launch---------//
-app.listen(port, () => {
-	console.log('Express App server listening on post ' + port);
+app.use((error, req, res, next) => {
+    handleError(error, res);
 });
 
-// function connect() {
-//   const options = { server: { socketOptions: { keepAlive: 1 } } };
-//   const db = mongoose.connect(server.mongoUri, options).connection;
-//   db.on("error", (err) => logger.error(err));
-//   db.on("open", () => logger.connected(server.mongoUri));
-//   return db;
-// }
+//-------Launch---------//
+app.listen(port, () => {
+   console.log('Express App server listening on post ' + port);
+});
 
+//-------Handle Uncaught Exceptions---------//
+function reportError(err, cb) {
+    console.error(err);
+    cb();
+}
+function shutDownGracefully(err, cb) {
+    //TODO: Quit accepting connections, clearing all resources
+    // server.close(function (){
+    //    reportError(err, cb);
+    // });
+    reportError(err, cb);
+}
+process
+    .on('unhandledRejection', (reason, promise) => {
+        console.error('Unhandled Rejection at:', promise, 'reason:', reason);
+        throw new Error('Unhandled Rejection');
+    })
+    .on('uncaughtException', err => {
+
+        shutDownGracefully(err, function () {
+            process.exit(1);
+        });
+    });
+
+//-------List Routes-----//
 function listRoutes(app, routes, stack, parent){
 
     parent = parent || '';

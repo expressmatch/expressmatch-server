@@ -1,7 +1,7 @@
 {
   "name": "expressmatch",
   "version": "1.0.0",
-  "description": "Express Match",
+  "description": "Express To Match",
   "main": "index.js",
   "scripts": {
     "dev": "pm2 start server/server.js &",

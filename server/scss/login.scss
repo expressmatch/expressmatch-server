@@ -1,13 +1,12 @@
 article.login{
   display: flex;
   justify-content: center;
-  //flex: 1 1 auto;
-
+  flex: 1 0 auto;
 
   .login-container{
     border: 1px solid #ccc;
     border-radius: 5px;
-    margin: 80px;
+    margin: auto;
     min-width: 380px;
     width: 380px;
     display: flex;
@@ -15,7 +14,6 @@ article.login{
     font-weight: bold;
     font-size: 12px;
     background-color: #fff;
-    min-height: 440px;
 
     .header{
       padding: 20px;
@@ -60,6 +58,11 @@ article.login{
           line-height: 1.45;
           padding: 4px;
           border: 1px solid #ccc;
+        }
+        input[type="checkbox"]{
+          height: 20px;
+          width: 20px;
+          vertical-align: middle;
         }
         input, textarea{
           &:focus{

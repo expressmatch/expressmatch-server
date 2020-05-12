@@ -2,9 +2,9 @@ const express = require("express");
 const router = express.Router();
 const User = require('../models/User');
 const async = require("async");
-const nodemailer = require("nodemailer");
 const crypto = require("crypto");
 const config = require('../config/config');
+const mailUtil = require('../utils/mail')();
 
 module.exports = function(app, passport){
 
@@ -29,11 +29,12 @@ module.exports = function(app, passport){
             res.render('login.ejs');
         }
     });
-    app.post('/login', passport.authenticate('local-login', {
-        successRedirect : '/posts', // redirect to the secure profile section
-        failureRedirect : '/login', // redirect back to the signup page if there is an error
-        failureFlash : true // allow flash messages
-    }));
+    app.post('/login', keepMeSignedIn, passport.authenticate('local-login', {
+            successRedirect : '/posts', // redirect to the secure profile section
+            failureRedirect : '/login', // redirect back to the signup page if there is an error
+            failureFlash : true // allow flash messages
+        })
+    );
 
     // =====================================
     // SIGN UP =============================
@@ -63,13 +64,6 @@ module.exports = function(app, passport){
     // LOGOUT ==============================
     // =====================================
     app.get('/logout', function(req, res) {
-        if (req.sessionStore){
-            req.sessionStore.destroy(req.sessionID, function(error){
-                if (!error){
-                    console.log('Session store associated with the session has been destroyed');
-                }
-            });
-        }
         req.logOut();
         req.session.destroy();
         res.redirect('/');
@@ -105,26 +99,21 @@ module.exports = function(app, passport){
                 });
             },
             function(token, user, done) {
-                var smtpTransport = nodemailer.createTransport({
-                    service: 'gmail',//smtp.gmail.com  //in place of service use host...
-                    auth: {
-                        user: config.NOREPLY_GMAILUN,
-                        pass: config.NOREPLY_GMAILPW
-                    }, tls: {
-                        rejectUnauthorized: false
-                    }
-                });
-                var mailOptions = {
+                mailUtil.setOptions({
                     to: user.profile.email,
                     from: `Express To Match <${config.NOREPLY_GMAILUN}`,
-                    subject: 'Password Reset',
+                    subject: 'Forgot Password',
                     text: 'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
                     'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
                     req.protocol + '://' + req.headers.host + '/reset/' + token + '\n\n' +
-                    'If you did not request this, please ignore this email and your password will remain unchanged.\n'
-                };
-                smtpTransport.sendMail(mailOptions, function(err) {
+                    'If you did not request this, please ignore this email and your password will remain unchanged.\n\nRegards\nExpress To Match. '
+                });
+                mailUtil.sendMail().then(() => {
+                    console.log('Mail sent: Forgot Password');
                     req.flash('success', 'An e-mail has been sent to ' + user.profile.email + ' with further instructions.');
+                    done(null, 'done');
+                }).catch(err => {
+                    console.error('Error sending mail: Forgot Password\n ', err);
                     done(err, 'done');
                 });
             }
@@ -173,25 +162,20 @@ module.exports = function(app, passport){
                 });
             },
             function(user, done) {
-                var smtpTransport = nodemailer.createTransport({
-                    service: 'gmail', //smtp.gmail.com  //in place of service use host...
-                    auth: {
-                        user: config.NOREPLY_GMAILUN,
-                        pass: config.NOREPLY_GMAILPW
-                    }, tls: {
-                        rejectUnauthorized: false
-                    }
-                });
-                var mailOptions = {
+                mailUtil.setOptions({
                     to: user.profile.email,
                     from: `Express To Match <${config.NOREPLY_GMAILUN}`,
                     subject: 'Your password has been changed',
                     text: 'Hello,\n\n' +
-                    'This is a confirmation that the password for your account ' + user.profile.email + ' has just been changed.\n'
-                };
-                smtpTransport.sendMail(mailOptions, function(err) {
+                    'This is a confirmation that the password for your account ' + user.profile.email + ' has just been changed.\n\nRegards\nExpress To Match. '
+                });
+                mailUtil.sendMail().then(() => {
+                    console.log('Mail sent: Reset Password');
                     req.flash('success', 'Success! Your password has been changed.');
-                    done(err);
+                    done(null, 'done');
+                }).catch(err => {
+                    console.error('Error sending mail: Reset Password\n ', err);
+                    done(err, 'done');
                 });
             }
         ], function(err) {
@@ -212,4 +196,12 @@ module.exports = function(app, passport){
     });
 
     return router;
+};
+
+
+const keepMeSignedIn = function( req, res, next) {
+    if (!req.body.keepMeSignedIn) {
+        req.session.cookie.expires = false;
+    }
+    next();
 };

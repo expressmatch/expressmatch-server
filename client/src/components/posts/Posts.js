@@ -14,7 +14,7 @@ const Posts = (props) => {
         <React.Fragment>
             {props.posts && props.posts.map(post => {
                 return (
-                    <LazyLoad height={100} offset={100}>
+                    <LazyLoad height={100} offset={100} key={post._id}>
                         <Post post={post} key={post._id} {...props}/>
                     </LazyLoad>
                 );
@@ -166,8 +166,8 @@ class Post extends React.Component {
                         </div>
                         <div className="liked">
                             {/*{this.props.post.likes.length === 0 && 'Be the first one to like this proposal'}*/}
-                            {/*{this.props.post.likes.length === 1 && `Express Match likes this`}*/}
-                            {/*{this.props.post.likes.length > 1 && `Express Match and ${this.props.post.likes.length - 1} others likes this`}*/}
+                            {/*{this.props.post.likes.length === 1 && `Express To Match likes this`}*/}
+                            {/*{this.props.post.likes.length > 1 && `Express To Match and ${this.props.post.likes.length - 1} others likes this`}*/}
                         </div>
                         <div className="comments">
                             <span className="logo">

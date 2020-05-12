@@ -5,6 +5,7 @@ const imageUpload = require("./imageUpload");
 const mailUtil = require('../utils/mail')();
 const config = require('../config/config');
 const ObjectId = require('mongoose').Types.ObjectId;
+const { ErrorHandler } = require('../utils/error');
 
 module.exports = function (app) {
     app.get('/api/userprofile', getProfile);
@@ -21,7 +22,8 @@ module.exports = function (app) {
 const getProfile = function (req, res, next) {
     if (req.query.userId) {
         User.findOne({_id: new ObjectId(req.query.userId)}, function (err, user) {
-            if (err) next(err);
+            if (err) return next(err);
+            if (!user) return next(new ErrorHandler(404, 'The item you requested for is not found'));
 
             if (user) {
                 res.status(200).json(user.profile);
@@ -37,6 +39,7 @@ const updateProfile = function (req, res, next) {
     User.findOneAndUpdate({_id: req.user._id}, {$set: {profile: req.body.profile}}, {new: true}, function (err, user) {
         if (err)
             next(err);
+        if (!user) return next(new ErrorHandler(404, 'The item you requested for is not found'));
 
         if (user) {
             mailUtil.setOptions({
@@ -46,7 +49,9 @@ const updateProfile = function (req, res, next) {
                 text: `Dear user,\n\nYour profile has been successfully updated in our records. Enjoy using our website.\n\nRegards\nExpress To Match. `,
             });
             mailUtil.sendMail().then(() => {
-                // console.log('Mail sent successfully');
+                console.log('Mail sent: Profile Updated successfully');
+            }).catch(err => {
+                console.error('Error sending mail: Profile Update\n ', err);
             });
             res.status(200).json(user.profile);
         }
@@ -58,6 +63,7 @@ const uploadphoto = function (req, res, next) {
     User.findOne({_id: req.user._id}, function (err, user) {
         if (err)
             next(err);
+        if (!user) return next(new ErrorHandler(404, 'The item you requested for is not found'));
 
         if (user) {
             imageUpload(req, res, (error) => {
@@ -89,7 +95,9 @@ const uploadphoto = function (req, res, next) {
                                 text: `Dear user,\n\nYour picture has been successfully updated in our records. Enjoy using our website.\n\nRegards\nExpress To Match. `,
                             });
                             mailUtil.sendMail().then(() => {
-                                // console.log('Mail sent successfully');
+                                console.log('Mail sent: Photo Uploaded successfully');
+                            }).catch(err => {
+                                console.error('Error sending mail: Photo Upload\n ', err);
                             });
                             res.status(200).json({
                                 profile: {

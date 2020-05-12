@@ -17,7 +17,7 @@ class App extends React.Component {
             <div className="main-container">
                 <Header {...this.props}/>
                 <Content/>
-                {/*<Footer/>*/}
+                <Footer/>
             </div>
         );
     }

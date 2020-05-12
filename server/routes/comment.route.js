@@ -3,6 +3,7 @@ const router = express.Router();
 const ObjectId = require('mongoose').Types.ObjectId;
 const Post = require('../models/Post');
 const Comment = require('../models/Comment');
+const { ErrorHandler } = require('../utils/error');
 
 module.exports = function (app) {
 
@@ -24,7 +25,8 @@ const getAllPostComments = function (req, res, next) {
     if (!!postId) {
 
         Post.findOne({_id: postId}, function (err, post) {
-            if (err) next(err);
+            if (err) return next(err);
+            if (!post) return next(new ErrorHandler(404, 'The item you requested for is not found'));
 
             commentRes = post.comments.map(comment => {
                 let obj = comment.toJSON();
@@ -74,7 +76,8 @@ const postComment = function (req, res, next) {
     if (!!commentId) {
 
         Comment.findOne({_id: commentId}, function (err, comment) {
-            if (err) next(err);
+            if (err) return next(err);
+            if (!comment) return next(new ErrorHandler(404, 'The item you requested for is not found'));
 
             if (comment) {
                 let newComment = new Comment({
@@ -109,6 +112,9 @@ const postComment = function (req, res, next) {
     } else if (!!postId) {
 
         Post.findOne({_id: postId}, function (err, post) {
+            if (err) return next(err);
+            if (!post) return next(new ErrorHandler(404, 'The item you requested for is not found'));
+
             let newComment = new Comment({
                 postId: postId,
                 content: commentStr,
@@ -143,6 +149,9 @@ const likeComment = function (req, res, next) {
     let commentRes = null;
 
     Comment.findOne({_id: req.params.commentId}, function (err, comment) {
+        if (err) return next(err);
+        if (!comment) return next(new ErrorHandler(404, 'The item you requested for is not found'));
+
         if (comment.likes.indexOf(req.user._id) < 0) {
             comment.likes.push(req.user._id);
         } else {
@@ -161,73 +170,59 @@ const likeComment = function (req, res, next) {
     });
 };
 
-const deleteComment = function (req, res, next) {
-    Comment.findOne({
+const deleteComment = function(req, res, next) {
+
+    Comment.findOneAndDelete({
         _id: new ObjectId(req.params.commentId),
         "postedBy": new ObjectId(req.user._id)
-    }, function (err, comment) {
-        if (err) next(err);
+    }).exec(function(err, comment) {
+        if (err) return next(err);
+        if (!comment) return next(new ErrorHandler(404, 'The item you requested for is not found'));
 
-        if (comment) {
-            Comment.remove({_id: req.params.commentId}, function (err) {
+        if (comment.comments.length) {
+            Comment.deleteMany({_id: {$in: comment.comments}}, function (err) {
                 if (err) next(err);
-
-                if (comment.comments.length) {
-                    Comment.deleteMany({_id: {$in: comment.comments}}, function (err) {
-                        if (err) next(err);
-                    });
-                }
-
-                let postId = req.body.postId,
-                    parentCommentId = req.body.parentCommentId,
-                    commentId = req.params.commentId;
-
-                if (!!parentCommentId) {
-                    Comment.findOne({_id: parentCommentId}, function (err, parentComment) {
-                        if (err) {
-                            next(err);
-                        }
-                        if (parentComment) {
-                            let comments = parentComment.comments.filter(id => {
-                                id != commentId
-                            });
-                            parentComment.comments = comments;
-                            parentComment.save(function (err, savedParentComment) {
-                                if (err) {
-                                    next(err);
-                                }
-                                res.status(200).json({});
-                            })
-                        }
-                    });
-                } else if (!!postId) {
-                    Post.findOne({_id: postId}, function (err, post) {
-                        if (err) {
-                            next(err);
-                        }
-                        if (post) {
-                            let comments = post.comments.filter(id => {
-                                id != commentId
-                            });
-                            post.comments = comments;
-                            post.save(function (err, savedPost) {
-                                if (err) {
-                                    next(err);
-                                }
-
-                                res.status(200).json({});
-                            })
-                        }
-                    });
-                }
             });
+        }
+        let postId = req.body.postId,
+            parentCommentId = req.body.parentCommentId,
+            commentId = req.params.commentId;
+
+        if (!!parentCommentId) {
+
+            Comment.findOneAndUpdate(
+                {_id: parentCommentId},
+                {$pull: {comments: commentId}},
+                {new: true},
+                function (err, comment) {
+                    if (err) {
+                        return next(err)
+                    }
+                    res.status(200).send({});
+                });
+
+        }else if(!!postId) {
+
+            Post.findOneAndUpdate(
+                {_id: postId},
+                {$pull: {comments: commentId}},
+                {new: true},
+                function (err, post) {
+                    if (err) {
+                        return next(err)
+                    }
+                    res.status(200).send({});
+                });
         }
     });
 };
 
 const getCommentLikes = function(req, res, next){
     Comment.findOne({_id: new ObjectId(req.params.commentId)}, function (err, comment) {
-        if (err) next(err);
+        if (err) {
+            return next(err);
+        }
+        if (!comment) return next(new ErrorHandler(404, 'The item you requested for is not found'));
 
         if (comment) {
             res.status(200).json(comment.likes);
