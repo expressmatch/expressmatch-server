@@ -43,9 +43,26 @@ body, input, textarea, select, header, article, section, aside, pre {
 input, select, textarea, select, radio {
   background-color: $em-input-bg-color;
   border: 1px solid $em-border-gray;
-  color: $em-text-gray;
+  color: $em-text-white;
 }
+input[type="button"],
+input[type="reset"]{
+  color: $em-text-gray-dark;
+  background-color: $em-bg-gray-verylight;
+  border: 1px solid $em-border-gray;
+  opacity: 0.9;
 
+  &:hover:enabled,
+  &:active:enabled,
+  &:focus:enabled{
+    //color: $em-text-white;
+    //background-color: $em-bg-gray-light;
+    opacity: 1;
+  }
+}
+input[type="submit"]{
+
+}
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,

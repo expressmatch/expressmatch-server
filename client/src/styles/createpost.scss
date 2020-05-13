@@ -54,17 +54,12 @@
         input[type="reset"], input[type="submit"], input[type="button"]{
           border-radius: 10px;
           margin-right: 5px;
-          color: $em-text-gray;
           outline: none;
           width: 100px;
-          background: none;
           font-weight: bold;
 
           &:active:enabled{
             font-weight: 600;
-          }
-          &:hover:enabled{
-            opacity: 0.8;
           }
         }
         input[type="submit"]{

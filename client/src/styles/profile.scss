@@ -99,14 +99,10 @@
             margin-right: 5px;
             outline: none;
             width: 100px;
-            background: none;
             font-weight: bold;
 
             &:active {
               font-weight: 600;
-            }
-            &:hover {
-              opacity: 0.8;
             }
           }
           input[type="submit"]{

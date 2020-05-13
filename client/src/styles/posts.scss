@@ -151,7 +151,6 @@
             }
 
             button{
-              background: none;
               color: $em-btn-text;
               height: 30px;
               width: 100%;
@@ -167,7 +166,7 @@
                 opacity: 0.8;
               }
               &:hover{
-                //background-color: #f2f2f2;
+                //background-color: $em-bg-gray-dark;
               }
               &:focus{
                 text-decoration: none;
