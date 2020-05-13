@@ -22,7 +22,7 @@
 @import '../../../node_modules/react-bootstrap-typeahead/css/Typeahead.css';
 
 ::selection {
-  background-color: #e6e6e6;
+  background-color: $em-bg-gray-verylight;
 }
 body{
   margin: 0;
