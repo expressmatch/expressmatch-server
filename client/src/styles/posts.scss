@@ -7,9 +7,9 @@
     min-width: 500px;
 
     .post{
-      border: 1px solid #e6ecf5;;
+      border: 1px solid transparent;
       margin: 10px 0;
-      background-color: $em-bg-white;
+      background-color: $em-bg-gray-medium;
       border-radius: 5px;
 
       .post-body{
@@ -26,17 +26,15 @@
 
             .detail{
               font-size: 10px;
-              padding: 0 5px;
               margin: 1px 0;
-              background-color: #ececec;
-              color: #545566;
+              color: $em-btn-text;
               font-weight: bold;
               border-radius: 2px;
             }
 
             .post-date{
-              color: #9a9c9b;
-              background-color: #fff;
+              color: $em-text-gray-light;
+              //background-color: #fff;
               padding: 0;
               font-size: 11px;
             }
@@ -50,9 +48,9 @@
 
               .dropdown-menu {
                 max-width: 200px;
-                -moz-box-shadow: 2px 2px 5px 2px #ececec;
-                -webkit-box-shadow: 2px 2px 5px 2px #ececec;
-                box-shadow: 2px 2px 5px 2px #ececec;
+                -moz-box-shadow: 2px 2px 5px 2px $em-bg-gray-dark;
+                -webkit-box-shadow: 2px 2px 5px 2px $em-bg-gray-dark;
+                box-shadow: 2px 2px 5px 2px $em-bg-gray-dark;
                 outline: none;
 
                 .menu-item {
@@ -60,19 +58,19 @@
                   white-space: nowrap;
                   overflow: hidden;
                   text-overflow: ellipsis;
-                  color: #545566;
+                  color: $em-bg-gray-dark;
                   cursor: pointer;
                   line-height: 20px;
                   font-weight: bold;
 
                   &:hover{
-                    background-color: #ececec;
+                    background-color: $em-bg-gray-verylight;
                   }
                   &:focus{
                     outline: none;
                   }
                   &:active{
-                    background-color: #ececec;
+                    background-color: $em-bg-gray-verylight;
                   }
                   .item-text{
                     padding: 0 10px;
@@ -101,8 +99,8 @@
         }
         .post-meta{
           padding: 20px 0;
-          border-top: 1px solid #e6ecf5;
-          border-bottom: 1px solid #e6ecf5;
+          border-top: 1px solid $em-border-gray;
+          border-bottom: 1px solid $em-border-gray;
           display: flex;
           align-items: center;
           cursor: default;
@@ -169,7 +167,7 @@
                 opacity: 0.8;
               }
               &:hover{
-                background-color: #f2f2f2;
+                //background-color: #f2f2f2;
               }
               &:focus{
                 text-decoration: none;
@@ -196,13 +194,14 @@
 
     .panel{
       margin-bottom: 5px;
-      border: 1px solid #e6ecf5;
+      //border: 1px solid $em-border-gray;
       display: flex;
       flex-flow: column;
 
       .date-filter,
       .quick-filter{
         margin-bottom: 5px;
+        border: 1px solid $em-border-gray;
       }
       button.today-filter,
       button.clear-quick-filter{
@@ -216,7 +215,7 @@
         cursor: pointer;
         font-size: 13px;
         border-radius: 5px;
-        border: 1px solid #e6ecf5;
+        border: 1px solid $em-border-gray;
 
         &:active{
           background: $em-alt-btn-bg-active;
@@ -229,11 +228,11 @@
         justify-content: flex-start;
         align-items: stretch;
         flex-flow: column nowrap;
-        background-color: #fff;
+        background-color: $em-bg-gray-medium;
 
         .filter-item{
           height: 28px;
-          border-bottom: 1px solid #e6ecf5;
+          border-bottom: 1px solid $em-border-gray;
           line-height: 28px;
           padding: 0 0 0 10px;
           cursor: pointer;
@@ -242,7 +241,7 @@
           &.selected{
             border-left: 5px solid;
             padding: 0 0 0 5px;
-            color: #545566;
+            color: $em-text-blue;
           }
           &:last-child{
             border-bottom: none;

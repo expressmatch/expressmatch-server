@@ -2,8 +2,8 @@
   width: 80%;
   min-width: 790px;
   margin: 10px auto;
-  background-color: $em-bg-white;
-  border: 1px solid #e6ecf5;
+  background-color: $em-bg-gray-medium;
+  border: 1px solid $em-border-gray;
   display: flex;
   justify-content: center;
 
@@ -24,8 +24,8 @@
         top: 0;
         left: 0;
         .action-item{
-          background-color: #a9a9a9;
-          color: #fff;
+          background-color: $em-bg-gray-light;
+          color: $em-text-gray;
           padding: 6px;
           cursor: pointer;
         }
@@ -51,14 +51,14 @@
         padding: 10px 20px;
         display: flex;
         align-items: center;
-        border-bottom: 1px solid #e6ecf5;
+        border-bottom: 1px solid $em-border-gray;
 
         .field-label {
           padding: 5px 0;
           width: 45%;
           min-width: 250px;
           font-weight: bold;
-          color: #545566;
+          color: $em-text-blue;
 
         }
         .field-value {
@@ -69,8 +69,6 @@
             font-size: 12px;
             width: 300px;
             outline: none;
-            border: 1px solid #e6ecf5;
-            color: $em-input-color;
 
             &:disabled {
               cursor: default;
@@ -85,7 +83,6 @@
             width: auto;
           }
           input[type="text"], input[type="email"], textarea {
-            background-color: $em-bg-gray;;
             border-radius: 3px;
             border: 1px solid rgba(0, 0, 0, .12);
             margin: 0 0 4px;
@@ -95,13 +92,12 @@
             outline: none;
 
             &:focus {
-              background-color: $em-bg-white;
+              //background-color: $em-bg-white;
             }
           }
           input[type="reset"], input[type="submit"], input[type="button"] {
             border-radius: 10px;
             margin-right: 5px;
-            color: $em-input-color;
             outline: none;
             width: 100px;
             background: none;
@@ -116,12 +112,12 @@
           }
           input[type="submit"]{
             background-color: #ff5e3a;
-            border-color: #ff5e3a;
+            border-color: $em-border-gray;
             color: #fff;
           }
         }
         .sub-text {
-          color: #9a9c9b;
+          color: $em-text-gray-light;
           font-weight: normal;
           font-size: 12px;
         }

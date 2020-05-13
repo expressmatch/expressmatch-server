@@ -1,31 +1,33 @@
-//Variables
+//Background
+$em-bg-gray-dark: #343434;
+$em-bg-gray-medium: #424242;
+$em-bg-gray-light: #505050;
+$em-bg-gray-verylight: #eee;
+$em-bg-white: #fff;
+$em-bg-blue: #09a7f3;
+
+//Text
+$em-text-white: #fff;
+$em-text-gray: #eee;
+$em-text-gray-light: #b1b1b1;
+$em-text-gray-dark: #424242;
+$em-text-blue: #09a7f3;
+
+//Input Background
+$em-input-bg-color: #393939;
 
 //Border
-$em-border-gray: #ccc;
+$em-border-gray: #363636;
 
 
-//Background Color
-$em-bg-gray: #f9f9f9;
-$em-bg-white: #fff;
 
-//Page
-$em-color: #888da8;
-$em-bg-color: #edf2f6;
 
-//Inputs
-$em-input-color: #888da8;
-
+//TODO
 //Button - Action
-$em-btn-text: #888da8;
+$em-btn-text: #09a7f3;
 
 //Button - Alt
 $em-alt-btn-text: #fff;
-$em-alt-btn-bg: #888da8;
-$em-alt-btn-text-active: #888da8;
+$em-alt-btn-bg: #09a7f3;
+$em-alt-btn-text-active: #09a7f3;
 $em-alt-btn-bg-active: none;
-
-//Button - Forms
-$em-primary-btn-bg-color: #888da8;
-$em-primary-btn-border-color: #888da8;
-$em-primary-btn-bg-color-hover: #8885a8;
-$em-primary-btn-border-color-hover: #8885a8;

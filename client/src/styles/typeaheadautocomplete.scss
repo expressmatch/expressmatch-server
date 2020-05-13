@@ -7,7 +7,7 @@
   border-radius: 3px;
   border: 1px solid rgba(0, 0, 0, 0.12);
   z-index: 999;
-  background-color: #fff;
+  background-color: $em-bg-gray-dark;
 
   li{
 
@@ -20,12 +20,12 @@
       font-size: 13px;
 
       &.active, &:hover,&:focus{
-        background-color: #edf2f6;
+        background-color: $em-bg-gray-light;
       }
 
       span,mark{
         font-size: 13px;
-        color: $em-color;
+        color: $em-text-gray;
       }
     }
   }
