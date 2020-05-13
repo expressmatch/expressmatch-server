@@ -26,13 +26,13 @@ article.forgot-password{
     }
     .content{
       padding: 20px;
-      border-bottom: 1px solid $em-border-gray;
+      //border-bottom: 1px solid $em-border-gray;
 
       .form-error{
-        color: red;
+        color: #ff7e61
       }
       .form-success{
-        color: green;
+        color: #009d00;
       }
 
       .form-group{
