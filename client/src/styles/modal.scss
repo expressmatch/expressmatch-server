@@ -20,7 +20,7 @@
           font-size: 13px;
           &.btn-primary{
             background-color: $em-bg-blue;
-            border-color: $em-border-gray;
+            //border-color: $em-border-gray;
             opacity: 0.8;
 
             &:hover,&:active{
@@ -28,7 +28,7 @@
             }
           }
           &.btn-secondary{
-            border-color: $em-border-gray;
+            //border-color: $em-border-gray;
           }
         }
       }
