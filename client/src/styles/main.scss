@@ -63,6 +63,11 @@ input[type="reset"]{
 input[type="submit"]{
 
 }
+a:link { color: $em-text-blue; }
+a:visited { color: $em-text-blue; }
+a:hover { color: $em-text-blue; }
+a:active { color: $em-text-blue; }
+
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,

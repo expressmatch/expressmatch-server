@@ -182,10 +182,6 @@ article.login {
         cursor: hand; }
         article.login .login-container .header a:hover {
           text-decoration: underline; }
-        article.login .login-container .header a:active {
-          color: #181ca0; }
-        article.login .login-container .header a:visited {
-          color: #1f24cc; }
     article.login .login-container .content-local {
       padding: 20px;
       border-bottom: 1px solid #363636; }
@@ -212,10 +208,6 @@ article.login {
           cursor: hand; }
           article.login .login-container .content-local .form-group a:hover {
             text-decoration: underline; }
-          article.login .login-container .content-local .form-group a:active {
-            color: #181ca0; }
-          article.login .login-container .content-local .form-group a:visited {
-            color: #1f24cc; }
         article.login .login-container .content-local .form-group button[type="submit"] {
           font-size: 16px;
           width: auto;
@@ -290,10 +282,6 @@ article.sign-up {
         cursor: hand; }
         article.sign-up .sign-up-container .header a:hover {
           text-decoration: underline; }
-        article.sign-up .sign-up-container .header a:active {
-          color: #181ca0; }
-        article.sign-up .sign-up-container .header a:visited {
-          color: #1f24cc; }
     article.sign-up .sign-up-container .content-local {
       padding: 20px;
       border-bottom: 1px solid #363636; }
@@ -486,6 +474,18 @@ input, select, textarea, select, radio {
   background-color: #393939;
   border: 1px solid #363636;
   color: #eee; }
+
+a:link {
+  color: #09a7f3; }
+
+a:visited {
+  color: #09a7f3; }
+
+a:hover {
+  color: #09a7f3; }
+
+a:active {
+  color: #09a7f3; }
 
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
