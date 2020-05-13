@@ -17,16 +17,48 @@ body{
   margin: 0;
   font-family: sans-serif;
   font-size: 13px;
-  color: #888da8;
-  background-color: $em-bg-color;
-  //overflow: hidden;
+  color: $em-text-gray;
+  background-color: $em-bg-gray-light;
   height:100%;
 }
 body, input, textarea, select, header, article, section, aside, pre {
   line-height: 1.6;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.7px;
   font-size: 13px;
-  color: #888da8;
+  color: $em-text-gray;
+}
+
+input, select, textarea, select, radio {
+  background-color: $em-input-bg-color;
+  border: 1px solid $em-border-gray;
+  color: $em-text-gray;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+textarea:-webkit-autofill:active,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus,
+select:-webkit-autofill:active,{
+  //-webkit-text-fill-color: $em-text-gray;
+  //-webkit-box-shadow: 0 0 0px 1px $em-input-bg-color inset;
+  //transition: background-color 5000s ease-in-out 0s;
+  -webkit-animation-delay: 1s; /* Safari support - any positive time runs instantly */
+  -webkit-animation-name: autofill;
+  -webkit-animation-fill-mode: both;
+}
+
+@-webkit-keyframes autofill {
+  0%,100% {
+    color: $em-text-gray;
+    background: $em-bg-gray-dark;
+  }
 }
 
 .container{

@@ -1,14 +1,18 @@
 #header {
   min-height: 60px;
   height: 60px;
-  min-height: 60px;
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid #ccc;
-  background-color: #fff;
-  background-color: #3f4257;
+  border-bottom: 1px solid #363636;
+  background-color: #343434;
+  position: sticky;
+  position: -webkit-sticky;
+  position: -moz-sticky;
+  position: -ms-sticky;
+  position: -o-sticky;
+  top: 0px;
   z-index: 1001; }
   #header .left-content {
     flex: 0 0 200px; }
@@ -20,7 +24,9 @@
         margin: 0 10px;
         font-weight: bold; }
         #header .left-content a .app-logo:hover {
-          color: #ececec; }
+          color: #eee; }
+        #header .left-content a .app-logo:active {
+          color: #b1b1b1; }
         #header .left-content a .app-logo .app-name {
           padding: 0 10px; }
         #header .left-content a .app-logo i {
@@ -42,9 +48,10 @@
         text-decoration: none;
         font-weight: 600; }
         #header .right-content .menu-items .menu-item a:hover {
-          color: #ececec; }
+          color: #eee;
+          outline: none; }
         #header .right-content .menu-items .menu-item a:active {
-          color: #ccc; }
+          color: #b1b1b1; }
     #header .right-content .profile {
       margin: 0 10px; }
       #header .right-content .profile .menu-toggle {
@@ -60,26 +67,33 @@
           #header .right-content .profile .menu-toggle .profile-picture img:hover {
             transform: scale(1.1); }
         #header .right-content .profile .menu-toggle .dropdown-menu {
-          max-width: 200px; }
+          max-width: 200px;
+          -moz-box-shadow: 2px 2px 5px 2px #343434;
+          -webkit-box-shadow: 2px 2px 5px 2px #343434;
+          box-shadow: 2px 2px 5px 2px #343434; }
           #header .right-content .profile .menu-toggle .dropdown-menu .menu-item {
             font-size: 13px;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
             padding: 5px 10px;
-            color: gray; }
+            color: #424242; }
             #header .right-content .profile .menu-toggle .dropdown-menu .menu-item:hover {
-              background-color: #ececec; }
+              background-color: #eee; }
+            #header .right-content .profile .menu-toggle .dropdown-menu .menu-item:focus {
+              outline: none; }
             #header .right-content .profile .menu-toggle .dropdown-menu .menu-item.header {
               font-weight: bold;
               padding: 0 10px;
-              color: #3f4257; }
+              color: #424242; }
               #header .right-content .profile .menu-toggle .dropdown-menu .menu-item.header:hover {
                 background-color: #fff;
                 -webkit-user-select: none;
                 -moz-user-select: none;
                 -ms-user-select: none;
                 user-select: none; }
+              #header .right-content .profile .menu-toggle .dropdown-menu .menu-item.header:focus {
+                outline: none; }
             #header .right-content .profile .menu-toggle .dropdown-menu .menu-item .item-text {
               padding: 0 10px; }
             #header .right-content .profile .menu-toggle .dropdown-menu .menu-item i {
@@ -147,7 +161,7 @@ article.login {
   justify-content: center;
   flex: 1 0 auto; }
   article.login .login-container {
-    border: 1px solid #ccc;
+    border: 1px solid #363636;
     border-radius: 5px;
     margin: auto;
     min-width: 380px;
@@ -156,10 +170,10 @@ article.login {
     flex-flow: column;
     font-weight: bold;
     font-size: 12px;
-    background-color: #fff; }
+    background-color: #424242; }
     article.login .login-container .header {
       padding: 20px;
-      border-bottom: 1px solid #ccc; }
+      border-bottom: 1px solid #363636; }
       article.login .login-container .header .main-title {
         font-size: 28px; }
       article.login .login-container .header a {
@@ -174,7 +188,7 @@ article.login {
           color: #1f24cc; }
     article.login .login-container .content-local {
       padding: 20px;
-      border-bottom: 1px solid #ccc; }
+      border-bottom: 1px solid #363636; }
       article.login .login-container .content-local .form-error {
         color: red; }
       article.login .login-container .content-local .form-group {
@@ -183,16 +197,13 @@ article.login {
           padding-bottom: 0px; }
         article.login .login-container .content-local .form-group input[type="text"], article.login .login-container .content-local .form-group input[type="password"], article.login .login-container .content-local .form-group input[type="email"] {
           width: 100%;
-          background: #fff;
           line-height: 1.45;
-          padding: 4px;
-          border: 1px solid #ccc; }
+          padding: 4px; }
         article.login .login-container .content-local .form-group input[type="checkbox"] {
           height: 20px;
           width: 20px;
           vertical-align: middle; }
         article.login .login-container .content-local .form-group input:focus, article.login .login-container .content-local .form-group textarea:focus {
-          border-color: #1f24cc;
           box-shadow: none;
           outline: 0; }
         article.login .login-container .content-local .form-group a {
@@ -258,7 +269,7 @@ article.sign-up {
   justify-content: center;
   flex: 1 0 auto; }
   article.sign-up .sign-up-container {
-    border: 1px solid #ccc;
+    border: 1px solid #363636;
     border-radius: 5px;
     margin: auto;
     min-width: 380px;
@@ -267,10 +278,10 @@ article.sign-up {
     flex-flow: column;
     font-weight: bold;
     font-size: 12px;
-    background-color: #fff; }
+    background-color: #424242; }
     article.sign-up .sign-up-container .header {
       padding: 20px;
-      border-bottom: 1px solid #ccc; }
+      border-bottom: 1px solid #363636; }
       article.sign-up .sign-up-container .header .main-title {
         font-size: 28px; }
       article.sign-up .sign-up-container .header a {
@@ -285,7 +296,7 @@ article.sign-up {
           color: #1f24cc; }
     article.sign-up .sign-up-container .content-local {
       padding: 20px;
-      border-bottom: 1px solid #ccc; }
+      border-bottom: 1px solid #363636; }
       article.sign-up .sign-up-container .content-local .form-error {
         color: red; }
       article.sign-up .sign-up-container .content-local .form-group {
@@ -294,12 +305,9 @@ article.sign-up {
           padding-bottom: 0px; }
         article.sign-up .sign-up-container .content-local .form-group input[type="text"], article.sign-up .sign-up-container .content-local .form-group input[type="password"], article.sign-up .sign-up-container .content-local .form-group input[type="email"] {
           width: 100%;
-          background: #fff;
           line-height: 1.45;
-          padding: 4px;
-          border: 1px solid #ccc; }
+          padding: 4px; }
         article.sign-up .sign-up-container .content-local .form-group input:focus, article.sign-up .sign-up-container .content-local .form-group textarea:focus {
-          border-color: #1f24cc;
           box-shadow: none;
           outline: 0; }
         article.sign-up .sign-up-container .content-local .form-group button[type="submit"] {
@@ -354,7 +362,7 @@ article.forgot-password {
   display: flex;
   justify-content: center; }
   article.forgot-password .forgot-password-container {
-    border: 1px solid #ccc;
+    border: 1px solid #363636;
     border-radius: 5px;
     margin: 80px;
     min-width: 380px;
@@ -363,15 +371,15 @@ article.forgot-password {
     flex-flow: column;
     font-weight: bold;
     font-size: 12px;
-    background-color: #fff; }
+    background-color: #424242; }
     article.forgot-password .forgot-password-container .header {
       padding: 20px;
-      border-bottom: 1px solid #ccc; }
+      border-bottom: 1px solid #363636; }
       article.forgot-password .forgot-password-container .header .main-title {
         font-size: 28px; }
     article.forgot-password .forgot-password-container .content {
       padding: 20px;
-      border-bottom: 1px solid #ccc; }
+      border-bottom: 1px solid #363636; }
       article.forgot-password .forgot-password-container .content .form-error {
         color: red; }
       article.forgot-password .forgot-password-container .content .form-success {
@@ -382,12 +390,9 @@ article.forgot-password {
           padding-bottom: 0px; }
         article.forgot-password .forgot-password-container .content .form-group input[type="text"], article.forgot-password .forgot-password-container .content .form-group input[type="password"], article.forgot-password .forgot-password-container .content .form-group input[type="email"] {
           width: 100%;
-          background: #fff;
           line-height: 1.45;
-          padding: 4px;
-          border: 1px solid #ccc; }
+          padding: 4px; }
         article.forgot-password .forgot-password-container .content .form-group input:focus, article.forgot-password .forgot-password-container .content .form-group textarea:focus {
-          border-color: #1f24cc;
           box-shadow: none;
           outline: 0; }
         article.forgot-password .forgot-password-container .content .form-group button[type="submit"] {
@@ -410,7 +415,7 @@ article.reset-password {
   display: flex;
   justify-content: center; }
   article.reset-password .reset-password-container {
-    border: 1px solid #ccc;
+    border: 1px solid #363636;
     border-radius: 5px;
     margin: 80px;
     min-width: 380px;
@@ -419,15 +424,15 @@ article.reset-password {
     flex-flow: column;
     font-weight: bold;
     font-size: 12px;
-    background-color: #fff; }
+    background-color: #424242; }
     article.reset-password .reset-password-container .header {
       padding: 20px;
-      border-bottom: 1px solid #ccc; }
+      border-bottom: 1px solid #363636; }
       article.reset-password .reset-password-container .header .main-title {
         font-size: 28px; }
     article.reset-password .reset-password-container .content {
       padding: 20px;
-      border-bottom: 1px solid #ccc; }
+      border-bottom: 1px solid #363636; }
       article.reset-password .reset-password-container .content .form-error {
         color: red; }
       article.reset-password .reset-password-container .content .form-success {
@@ -438,12 +443,9 @@ article.reset-password {
           padding-bottom: 0px; }
         article.reset-password .reset-password-container .content .form-group input[type="text"], article.reset-password .reset-password-container .content .form-group input[type="password"], article.reset-password .reset-password-container .content .form-group input[type="email"] {
           width: 100%;
-          background: #fff;
           line-height: 1.45;
-          padding: 4px;
-          border: 1px solid #ccc; }
+          padding: 4px; }
         article.reset-password .reset-password-container .content .form-group input:focus, article.reset-password .reset-password-container .content .form-group textarea:focus {
-          border-color: #1f24cc;
           box-shadow: none;
           outline: 0; }
         article.reset-password .reset-password-container .content .form-group button[type="submit"] {
@@ -472,15 +474,42 @@ body {
   margin: 0;
   font-family: sans-serif;
   font-size: 13px;
-  color: #888da8;
-  background-color: #edf2f6;
+  color: #eee;
+  background-color: #505050;
   height: 100%; }
 
 body, input, textarea, select, header, article, section, aside, pre {
   line-height: 1.6;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.7px;
   font-size: 13px;
-  color: #888da8; }
+  color: #eee; }
+
+input, select, textarea, select, radio {
+  background-color: #393939;
+  border: 1px solid #363636;
+  color: #eee; }
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+textarea:-webkit-autofill:active,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus,
+select:-webkit-autofill:active {
+  -webkit-animation-delay: 1s;
+  /* Safari support - any positive time runs instantly */
+  -webkit-animation-name: autofill;
+  -webkit-animation-fill-mode: both; }
+
+@-webkit-keyframes autofill {
+  0%, 100% {
+    color: #eee;
+    background: #343434; } }
 
 .container {
   display: flex;

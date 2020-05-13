@@ -4,7 +4,7 @@ article.login{
   flex: 1 0 auto;
 
   .login-container{
-    border: 1px solid #ccc;
+    border: 1px solid $em-border-gray;
     border-radius: 5px;
     margin: auto;
     min-width: 380px;
@@ -13,11 +13,11 @@ article.login{
     flex-flow: column;
     font-weight: bold;
     font-size: 12px;
-    background-color: #fff;
+    background-color: $em-bg-gray-medium;
 
     .header{
       padding: 20px;
-      border-bottom: 1px solid #ccc;
+      border-bottom: 1px solid $em-border-gray;
 
       .main-title{
         font-size: 28px;
@@ -40,7 +40,7 @@ article.login{
     }
     .content-local{
       padding: 20px;
-      border-bottom: 1px solid #ccc;
+      border-bottom: 1px solid $em-border-gray;
 
       .form-error{
         color: red;
@@ -54,10 +54,8 @@ article.login{
         }
         input[type="text"], input[type="password"], input[type="email"]{
           width: 100%;
-          background: #fff;
           line-height: 1.45;
           padding: 4px;
-          border: 1px solid #ccc;
         }
         input[type="checkbox"]{
           height: 20px;
@@ -66,7 +64,6 @@ article.login{
         }
         input, textarea{
           &:focus{
-            border-color: #1f24cc;
             box-shadow: none;
             outline: 0;
           }
@@ -110,7 +107,7 @@ article.login{
       padding: 20px;
 
       .facebook-button{
-        color: #fff !important;
+        color: $em-text-white !important;
         background: #3b5998;
         border-radius: 3px;
         position: relative;
@@ -135,7 +132,7 @@ article.login{
         }
 
         span{
-          color: #fff;
+          color: $em-text-white;
           background: #3b5998;
           border-radius: 3px;
           position: relative;

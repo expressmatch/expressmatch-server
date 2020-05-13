@@ -81,6 +81,10 @@
         font-weight: normal;
         font-size: 12px;
       }
+
+      &:last-child{
+        border-bottom: none;
+      }
     }
   }
 }

@@ -1,20 +1,18 @@
 #header {
   min-height: 60px;
   height: 60px;
-  min-height: 60px;
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid $em-border-gray;
-  background-color: $em-bg-white;
-  //position: sticky;
-  //position: -webkit-sticky;
-  //position: -moz-sticky;
-  //position: -ms-sticky;
-  //position: -o-sticky;
-  //top: 0px;
-  background-color: #3f4257;
+  background-color: $em-bg-gray-dark;
+  position: sticky;
+  position: -webkit-sticky;
+  position: -moz-sticky;
+  position: -ms-sticky;
+  position: -o-sticky;
+  top: 0px;
   z-index: 1001;
 
   .left-content {
@@ -24,12 +22,15 @@
 
       .app-logo {
         min-width: 200px;
-        color: #fff;
+        color: $em-text-white;
         margin: 0 10px;
         font-weight: bold;
 
         &:hover{
-          color: #ececec;
+          color: $em-text-gray;
+        }
+        &:active {
+          color: $em-text-gray-light;
         }
         .app-name{
           padding: 0 10px;
@@ -55,15 +56,16 @@
         text-overflow: ellipsis;
         overflow: hidden;
         white-space: nowrap;
-        color: #fff;
+        color: $em-text-white;
         text-decoration: none;
         font-weight: 600;
 
         &:hover {
-          color: #ececec;
+          color: $em-text-gray;
+          outline: none;
         }
         &:active {
-          color: #ccc;
+          color: $em-text-gray-light;
         }
       }
     }
@@ -75,6 +77,7 @@
         border-radius: 50%;
 
         .profile-picture {
+
           img{
             height: 32px;
             width: 32px;
@@ -89,29 +92,39 @@
         }
         .dropdown-menu {
           max-width: 200px;
+          -moz-box-shadow: 2px 2px 5px 2px $em-bg-gray-dark;
+          -webkit-box-shadow: 2px 2px 5px 2px $em-bg-gray-dark;
+          box-shadow: 2px 2px 5px 2px $em-bg-gray-dark;
+
           .menu-item {
             font-size: 13px;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
             padding: 5px 10px;
-            color: gray;
+            color: $em-text-gray-dark;
 
             &:hover{
-              background-color: #ececec;
+              background-color: $em-bg-gray-verylight;
+            }
+            &:focus{
+              outline: none;
             }
 
             &.header{
               font-weight: bold;
               padding: 0 10px;
-              color: #3f4257;
+              color: $em-text-gray-dark;
 
               &:hover{
-                background-color: #fff;
+                background-color: $em-bg-white;
                 -webkit-user-select: none;
                 -moz-user-select: none;
                 -ms-user-select: none;
                 user-select: none;
+              }
+              &:focus{
+                outline: none;
               }
             }
             .item-text{
