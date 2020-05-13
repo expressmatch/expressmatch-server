@@ -84,7 +84,6 @@
           }
           input[type="text"], input[type="email"], textarea {
             border-radius: 3px;
-            border: 1px solid rgba(0, 0, 0, .12);
             margin: 0 0 4px;
             max-width: 100%;
             padding: 8px;
@@ -112,7 +111,7 @@
           }
           input[type="submit"]{
             background-color: #ff5e3a;
-            border-color: $em-border-gray;
+            border-color: #ff5e3a;
             color: #fff;
           }
         }

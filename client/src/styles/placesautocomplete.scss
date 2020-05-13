@@ -4,9 +4,9 @@
   top: 30px;
   width: 100%;
   border-radius: 3px;
-  border: 1px solid rgba(0, 0, 0, 0.12);
+  border: 1px solid $em-border-gray;
   z-index: 999;
-  background-color: #fff;
+  background-color: $em-bg-gray-dark;
 
   &:empty{
     display: none;
@@ -23,8 +23,8 @@
     text-overflow: ellipsis;
 
     &.active{
-      background-color: #edf2f6;
-      color: #545566;
+      background-color: $em-bg-gray-light;
+      color: $em-text-white;
     }
   }
 }
