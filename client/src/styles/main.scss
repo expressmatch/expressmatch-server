@@ -1,4 +1,4 @@
-@import '../../../node_modules/bootstrap/dist/css/bootstrap.css';
+@import '../../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 @import './reset.scss';
 @import './layout.scss';
 @import './variables.scss';
@@ -44,6 +44,7 @@ input, select, textarea, select, radio {
   background-color: $em-input-bg-color;
   border: 1px solid $em-border-gray;
   color: $em-text-white;
+  outline: none;
 }
 input[type="button"],
 input[type="reset"]{
