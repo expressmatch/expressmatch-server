@@ -8,7 +8,7 @@
     "build-css": "node_modules/node-sass/bin/node-sass --include-path server/scss server/scss/main.scss server/public/css/main.css --outputStyle expanded",
     "debug:dev": "node --inspect server/server.js &",
     "prod:build": "node_modules/webpack/bin/webpack.js --config webpack.config.prod.js --mode production",
-    "prod": "npm run prod:build && pm2 start server/prodServer.js &",
+    "prod": "NODE_ENV=production npm run prod:build && pm2 start server/prodServer.js &",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "ExpressMatch",
@@ -52,6 +52,7 @@
     "reactstrap": "^6.4.0",
     "redux-thunk": "^2.3.0",
     "reselect": "^3.0.1",
+    "serve-favicon": "^2.5.0",
     "smoothscroll-polyfill": "^0.4.4"
   },
   "devDependencies": {

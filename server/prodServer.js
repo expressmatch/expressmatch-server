@@ -13,6 +13,7 @@ const passport 				= require('passport');
 const initPassport			= require("./passport");
 const initRoutes			= require("./routes");
 const mongoose 				= require('mongoose');
+const favicon               = require('serve-favicon');
 const port 					= process.env.PORT || 8080;
 const config 				= require('./config/config');
 const { handleError }       = require('./utils/error');
@@ -87,6 +88,7 @@ app.use(function(req, res, next){
 app.use('/public', express.static("server/public"));
 app.use(express.static("client/dist"));
 
+app.use(favicon(path.join(__dirname, 'public/images', 'favicon.png')));
 //-------Routes---------//
 initRoutes(app, passport);
 
