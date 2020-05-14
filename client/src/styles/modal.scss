@@ -1,30 +1,40 @@
 .modal {
   .modal-dialog{
     .modal-content{
+      -moz-box-shadow: 2px 2px 5px 2px $em-bg-gray-light;
+      -webkit-box-shadow: 2px 2px 5px 2px $em-bg-gray-light;
+      box-shadow: 2px 2px 5px 2px $em-bg-gray-light;
+
       .modal-header{
         .modal-title{
           font-weight: bold;
           font-size: 15px;
-          color: #545566;
+          color: $em-text-gray-dark;
         }
+      }
+      .modal-body{
+        color: $em-text-gray-dark;
       }
       .modal-footer{
         .btn{
           font-size: 13px;
           &.btn-primary{
-            background-color: #888da8;
-            border-color: #888da8;
+            background-color: $em-bg-blue;
+            //border-color: $em-border-gray;
+            opacity: 0.8;
 
             &:hover,&:active{
-              background-color: #8885a8;
-              border-color: #8885a8;
+              opacity: 1;
             }
           }
           &.btn-secondary{
-
+            //border-color: $em-border-gray;
           }
         }
       }
     }
   }
+}
+.modal-backdrop{
+  background-color: $em-bg-gray-light;
 }

@@ -18,7 +18,7 @@
     .display-name{
       padding: 0 0 0 5px;
       a {
-        color: #545566;
+        color: $em-text-gray-dark;
         font-weight: bold;
         &:hover {
           text-decoration: underline;

@@ -1,17 +1,35 @@
-.rbt-menu.dropdown-menu{
+.rbt-input-main{
+  color: $em-text-gray;
+  background-color: $em-input-bg-color;
+  border: 1px solid $em-border-gray;
+
+  &:hover,
+  &:focus,
+  &:active{
+    color: $em-text-gray;
+    background-color: $em-input-bg-color;
+    border: 1px solid $em-border-gray;
+  }
+}
+
+.rbt-input-hint {
+  display: none !important;
+}
+
+.rbt-menu.dropdown-menu {
   padding: 5px;
   position: absolute;
   top: 30px;
   overflow-x: auto;
   width: 100%;
   border-radius: 3px;
-  border: 1px solid rgba(0, 0, 0, 0.12);
+  border: 1px solid $em-border-gray;
   z-index: 999;
-  background-color: #fff;
+  background-color: $em-bg-gray-dark;
 
-  li{
+  li {
 
-    a.dropdown-item{
+    a.dropdown-item {
       height: 26px;
       line-height: 26px;
       border-radius: 3px;
@@ -19,13 +37,13 @@
       cursor: pointer;
       font-size: 13px;
 
-      &.active, &:hover,&:focus{
-        background-color: #edf2f6;
+      &.active, &:hover, &:focus {
+        background-color: $em-bg-gray-light;
       }
 
-      span,mark{
+      span, mark {
         font-size: 13px;
-        color: #888da8;
+        color: $em-text-gray;
       }
     }
   }

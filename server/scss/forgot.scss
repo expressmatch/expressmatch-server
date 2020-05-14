@@ -5,7 +5,7 @@ article.forgot-password{
 
 
   .forgot-password-container{
-    border: 1px solid #ccc;
+    border: 1px solid $em-border-gray;
     border-radius: 5px;
     margin: 80px;
     min-width: 380px;
@@ -14,11 +14,11 @@ article.forgot-password{
     flex-flow: column;
     font-weight: bold;
     font-size: 12px;
-    background-color: #fff;
+    background-color: $em-bg-gray-medium;
 
     .header{
       padding: 20px;
-      border-bottom: 1px solid #ccc;
+      border-bottom: 1px solid $em-border-gray;
 
       .main-title{
         font-size: 28px;
@@ -26,13 +26,13 @@ article.forgot-password{
     }
     .content{
       padding: 20px;
-      border-bottom: 1px solid #ccc;
+      //border-bottom: 1px solid $em-border-gray;
 
       .form-error{
-        color: red;
+        color: #ff7e61
       }
       .form-success{
-        color: green;
+        color: #009d00;
       }
 
       .form-group{
@@ -43,14 +43,11 @@ article.forgot-password{
         }
         input[type="text"], input[type="password"], input[type="email"]{
           width: 100%;
-          background: #fff;
           line-height: 1.45;
           padding: 4px;
-          border: 1px solid #ccc;
         }
         input, textarea{
           &:focus{
-            border-color: #1f24cc;
             box-shadow: none;
             outline: 0;
           }

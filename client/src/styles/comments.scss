@@ -1,7 +1,7 @@
 .comments-control{
   padding: 0 25px;
-  background-color: #f9fafd;
-  border-top: 1px solid #e6ecf5;
+  //background-color: #2e2e2e;
+  border-top: 1px solid $em-border-gray;
 
   .header{
     padding-bottom: 5px;
@@ -10,6 +10,7 @@
     -ms-user-select: none;
     user-select: none;
     font-size: 11px;
+    color: $em-text-gray-light;
   }
   .new-comment-container{
     textarea.new-comment{
@@ -17,10 +18,8 @@
       width: 100%;
       resize: none;
       border-radius: 5px;
-      border: 1px solid rgba(0,0,0,.12);
       margin: 10px 0;
       padding: 8px;
-      background-color: $em-bg-gray;
       font-size: 12px;
       line-height: 14px;
 
@@ -29,7 +28,7 @@
       -webkit-outline: none;
 
       &:focus{
-        background-color: $em-bg-white;
+        //background-color: $em-bg-white;
       }
     }
   }
@@ -40,7 +39,7 @@
       //letter-spacing: 0.5px;
       //word-spacing: 0.1px;
       //line-height: 13px;
-      border-top: 1px solid #edf2f6;
+      border-top: 1px solid $em-border-gray;
 
       .comment-bubble{
         //padding: 10px;
@@ -62,7 +61,7 @@
             flex: 1 0 0;
 
             .name a{
-              color: #545566;
+              color: $em-btn-text;
               font-weight: bold;
               &:hover {
                 text-decoration: underline;
@@ -73,6 +72,7 @@
               display: flex;
               justify-content: space-between;
               word-break: break-word;
+              line-height: 16px;
               .text{ }
               .del-icon{
                 cursor: pointer;
@@ -111,7 +111,7 @@
                   font-size: 11px;
                   font-weight: bold;
                   cursor: pointer;
-                  color: #b1b1b1;
+                  color: $em-text-gray-light;
 
                   &.info{
                     cursor: default;
@@ -138,6 +138,7 @@
           -ms-user-select: none;
           user-select: none;
           font-size: 11px;
+          color: $em-text-gray-light;
         }
         .new-reply-container{
           textarea.new-reply{
@@ -145,10 +146,8 @@
             width: 100%;
             resize: none;
             border-radius: 5px;
-            border: 1px solid rgba(0,0,0,.12);
             margin: 5px 0;
             padding: 8px;
-            background-color: $em-bg-gray;
             font-size: 12px;
             line-height: 14px;
 
@@ -157,7 +156,7 @@
             -webkit-outline: none;
 
             &:focus{
-              background-color: $em-bg-white;
+              //background-color: $em-bg-white;
             }
           }
         }
@@ -168,11 +167,12 @@
           //word-spacing: 0.1px;
           //line-height: 13px;
           padding: 5px 0px;
-          border-bottom: 1px solid #edf2f6;
+          border-bottom: 1px solid $em-border-gray;
 
           .reply-content {
             display: flex;
             align-items: center;
+            line-height: 16px;
 
             .reply-photo{
               align-self: flex-start;
@@ -187,7 +187,7 @@
               flex: 1 0 0;
 
               .name a{
-                color: #545566;
+                color: $em-btn-text;
                 font-weight: bold;
                 &:hover {
                   text-decoration: underline;
@@ -236,7 +236,7 @@
                     font-size: 11px;
                     font-weight: bold;
                     cursor: pointer;
-                    color: #b1b1b1;
+                    color: $em-text-gray-light;
                   }
                 }
               }
