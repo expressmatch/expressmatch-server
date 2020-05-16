@@ -3,7 +3,7 @@ const path = require('path');
 const cleanWebpackPlugin = require('clean-webpack-plugin');
 const htmlWebpackPlugin = require('html-webpack-plugin');
 const miniCssExtractPlugin = require('mini-css-extract-plugin');
-const bundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+//const bundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = {
     devtool: 'source-map',
@@ -18,7 +18,7 @@ module.exports = {
     mode: 'production',
     target: 'web',
     plugins: [
-        new cleanWebpackPlugin(['client/dist']),
+        new cleanWebpackPlugin(['server/public/dist']),
         new webpack.NamedModulesPlugin(),
         new webpack.NoEmitOnErrorsPlugin(),
         new miniCssExtractPlugin({
