@@ -86,16 +86,18 @@ app.use(function(req, res, next){
 });
 
 app.use('/public', express.static("server/public"));
-app.use(express.static("client/dist"));
 
 app.use(favicon(path.join(__dirname, 'public/images', 'favicon.png')));
 //-------Routes---------//
 initRoutes(app, passport);
 
 // Catch no route match, always at the end
-app.get('*', function(req, res) {
-    res.sendFile(path.resolve(__dirname,'views/index.ejs'));
+app.get('*', function(req, res, next) {
+    res.sendFile(path.join(__dirname, 'public/dist', 'index.html'));
 });
+// app.get('*', function(req, res) {
+//     res.sendFile(path.resolve(__dirname,'views/index.ejs'));
+// });
 
 app.use((error, req, res, next) => {
     handleError(error, res);

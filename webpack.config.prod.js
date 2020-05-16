@@ -2,14 +2,16 @@ const webpack = require('webpack');
 const path = require('path');
 const cleanWebpackPlugin = require('clean-webpack-plugin');
 const htmlWebpackPlugin = require('html-webpack-plugin');
+const miniCssExtractPlugin = require('mini-css-extract-plugin');
+const bundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = {
-    devtool: 'eval-source-map',
+    devtool: 'source-map',
     entry: [
         './client/src/index'
     ],
     output: {
-        path: path.resolve(__dirname, 'client/dist'),
+        path: path.resolve(__dirname, 'server/public/dist'),
         publicPath: '/',
         filename: 'em.bundle.js'
     },
@@ -19,11 +21,16 @@ module.exports = {
         new cleanWebpackPlugin(['client/dist']),
         new webpack.NamedModulesPlugin(),
         new webpack.NoEmitOnErrorsPlugin(),
+        new miniCssExtractPlugin({
+            filename: '[name].css',
+            chunkFilename: '[id].css'
+        }),
+        //new bundleAnalyzerPlugin(),
         new webpack.DefinePlugin({
             'process.env.NODE_ENV': JSON.stringify('production')
         }),
         new htmlWebpackPlugin({
-            template: 'client/index.html'
+            template: 'server/public/index.html'
         })
     ],
     module: {
@@ -42,8 +49,18 @@ module.exports = {
                 loader: 'url-loader?name=[name].[ext]'
             },
             {
-                test: /(\.css|\.scss|\.sass)$/,
-                loaders: ['style-loader', 'css-loader?sourceMap', 'sass-loader?sourceMap']
+                test: /\.(sa|sc|c)ss$/,
+                use: [
+                    {
+                        loader: miniCssExtractPlugin.loader,
+                        options: {
+                            publicPath: 'server/public/dist',
+                            hmr: process.env.NODE_ENV === 'development',
+                        },
+                    },
+                    'css-loader?sourceMap',
+                    'sass-loader?sourceMap'
+                ],
             }
         ]
     }
