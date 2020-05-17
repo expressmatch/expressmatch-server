@@ -1,7 +1,8 @@
 const webpack = require('webpack');
 const path = require('path');
 const cleanWebpackPlugin = require('clean-webpack-plugin');
-const bundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const miniCssExtractPlugin = require('mini-css-extract-plugin');
+//const bundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = {
 	devtool: 'source-map',
@@ -19,9 +20,13 @@ module.exports = {
 	plugins: [
 		new cleanWebpackPlugin(['client/dist']),
 		new webpack.NamedModulesPlugin(),
+        new webpack.NoEmitOnErrorsPlugin(),
 		new webpack.HotModuleReplacementPlugin(),
+        new miniCssExtractPlugin({
+            filename: '[name].css',
+            chunkFilename: '[id].css'
+        }),
         //new bundleAnalyzerPlugin(),
-    	new webpack.NoEmitOnErrorsPlugin(),
         new webpack.DefinePlugin({
 			'process.env.NODE_ENV': JSON.stringify('development')
 		})
@@ -42,8 +47,18 @@ module.exports = {
 	    		loader: 'url-loader?name=[name].[ext]'
 	    	},
 	    	{
-	    		test: /(\.css|\.scss|\.sass)$/, 
-	    		loaders: ['style-loader', 'css-loader?sourceMap', 'sass-loader?sourceMap']
+                test: /\.(sa|sc|c)ss$/,
+                use: [
+                    {
+                        loader: miniCssExtractPlugin.loader,
+                        options: {
+                            publicPath: 'server/public/dist',
+                            hmr: process.env.NODE_ENV === 'development',
+                        },
+                    },
+                    'css-loader?sourceMap',
+                    'sass-loader?sourceMap'
+                ],
 	    	}
 		]
 	}
