@@ -56,7 +56,7 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
 // required for passport
-app.set('trust proxy', 1); // trust first proxy
+// app.set('trust proxy', 1); // trust first proxy
 app.use(session({
     secret: process.env.SESSION_SECRET,
     saveUninitialized: false,
@@ -72,7 +72,7 @@ app.use(session({
         path: "/",
         maxAge: (7 * 24 * 60 * 60 * 1000),
         httpOnly: true,
-        secure: true,
+        // secure: true,
         sameSite: "none"
     }
 }));

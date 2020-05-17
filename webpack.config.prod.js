@@ -30,7 +30,8 @@ module.exports = {
             'process.env.NODE_ENV': JSON.stringify('production')
         }),
         new htmlWebpackPlugin({
-            template: 'server/public/index.html'
+            template: 'server/public/index.html',
+            inject: false
         })
     ],
     module: {
