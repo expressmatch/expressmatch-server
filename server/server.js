@@ -45,6 +45,9 @@ mongoose.connect(uri,options, err => {
 mongoose.connection.on('disconnected', function() {
     console.error('MongoDB error: Mongo Server is not connected');
 });
+mongoose.set("debug", (collectionName, method, query, doc) => {
+    console.log(`QUERY: ${collectionName}.${method}`, JSON.stringify(query), doc);
+});
 
 initPassport(passport);
 
@@ -103,13 +106,13 @@ app.use(favicon(path.join(__dirname, 'public/images', 'favicon.png')));
 initRoutes(app, passport);
 console.log(listRoutes(app));
 
-// Catch no route match, always at the end
-app.get('*', function(req, res) {
-	res.sendFile(path.resolve(__dirname,'../client/index.html'));
-});
-
 app.use((error, req, res, next) => {
     handleError(error, res);
+});
+
+// Catch no route match, always at the end
+app.get('*', function(req, res, next) {
+	res.sendFile(path.resolve(__dirname,'../client/index.html'));
 });
 
 //-------Launch---------//

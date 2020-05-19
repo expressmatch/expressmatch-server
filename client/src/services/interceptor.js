@@ -14,7 +14,8 @@ const axiosInterceptor = axios.interceptors.response.use((response) => {
         alert(error.response.data.message);
         return Promise.reject(error.response.data.message);
     }
-    return Promise.reject(error.response.data.message);
+    alert(error);
+    return Promise.reject(error);
 });
 
 export default axiosInterceptor;
