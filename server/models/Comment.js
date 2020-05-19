@@ -40,4 +40,6 @@ CommentSchema.methods.isLikedByUser = function (user) {
     return false;
 };
 
+CommentSchema.index({ "postedBy.city": 1, "profile.motherTongue": 1, "profile.caste": 1, "profile.subCaste": 1 });
+
 module.exports = mongoose.model("Comment", CommentSchema);

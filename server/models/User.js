@@ -136,4 +136,6 @@ UserSchema.methods.validPassword = function(password) {
   return bcrypt.compareSync(password, this.local.password);
 };
 
+UserSchema.index({ "profile.name": 1, "profile.city": 1, "profile.motherTongue": 1, "profile.caste": 1, "profile.subCaste": 1 });
+
 module.exports = mongoose.model("User", UserSchema);

@@ -61,4 +61,6 @@ PostSchema.methods.isLikedByUser = function (user) {
     return false;
 };
 
+PostSchema.index({ "postedBy.city": 1, "postedBy.motherTongue": 1, "postedBy.caste": 1, "postedBy.subCaste": 1 });
+
 module.exports = mongoose.model("Post", PostSchema);
