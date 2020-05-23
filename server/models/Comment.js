@@ -40,6 +40,16 @@ CommentSchema.methods.isLikedByUser = function (user) {
     return false;
 };
 
+CommentSchema.pre('find', function() {
+    this._startTime = Date.now();
+});
+
+CommentSchema.post('find', function() {
+    if (this._startTime != null) {
+        console.log('TIME: comments.find: in MS: ', Date.now() - this._startTime);
+    }
+});
+
 CommentSchema.index({ "postedBy.city": 1, "profile.motherTongue": 1, "profile.caste": 1, "profile.subCaste": 1 });
 
 module.exports = mongoose.model("Comment", CommentSchema);

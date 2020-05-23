@@ -136,6 +136,16 @@ UserSchema.methods.validPassword = function(password) {
   return bcrypt.compareSync(password, this.local.password);
 };
 
-UserSchema.index({ "profile.name": 1, "profile.city": 1, "profile.motherTongue": 1, "profile.caste": 1, "profile.subCaste": 1 });
+UserSchema.pre('find', function() {
+    this._startTime = Date.now();
+});
+
+UserSchema.post('find', function() {
+    if (this._startTime != null) {
+        console.log('TIME: users.find: in MS: ', Date.now() - this._startTime);
+    }
+});
+
+UserSchema.index({ "profile.name": 1, "profile.photo": 1, "profile.email": 1});
 
 module.exports = mongoose.model("User", UserSchema);

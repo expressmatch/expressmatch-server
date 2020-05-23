@@ -61,6 +61,17 @@ PostSchema.methods.isLikedByUser = function (user) {
     return false;
 };
 
-PostSchema.index({ "postedBy.city": 1, "postedBy.motherTongue": 1, "postedBy.caste": 1, "postedBy.subCaste": 1 });
+PostSchema.pre('find', function() {
+    this._startTime = Date.now();
+});
+
+PostSchema.post('find', function() {
+    if (this._startTime != null) {
+        console.log('TIME: posts.find: in MS: ', Date.now() - this._startTime);
+    }
+});
+
+PostSchema.index({ "createdAt": -1, "spam": 1});
+PostSchema.index({ "spam": 1, "postedBy.city": 1, "postedBy.motherTongue": 1, "postedBy.caste": 1, "postedBy.subCaste": 1 });
 
 module.exports = mongoose.model("Post", PostSchema);
