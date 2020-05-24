@@ -2,10 +2,11 @@
 <html>
 <head>
     <title>Express To Match - Express and find your partner</title>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-    <link href="/public/css/main.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+          integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <link href="/public/css/main.css" rel="stylesheet" type="text/css"/>
     <style>
-        .privacy-content{
+        .privacy-content {
             margin: 0 auto;
             width: 80%;
             min-width: 820px;
@@ -15,10 +16,10 @@
 </head>
 <body>
 <div class="container">
-    <% include partial/header.ejs %>
+    <%- include('partial/header.ejs', {generic: true}); %>
     <div class="privacy-content">
         <div>
-            <h3><b>Application Privacy Statement</b></h3>
+            <h2>Application Privacy Statement</h2>
 
             <p>This privacy statement applies to the treatment of personally identifiable information submitted by, or
                 otherwise obtained from, you in connection with the associated application Express To Match. The
@@ -26,7 +27,7 @@
                 Application, you acknowledge that you accept the practices and policies outlined in this Privacy
                 Statement.</p>
 
-            <h4><b>WHAT PERSONAL INFORMATION DOES ‘EXPRESS TO MATCH’ COLLECT?</b></h4>
+            <h3>What personal information does ‘Express To Match’ collect?</h3>
 
             <p>We collect the following types of information from our users:</p>
 
@@ -45,18 +46,18 @@
                 information may be shared in aggregate (non-personally identifiable) form with our developers for purely
                 analytical purpose to improve the application features and not intended for any outside use.</p>
 
-            <h4><b>HOW DOES EXPRESS TO MATCH USE THE INFORMATION IT COLLECTS?</b></h4>
+            <h3>How does Express To Match use the information it collects?</h3>
 
             <p>EXPRESS TO MATCH uses the information internally, to analyze, develop and improve its products and
                 services.
             </p>
 
-            <h4><b>WILL EXPRESS TO MATCH SHARE ANY OF THE PERSONAL INFORMATION IT RECEIVES?</b></h4>
+            <h3>Will Express To Match share any of the personal information it receives?</h3>
 
             <p>Personal information about our users is an integral part of our business. We neither rent nor sell
                 your personal information to anyone</p>
 
-            <h4><b>WHAT PERSONAL INFORMATION CAN I ACCESS?</b></h4>
+            <h3>What personal information can I access?</h3>
 
             <p>EXPRESS TO MATCH allows you to access the following information about you for the purpose of
                 viewing, and in certain situations, updating that information. This list may change in the event the
@@ -69,9 +70,9 @@
                 <li>User preferences</li>
                 <li>Application specific data like caste, city, job details, etc</li>
             </ul>
-            
 
-            <h4><b>CAN CHILDREN USE THE APPLICATION?</b></h4>
+
+            <h3>Can children use the application?</h3>
 
             <p>Our site and the services available through EXPRESS TO MATCH are not intended for children under the
                 age
@@ -81,7 +82,7 @@
                 any
                 personal information. We encourage you to participate in your child’s web experience.</p>
 
-            <h4><b>CHANGES TO THIS PRIVACY STATEMENT.</b></h4>
+            <h3>Changes to this privacy statement</h3>
 
             <p>EXPRESS TO MATCH may amend this Privacy Statement from time to time. Use of information we collect
                 now
@@ -91,10 +92,11 @@
                 sending you an email. Users are bound by any changes to the Privacy Statement when he or she uses or
                 otherwise accesses the Application after such changes have been first posted.</p>
 
-            <h4><b>QUESTIONS OR CONCERNS.</b></h4>
+            <h3>Questions or concerns</h3>
 
             <p>If you have any questions or concerns regarding privacy on our Website, please send us a detailed
-                message using our <a href="/contactus">Contact Us</a> page. We will make every effort to resolve your concerns.</p>
+                message using our <a href="/contactus">Contact Us</a> page. We will make every effort to resolve your
+                concerns.</p>
 
             <p>Effective Date: May 4, 2020</p>
         </div>

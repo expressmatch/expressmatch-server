@@ -183,6 +183,14 @@ module.exports = function(app, passport){
         });
     });
 
+    app.get('/privacy', function(req, res) {
+        res.render('privacy.ejs');
+    });
+
+    app.get('/terms', function(req, res) {
+        res.render('terms.ejs');
+    });
+
 
     // =====================================
     // APP AUTHENTICATION FOR ALL ROUTES ===

@@ -5,10 +5,7 @@ import CreatePostContainer from '../containers/CreatePostContainer';
 import ProfileContainer from '../containers/ProfileContainer';
 import ViewPostContainer from '../containers/ViewPostContainer';
 import ContactUs from '../components/ContactUs';
-import Privacy from '../components/Privacy';
-import Terms from '../components/Terms';
 import NotFoundPage from './NotFoundPage';
-import Profile from "./Profile";
 
 class Content extends React.Component {
     render() {
@@ -36,8 +33,6 @@ class Content extends React.Component {
                     }}/>
                     <Route path="/editprofile" component={ProfileContainer} />
                     <Route path="/post/:postId" component={ViewPostContainer} />
-                    <Route path="/privacy" component={Privacy} />
-                    <Route path="/terms" component={Terms} />
                     <Route component={NotFoundPage} />
                 </Switch>
             </div>

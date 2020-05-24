@@ -14,5 +14,21 @@
     margin: 0 auto;
     text-align: center;
     font-size: 10px;
+
+    a{
+      font-weight: normal;
+      text-decoration: none;
+      cursor: hand;
+
+      &:hover{
+        text-decoration: underline;
+      }
+      &:active{
+        //color:#181ca0;
+      }
+      &:visited{
+        //color:#1f24cc;
+      }
+    }
   }
 }
