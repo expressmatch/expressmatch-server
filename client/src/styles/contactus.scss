@@ -53,15 +53,16 @@
           }
         }
         input[type="reset"], input[type="submit"], input[type="button"]{
-          border-radius: 10px;
-          margin-right: 5px;
+          margin-right: 10px;
           outline: none;
-          width: 100px;
-          font-weight: bold;
-
-          &:active:enabled{
-            font-weight: 600;
-          }
+          font-size: 14px;
+          width: auto;
+          cursor: pointer;
+          border-radius: 10px;
+          font-weight: 600;
+          min-height: 36px;
+          padding: 0 16px;
+          vertical-align: middle;
         }
         input[type="submit"]{
           background-color: #ff5e3a;

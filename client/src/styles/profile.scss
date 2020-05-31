@@ -46,6 +46,7 @@
     form {
       .form-control {
         box-shadow: none;
+        border: none !important;
       }
       .em-form-control {
         padding: 10px 20px;
@@ -95,20 +96,32 @@
             }
           }
           input[type="reset"], input[type="submit"], input[type="button"] {
-            border-radius: 10px;
-            margin-right: 5px;
+            margin-right: 10px;
             outline: none;
-            width: 100px;
-            font-weight: bold;
-
-            &:active {
-              font-weight: 600;
-            }
+            font-size: 14px;
+            width: auto;
+            cursor: pointer;
+            border-radius: 10px;
+            font-weight: 600;
+            min-height: 36px;
+            padding: 0 16px;
+            vertical-align: middle;
           }
           input[type="submit"]{
             background-color: #ff5e3a;
             border-color: #ff5e3a;
             color: #fff;
+          }
+          a{
+            outline: none;
+            font-size: 14px;
+            width: auto;
+            cursor: pointer;
+            border-radius: 10px;
+            font-weight: 600;
+            min-height: 36px;
+            margin: 24px 0;
+            vertical-align: middle;
           }
         }
         .sub-text {

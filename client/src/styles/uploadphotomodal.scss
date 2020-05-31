@@ -20,6 +20,13 @@
     .actions{
       padding: 0 10px;
 
+      input[type="file"]{
+        border: none;
+        background-color: $em-text-white;
+        color: $em-text-gray-dark;
+        outline: none;
+      }
+
       input[type="submit"], button{
         font-size: 16px;
         width: auto;
@@ -40,7 +47,7 @@
       }
 
       .action-item{
-        padding: 10px 0;
+        margin-bottom: 20px;
       }
     }
   }
