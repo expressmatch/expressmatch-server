@@ -6,13 +6,16 @@ const mailUtil = () => {
 
     const setTransport = () => {
         smtpTransport = nodemailer.createTransport({
-            service: 'gmail',//smtp.gmail.com  //in place of service use host...
+            host: 'smtp.gmail.com',//smtp.gmail.com  //in place of service use host...
+            port: 465,
+            secure: true,
             auth: {
                 user: config.NOREPLY_GMAILUN,
                 pass: config.NOREPLY_GMAILPW
             }, tls: {
                 rejectUnauthorized: false
-            }
+            },
+            debug: true
         });
     };
 
@@ -34,6 +37,7 @@ const mailUtil = () => {
 
                 if(err){
                     reject('Error during sending mail');
+                    console.error(err);
                 }
                 resolve('Mail Sent Successfully');
             });
