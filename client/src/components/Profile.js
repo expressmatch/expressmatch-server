@@ -327,7 +327,7 @@ class Profile extends React.Component {
                         {/*</div>*/}
                         {!this.props.otherProfile && this.props.readonly && <div className="em-form-control">
                             <div className="field-value">
-                                <NavLink to="/editprofile">Edit Profile</NavLink>
+                                <NavLink to="/editprofile" className="edit-profile">Edit Profile</NavLink>
                             </div>
                         </div>}
                         {!this.props.otherProfile && !this.props.readonly && <div className="em-form-control">
