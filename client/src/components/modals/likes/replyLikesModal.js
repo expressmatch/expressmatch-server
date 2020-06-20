@@ -3,6 +3,7 @@ import EmModal from '../modal';
 import {getCommentLikes} from '../../../actions/commentsActions';
 import * as constants from '../../../constants/constants';
 import {connect} from 'react-redux';
+import noReplyImage from '../../../images/no_image_available.svg';
 
 class ReplyLikesModal extends React.Component {
 
@@ -51,7 +52,10 @@ class ReplyLikesModal extends React.Component {
                             return (
                                 <div className="profile" key={value._id}>
                                     <div className="display-pic">
-                                        <img src={value.profile.photo}/>
+                                        <picture>
+                                            <source srcSet={value.profile.photo}/>
+                                            <img srcSet={noReplyImage}/>
+                                        </picture>
                                     </div>
                                     <div className="display-name">
                                         <a target="_blank" href={`/profile/` + value._id}>{value.profile.name}</a>
