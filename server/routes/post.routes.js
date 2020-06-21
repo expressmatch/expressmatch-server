@@ -42,7 +42,7 @@ const getAllPosts = function (req, res, next) {
         startDate.setHours(0, 0, 0, 0);
         endDate = new Date(filters.date);
         endDate.setDate(endDate.getDate() + 1);
-        endDate.setHours(0, 0, 0, 0);
+        endDate.setHours(0, 0, 0, 1);
     }
 
     filterPredicate = {$and: predicate};
