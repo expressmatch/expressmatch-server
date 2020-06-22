@@ -80,6 +80,19 @@
                     vertical-align: middle;
                   }
                 }
+                &::before{
+                  content: '';
+                  position: absolute;
+                  right: 1%;
+                  top: -4px;
+                  width: 0;
+                  height: 0;
+                  border-left: 5px solid transparent;  /* left arrow slant */
+                  border-right: 5px solid transparent; /* right arrow slant */
+                  border-bottom: 5px solid #fff; /* bottom, add background color here */
+                  font-size: 0;
+                  line-height: 0;
+                }
               }
             }
           }
