@@ -40,6 +40,9 @@ mongoose.connect(uri,options, err => {
 mongoose.connection.on('disconnected', function() {
     console.error('MongoDB error: Mongo Server is not connected');
 });
+mongoose.set("debug", (collectionName, method, query, doc) => {
+    console.log(`QUERY: ${collectionName}.${method}`, JSON.stringify(query), doc);
+});
 
 initPassport(passport);
 

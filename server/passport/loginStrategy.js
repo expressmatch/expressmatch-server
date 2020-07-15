@@ -23,6 +23,9 @@ module.exports = function(passport) {
             if (!user.validPassword(password))
                 return done(null, false, req.flash('error', 'Oops! Wrong password.'));
 
+            if (!user.verified)
+                return done(null, false, req.flash('error', 'Your account has not been verified.'));
+
             return done(null, user);
         });
     }));

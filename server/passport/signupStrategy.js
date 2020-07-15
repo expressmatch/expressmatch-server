@@ -1,7 +1,9 @@
 const LocalStrategy = require('passport-local').Strategy;
 const User = require('../models/User');
+const Token = require('../models/Token');
 const config = require('../config/config');
 const mailUtil = require('../utils/mail')();
+const crypto = require("crypto");
 //const Profile           = require('../models/Profile');
 
 module.exports = function(passport) {
@@ -22,7 +24,6 @@ module.exports = function(passport) {
                 return done(null, false, req.flash('error', 'Name cannot be empty.'));
             }
             if(!email.trim().length){
-                //TODO: Validate Email Entry
                 return done(null, false, req.flash('error', 'Email cannot be empty.'));
             }
             if(!password.trim().length){
@@ -62,27 +63,38 @@ module.exports = function(passport) {
                         if (err)
                             return done(err);
 
-                        // let userProfile = new Profile({
-                        //     user: newUser._id
-                        // });
-                        // userProfile.save(function (err) {
-                        //     if (err)
-                        //         return done(err);
-                        //         //TODO: Delete User that has been created too
-                        // });
-
                         if (newUser.profile.email) {
-                            mailUtil.setOptions({
-                                to: newUser.profile.email,
-                                from: `Express To Match <${config.NOREPLY_GMAILUN}>`,
-                                subject: 'Welcome to Express To Match!',
-                                text: `Welcome! \n\nYou have signed up successfully. You can create posts, share comments, and reply to others comments now. \n\nFind your perfect match. Start Expressing yourself and be social. \n\nRegards\nExpress To Match`,
+
+                            let token = new Token({ _userId: newUser._id, token: crypto.randomBytes(16).toString('hex') });
+
+                            token.save(function (err) {
+                                if (err) return done(err);
+
+                                mailUtil.setOptions({
+                                    to: newUser.profile.email,
+                                    from: `Express To Match <${config.NOREPLY_GMAILUN}>`,
+                                    subject: 'Account Verification Token',
+                                    text: 'Hello,\n\n' + 'Please verify your account by clicking the link: \n\n' + req.protocol + '://' + req.headers.host + '/confirmation/' + token.token + '\n\nRegards\nExpress To Match. '
+                                });
+                                mailUtil.sendMail().then(() => {
+                                    console.log('Mail sent: Account Verification');
+                                }).catch(err => {
+                                    console.error('Error sending mail: Account Verification\n ', err);
+                                });
                             });
-                            mailUtil.sendMail().then(() => {
-                                console.log('Mail sent: User signed Up with email successfully');
-                            }).catch(err => {
-                                console.error('Error sending mail: User Sign-up with email\n ', err);
-                            });
+
+
+                            // mailUtil.setOptions({
+                            //     to: newUser.profile.email,
+                            //     from: `Express To Match <${config.NOREPLY_GMAILUN}>`,
+                            //     subject: 'Welcome to Express To Match!',
+                            //     text: `Welcome! \n\nYou have signed up successfully. You can create posts, share comments, and reply to others comments now. \n\nFind your perfect match. Start Expressing yourself and be social. \n\nRegards\nExpress To Match`,
+                            // });
+                            // mailUtil.sendMail().then(() => {
+                            //     console.log('Mail sent: User signed Up with email successfully');
+                            // }).catch(err => {
+                            //     console.error('Error sending mail: User Sign-up with email\n ', err);
+                            // });
                         }
 
                         return done(null, newUser);

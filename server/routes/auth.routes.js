@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const User = require('../models/User');
+const Token = require('../models/Token');
 const async = require("async");
 const crypto = require("crypto");
 const config = require('../config/config');
@@ -43,7 +44,7 @@ module.exports = function(app, passport){
         res.render('signup.ejs', { message: req.flash('error') });
     });
     app.post('/signup', passport.authenticate('local-signup', {
-        successRedirect : '/editprofile', // redirect to the secure profile section
+        successRedirect : '/verify', // redirect to the secure profile section
         failureRedirect : '/signup', // redirect back to the signup page if there is an error
         failureFlash : true // allow flash messages
     }));
@@ -60,6 +61,34 @@ module.exports = function(app, passport){
             successRedirect : '/posts',
             failureRedirect : '/'
         }));
+
+    // =====================================
+    // VERIFICATION ROUTES =================
+    // =====================================
+    app.get('/verify', function(req, res) {
+        res.render('verify.ejs', { message: req.flash('error') });
+    });
+    app.post('/confirmation', function(req, res, next) {
+        Token.findOne({ token: req.body.token }, function (err, token) {
+            if (!token) return res.status(400).send({ type: 'not-verified', msg: 'We were unable to find a valid token. Your token my have expired.' });
+
+            // If we found a token, find a matching user
+            User.findOne({ _id: token._userId, email: req.body.email }, function (err, user) {
+                if (!user) return res.status(400).send({ msg: 'We were unable to find a user for this token.' });
+                if (user.isVerified) return res.status(400).send({ type: 'already-verified', msg: 'This user has already been verified.' });
+
+                // Verify and save the user
+                user.isVerified = true;
+                user.save(function (err) {
+                    if (err) { return res.status(500).send({ msg: err.message }); }
+                    res.status(200).send("The account has been verified. Please log in.");
+                });
+            });
+        });
+    });
+    app.post('/resend', function(req, res, next) {
+
+    });
 
     // =====================================
     // LOGOUT ==============================
