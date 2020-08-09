@@ -57,6 +57,7 @@ app.set('view engine', 'ejs');
 
 // required for passport
 // app.set('trust proxy', 1); // trust first proxy
+app.enable('trust proxy');
 app.use(session({
     secret: process.env.SESSION_SECRET,
     saveUninitialized: false,
@@ -68,11 +69,12 @@ app.use(session({
         secret: process.env.SESSION_STORE_SECRET,
         //ttl: (7 * 24 * 60 * 60) //7 days, no need cookie maxAge is this is set, also need this as session cookie has no expiry
     }),
+    proxy: true,
     cookie: {
         path: "/",
         maxAge: (7 * 24 * 60 * 60 * 1000),
         httpOnly: true,
-        // secure: true,
+        secure: true,
         sameSite: "none"
     }
 }));
