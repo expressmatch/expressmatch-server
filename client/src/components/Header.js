@@ -2,8 +2,25 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 import noReplyImage from '../images/no_image_available.svg';
+// import NotificationContainer from '../containers/NotificationContainer';
+import { Button, Popover, PopoverHeader, PopoverBody } from 'reactstrap';
 
 class Header extends React.Component {
+
+    constructor(){
+        super();
+
+        this.state = {
+            notificationPopoverShown: true
+        };
+        this.toggleNotifications = this.toggleNotifications.bind(this);
+    }
+
+    toggleNotifications(){
+        this.setState({
+            notificationPopoverShown: !this.state.notificationPopoverShown
+        });
+    };
 
     render() {
         return (
@@ -20,6 +37,19 @@ class Header extends React.Component {
                     <div className="menu-items">
                         <div className="menu-item">
                             <NavLink to="/createpost">Create new post</NavLink>
+                        </div>
+                        <div className="menu-item">
+                            <Button id="notifications" type="button">
+                                Notifications
+                            </Button>
+                            {/*<a id="notifications" onClick={this.toggleNotifications}>Notifications</a>*/}
+                            <Popover trigger="click" placement="bottom" isOpen={this.state.notificationPopoverShown} target="notifications" toggle={this.toggleNotifications}>
+                                <PopoverHeader>Notifications</PopoverHeader>
+                                <PopoverBody>
+                                    Popover hello
+                                    {/*<NotificationContainer/>*/}
+                                </PopoverBody>
+                            </Popover>
                         </div>
                         <div className="menu-item">
                             <NavLink to="/contactus">Contact us</NavLink>
