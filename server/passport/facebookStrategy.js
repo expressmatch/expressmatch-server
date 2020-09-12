@@ -41,7 +41,7 @@ module.exports = function (passport) {
                         name: `${profile.name.givenName} ${profile.name.familyName}`,
                         email: profile.emails && profile.emails[0].value,
                         about: "",
-                        photo: profile.photos[0] && profile.photos[0].value || "",
+                        photo: profile.photos[0] && profile.photos[0].value ? `https://graph.facebook.com/${profile.id}/picture?type=large` : "",
                         dob: profile.birthday || "",
                         gender: profile.gender || "",
                         currentCity: profile.location || "",
