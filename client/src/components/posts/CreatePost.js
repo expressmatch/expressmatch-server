@@ -9,8 +9,8 @@ class CreatePost extends React.Component {
         this.state = {
             post: '',
             charCount: 0,
-            wordCount: 0,
-            minCharCount: 300
+            minCharCount: 300,
+            bestCharCount: 500
         };
         this.onReset = this.onReset.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
@@ -23,8 +23,7 @@ class CreatePost extends React.Component {
 
         this.setState({
             post: '',
-            charCount: 0,
-            wordCount: 0
+            charCount: 0
         });
     }
 
@@ -51,16 +50,14 @@ class CreatePost extends React.Component {
     onChange(e) {
         this.setState({
             post: e.currentTarget.value,
-            charCount: e.currentTarget.value.trim().length,
-            wordCount: e.currentTarget.value.trim().replace(/\s\s+/g, ' ').split(' ').length
+            charCount: e.currentTarget.value.trim().length
         })
     };
 
     componentWillUnmount() {
         this.setState({
             post: '',
-            charCount: 0,
-            wordCount: 0
+            charCount: 0
         });
     }
 
@@ -77,11 +74,16 @@ class CreatePost extends React.Component {
                             <textarea name="content" onChange={this.onChange}></textarea>
                             {this.state.charCount < this.state.minCharCount &&
                             <div className="sub-text">
-                                Enter at least {this.state.minCharCount - this.state.charCount} more characters
+                                <span style={{color: '#ff5e3a', fontWeight: 'bold'}}>POOR</span> - Write to impress.
                             </div>}
                             {this.state.charCount >= this.state.minCharCount &&
+                             this.state.charCount < this.state.bestCharCount &&
                             <div className="sub-text">
-                                {this.state.wordCount} {this.state.wordCount > 1 ? ' words' : ' word'} used
+                                <span style={{color: '#ffff00', fontWeight: 'bold'}}>AVERAGE</span> - Sufficient, but you can do add more information.
+                            </div>}
+                            {this.state.charCount >= this.state.bestCharCount &&
+                            <div className="sub-text">
+                                <span style={{color: '#50c878', fontWeight: 'bold'}}>GOOD</span> - Good work.
                             </div>}
                         </div>
                     </div>
