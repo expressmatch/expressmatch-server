@@ -301,7 +301,7 @@ class Profile extends React.Component {
                             </div>
                         </div>
                         <div className="em-form-control">
-                            <div className="field-label">Where do you work?</div>
+                            <div className="field-label">Organization</div>
                             <div className="field-value">
                                 <input type="text" data-name="organization" value={this.state.organization}
                                        onChange={this.handleProfileChange}/>

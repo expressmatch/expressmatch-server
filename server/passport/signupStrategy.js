@@ -2,6 +2,7 @@ const LocalStrategy = require('passport-local').Strategy;
 const User = require('../models/User');
 const config = require('../config/config');
 const mailUtil = require('../utils/mail')();
+const emUtils = require('./../utils/emUtils');
 //const Profile           = require('../models/Profile');
 
 module.exports = function(passport) {
@@ -42,7 +43,7 @@ module.exports = function(passport) {
                     newUser.local.email = email;
                     newUser.local.password = newUser.generateHash(password);
                     newUser.profile = {
-                        name: req.body.name.trim(),
+                        name: emUtils.titleCase(req.body.name.trim()),
                         email: email,
                         about: "",
                         photo: "",
