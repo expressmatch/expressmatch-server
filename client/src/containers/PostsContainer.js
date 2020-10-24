@@ -8,6 +8,7 @@ import QuickFilter from '../components/posts/filters/QuickFilter';
 import DateFilter from '../components/posts/filters//DateFilter';
 import Filters from '../components/posts/filters/Filters';
 import Spinner from '../components/common/Spinner';
+import DefaultPost from '../components/Posts/DefaultPost';
 import {makeGetPosts} from '../selector/GetPostsSelector';
 
 class PostsContainer extends React.Component {
@@ -52,7 +53,9 @@ class PostsContainer extends React.Component {
                         actions={this.props.actions}
                         loading={this.props.loading}/>
                     {!this.props.loading && this.props.posts.length === 0 &&
-                    <div className="empty-message">No Posts To Display</div>}
+                    <div className="empty-message">
+                        <DefaultPost/>
+                    </div>}
                 </div>
                 <div className="right-content">
                     <DateFilter actions={this.props.actions} selected={this.props.filters.date}/>

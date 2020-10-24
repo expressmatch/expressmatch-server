@@ -67,8 +67,20 @@ class CreatePost extends React.Component {
                 <form onReset={this.onReset} onSubmit={this.onSubmit} className="create-post-form">
                     <div className="em-form-control">
                         <div className="field-label">
-                            <div>Express yourself</div>
-                            <div className="sub-text">(be creative to find your match)</div>
+                            <div>Express yourself. <br/>Be creative with <span className="ellipsis">Words</span></div>
+                            <div>&nbsp;</div>
+                            <div className="sub-text">
+                                You can include details like:
+                                <ul>
+                                    <li>- General bio</li>
+                                    <li>- Interests and Hobbies</li>
+                                    <li>- Career area</li>
+                                    <li>- What are you looking for?</li>
+                                    <li>- Expectations from partner, etc.</li>
+                                </ul>
+                                <br/>
+                                <div>Caution: <br/>Do not share contact information.</div>
+                            </div>
                         </div>
                         <div className="field-value">
                             <textarea name="content" onChange={this.onChange}></textarea>
