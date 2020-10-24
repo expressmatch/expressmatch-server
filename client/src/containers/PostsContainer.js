@@ -8,7 +8,7 @@ import QuickFilter from '../components/posts/filters/QuickFilter';
 import DateFilter from '../components/posts/filters//DateFilter';
 import Filters from '../components/posts/filters/Filters';
 import Spinner from '../components/common/Spinner';
-import DefaultPost from '../components/Posts/DefaultPost';
+import DefaultPost from '../components/posts/DefaultPost';
 import {makeGetPosts} from '../selector/GetPostsSelector';
 
 class PostsContainer extends React.Component {
