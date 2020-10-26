@@ -91,7 +91,7 @@ class CreatePost extends React.Component {
                             {this.state.charCount >= this.state.minCharCount &&
                              this.state.charCount < this.state.bestCharCount &&
                             <div className="sub-text">
-                                <span style={{color: '#ffff00', fontWeight: 'bold'}}>AVERAGE</span> - Sufficient, but you can do add more information.
+                                <span style={{color: '#ffff00', fontWeight: 'bold'}}>AVERAGE</span> - Sufficient, but you can add more information.
                             </div>}
                             {this.state.charCount >= this.state.bestCharCount &&
                             <div className="sub-text">

@@ -111,6 +111,9 @@ class CommentItem extends React.Component {
                             <div className="name">
                                 <a target="_blank" href={`/profile/` + this.props.comment.postedBy._id}>{this.props.comment.displayName}</a>
                             </div>
+                            <div className="comment-date detail">
+                                {this.props.comment.displayDate} at {this.props.comment.displayTime}
+                            </div>
                             <div className="content">{this.props.comment.content}</div>
                             <div className="comment-actions">
                                 <div className="action">

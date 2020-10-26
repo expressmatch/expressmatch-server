@@ -24,9 +24,15 @@ export const makeGetComments = () => createSelector(
     [getComments],
     (comments) => {
         return comments.map(comment => {
+            let today = new Date();
+            today.setHours(0,0,0,0);
+
             return {
                 ...comment,
-                displayName: comment.postedBy.profile.name || comment.postedBy.profile.email
+                displayName: comment.postedBy.profile.name || comment.postedBy.profile.email,
+                displayDate: new Date(comment.createdAt) >= today ? 'Today' : new Date(comment.createdAt).toDateString(),
+                //displayDate: new Date(comment.createdAt) >= today ? Math.abs(Math.round(((new Date().getTime() - new Date(comment.createdAt).getTime()) / (1000*60*60)))) : new Date(comment.createdAt).toDateString(),
+                displayTime: new Date(comment.createdAt).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})
             }
         }).sort();
     }

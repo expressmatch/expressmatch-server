@@ -68,11 +68,17 @@
                 cursor: pointer;
               }
             }
+            .comment-date{
+              color: $em-text-gray-light;
+              padding: 0;
+              font-size: 11px;
+            }
             .content{
               display: flex;
               justify-content: space-between;
               word-break: break-word;
               line-height: 16px;
+              padding: 5px 0;
               .text{ }
               .del-icon{
                 cursor: pointer;
