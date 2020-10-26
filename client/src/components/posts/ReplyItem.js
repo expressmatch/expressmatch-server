@@ -65,6 +65,9 @@ class ReplyItem extends React.Component {
                         <div className="name">
                             <a target="_blank" href={`/profile/` + this.props.reply.postedBy._id}>{this.props.reply.displayName}</a>
                         </div>
+                        <div className="reply-date detail">
+                            {this.props.reply.displayDate} at {this.props.reply.displayTime}
+                        </div>
                         <div className="content">{this.props.reply.content}</div>
                         <div className="reply-actions">
                             <div className="action">
