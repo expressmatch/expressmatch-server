@@ -22,66 +22,6 @@
     <link href="/public/css/main.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
-<div class="container">
-
-    <header id="header">
-        <div class="left-content">
-            <a href="/posts">
-                <div class="app-logo">
-                    <i class="fas fa-link"></i>
-                    <span className="app-name">EXPRESS TO MATCH</span>
-                </div>
-            </a>
-        </div>
-    </header>
-
-    <section id="content">
-        <p>User</p>
-        <table border="1" cellspacing="5" cellpadding="5" style="text-align: left;">
-            <tr>
-                <td>Name</td>
-                <td>Email</td>
-                <!--<td colspan="2">About</td>-->
-                <!--<td>Photo</td>-->
-                <td>DOB</td>
-                <td>Gender</td>
-                <td>Current City</td>
-                <td>Home Town</td>
-                <td>Mother Tongue</td>
-                <td>Caste</td>
-                <td>Sub Caste</td>
-                <td>Job</td>
-                <td>Org</td>
-                <td>Verified</td>
-            </tr>
-            <% for (var i = 0; i < stats.length; i++) { %>
-                <tr>
-                    <td><%= stats[i].profile.name %></td>
-                    <td><%= stats[i].profile.email %></td>
-                    <!--<td><%= stats[i].profile.about %></td>-->
-                    <!--<td><%= stats[i].profile.photo %></td>-->
-                    <td><%= stats[i].profile.dob %></td>
-                    <td><%= stats[i].profile.gender %></td>
-                    <td><%= stats[i].profile.currentCity %></td>
-                    <td><%= stats[i].profile.homeTown %></td>
-                    <td><%= stats[i].profile.motherTongue %></td>
-                    <td><%= stats[i].profile.caste %></td>
-                    <td><%= stats[i].profile.subCaste %></td>
-                    <td><%= stats[i].profile.job %></td>
-                    <td><%= stats[i].profile.organization %></td>
-                    <td><%= stats[i].profile.verified? 'T':'F' %></td>
-                </tr>
-            <% } %>
-        </table>
-    </section>
-
-    <div id="footer">
-        <div class="footer-message">
-            Copyright @ 2020 Express To Match, India. All rights reserved.
-            <a href="/privacy" target="_blank">Privacy Policy</a> and <a href="/terms" target="_blank">Terms of Use</a>
-        </div>
-    </div>
-
-</div>
+<div id='admin-app' />
 </body>
 </html>
