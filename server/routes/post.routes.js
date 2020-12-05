@@ -24,8 +24,8 @@ module.exports = function (app) {
 const getAllPosts = function (req, res, next) {
 
     let filters = req.body.filters,
-        pageNumber = req.body.pageNumber,
-        limit = 50,
+        pageNumber = req.body.pageNumber || 0,
+        limit = 25,
         skip = (pageNumber * limit),
         predicate = [],
         postsRes = [],
