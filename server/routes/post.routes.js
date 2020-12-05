@@ -25,7 +25,7 @@ const getAllPosts = function (req, res, next) {
 
     let filters = req.body.filters,
         pageNumber = req.body.pageNumber,
-        limit = 5,
+        limit = 50,
         skip = (pageNumber * limit),
         predicate = [],
         postsRes = [],
