@@ -24,6 +24,9 @@ module.exports = function (app) {
 const getAllPosts = function (req, res, next) {
 
     let filters = req.body.filters,
+        pageNumber = req.body.pageNumber,
+        limit = 5,
+        skip = (pageNumber * limit),
         predicate = [],
         postsRes = [],
         query = null,
@@ -50,12 +53,16 @@ const getAllPosts = function (req, res, next) {
     spamPredicate = {$and: [{spam: {$nin: [req.user]}}, {'spam.5': {$exists: false}}]};
 
     if (predicate.length > 0) {
-        query = Post.find({$and: [datePredicate, spamPredicate, filterPredicate]});
+        query = Post.find({$and: [spamPredicate, filterPredicate]});
     } else {
-        query = Post.find({$and: [datePredicate, spamPredicate]});
+        query = Post.find({$and: [spamPredicate]});
     }
 
-    query.sort({createdAt: 'desc'}).exec(function (err, posts) {
+    query
+        .sort({createdAt: 'desc'})
+        .limit(limit)
+        .skip(skip)
+        .exec(function (err, posts) {
         if (err)
             return next(err);
 

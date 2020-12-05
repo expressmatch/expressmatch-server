@@ -7,14 +7,15 @@ let getPosts = (() => {
         return response;
     };
 
-    return (filters) => {
+    return (filters, pageNumber) => {
         return new Promise((resolve, reject) => {
             axios({
                 method: 'POST',
                 url: '/api/posts',
                 headers: {'Content-type': 'application/json'},
                 data: {
-                    filters
+                    filters,
+                    pageNumber
                 }
             }).then(response => {
                 resolve(processResponse(response.data));

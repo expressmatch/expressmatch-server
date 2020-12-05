@@ -3,11 +3,11 @@ import postsService from '../services/PostsService';
 import delay from '../services/delay';
 
 /*-------- FETCH POSTS - START---------*/
-export function getPosts(filters) {
+export function getPosts(filters, pageNumber) {
     return (dispatch, getState ) => {
         dispatch(getPostsRequest());
 
-        return postsService.getPosts(filters).then(data => {
+        return postsService.getPosts(filters, pageNumber).then(data => {
             setTimeout(() => {
                 return dispatch(getPostsSuccess(data));
             }, delay);

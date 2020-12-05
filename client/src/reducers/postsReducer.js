@@ -25,8 +25,8 @@ const postsReducer = (state = initialState.posts, action) => {
             entities: {
                 ...state.entities,
                 posts: {
-                    byId: posts.byId,
-                    allIds: posts.allIds
+                    byId: {...state.entities.posts.byId, ...posts.byId},
+                    allIds: [...state.entities.posts.allIds, ...posts.allIds]
                 }
             }
         };
