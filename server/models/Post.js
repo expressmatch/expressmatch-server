@@ -71,6 +71,15 @@ PostSchema.post('find', function() {
     }
 });
 
-PostSchema.index({ "createdAt" : -1, "spam": 1, "postedBy.city": 1, "postedBy.motherTongue": 1, "postedBy.caste": 1, "postedBy.subCaste": 1 });
+PostSchema.index({
+    "createdAt" : -1,
+    "spam": 1
+});
+PostSchema.index({
+    "postedBy.city": 1,
+    "postedBy.motherTongue": 1,
+    "postedBy.caste": 1,
+    "postedBy.subCaste": 1
+});
 
 module.exports = mongoose.model("Post", PostSchema);

@@ -6,6 +6,7 @@ export default {
     },
     posts: {
         loading: false,
+        pageNumber: 0,
         entities: {
             posts: {
                 byId: {},

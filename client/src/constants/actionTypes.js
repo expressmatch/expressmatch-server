@@ -62,6 +62,9 @@ export const UI_DATE_FILTER = 'UI_DATE_FILTER';
 export const UI_QUICK_FILTER = 'UI_QUICK_FILTER';
 export const CLEAR_QUICK_FILTER = 'CLEAR_QUICK_FILTER';
 
+//Pagination
+export const UI_PAGE_NUMBER = 'UI_PAGE_NUMBER';
+
 // Profile
 export const GET_PROFILE_REQUEST = 'GET_PROFILE_REQUEST';
 export const GET_PROFILE_SUCCESS = 'GET_PROFILE_SUCCESS';

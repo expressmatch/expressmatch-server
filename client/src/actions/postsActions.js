@@ -187,3 +187,6 @@ export function uiQuickFilter(filter){
 export function clearQuickFilter(){
     return { type: types.CLEAR_QUICK_FILTER }
 }
+export function updatePageNumber(pageNumber){
+    return { type: types.UI_PAGE_NUMBER, pageNumber }
+}

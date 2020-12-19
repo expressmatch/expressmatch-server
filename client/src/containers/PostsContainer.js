@@ -15,25 +15,27 @@ class PostsContainer extends React.Component {
     constructor(props) {
         super(props);
 
-        this.pageNumber = 0;
         this.state = {
             lazyLoadEnabled: true
         };
 
-        this.scrollListener = this.scrollListener.bind(this);
+        this.throttle = this.throttle.bind(this);
+        this.onScroll = this.onScroll.bind(this);
+        this.onThrottledScroll = this.throttle(this.onScroll, 300);
     }
 
     componentDidMount(){
         this.props.actions.getPosts(this.props.filters, 0);
 
         if( this.state.lazyLoadEnabled ) {
-            document.addEventListener('scroll', this.scrollListener);
+            document.addEventListener('scroll', this.onThrottledScroll);
         }
     }
 
     componentWillReceiveProps(nextProps) {
-        if (this.props.filters !== nextProps.filters) {
-            this.props.actions.getPosts(nextProps.filters);
+        if (this.props.filters !== nextProps.filters ||
+            this.props.pageNumber !== nextProps.pageNumber) {
+            this.props.actions.getPosts(nextProps.filters, nextProps.pageNumber);
         }
 
     }
@@ -53,16 +55,27 @@ class PostsContainer extends React.Component {
         // document.documentElement.scrollTop = 0;
     }
 
-    scrollListener(e) {
-        // debugger;
+    throttle(func, wait) {
+        let timeout;
+        return function () {
+            let later = () => {
+                timeout = null;
+                func.apply(this, arguments);
+            };
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+        }
+    };
+
+    onScroll(e) {
 
         let target = e.target.body,
             scrollBuffer = (target.scrollHeight - target.clientHeight) - target.scrollTop;
 
         // if (this.props.hasNext && scrollBuffer < 55){ hasNext shuold come from service
 
-        if (scrollBuffer < 200) {
-            this.props.actions.getPosts(this.props.filters, this.pageNumber = this.pageNumber + 1);
+        if (scrollBuffer < 300) {
+            this.props.actions.updatePageNumber(this.props.pageNumber + 1);
         }
     }
 
@@ -97,8 +110,10 @@ class PostsContainer extends React.Component {
 
     componentWillUnmount(e){
         if( this.state.lazyLoadEnabled ) {
-            document.removeEventListener('scroll', this.scrollListener);
+            document.removeEventListener('scroll', this.onThrottledScroll);
         }
+        this.props.actions.updatePageNumber(0);
+        this.props.actions.clearQuickFilter();
     }
 }
 
@@ -115,7 +130,8 @@ const mapStateToProps = (state, ownProps) => {
         return {
             posts: getPosts(state, ownProps),
             loading: state.posts.loading,
-            filters: state.posts.filters
+            filters: state.posts.filters,
+            pageNumber: state.posts.pageNumber
         };
     }
     return mapStateToProps;

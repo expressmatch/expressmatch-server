@@ -19,14 +19,27 @@ const postsReducer = (state = initialState.posts, action) => {
 
         let posts = hashAndOrderItems(action.posts, '_id');
 
+        let byId = {},
+            allIds = [];
+
+        if (state.pageNumber === 0){
+            //Reload
+            byId = posts.byId;
+            allIds = posts.allIds;
+        }else{
+            //Pagination
+            byId = {...state.entities.posts.byId, ...posts.byId};
+            allIds = [...state.entities.posts.allIds, ...posts.allIds];
+        }
+
         return {
             ...state,
             loading: false,
             entities: {
                 ...state.entities,
                 posts: {
-                    byId: {...state.entities.posts.byId, ...posts.byId},
-                    allIds: [...state.entities.posts.allIds, ...posts.allIds]
+                    byId,
+                    allIds
                 }
             }
         };
@@ -211,6 +224,7 @@ const postsReducer = (state = initialState.posts, action) => {
 
         return {
             ...state,
+            pageNumber: 0,
             filters: {
                 ...state.filters,
                 date: action.date.toString()
@@ -220,6 +234,7 @@ const postsReducer = (state = initialState.posts, action) => {
 
         return {
             ...state,
+            pageNumber: 0,
             filters: {
                 ...state.filters,
                 quick: {
@@ -231,6 +246,7 @@ const postsReducer = (state = initialState.posts, action) => {
     } else if (action.type === types.CLEAR_QUICK_FILTER) {
         return {
             ...state,
+            pageNumber: 0,
             filters: {
                 ...state.filters,
                 quick: {
@@ -239,6 +255,12 @@ const postsReducer = (state = initialState.posts, action) => {
                     motherTongue: false
                 }
             }
+        };
+    } else if (action.type === types.UI_PAGE_NUMBER) {
+        // console.log(action.pageNumber);
+        return {
+            ...state,
+            pageNumber: action.pageNumber
         };
     } else {
         return state;
