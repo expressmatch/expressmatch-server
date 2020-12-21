@@ -63,19 +63,29 @@ const getAllPosts = function (req, res, next) {
         .limit(limit)
         .skip(skip)
         .exec(function (err, posts) {
-        if (err)
-            return next(err);
+            if (err) {
+                return next(err);
+            }
 
-        if (posts) {
-            postsRes = posts.map(post => {
-                let obj = post.toJSON();
-                obj.isLikedByUser = post.isLikedByUser(req.user);
-                obj.isCreatedByUser = post.isCreatedByUser(req.user);
-                return obj;
+            Post.countDocuments(query).exec((count_error, count) => {
+                if (err) {
+                    return next(count_error);
+                }
+
+                if (posts) {
+                    postsRes = posts.map(post => {
+                        let obj = post.toJSON();
+                        obj.isLikedByUser = post.isLikedByUser(req.user);
+                        obj.isCreatedByUser = post.isCreatedByUser(req.user);
+                        return obj;
+                    });
+                    res.status(200).json({
+                        hasNext: !!(count === limit),
+                        posts: postsRes
+                    });
+                }
             });
-            res.status(200).json(postsRes);
-        }
-    });
+        });
 };
 
 const createNewPost = function (req, res, next) {

@@ -9,7 +9,7 @@ export function getPosts(filters, pageNumber) {
 
         return postsService.getPosts(filters, pageNumber).then(data => {
             setTimeout(() => {
-                return dispatch(getPostsSuccess(data));
+                return dispatch(getPostsSuccess(data.hasNext, data.posts));
             }, delay);
         }).catch(error => {
             dispatch(getPostsFailure(error));
@@ -19,8 +19,8 @@ export function getPosts(filters, pageNumber) {
 export function getPostsRequest(){
     return { type: types.GET_POSTS_REQUEST };
 }
-export function getPostsSuccess(posts){
-    return { type: types.GET_POSTS_SUCCESS, posts };
+export function getPostsSuccess(hasNext, posts){
+    return { type: types.GET_POSTS_SUCCESS, hasNext, posts };
 }
 export function getPostsFailure(error){
     return { type: types.GET_POSTS_FAILURE, error };

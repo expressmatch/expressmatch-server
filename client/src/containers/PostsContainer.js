@@ -72,9 +72,8 @@ class PostsContainer extends React.Component {
         let target = e.target.body,
             scrollBuffer = (target.scrollHeight - target.clientHeight) - target.scrollTop;
 
-        // if (this.props.hasNext && scrollBuffer < 55){ hasNext shuold come from service
+        if (this.props.hasNext && scrollBuffer < 300){
 
-        if (scrollBuffer < 300) {
             this.props.actions.updatePageNumber(this.props.pageNumber + 1);
         }
     }
@@ -131,7 +130,8 @@ const mapStateToProps = (state, ownProps) => {
             posts: getPosts(state, ownProps),
             loading: state.posts.loading,
             filters: state.posts.filters,
-            pageNumber: state.posts.pageNumber
+            pageNumber: state.posts.pageNumber,
+            hasNext: state.posts.hasNext
         };
     }
     return mapStateToProps;

@@ -35,6 +35,7 @@ const postsReducer = (state = initialState.posts, action) => {
         return {
             ...state,
             loading: false,
+            hasNext: action.hasNext,
             entities: {
                 ...state.entities,
                 posts: {
