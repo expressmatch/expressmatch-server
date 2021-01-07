@@ -4,6 +4,7 @@ import CommentLikesModal from '../modals/likes/commentLikesModal';
 import DeleteCommentModal from '../modals/delete/deleteCommentModal';
 import ReplyItem from './ReplyItem';
 import noReplyImage from '../../images/no_image_available.svg';
+import { Popover, PopoverBody } from 'reactstrap';
 
 class CommentItem extends React.Component {
     constructor(props){
@@ -15,11 +16,13 @@ class CommentItem extends React.Component {
                 [constants.COMMENT_LIKES]: false,
                 [constants.REPLY_LIKES]: false,
                 [constants.DELETE_COMMENT]: false
-            }
+            },
+            userProfile: false
         };
         this.showCommentLikes = this.showCommentLikes.bind(this);
         this.deleteComment = this.deleteComment.bind(this);
         this.toggleModal = this.toggleModal.bind(this);
+        this.toggleUserProfile = this.toggleUserProfile.bind(this);
 
         this.likeComment = this.likeComment.bind(this);
 
@@ -27,6 +30,7 @@ class CommentItem extends React.Component {
         this.postReply = this.postReply.bind(this);
 
         this.newCommentRef = React.createRef();
+        this.profileRef = React.createRef();
     }
 
     showCommentLikes(e){
@@ -49,6 +53,12 @@ class CommentItem extends React.Component {
             modal: {
                 [type]: !this.state.modal[type]
             }
+        });
+    }
+
+    toggleUserProfile(e) {
+        this.setState({
+            userProfile: !this.state.userProfile
         });
     }
 
@@ -102,10 +112,41 @@ class CommentItem extends React.Component {
                 <div className="comment-bubble">
                     <div className="comment-content">
                         <span className="comment-photo">
-                            <picture>
+                            <picture onClick={this.toggleUserProfile}
+                                     onDoubleClick={this.toggleUserProfile}
+                                     ref={this.profileRef}
+                                     id={"profile-" + this.props.comment._id}>
                                 <source srcSet={this.props.comment.postedBy.profile.photo}/>
                                 <img srcSet={noReplyImage}/>
                             </picture>
+                            <Popover
+                                placement="right"
+                                isOpen={this.state.userProfile}
+                                target={this.profileRef}
+                                trigger="hover"
+                                toggle={this.toggleUserProfile}
+                                delay={{show: 3000, hide: 0}}
+                                fade="true"
+                                flip="true"
+                                container={"profile-" + this.props.comment._id}
+                            >
+                            {/*<PopoverHeader>Popover Title</PopoverHeader>*/}
+                                <PopoverBody>
+                                    <div className="user-info">
+                                        <div className="user-photo">
+                                            <picture>
+                                                <source srcSet={this.props.comment.postedBy.profile.photo}/>
+                                                <img srcSet={noReplyImage}/>
+                                            </picture>
+                                        </div>
+                                        <div className="user-details">
+                                            <div className="name">
+                                                <a target="_blank" href={`/profile/` + this.props.comment.postedBy._id}>{this.props.comment.displayName}</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </PopoverBody>
+                            </Popover>
                         </span>
                         <span className="comment-details">
                             <div className="name">

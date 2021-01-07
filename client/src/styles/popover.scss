@@ -1,0 +1,42 @@
+.popover.show{
+  width: 300px;
+  background: $em-bg-gray-verylight;
+  font-size: 12px;
+  line-height: 1.25;
+  border: 1px solid $em-bg-gray-verylight;
+
+  //top: -45px !important;
+  //left: -10px !important;
+  //position: absolute;
+
+  .popover-body{
+    color: $em-text-gray-dark;
+
+    overflow: hidden;
+  }
+
+  &.bs-popover-auto[x-placement^=left]>.arrow:before,
+  &.bs-popover-left>.arrow:before,
+  &.bs-popover-auto[x-platcement^=left]>.arrow:after,
+  &.bs-popover-left>.arrow:after {
+    border-left-color: $em-bg-gray-verylight;
+  }
+  &.bs-popover-auto[x-placement^=right] .arrow:before,
+  &.bs-popover-right .arrow:before,
+  &.bs-popover-auto[x-placement^=right] .arrow:after,
+  &.bs-popover-right .arrow:after {
+    border-right-color: $em-bg-gray-verylight;
+  }
+  &.bs-popover-auto[x-placement^=top]>.arrow:before,
+  &.bs-popover-top>.arrow:before,
+  &.bs-popover-auto[x-placement^=top]>.arrow:after,
+  &.bs-popover-top>.arrow:after {
+    border-top-color: $em-bg-gray-verylight;
+  }
+  &.bs-popover-auto[x-placement^=bottom]>.arrow:before,
+  &.bs-popover-bottom .arrow:before,
+  &.bs-popover-auto[x-placement^=bottom]>.arrow:after,
+  &.bs-popover-bottom .arrow:after {
+    border-bottom-color: $em-bg-gray-verylight;
+  }
+}
