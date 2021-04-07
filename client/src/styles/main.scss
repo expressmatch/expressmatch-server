@@ -16,6 +16,7 @@
 @import './contactus.scss';
 @import './postlikesmodal';
 @import './uploadphotomodal';
+@import './messages';
 
 @import '../../../node_modules/react-datepicker/dist/react-datepicker.min.css';
 @import '../../../node_modules/react-bootstrap-typeahead/css/Typeahead.min.css';
@@ -31,6 +32,14 @@ body{
   background-color: $em-bg-gray-light;
   overflow-y: auto;
 
+}
+body.noscroll{
+  overflow: hidden;
+
+  #footer{
+    position: sticky;
+    bottom: 0;
+  }
 }
 body, input, textarea, select, header, article, section, aside, pre {
   line-height: 1.6;
