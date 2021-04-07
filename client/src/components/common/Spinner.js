@@ -1,13 +1,7 @@
 import React from 'react';
-import { css } from 'react-emotion';
+import { css } from '@emotion/core';
 import { FadeLoader } from 'react-spinners';
 
-const override = css`{
-    position: absolute;
-    margin: auto;
-    top: 50%;
-    left: 50%;
-}`;
 
 export default class Spinner extends React.Component {
     constructor(props) {
@@ -27,7 +21,12 @@ export default class Spinner extends React.Component {
                 {this.state.loading && (
                     <div className='em-spinner'>
                         <FadeLoader
-                            className={override}
+                            css={css`
+                                position: absolute;
+                                margin: auto;
+                                top: 50%;
+                                left: 50%;
+                            `}
                             sizeUnit={"px"}
                             size={150}
                             color={'#fff'}

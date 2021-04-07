@@ -213,7 +213,7 @@ class Profile extends React.Component {
                                                             {...getSuggestionItemProps(suggestion, {
                                                                 className
                                                             })}
-                                                        >
+                                                            key={suggestion.placeId}>
                                                             <span>{suggestion.description}</span>
                                                         </div>
                                                     );
@@ -250,7 +250,7 @@ class Profile extends React.Component {
                                                             {...getSuggestionItemProps(suggestion, {
                                                                 className
                                                             })}
-                                                        >
+                                                            key={suggestion.placeId}>
                                                             <span>{suggestion.description}</span>
                                                         </div>
                                                     );
