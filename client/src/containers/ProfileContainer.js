@@ -20,7 +20,11 @@ class ProfileContainer extends React.Component {
                 profile={this.props.profile}
                 actions={this.props.actions}
                 readonly={this.props.readonly}
-                otherProfile={this.props.otherProfile}/>
+                otherProfile={
+                    this.props.otherProfile
+                    ? this.props.user.id !== this.props.userId
+                    : false}
+            />
         );
     }
 }
@@ -32,7 +36,8 @@ ProfileContainer.propTypes = {
 
 function mapStateToProps(state, ownProps) {
     return {
-        profile: state.profile
+        profile: state.profile,
+        user: state.user
     };
 }
 

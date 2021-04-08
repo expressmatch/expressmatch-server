@@ -17,7 +17,8 @@ const getUser = function (req, res, next) {
     res.status(200).json({
         name: req.user.profile.name,
         email: req.user.profile.email,
-        photo: req.user.profile.photo
+        photo: req.user.profile.photo,
+        id: req.user._id //TODO: Is this safe? Added for checking other profiles
     });
 };
 

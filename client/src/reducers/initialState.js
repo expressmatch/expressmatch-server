@@ -2,7 +2,8 @@ export default {
     user: {
         name: null,
         email: null,
-        photo: null
+        photo: null,
+        id: null
     },
     posts: {
         loading: false,

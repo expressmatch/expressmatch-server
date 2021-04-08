@@ -1,5 +1,5 @@
 #create-post{
-  width: 80%;
+  width: 60%;
   min-width: 700px;
   margin: 10px auto;
   background-color: $em-bg-gray-medium;
@@ -21,6 +21,7 @@
       }
       .field-value{
         padding: 10px 0 0 0;
+        width: 65%;
 
         input, select, textarea{
           height: 30px;
@@ -37,6 +38,7 @@
           height: 250px;
           resize: none;
           font-size: 12px;
+          width: 100%;
         }
 
         input[type="text"], textarea{
