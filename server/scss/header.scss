@@ -25,6 +25,8 @@
         color: $em-text-white;
         margin: 0 10px;
         font-weight: bold;
+        display: flex;
+        align-items: center;
 
         &:hover{
           color: $em-text-gray;
@@ -33,11 +35,11 @@
           color: $em-text-gray-light;
         }
         .app-name{
-          padding: 0 10px;
+          padding: 0 5px;
         }
         i{
           font-size: 1.5rem;
-          vertical-align: middle;
+          //vertical-align: middle;
         }
       }
     }
