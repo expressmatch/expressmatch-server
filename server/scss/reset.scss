@@ -24,6 +24,11 @@ article.reset-password{
         font-size: 28px;
       }
     }
+    @include mobile(){
+      .header{
+        padding: 10px 20px;
+      }
+    }
     .content{
       padding: 20px;
       //border-bottom: 1px solid $em-border-gray;
@@ -70,6 +75,11 @@ article.reset-password{
             opacity: 0.8;
           }
         }
+      }
+    }
+    @include mobile(){
+      .content{
+        padding: 10px 20px;
       }
     }
   }

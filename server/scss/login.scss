@@ -38,6 +38,11 @@ article.login{
         }
       }
     }
+    @include mobile(){
+      .header{
+        padding: 10px 20px;
+      }
+    }
     .content-local{
       padding: 20px;
       border-bottom: 1px solid $em-border-gray;
@@ -103,6 +108,11 @@ article.login{
         }
       }
     }
+    @include mobile(){
+      .content-local{
+        padding: 10px 20px;
+      }
+    }
     .content-social{
       padding: 20px;
 
@@ -140,6 +150,11 @@ article.login{
           padding-bottom: 13px;
           text-align: center;
         }
+      }
+    }
+    @include mobile(){
+      .content-social{
+        padding: 10px 20px;
       }
     }
   }
