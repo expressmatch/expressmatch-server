@@ -1,0 +1,13 @@
+$xlg-screen-min: 1600px;
+$lg-screen-max: 1440px;
+$medium-screen-max: 1023px;
+$small-screen-max: 767px;
+
+$sm-viewport: ( max: $small-screen-max );
+$sm-md-viewport: ( max: $medium-screen-max );
+$md-viewport: ( min: $small-screen-max + 1, max: $medium-screen-max );
+$md-lg-viewport: ( min: $small-screen-max + 1 );
+$lg-viewport: ( min: $medium-screen-max + 1, max: $lg-screen-max );
+$lg-xl--viewport: ( min: $medium-screen-max + 1 );
+$xl-viewport: ( min: $lg-screen-max + 1 );
+$xlg-viewport: ( min: $xlg-screen-min );

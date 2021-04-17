@@ -1,3 +1,6 @@
+@import "config/viewport.scss";
+@import "config/layout.scss";
+
 @import "variables.scss";
 @import "header.scss";
 @import "content.scss";
@@ -20,6 +23,9 @@ body{
   color: $em-text-gray;
   background-color: $em-bg-gray-light;
   height:100%;
+}
+body, html{
+  overflow-x: hidden;
 }
 body, input, textarea, select, header, article, section, aside, pre {
   line-height: 1.6;

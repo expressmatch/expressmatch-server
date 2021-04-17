@@ -143,4 +143,10 @@ article.login{
       }
     }
   }
+  @include mobile(){
+    .login-container{
+      min-width: unset;
+      width: unset;
+    }
+  }
 }

@@ -1,0 +1,60 @@
+@mixin breakpoint($map,$device:null) {
+  $query: "";
+  @if map-has_key($map, min) {
+    $query: append($query, "(min-width: #{map-get($map, min)})")
+  }
+  @if map-has_key($map, min) and map-has_key($map, max) {
+    $query: append($query, "and")
+  }
+  @if map-has_key($map, max) {
+    $query: append($query, "(max-width: #{map-get($map, max)})")
+  }
+  @if $device == null {
+    @media screen and #{$query} { @content; }
+  } @else {
+    @media #{$query} { @content; }
+  }
+}
+
+@mixin mobile($device:null) {
+  @include breakpoint($sm-viewport, $device) {
+    @content;
+  }
+}
+
+@mixin mobile-tablet($device:null) {
+  @include breakpoint($sm-md-viewport) {
+    @content;
+  }
+}
+
+@mixin tablet($device:null) {
+  @include breakpoint($md-viewport) {
+    @content;
+  }
+}
+
+@mixin tablet-web($device:null) {
+  @include breakpoint($md-lg-viewport) {
+    @content;
+  }
+}
+
+@mixin web($device:null) {
+  @include breakpoint($lg-xl-viewport) {
+    @content;
+  }
+}
+
+@mixin web-xl($device:null) {
+  @include breakpoint($xl-viewport) {
+    @content;
+  }
+}
+
+@mixin web-xlg($device:null) {
+  @include breakpoint($xlg-viewport) {
+    @content;
+  }
+}
+

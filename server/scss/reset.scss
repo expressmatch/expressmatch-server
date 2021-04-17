@@ -1,13 +1,13 @@
 article.reset-password{
   display: flex;
   justify-content: center;
-  //flex: 1 1 auto;
+  flex: 1;
 
 
   .reset-password-container{
     border: 1px solid $em-border-gray;
     border-radius: 5px;
-    margin: 80px;
+    margin: auto;
     min-width: 380px;
     width: 380px;
     display: flex;
@@ -71,6 +71,12 @@ article.reset-password{
           }
         }
       }
+    }
+  }
+  @include mobile(){
+    .reset-password-container{
+      min-width: 85%;
+      width: 85%;
     }
   }
 }

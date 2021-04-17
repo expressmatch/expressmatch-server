@@ -15,7 +15,8 @@
     <title>Express To Match - Find love anonymously</title>
     <meta name="title" content="Express To Match - Find love anonymously" />
     <meta name="description" content ="Find love using Express To match, anonymously" />
-    <meta name="viewport" content="width=821, maximum-scale=1" />
+    <!--<meta name="viewport" content="width=821, maximum-scale=1" />-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
@@ -27,16 +28,68 @@
     <% include partial/header.ejs %>
 
     <section id="content">
-        <div class="main-content">
-            Looking for a partner?
+
+        <div class="row-content main-row">
+            <div class="cell photo-cell">
+                <!--<div class="homepage">-->
+                    <picture>
+                        <img src="/public/images/homepage.jpg"/>
+                    </picture>
+                <!--</div>-->
+            </div>
+            <div class="cell signup-cell">
+                <div>
+                    <div class="main-text">
+                        <div>Looking for a</div>
+                        <div>partner?</div>
+                    </div>
+                    <div class="sub-text"><div>Find love using Express To Match,</div><div><i>anonymously.</i></div></div>
+                    <div class="sign-up">
+                        <a href="/signup">
+                            <button>Sign Up</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="sub-content">
-            Find love using Express To Match, anonymously.
-        </div>
-        <div class="sign-up">
-            <a href="/signup">
-                <button>Sign Up</button>
-            </a>
+        <div class="row-content description-row">
+            <div class="cell intro-cell">
+                <div class="sub-text">Why Express To Match?</div>
+                <div class="intro-container">
+                    <div class="intro">Create anonymous proposals and know secretly who has shown interest.</div>
+                    <div class="intro">Participate in proposal comments and discussions to increase your popularity and the likelihood of getting more interest requests from other users of Express To Match.</div>
+                    <div class="intro">Power in your hands to accept or reject requests to connect.</div>
+                </div>
+            </div>
+            <div class="cell feedback-cell">
+                <div class="sub-text">User Feedback</div>
+                <div class="feedback-container">
+                    <div class="feedback">
+                        <div class="feedback-image">
+                            <picture>
+                                <img src="/public/images/slider-1.jpg"/>
+                            </picture>
+                        </div>
+                        <div class="feedback-text">Thoroughly enjoyable application, which promises lot of value, while maintaining anonymity. Good mix of traditional matrimony and modern day dating apps. </div>
+                    </div>
+                    <div class="feedback">
+                        <div class="feedback-image">
+                            <picture>
+                                <img src="/public/images/slider-2.jpg"/>
+                            </picture>
+                        </div>
+                        <div class="feedback-text">A novel concept to match making. With the advent of technology and swiping apps, expressing through words never goes out of style and Express To Match delivers on it.</div>
+                    </div>
+                    <div class="feedback">
+                        <div class="feedback-image">
+                            <picture>
+                                <img src="/public/images/slider-3.jpg"/>
+                            </picture>
+                        </div>
+                        <div class="feedback-text">Anonymous match making at best. You get what you want, be it friends, dating, or even a potential soul partner, all through this app. All the best. </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 

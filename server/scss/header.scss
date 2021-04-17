@@ -16,12 +16,12 @@
   z-index: 1001;
 
   .left-content {
-    flex: 0 0 200px;
+    flex: 1;
     a{
       text-decoration: none;
 
       .app-logo {
-        min-width: 200px;
+        min-width: 180px;
         color: $em-text-white;
         margin: 0 10px;
         font-weight: bold;
@@ -66,6 +66,11 @@
         }
         &:active {
           color: $em-text-gray-light;
+        }
+      }
+      @include mobile(){
+        .menu-item a{
+          padding: 0 5px;
         }
       }
     }

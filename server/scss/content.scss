@@ -1,32 +1,166 @@
 #content{
-  //flex: 1 0 auto;
-  margin: auto;
-  width: 80%;
-  min-width: 820px;
-  padding: 10px;
-  text-align: center;
+  margin: 0;
+  width: 100%;
+  max-width: 1440px;
+  min-width: 880px;
   min-height: 300px;
+  display: flex;
+  flex: 1 0 auto;
+  flex-flow: column;
 
-  .main-content{
-    font-weight: bold;
-    font-size: 42px;
+  //*{border: 1px white solid;}
+
+  .row-content{
+    display: flex;
+    flex-flow: row;
+
+    &.main-row{
+      flex: 1;
+      .photo-cell{
+        flex: 1;
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-start;
+        min-width: 440px;
+
+        picture img{
+          width: 100%;
+          max-width: 920px;
+          height: auto;
+          margin: auto;
+          border-radius: 15px;
+          display: block;
+        }
+        @include mobile(){
+          picture img{
+            width: 90vw;
+            height: auto;
+          }
+        }
+      }
+      .signup-cell{
+        display: flex;
+        align-items: center;
+        width: 440px;
+        word-break: break-word;
+      }
+    }
+    &.description-row{
+      flex: 1;
+      .intro-cell{
+        flex: 1;
+        min-width: 440px;
+
+        .intro-container{
+          min-height: 120px;
+          padding: 15px;
+          background-image: linear-gradient(to right,$em-bg-gray-dark, $em-bg-gray-medium);
+          border-radius: 10px;
+
+          .intro{
+            position: relative;
+            font-size: 11px;
+            padding: 5px;
+            display: flex;
+
+            &::before{
+              font-family: "Font Awesome 5 Free";
+              content: "\f058";
+              display: inline-block;
+              padding-right: 8px;
+              vertical-align: middle;
+              font-weight: 900;
+            }
+          }
+        }
+      }
+      @include mobile(){
+        .intro-cell{
+          min-width: unset;
+        }
+      }
+      .feedback-cell{
+        width: 440px;
+
+        .feedback-container{
+          width: 320px;
+          height: 150px;
+          display: flex;
+          align-items: center;
+          overflow: hidden;
+
+          .feedback{
+            display: flex;
+            animation:changeTile 20s linear infinite;
+
+            @keyframes changeTile {
+              0%, 30% {
+                transform: translateX(0px);
+              }
+              33%, 63% {
+                transform: translateX(-320px);
+              }
+              67%, 97% {
+                transform: translateX(-640px);
+              }
+              100%{
+                transform: translateX(-960px);
+              }
+            }
+
+            .feedback-image picture img{
+              width: 80px;
+              height: 120px;
+              border-radius: 10px;
+            }
+            .feedback-text{
+              margin: 20px;
+              width: 200px;
+              font-size: 11px;
+              word-break: break-word;
+            }
+          }
+        }
+      }
+    }
+
+    .cell{
+      margin: 20px;
+      margin-bottom: 5px;
+      text-align: left;
+    }
   }
-  .sub-content{
-    font-weight: bold;
-    font-size: 20px;
+  @include mobile(){
+    .row-content {
+      flex-flow: column;
+    }
   }
+
+  .main-text{
+    font-weight: bold;
+    font-size: 32px;
+    line-height: 1.3em;
+    padding: 5px 0;
+  }
+  .sub-text{
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 1.3em;
+    padding: 10px 0;
+  }
+
+
   .sign-up{
-    padding: 10px;
-    margin-top: 36px;
+    margin-top: 24px;
     button{
       font-size: 16px;
       width: auto;
       cursor: pointer;
-      border-radius: 3px;
+      border-radius: 30px;
       font-weight: 600;
-      min-height: 36px;
+      min-height: 32px;
       outline: 0;
-      padding: .75em 7em;
+      padding: 0.5em 1em;
       vertical-align: middle;
       border: 1px solid #ff5e3a;
       background-color: #ff5e3a;
@@ -36,5 +170,10 @@
         opacity: 0.8;
       }
     }
+  }
+}
+@include mobile(){
+  #content{
+    min-width: auto;
   }
 }

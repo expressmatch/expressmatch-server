@@ -139,4 +139,10 @@ article.sign-up{
       }
     }
   }
+  @include mobile(){
+    .sign-up-container{
+      min-width: unset;
+      width: unset;
+    }
+  }
 }
