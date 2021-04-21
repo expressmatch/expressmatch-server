@@ -144,6 +144,8 @@ class Profile extends React.Component {
                             </span>
                         </div>}
                     </div>
+                    {this.props.otherProfile &&
+                    <button className="send-interest">Send Interest</button>}
                 </div>
                 <div className="right-content">
                     <form spellCheck="false">

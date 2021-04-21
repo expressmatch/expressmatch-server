@@ -89,6 +89,35 @@ const postsReducer = (state = initialState.posts, action) => {
                     ...state.entities.posts,
                     byId: {
                         ...state.entities.posts.byId,
+                        [action.post._id]: {
+                            ...state.entities.posts.byId[action.post._id],
+                            likes: action.post.likes,
+                            isLikedByUser: action.post.isLikedByUser
+                        }
+                    }
+                }
+            }
+        }
+    } else if (action.type === types.SEND_INTEREST_REQUEST) {
+        return {
+            ...state,
+            loading: true
+        };
+    } else if (action.type === types.SEND_INTEREST_FAILURE) {
+        return {
+            ...state,
+            loading: false
+        };
+    } else if (action.type === types.SEND_INTEREST_SUCCESS) {
+        return {
+            ...state,
+            loading: false,
+            entities: {
+                ...state.entities,
+                posts: {
+                    ...state.entities.posts,
+                    byId: {
+                        ...state.entities.posts.byId,
                         [action.post._id]: action.post
                     }
                 }
@@ -216,6 +245,34 @@ const postsReducer = (state = initialState.posts, action) => {
                         [action.postId]: {
                             ...state.entities.posts.byId[action.postId],
                             likedBy: action.likes
+                        }
+                    }
+                }
+            }
+        }
+    } else if (action.type === types.GET_POST_INTERESTS_REQUEST) {
+        return {
+            ...state,
+            loading: true
+        };
+    } else if (action.type === types.GET_POST_INTERESTS_FAILURE) {
+        return {
+            ...state,
+            loading: false
+        };
+    } else if (action.type === types.GET_POST_INTERESTS_SUCCESS) {
+        return {
+            ...state,
+            loading: false,
+            entities: {
+                ...state.entities,
+                posts: {
+                    ...state.entities.posts,
+                    byId: {
+                        ...state.entities.posts.byId,
+                        [action.postId]: {
+                            ...state.entities.posts.byId[action.postId],
+                            interestedBy: action.interests
                         }
                     }
                 }

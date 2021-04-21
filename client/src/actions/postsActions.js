@@ -101,7 +101,7 @@ export function deletePostSuccess(postId){
 export function deletePostFailure(error){
     return { type: types.DELETE_POST_FAILURE, error };
 }
-/*-------- LIKE POST - END ---------*/
+/*-------- DELETE POST - END ---------*/
 
 /*-------- LIKE POST - START ---------*/
 export function likePost(postId) {
@@ -128,6 +128,31 @@ export function likePostFailure(error){
 }
 /*-------- LIKE POST - END ---------*/
 
+/*-------- SEND INTEREST - START ---------*/
+export function sendInterest(postId) {
+    return (dispatch, getState ) => {
+        dispatch(sendInterestRequest());
+
+        return postsService.sendInterest(postId).then(data => {
+            setTimeout(() => {
+                return dispatch(sendInterestSuccess(data));
+            }, delay);
+        }).catch(error => {
+            dispatch(sendInterestFailure(error));
+        })
+    };
+}
+export function sendInterestRequest(){
+    return { type: types.SEND_INTEREST_REQUEST };
+}
+export function sendInterestSuccess(post){
+    return { type: types.SEND_INTEREST_SUCCESS, post };
+}
+export function sendInterestFailure(error){
+    return { type: types.SEND_INTEREST_FAILURE, error };
+}
+/*-------- SEND INTEREST - END ---------*/
+
 /*-------- GET POST LIKES - START ---------*/
 export function getPostLikes(postId) {
     return (dispatch, getState ) => {
@@ -153,7 +178,32 @@ export function getPostLikesFailure(error){
 }
 /*-------- GET POST LIKES - END ---------*/
 
-/*-------- DELETE POST - START ---------*/
+/*-------- GET POST INTERESTS - START ---------*/
+export function getPostInterests(postId) {
+    return (dispatch, getState ) => {
+        dispatch(getPostInterestsRequest());
+
+        return postsService.getPostInterests(postId).then(data => {
+            setTimeout(() => {
+                return dispatch(getPostInterestsSuccess(postId, data));
+            }, delay);
+        }).catch(error => {
+            dispatch(getPostInterestsFailure(error));
+        })
+    };
+}
+export function getPostInterestsRequest(){
+    return { type: types.GET_POST_INTERESTS_REQUEST };
+}
+export function getPostInterestsSuccess(postId, interests){
+    return { type: types.GET_POST_INTERESTS_SUCCESS, postId, interests };
+}
+export function getPostInterestsFailure(error){
+    return { type: types.GET_POST_INTERESTS_FAILURE, error };
+}
+/*-------- GET POST INTERESTS - END ---------*/
+
+/*-------- REPORT SPAM - START ---------*/
 export function reportSpam(postId) {
     return (dispatch, getState ) => {
         dispatch(reportSpamRequest());
@@ -176,7 +226,7 @@ export function reportSpamSuccess(postId){
 export function reportSpamFailure(error){
     return { type: types.REPORT_SPAM_FAILURE, error };
 }
-/*-------- LIKE POST - END ---------*/
+/*-------- REPORT SPAM - END ---------*/
 
 export function uiDateFilter(date){
     return { type: types.UI_DATE_FILTER, date };

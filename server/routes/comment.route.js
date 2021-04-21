@@ -163,7 +163,8 @@ const likeComment = function (req, res, next) {
             }
             commentRes = {
                 ...savedcomment.toJSON(),
-                'isLikedByUser': savedcomment.isLikedByUser(req.user)
+                'isLikedByUser': savedcomment.isLikedByUser(req.user),
+                'isCreatedByUser': savedcomment.isCreatedByUser(req.user)
             };
             res.status(200).json(commentRes);
         });

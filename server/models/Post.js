@@ -19,6 +19,10 @@ const PostSchema = new mongoose.Schema({
         type: Schema.Types.ObjectId,
         ref: 'User'
     }],
+    interests: [{
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+    }],
     // shares: [{
     //     type: Schema.Types.ObjectId,
     //     ref: 'User'
@@ -57,6 +61,13 @@ PostSchema.methods.isCreatedByUser = function (user) {
 PostSchema.methods.isLikedByUser = function (user) {
     if (user) {
         return this.likes.indexOf(user._id) >= 0;
+    }
+    return false;
+};
+
+PostSchema.methods.isInterestedByUser = function (user) {
+    if (user) {
+        return this.interests.indexOf(user._id) >= 0;
     }
     return false;
 };

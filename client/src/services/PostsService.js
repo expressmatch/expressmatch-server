@@ -100,6 +100,24 @@ let getPostLikes = (() => {
     };
 })();
 
+let getPostInterests = (() => {
+
+    return (postId) => {
+        return new Promise((resolve, reject) => {
+            axios({
+                method: 'GET',
+                url: `/api/post/${postId}/interests`,
+                headers: {'Content-type': 'application/json'}
+            }).then(response => {
+                resolve(response.data);
+            }).catch(error => {
+                reject(error);
+            });
+        });
+    };
+})();
+
+
 let likePost = (() => {
 
     return (postId) => {
@@ -107,6 +125,24 @@ let likePost = (() => {
             axios({
                 method: 'POST',
                 url: `/api/post/${postId}/like`,
+                headers: {'Content-type': 'application/json'},
+                data: {}
+            }).then(response => {
+                resolve(response.data);
+            }).catch(error => {
+                reject(error);
+            });
+        });
+    };
+})();
+
+let sendInterest = (() => {
+
+    return (postId) => {
+        return new Promise((resolve, reject) => {
+            axios({
+                method: 'POST',
+                url: `/api/post/${postId}/interest`,
                 headers: {'Content-type': 'application/json'},
                 data: {}
             }).then(response => {
@@ -141,7 +177,9 @@ const PostsService = {
     createPost,
     deletePost,
     getPostLikes,
+    getPostInterests,
     likePost,
+    sendInterest,
     reportSpam
 };
 

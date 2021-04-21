@@ -5,6 +5,7 @@ import CommentsContainer from "../../containers/CommentsContainer";
 import DeletePostModal from '../modals/delete/deletePostModal';
 import ReportSpamModal from '../modals/reportSpam/reportSpamModal';
 import PostLikesModal from '../modals/likes/postLikesModal';
+import PostInterestsModal from '../modals/interests/postInterestsModal';
 import * as constants from '../../constants/constants';
 import LazyLoad from 'react-lazyload';
 
@@ -33,16 +34,19 @@ class Post extends React.Component {
             modal: {
                 [constants.DELETE_POST]: false,
                 [constants.REPORT_SPAM]: false,
-                [constants.POST_LIKES]: false
+                [constants.POST_LIKES]: false,
+                [constants.POST_INTERESTS]: false
             }
         };
 
         this.likePost = this.likePost.bind(this);
+        this.sendInterest = this.sendInterest.bind(this);
         this.copyLink = this.copyLink.bind(this);
 
         this.comment = this.comment.bind(this);
         this.handleMenuClick = this.handleMenuClick.bind(this);
         this.showPostLikes = this.showPostLikes.bind(this);
+        this.showPostInterests = this.showPostInterests.bind(this);
         this.toggleModal = this.toggleModal.bind(this);
     }
 
@@ -55,6 +59,13 @@ class Post extends React.Component {
             postId = target.dataset['id'];
 
         this.props.actions.likePost(postId);
+    }
+
+    sendInterest(e) {
+        let target = e.currentTarget.closest('.post'),
+            postId = target.dataset['id'];
+
+        this.props.actions.sendInterest(postId);
     }
 
     copyLink(e) {
@@ -105,6 +116,13 @@ class Post extends React.Component {
         this.toggleModal(type);
     }
 
+    showPostInterests(e){
+        let target = e.currentTarget,
+            type = target.dataset['type'];
+
+        this.toggleModal(type);
+    }
+
     toggleModal(type) {
 
         this.setState({
@@ -138,6 +156,10 @@ class Post extends React.Component {
                                 <DropdownToggle tag="div" className="post-action-menu">...</DropdownToggle>
                                 <DropdownMenu right>
                                     {/*<DropdownItem className="menu-item">Add to favourites</DropdownItem>*/}
+                                    <DropdownItem className="menu-item" onClick={this.copyLink}>
+                                        <i className="far fa-copy"></i>
+                                        <span className="item-text">Copy link</span>
+                                    </DropdownItem>
                                     {this.props.post.isCreatedByUser &&
                                     <DropdownItem className="menu-item" onClick={this.handleMenuClick} data-type={constants.DELETE_POST}>
                                         <i className="far fa-trash-alt"></i>
@@ -155,27 +177,39 @@ class Post extends React.Component {
                         <pre>{this.props.post.content}</pre>
                     </div>
                     <div className="post-meta">
-                        <div className="likes" data-type={constants.POST_LIKES} onClick={this.showPostLikes}>
+                        <div className="likes" data-type={constants.POST_LIKES}>
                             <span className="logo">
-                                {this.props.post.isLikedByUser && <i className="fas fa-heart"></i>}
-                                {!this.props.post.isLikedByUser && <i className="far fa-heart"></i>}
+                                {this.props.post.isLikedByUser && <i className="fas fa-grin-hearts"></i>}
+                                {!this.props.post.isLikedByUser && <i className="far fa-grin-hearts"></i>}
                             </span>
                             <span className="count">
-                                {this.props.post.likes.length} {this.props.post.likes.length === 1 && ' Like'}{this.props.post.likes.length !== 1 && ' Likes'}
+                                {this.props.post.likes.length || 'No'} {this.props.post.likes.length === 1 && ' Like'}{this.props.post.likes.length !== 1 && ' Likes'}
                             </span>
                         </div>
-                        <div className="liked">
+                        <div className="interests" data-type={constants.POST_INTERESTS} onClick={this.showPostInterests}>
+                            {this.props.post.isCreatedByUser &&
+                            <React.Fragment>
+                            <span className="logo">
+                                {!!this.props.post.interests.length && <i className="fas fa-heart"></i>}
+                                {!this.props.post.interests.length && <i className="far fa-heart"></i>}
+                            </span>
+                            <span className="count">
+                                {this.props.post.interests.length || 'No'} {this.props.post.interests.length === 1 && ' Interest'}{this.props.post.interests.length !== 1 && ' Interests'}
+                            </span>
+                            </React.Fragment>}
+                        </div>
+                        {/*<div className="liked">*/}
                             {/*{this.props.post.likes.length === 0 && 'Be the first one to like this proposal'}*/}
                             {/*{this.props.post.likes.length === 1 && `Express To Match likes this`}*/}
                             {/*{this.props.post.likes.length > 1 && `Express To Match and ${this.props.post.likes.length - 1} others likes this`}*/}
-                        </div>
+                        {/*</div>*/}
                         <div className="comments">
                             <span className="logo">
-                                {!!this.props.post.comments.length && <i className="fas fa-comments"></i>}
-                                {!this.props.post.comments.length && <i className="far fa-comments"></i>}
+                                {!!this.props.post.comments.length && <i class="fas fa-comment"></i>}
+                                {!this.props.post.comments.length && <i class="far fa-comment"></i>}
                             </span>
                             <span className="count">
-                                {this.props.post.comments.length}{this.props.post.comments.length === 1 && ' Comment'}{this.props.post.comments.length !== 1 && ' Comments'}
+                                {this.props.post.comments.length || 'No'}{this.props.post.comments.length === 1 && ' Comment'}{this.props.post.comments.length !== 1 && ' Comments'}
                             </span>
                         </div>
                     </div>
@@ -186,10 +220,12 @@ class Post extends React.Component {
                                 {this.props.post.isLikedByUser && 'Liked'}
                             </button>
                         </div>
-                        <div className="post-control copy">
-                            <button className="btn btn-control" onClick={this.copyLink}>
-                                Copy Link
-                            </button>
+                        <div className="post-control interest">
+                            {!this.props.post.isCreatedByUser &&
+                            <button className="btn btn-control" onClick={this.sendInterest}>
+                                {!this.props.post.isInterestedByUser && 'Send Interest'}
+                                {this.props.post.isInterestedByUser && 'Cancel Interest'}
+                            </button>}
                         </div>
                         <div className="post-control comment">
                             <button className="btn btn-control" onClick={this.comment}>
@@ -211,6 +247,11 @@ class Post extends React.Component {
                     onClose={this.toggleModal}/>
                 <PostLikesModal
                     isOpen={this.state.modal[constants.POST_LIKES]}
+                    postId={this.props.post._id}
+                    onClose={this.toggleModal}
+                    loading={this.props.loading}/>
+                <PostInterestsModal
+                    isOpen={this.state.modal[constants.POST_INTERESTS]}
                     postId={this.props.post._id}
                     onClose={this.toggleModal}
                     loading={this.props.loading}/>

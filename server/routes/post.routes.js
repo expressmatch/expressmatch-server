@@ -15,6 +15,8 @@ module.exports = function (app) {
     app.get('/api/post/:postId', getPost);
     app.get('/api/post/:postId/likes', getPostLikes);
     app.post('/api/post/:postId/like', likePost);
+    app.get('/api/post/:postId/interests', getPostInterests);
+    app.post('/api/post/:postId/interest', sendInterest);
     app.post('/api/post/:postId/delete', deletePost);
     app.post('/api/post/:postId/spam', reportSpam);
 
@@ -77,6 +79,7 @@ const getAllPosts = function (req, res, next) {
                         let obj = post.toJSON();
                         obj.isLikedByUser = post.isLikedByUser(req.user);
                         obj.isCreatedByUser = post.isCreatedByUser(req.user);
+                        obj.isInterestedByUser = post.isInterestedByUser(req.user);
                         return obj;
                     });
                     res.status(200).json({
@@ -115,8 +118,9 @@ const getPost = function (req, res, next) {
         if (post) {
             let postsRes = {
                 ...post.toJSON(),
-                isLikedByUser: post.isLikedByUser(req.user),
-                isCreatedByUser: post.isCreatedByUser(req.user)
+                'isLikedByUser': post.isLikedByUser(req.user),
+                'isInterestedByUser': post.isInterestedByUser(req.user),
+                'isCreatedByUser': post.isCreatedByUser(req.user)
             };
             res.status(200).json(postsRes);
         }
@@ -133,6 +137,21 @@ const getPostLikes = function(req, res, next){
         }
     }).populate({
         path: 'likes',
+        model: 'User',
+        select: { '_id': 1, 'profile.name': 1, 'profile.photo': 1, 'profile.email': 1 }
+    });
+};
+
+const getPostInterests = function(req, res, next){
+    Post.findOne({_id: new ObjectId(req.params.postId)}, function (err, post) {
+        if (err) return next(err);
+        if (!post) return next(new ErrorHandler(404, 'The item you requested for is not found'));
+
+        if (post) {
+            res.status(200).json(post.interests);
+        }
+    }).populate({
+        path: 'interests',
         model: 'User',
         select: { '_id': 1, 'profile.name': 1, 'profile.photo': 1, 'profile.email': 1 }
     });
@@ -156,7 +175,44 @@ const likePost = (req, res, next) => {
             }
             postRes = {
                 ...savedPost.toJSON(),
-                'isLikedByUser': savedPost.isLikedByUser(req.user)
+                'isLikedByUser': savedPost.isLikedByUser(req.user),
+                'isCreatedByUser': savedPost.isCreatedByUser(req.user),
+                'isInterestedByUser': savedPost.isInterestedByUser(req.user)
+            };
+            res.status(200).json(postRes);
+        });
+    })
+    // .populate({
+    //     path: 'comments',
+    //     populate: {
+    //         path: 'comments',
+    //         model: 'Comment'
+    //     }
+    // });
+
+};
+
+const sendInterest = (req, res, next) => {
+    let postRes = null;
+
+    Post.findOne({_id: req.params.postId}, function (err, post) {
+        if (err) return next(err);
+        if (!post) return next(new ErrorHandler(404, 'The item you requested for is not found'));
+
+        if (post.interests.indexOf(req.user._id) < 0) {
+            post.interests.push(req.user._id);
+        } else {
+            post.interests.splice(post.interests.indexOf(req.user._id), 1);
+        }
+        post.save(function (err, savedPost) {
+            if (err) {
+                return next(err);
+            }
+            postRes = {
+                ...savedPost.toJSON(),
+                'isLikedByUser': savedPost.isLikedByUser(req.user),
+                'isCreatedByUser': savedPost.isCreatedByUser(req.user),
+                'isInterestedByUser': savedPost.isInterestedByUser(req.user)
             };
             res.status(200).json(postRes);
         });

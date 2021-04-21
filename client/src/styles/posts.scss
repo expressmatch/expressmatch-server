@@ -122,6 +122,18 @@
           font-size: 12px;
 
           .likes{
+            flex: 1;
+            display: flex;
+            //cursor: pointer;
+            .logo,.count {
+              padding: 0 5px;
+            }
+            .logo{
+              zoom: 1.2;
+            }
+          }
+          .interests{
+            flex: 1;
             display: flex;
             cursor: pointer;
             .logo,.count {
@@ -131,11 +143,12 @@
               zoom: 1.2;
             }
           }
-          .liked{
-            text-align: center;
-            flex: 1 0 0;
-          }
+          //.liked{
+          //  text-align: center;
+          //  flex: 1 0 0;
+          //}
           .comments{
+            flex: 1;
             display: flex;
             .logo,.count {
               padding: 0 5px;
@@ -156,7 +169,7 @@
 
           .post-control{
             margin: 5px;
-            flex: 1 0 auto;
+            flex: 1 0 0;
 
             &:first-child{
               margin-left: 0;
