@@ -133,9 +133,14 @@ class Post extends React.Component {
     }
 
     render(){
+        let className = 'post';
+        if (this.props.post.isCreatedByUser) {
+            className += ' author-post';
+        }
         return (
-            <article className="post" key={this.props.post._id} data-id={this.props.post._id}>
+            <article className={className} key={this.props.post._id} data-id={this.props.post._id}>
                 <div className="post-body">
+                    {this.props.post.isCreatedByUser && <div className="author">AUTHOR</div>}
                     <div className="post-header">
                         <div className="post-details">
                             <div className="post-date detail">

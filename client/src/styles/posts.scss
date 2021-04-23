@@ -14,8 +14,25 @@
       background-color: $em-bg-gray-medium;
       border-radius: 5px;
 
+      &.author-post{
+        border: 2px solid $em-border-gray-light;
+        border-radius: 15px;
+        background: linear-gradient(to bottom, $em-bg-gray-light 0px, $em-bg-gray-medium 160px);
+      }
+
       .post-body{
         padding: 25px 25px 0 25px;
+
+        .author{
+          font-size: 10px;
+          display: inline-block;
+          border: 1px solid white;
+          padding: 0 5px;
+          border-radius: 5px;
+          color: $em-text-gray-dark;
+          background: $em-bg-gray-verylight;
+          margin-bottom: 10px;
+        }
 
         .post-header{
           display: flex;
