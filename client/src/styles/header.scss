@@ -98,6 +98,7 @@
           -webkit-box-shadow: 2px 2px 5px 2px $em-bg-gray-dark;
           box-shadow: 2px 2px 5px 2px $em-bg-gray-dark;
           outline: none;
+          background-color: $em-bg-gray-light;
 
           .menu-item {
             font-size: 13px;
@@ -105,10 +106,10 @@
             overflow: hidden;
             text-overflow: ellipsis;
             padding: 5px 10px;
-            color: $em-text-gray-dark;
+            color: $em-text-gray;
 
             &:hover{
-              background-color: $em-bg-gray-verylight;
+              background-color: $em-text-gray;
             }
             &:focus{
               outline: none;
@@ -117,10 +118,9 @@
             &.header{
               font-weight: bold;
               padding: 0 10px;
-              color: $em-text-gray-dark;
 
               &:hover{
-                background-color: $em-bg-white;
+                background-color: $em-bg-gray-light;
                 -webkit-user-select: none;
                 -moz-user-select: none;
                 -ms-user-select: none;
@@ -130,11 +130,20 @@
                 outline: none;
               }
             }
+            &:hover{
+              background-color: $em-bg-gray-dark;
+            }
+            &:focus{
+              outline: none;
+            }
+            &:active{
+              background-color: $em-bg-gray-dark;
+            }
             .item-text{
               padding: 0 10px;
             }
             i{
-              zoom: 1.2;
+              zoom: 1.4;
               vertical-align: middle;
             }
           }
@@ -147,7 +156,7 @@
             height: 0;
             border-left: 5px solid transparent;  /* left arrow slant */
             border-right: 5px solid transparent; /* right arrow slant */
-            border-bottom: 5px solid #fff; /* bottom, add background color here */
+            border-bottom: 5px solid $em-bg-gray-light; /* bottom, add background color here */
             font-size: 0;
             line-height: 0;
           }
