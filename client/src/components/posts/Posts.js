@@ -174,14 +174,14 @@ class Post extends React.Component {
                                         <i className="far fa-trash-alt"></i>
                                         <span className="item-text">
                                             <div className="main-text">Delete Post</div>
-                                            <div className="sub-text">Remove post permanently</div>
+                                            <div className="sub-text">Remove permanently</div>
                                         </span>
                                     </DropdownItem>}
                                     <DropdownItem className="menu-item" onClick={this.handleMenuClick} data-type={constants.REPORT_SPAM}>
                                         <i className="far fa-flag"></i>
                                         <span className="item-text">
                                             <div className="main-text">Report Spam</div>
-                                            <div className="sub-text">You will not see this again</div>
+                                            <div className="sub-text">Don't want to see again</div>
                                         </span>
                                     </DropdownItem>
                                 </DropdownMenu>
