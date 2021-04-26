@@ -7,6 +7,8 @@ import Header from './Header';
 import Content from './Content';
 import Footer from './Footer';
 
+import {userContext} from '../context/userContext';
+
 class App extends React.Component {
 
     componentDidMount(){
@@ -14,11 +16,13 @@ class App extends React.Component {
     }
     render() {
         return (
-            <div className="main-container">
-                <Header {...this.props}/>
-                <Content/>
-                <Footer/>
-            </div>
+            <userContext.Provider value={this.props.user}>
+                <div className="main-container">
+                    <Header/>
+                    <Content/>
+                    <Footer/>
+                </div>
+            </userContext.Provider>
         );
     }
 }

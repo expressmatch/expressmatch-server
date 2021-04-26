@@ -1,10 +1,12 @@
 import React from 'react';
 import Spinner from '../common/Spinner';
 import CommentItem from './CommentItem';
+import noReplyImage from '../../images/no_image_available.svg';
+import {userContext} from '../../context/userContext';
 
 class Comments extends React.Component {
-    constructor(props) {
-        super(props);
+    constructor(props,context) {
+        super(props,context);
 
         this.state = {
             showNewComment: {},
@@ -77,6 +79,16 @@ class Comments extends React.Component {
                 <div className="comments-control">
                     <Spinner loading={this.props.loading}/>
                     <div className="new-comment-container">
+                        <userContext.Consumer>
+                            {user => (
+                                <span className="comment-photo">
+                                    <picture>
+                                        <source srcSet={user.photo}/>
+                                        <img srcSet={noReplyImage}/>
+                                    </picture>
+                                </span>
+                            )}
+                        </userContext.Consumer>
 
                         <textarea
                             autoFocus

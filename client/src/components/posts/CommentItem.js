@@ -4,6 +4,7 @@ import CommentLikesModal from '../modals/likes/commentLikesModal';
 import DeleteCommentModal from '../modals/delete/deleteCommentModal';
 import ReplyItem from './ReplyItem';
 import noReplyImage from '../../images/no_image_available.svg';
+import {userContext} from '../../context/userContext';
 
 class CommentItem extends React.Component {
     constructor(props){
@@ -182,11 +183,23 @@ class CommentItem extends React.Component {
                             <div className="header">View replies:</div> : null}
                         <div className="new-reply-container">
                             {!!this.state.showNewComment[this.props.comment._id] &&
-                            <textarea
-                                autoFocus
-                                className="new-reply"
-                                placeholder="Write a reply..."
-                                onKeyDown={this.postReply}/>}
+                            <React.Fragment>
+                                <userContext.Consumer>
+                                    {user => (
+                                        <span className="reply-photo">
+                                        <picture>
+                                            <source srcSet={user.photo}/>
+                                            <img srcSet={noReplyImage}/>
+                                        </picture>
+                                    </span>
+                                    )}
+                                </userContext.Consumer>
+                                <textarea
+                                    autoFocus
+                                    className="new-reply"
+                                    placeholder="Write a reply..."
+                                    onKeyDown={this.postReply}/>
+                            </React.Fragment>}
                         </div>
                         {this.props.comment.comments.map(reply => {
                             return (
