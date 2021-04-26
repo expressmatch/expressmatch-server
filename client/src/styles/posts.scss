@@ -74,14 +74,18 @@
                 background-color: $em-bg-gray-light;
 
                 .menu-item {
-                  font-size: 11px;
+                  font-size: 13px;
                   white-space: nowrap;
                   overflow: hidden;
                   text-overflow: ellipsis;
                   color: $em-text-gray;
                   cursor: pointer;
-                  line-height: 20px;
+                  //line-height: 20px;
                   font-weight: bold;
+                  display: flex;
+                  align-items: center;
+                  line-height: 1;
+                  height: 40px;
 
                   &:hover{
                     background-color: $em-bg-gray-dark;
@@ -98,6 +102,15 @@
                   i{
                     zoom: 1.4;
                     vertical-align: middle;
+                  }
+
+                  .main-text{
+                    padding: 2px;
+                  }
+                  .sub-text{
+                    font-weight: normal;
+                    padding: 2px;
+                    font-size: 11px;
                   }
                 }
                 &::before{

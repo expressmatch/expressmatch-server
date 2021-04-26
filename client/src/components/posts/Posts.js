@@ -163,16 +163,26 @@ class Post extends React.Component {
                                     {/*<DropdownItem className="menu-item">Add to favourites</DropdownItem>*/}
                                     <DropdownItem className="menu-item" onClick={this.copyLink}>
                                         <i className="far fa-copy"></i>
-                                        <span className="item-text">Copy link</span>
+                                        <div className="item-text">
+                                            <div className="main-text">Copy link</div>
+                                            <div className="sub-text">Share with friends</div>
+                                        </div>
+
                                     </DropdownItem>
                                     {this.props.post.isCreatedByUser &&
                                     <DropdownItem className="menu-item" onClick={this.handleMenuClick} data-type={constants.DELETE_POST}>
                                         <i className="far fa-trash-alt"></i>
-                                        <span className="item-text">Delete post</span>
+                                        <span className="item-text">
+                                            <div className="main-text">Delete Post</div>
+                                            <div className="sub-text">Remove post permanently</div>
+                                        </span>
                                     </DropdownItem>}
                                     <DropdownItem className="menu-item" onClick={this.handleMenuClick} data-type={constants.REPORT_SPAM}>
                                         <i className="far fa-flag"></i>
-                                        <span className="item-text">Report spam</span>
+                                        <span className="item-text">
+                                            <div className="main-text">Report Spam</div>
+                                            <div className="sub-text">You will not see this again</div>
+                                        </span>
                                     </DropdownItem>
                                 </DropdownMenu>
                             </UncontrolledDropdown>
