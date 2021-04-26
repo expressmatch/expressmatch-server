@@ -210,8 +210,8 @@ class Post extends React.Component {
                         {/*</div>*/}
                         <div className="comments">
                             <span className="logo">
-                                {!!this.props.post.comments.length && <i class="fas fa-comment"></i>}
-                                {!this.props.post.comments.length && <i class="far fa-comment"></i>}
+                                {!!this.props.post.comments.length && <i className="fas fa-comment"></i>}
+                                {!this.props.post.comments.length && <i className="far fa-comment"></i>}
                             </span>
                             <span className="count">
                                 {this.props.post.comments.length || 'No'}{this.props.post.comments.length === 1 && ' Comment'}{this.props.post.comments.length !== 1 && ' Comments'}
@@ -225,13 +225,13 @@ class Post extends React.Component {
                                 {this.props.post.isLikedByUser && 'Liked'}
                             </button>
                         </div>
+                        {!this.props.post.isCreatedByUser &&
                         <div className="post-control interest">
-                            {!this.props.post.isCreatedByUser &&
                             <button className="btn btn-control" onClick={this.sendInterest}>
                                 {!this.props.post.isInterestedByUser && 'Send Interest'}
                                 {this.props.post.isInterestedByUser && 'Cancel Interest'}
-                            </button>}
-                        </div>
+                            </button>
+                        </div>}
                         <div className="post-control comment">
                             <button className="btn btn-control" onClick={this.comment}>
                                 Comment

@@ -15,9 +15,9 @@
       border-radius: 5px;
 
       &.author-post{
-        border: 2px solid $em-border-gray-light;
-        border-radius: 15px;
-        background: linear-gradient(to bottom, $em-bg-gray-light 0px, $em-bg-gray-medium 160px);
+        //border: 2px solid $em-border-gray-light;
+        //border-radius: 15px;
+        //background: linear-gradient(to bottom, $em-bg-gray-light 0px, $em-bg-gray-medium 160px);
       }
 
       .post-body{
@@ -211,7 +211,7 @@
                 opacity: 0.8;
               }
               &:hover{
-                //background-color: $em-bg-gray-dark;
+                background-color: $em-bg-gray-dark;
               }
               &:focus{
                 text-decoration: none;
