@@ -74,7 +74,7 @@
                 background-color: $em-bg-gray-light;
 
                 .menu-item {
-                  font-size: 13px;
+                  font-size: 12px;
                   white-space: nowrap;
                   overflow: hidden;
                   text-overflow: ellipsis;
@@ -218,7 +218,7 @@
               -webkit-outline: none;
               outline: none;
               cursor: pointer;
-              font-size: 13px;
+              font-size: 12px;
               font-weight: bold;
 
               &:active{
@@ -270,11 +270,11 @@
         -moz-outline: none;
         -webkit-outline: none;
         outline: none;
-        border: 1px solid $em-border-gray;
-        font-size: 14px;
+        border: 1px solid transparent;
+        font-size: 13px;
         width: auto;
         cursor: pointer;
-        border-radius: 3px;
+        border-radius: 25px;
         font-weight: 600;
         min-height: 36px;
         padding: 0 16px;

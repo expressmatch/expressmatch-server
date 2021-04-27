@@ -45,7 +45,7 @@
       -webkit-outline: none;
       outline: none;
       border: 1px solid #363636;
-      font-size: 14px;
+      font-size: 13px;
       cursor: pointer;
       border-radius: 3px;
       font-weight: 600;
@@ -121,10 +121,11 @@
           input[type="reset"], input[type="submit"], input[type="button"] {
             margin-right: 10px;
             outline: none;
-            font-size: 14px;
+            font-size: 13px;
             width: auto;
             cursor: pointer;
-            border-radius: 10px;
+            border-radius: 25px;
+            border: 1px solid transparent;
             font-weight: 600;
             min-height: 36px;
             padding: 0 16px;
@@ -135,16 +136,23 @@
             border-color: #ff5e3a;
             color: #fff;
           }
-          a.edit-profile{
+          a.edit-profile {
             outline: none;
-            font-size: 14px;
-            width: auto;
-            cursor: pointer;
-            border-radius: 10px;
-            font-weight: 600;
-            min-height: 36px;
-            margin: 24px 0;
-            vertical-align: middle;
+
+            button {
+              margin-right: 10px;
+              outline: none;
+              font-size: 13px;
+              width: auto;
+              cursor: pointer;
+              border-radius: 25px;
+              border: 1px solid transparent;
+              font-weight: 600;
+              min-height: 36px;
+              padding: 0 16px;
+              vertical-align: middle;
+              color: $em-text-gray-dark;
+            }
           }
         }
         .sub-text {

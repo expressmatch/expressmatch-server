@@ -56,10 +56,11 @@
         input[type="reset"], input[type="submit"], input[type="button"]{
           margin-right: 10px;
           outline: none;
-          font-size: 14px;
+          font-size: 13px;
           width: auto;
           cursor: pointer;
-          border-radius: 10px;
+          border-radius: 25px;
+          border: 1px solid transparent;
           font-weight: 600;
           min-height: 36px;
           padding: 0 16px;
