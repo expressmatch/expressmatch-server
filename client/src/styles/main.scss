@@ -56,7 +56,8 @@ input, select, textarea, select, radio {
   outline: none;
 }
 input[type="button"],
-input[type="reset"]{
+input[type="reset"],
+button{
   color: $em-text-gray-dark;
   background-color: $em-bg-gray-verylight;
   border: 1px solid $em-border-gray;
