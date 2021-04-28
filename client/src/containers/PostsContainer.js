@@ -80,8 +80,9 @@ class PostsContainer extends React.Component {
 
     render() {
         return (
-            <div className="posts">
-                <div className="left-content">
+            <div className="posts-container">
+
+                <div className="posts">
                     <Spinner loading={this.props.loading}/>
                     <Posts
                         posts={this.props.posts}
@@ -93,13 +94,17 @@ class PostsContainer extends React.Component {
                         <DefaultPost/>
                     </div>}
                 </div>
-                <div className="right-content">
-                    {/*<DateFilter actions={this.props.actions} selected={this.props.filters.date}/>*/}
-                    <QuickFilter
-                        actions={this.props.actions}
-                        filters={this.props.filters.quick}/>
-                    {/*<Filters />*/}
-                    <a className="back-to-top" onClick={this.scrollToTop}>
+                <div className="sidebar">
+                    <div className="sidebar-content">
+                        {/*<DateFilter actions={this.props.actions} selected={this.props.filters.date}/>*/}
+                        <QuickFilter
+                            actions={this.props.actions}
+                            filters={this.props.filters.quick}/>
+                        {/*<Filters />*/}
+                    </div>
+                </div>
+                <div className="back-to-top">
+                    <a onClick={this.scrollToTop}>
                         <i className="fas fa-arrow-up"></i>
                     </a>
                 </div>
