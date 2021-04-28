@@ -91,60 +91,63 @@ class ContactUs extends React.Component {
     render() {
         return (
             <div id="contact-us">
-                <form onReset={this.onReset} onSubmit={this.onSubmit}
-                      className="contact-us-form">
-                    <div className="em-form-control">
-                        <div className="field-label">
-                            <div>Name</div>
+                <div className="page-header">Contact Us</div>
+                <div className="page-content">
+                    <form onReset={this.onReset} onSubmit={this.onSubmit}
+                          className="contact-us-form">
+                        <div className="em-form-control">
+                            <div className="field-label">
+                                <div>Name</div>
+                            </div>
+                            <div className="field-value">
+                                <input type="text" name="name" placeholder={'Enter your name'} required/>
+                            </div>
                         </div>
-                        <div className="field-value">
-                            <input type="text" name="name" placeholder={'Enter your name'} required/>
+                        <div className="em-form-control">
+                            <div className="field-label">
+                                <div>E-mail</div>
+                            </div>
+                            <div className="field-value">
+                                <input type="email" name="email" placeholder={'Enter your e-mail id'} required/>
+                            </div>
                         </div>
-                    </div>
-                    <div className="em-form-control">
-                        <div className="field-label">
-                            <div>E-mail</div>
+                        <div className="em-form-control">
+                            <div className="field-label">
+                                <div>Feedback</div>
+                                <div className="sub-text">Got any suggestions for us?</div>
+                            </div>
+                            <div className="field-value">
+                                <textarea name="content" placeholder={"Enter your valuable feedback or concern to improve this app"}
+                                          onChange={this.onChange}></textarea>
+                                {this.state.charCount < this.state.minCharCount &&
+                                <div className="sub-text">
+                                    Enter at least {this.state.minCharCount - this.state.charCount} more characters
+                                </div>}
+                                {this.state.charCount >= this.state.minCharCount &&
+                                <div className="sub-text">
+                                    &nbsp;
+                                </div>}
+                            </div>
                         </div>
-                        <div className="field-value">
-                            <input type="email" name="email" placeholder={'Enter your e-mail id'} required/>
+                        <div className="em-form-control">
+                            <div className="field-value">
+                                <input type="reset" disabled={!this.state.content.length} value="Reset"/>
+                                <input type="submit" disabled={this.state.charCount < this.state.minCharCount}
+                                       value="Submit"/>
+                                <input type="button" className="cancel" value="Cancel" onClick={this.onCancel}/>
+                            </div>
                         </div>
-                    </div>
-                    <div className="em-form-control">
-                        <div className="field-label">
-                            <div>Feedback</div>
-                            <div className="sub-text">Got any suggestions for us?</div>
-                        </div>
-                        <div className="field-value">
-                            <textarea name="content" placeholder={"Enter your valuable feedback or concern to improve this app"}
-                                      onChange={this.onChange}></textarea>
-                            {this.state.charCount < this.state.minCharCount &&
-                            <div className="sub-text">
-                                Enter at least {this.state.minCharCount - this.state.charCount} more characters
-                            </div>}
-                            {this.state.charCount >= this.state.minCharCount &&
-                            <div className="sub-text">
-                                &nbsp;
-                            </div>}
-                        </div>
-                    </div>
-                    <div className="em-form-control">
-                        <div className="field-value">
-                            <input type="reset" disabled={!this.state.content.length} value="Reset"/>
-                            <input type="submit" disabled={this.state.charCount < this.state.minCharCount}
-                                   value="Submit"/>
-                            <input type="button" className="cancel" value="Cancel" onClick={this.onCancel}/>
-                        </div>
-                    </div>
-                </form>
-                <EmModal isOpen={this.state.modal[constants.SUGGESTION_RECEIVED]}
-                     onClose={this.onMessageClose}
-                     className="suggestion-received"
-                     backdrop={true}
-                     header={this.messageHeader()}
-                     content={this.messageContent()}
-                     submit={this.onMessageClose}
-                     hideCancelButton={true}
-                     submitButton='OK'/>
+                    </form>
+                    <EmModal isOpen={this.state.modal[constants.SUGGESTION_RECEIVED]}
+                         onClose={this.onMessageClose}
+                         className="suggestion-received"
+                         backdrop={true}
+                         header={this.messageHeader()}
+                         content={this.messageContent()}
+                         submit={this.onMessageClose}
+                         hideCancelButton={true}
+                         submitButton='OK'/>
+                </div>
             </div>
         );
     }
