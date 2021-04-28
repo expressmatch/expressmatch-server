@@ -2,144 +2,132 @@
   width: 60%;
   min-width: 790px;
   margin: 10px auto;
-  background-color: $em-bg-gray-medium;
-  border: 1px solid $em-border-gray;
-  display: flex;
-  justify-content: center;
 
-  .left-content {
-    width: 200px;
-    min-width: 200px;
-    padding: 10px 20px;
-
-    .display-pic{
-      position: relative;
-
-      picture img {
-        width: 100%;
-        max-height: 200px;
-      }
-      .change-pic{
-        position: absolute;
-        top: 0;
-        left: 0;
-        .action-item{
-          background-color: $em-bg-gray-light;
-          color: $em-text-gray;
-          padding: 6px;
-          cursor: pointer;
-        }
-      }
-      &:not(:hover){
-        .change-pic{
-          display: none;
-        }
-      }
-    }
-    .send-interest{
-      align-self: flex-end;
-      margin: 10px 0;
-      background-color: #09a7f3;
-      color: #fff;
-      -moz-outline: none;
-      -webkit-outline: none;
-      outline: none;
-      border: 1px solid #363636;
-      font-size: 13px;
-      cursor: pointer;
-      border-radius: 3px;
-      font-weight: 600;
-      min-height: 36px;
-      padding: 0 16px;
-      vertical-align: middle;
-      width: 100%;
-
-      &:active{
-        background: none;
-        color: #09a7f3;
-      }
-    }
+  .page-header{
+    font-size: 20px;
+    margin-bottom: 10px;
+    font-weight: bold;
+    user-select: none;
   }
-  .right-content{
-    width: 450px;
-    min-width: 450px;
-    padding: 10px 20px 10px 0;
-    flex: 1 0 0;
 
-    form {
-      .form-control {
-        box-shadow: none;
-        border: none !important;
-      }
-      .em-form-control {
-        padding: 10px 20px;
-        display: flex;
-        align-items: center;
-        border-bottom: 1px solid $em-border-gray;
+  .page-content {
+    background-color: $em-bg-gray-medium;
+    border: 1px solid $em-border-gray;
+    display: flex;
+    justify-content: center;
 
-        .field-label {
-          padding: 5px 0;
-          width: 45%;
-          min-width: 250px;
-          font-weight: bold;
-          color: $em-text-blue;
+    .left-content {
+      width: 200px;
+      min-width: 200px;
+      padding: 10px 20px;
 
+      .display-pic {
+        position: relative;
+
+        picture img {
+          width: 100%;
+          max-height: 200px;
         }
-        .field-value {
-          //padding: 10px 0 0 0;
-
-          input, select, textarea {
-            height: 30px;
-            font-size: 12px;
-            width: 300px;
-            outline: none;
-
-            &:disabled {
-              cursor: default;
-              opacity: 0.6;
-            }
-          }
-          textarea {
-            height: 140px;
-            resize: none;
-          }
-          select.react-datepicker__month-select, select.react-datepicker__year-select{
-            width: auto;
-          }
-          input[type="text"], input[type="email"], textarea {
-            border-radius: 3px;
-            margin: 0 0 4px;
-            max-width: 100%;
-            padding: 8px;
-            -webkit-outline: none;
-            outline: none;
-
-            &:focus {
-              //background-color: $em-bg-white;
-            }
-          }
-          input[type="reset"], input[type="submit"], input[type="button"] {
-            margin-right: 10px;
-            outline: none;
-            font-size: 13px;
-            width: auto;
+        .change-pic {
+          position: absolute;
+          top: 0;
+          left: 0;
+          .action-item {
+            background-color: $em-bg-gray-light;
+            color: $em-text-gray;
+            padding: 6px;
             cursor: pointer;
-            border-radius: 25px;
-            border: 1px solid transparent;
-            font-weight: 600;
-            min-height: 36px;
-            padding: 0 16px;
-            vertical-align: middle;
           }
-          input[type="submit"]{
-            background-color: #ff5e3a;
-            border-color: #ff5e3a;
-            color: #fff;
+        }
+        &:not(:hover) {
+          .change-pic {
+            display: none;
           }
-          a.edit-profile {
-            outline: none;
+        }
+      }
+      .send-interest {
+        align-self: flex-end;
+        margin: 10px 0;
+        background-color: #09a7f3;
+        color: #fff;
+        -moz-outline: none;
+        -webkit-outline: none;
+        outline: none;
+        border: 1px solid #363636;
+        font-size: 13px;
+        cursor: pointer;
+        border-radius: 3px;
+        font-weight: 600;
+        min-height: 36px;
+        padding: 0 16px;
+        vertical-align: middle;
+        width: 100%;
 
-            button {
+        &:active {
+          background: none;
+          color: #09a7f3;
+        }
+      }
+    }
+    .right-content {
+      width: 450px;
+      min-width: 450px;
+      padding: 10px 20px 10px 0;
+      flex: 1 0 0;
+
+      form {
+        .form-control {
+          box-shadow: none;
+          border: none !important;
+        }
+        .em-form-control {
+          padding: 10px 20px;
+          display: flex;
+          align-items: center;
+          border-bottom: 1px solid $em-border-gray;
+
+          .field-label {
+            padding: 5px 0;
+            width: 45%;
+            min-width: 250px;
+            font-weight: bold;
+            color: $em-text-blue;
+
+          }
+          .field-value {
+            //padding: 10px 0 0 0;
+
+            input, select, textarea {
+              height: 30px;
+              font-size: 12px;
+              width: 300px;
+              outline: none;
+
+              &:disabled {
+                cursor: default;
+                opacity: 0.6;
+              }
+            }
+            textarea {
+              height: 140px;
+              resize: none;
+            }
+            select.react-datepicker__month-select, select.react-datepicker__year-select {
+              width: auto;
+            }
+            input[type="text"], input[type="email"], textarea {
+              border-radius: 3px;
+              margin: 0 0 4px;
+              max-width: 100%;
+              padding: 8px;
+              -webkit-outline: none;
+              outline: none;
+
+              &:focus {
+                //background-color: $em-bg-white;
+              }
+            }
+            input[type="reset"], input[type="submit"], input[type="button"] {
               margin-right: 10px;
               outline: none;
               font-size: 13px;
@@ -151,24 +139,45 @@
               min-height: 36px;
               padding: 0 16px;
               vertical-align: middle;
-              color: $em-text-gray-dark;
+            }
+            input[type="submit"] {
+              background-color: #ff5e3a;
+              border-color: #ff5e3a;
+              color: #fff;
+            }
+            a.edit-profile {
+              outline: none;
+
+              button {
+                margin-right: 10px;
+                outline: none;
+                font-size: 13px;
+                width: auto;
+                cursor: pointer;
+                border-radius: 25px;
+                border: 1px solid transparent;
+                font-weight: 600;
+                min-height: 36px;
+                padding: 0 16px;
+                vertical-align: middle;
+                color: $em-text-gray-dark;
+              }
             }
           }
-        }
-        .sub-text {
-          color: $em-text-gray-light;
-          font-weight: normal;
-          font-size: 12px;
-        }
+          .sub-text {
+            color: $em-text-gray-light;
+            font-weight: normal;
+            font-size: 12px;
+          }
 
-        &:last-child{
-          border-bottom: none;
+          &:last-child {
+            border-bottom: none;
+          }
         }
       }
     }
   }
-
-  &.readonly{
+  &.readonly {
     input, select, textarea {
       pointer-events: none !important;
       border: none !important;
@@ -181,7 +190,7 @@
       -moz-appearance: none;
       -ms-progress-appearance: none;
     }
-    select{
+    select {
       padding-left: 8px;
     }
     ::-webkit-input-placeholder { /* WebKit browsers */
