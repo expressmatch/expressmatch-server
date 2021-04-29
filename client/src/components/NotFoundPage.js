@@ -2,11 +2,24 @@ import React from 'react';
 
 const NotFoundPage = () => {
   return (
-    <div>
-      <h4>
-        404 Page Not Found
-      </h4>
-      <a href="/"> Go back to homepage </a>
+    <div className="not-found-page">
+        <div className="main-text">
+            uh oh!
+        </div>
+        <div className="not-found-logo">
+            <i className="fas fa-question-circle"></i>
+        </div>
+        <div className="sub-text">
+            The page you are looking for does not exist.
+        </div>
+        <div>
+            You might have typed in the wrong address or the page has moved.
+        </div>
+        <div className="go-home">
+            <a href="/">
+                <button>Go Back Home</button>
+            </a>
+        </div>
     </div>
   );
 };
