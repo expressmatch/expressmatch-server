@@ -155,7 +155,7 @@ class Profile extends React.Component {
                                 <div className="field-label">
                                     <div>About me</div>
                                     <div className="sub-text">
-                                        introduce yourself, in 200 words or less
+                                        introduce yourself, in 200 words
                                     </div>
                                 </div>
                                 <div className="field-value">
@@ -185,9 +185,23 @@ class Profile extends React.Component {
                                 <div className="field-label">Gender</div>
                                 <div className="field-value">
                                     <select data-name="gender" value={this.state.gender} onChange={this.handleProfileChange}>
-                                        <option>-Select-</option>
+                                        <option value=""></option>
                                         <option value="male">Male</option>
                                         <option value="female">Female</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div className="em-form-control">
+                                <div className="field-label">Relationship Status</div>
+                                <div className="field-value">
+                                    <select data-name="status" value={this.state.status} onChange={this.handleProfileChange}>
+                                        <option value=""></option>
+                                        <option value="single">Single</option>
+                                        <option value="committed">In a relationship</option>
+                                        <option value="married">Married</option>
+                                        <option value="separated">Separated</option>
+                                        <option value="divorced">Divorced</option>
+                                        <option value="other">Other</option>
                                     </select>
                                 </div>
                             </div>
@@ -278,6 +292,18 @@ class Profile extends React.Component {
                                         onChange={this.handleLanguageChange}
                                         placeholder="Enter your native spoken language"
                                     />
+                                </div>
+                            </div>
+                            <div className="em-form-control">
+                                <div className="field-label">
+                                    <div>Religion</div>
+                                    <div className="sub-text">
+                                        for religion matches, enter this value
+                                    </div>
+                                </div>
+                                <div className="field-value">
+                                    <input type="text" data-name="religion" value={this.state.religion}
+                                           onChange={this.handleProfileChange}/>
                                 </div>
                             </div>
                             <div className="em-form-control">

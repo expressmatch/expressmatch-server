@@ -47,6 +47,9 @@ const UserSchema = new mongoose.Schema({
             type: String,
             //required: true
         },
+        status: {
+            type: String
+        },
         currentCity: {
             type: String,
             //required: true
@@ -57,6 +60,9 @@ const UserSchema = new mongoose.Schema({
         motherTongue: {
             type: String,
             //required: true
+        },
+        religion: {
+            type: String
         },
         caste: {
             type: String
