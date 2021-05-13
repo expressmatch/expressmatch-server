@@ -81,7 +81,9 @@ class PostsContainer extends React.Component {
     render() {
         return (
             <div className="posts-container">
+                {/*<div class="nav-bar">*/}
 
+                {/*</div>*/}
                 <div className="posts">
                     <Spinner loading={this.props.loading}/>
                     <Posts
@@ -97,9 +99,9 @@ class PostsContainer extends React.Component {
                 <div className="sidebar">
                     <div className="sidebar-content">
                         {/*<DateFilter actions={this.props.actions} selected={this.props.filters.date}/>*/}
-                        <QuickFilter
-                            actions={this.props.actions}
-                            filters={this.props.filters.quick}/>
+                        {/*<QuickFilter*/}
+                            {/*actions={this.props.actions}*/}
+                            {/*filters={this.props.filters.quick}/>*/}
                         {/*<Filters />*/}
                     </div>
                 </div>

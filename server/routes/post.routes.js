@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const ObjectId = require('mongoose').Types.ObjectId;
 const Post = require('../models/Post');
+const Preference = require('../models/Preference');
 const Comment = require('../models/Comment');
 const User = require('../models/User');
 const { ErrorHandler } = require('../utils/error');
@@ -35,60 +36,87 @@ const getAllPosts = function (req, res, next) {
         startDate = null,
         endDate = null,
         filterPredicate,
+        preferencePredicate,
         spamPredicate,
         datePredicate;
 
-    if (filters.quick.caste) predicate.push({'postedBy.caste': req.user.profile.caste});
-    if (filters.quick.city) predicate.push({'postedBy.city': req.user.profile.currentCity});
-    if (filters.quick.motherTongue) predicate.push({'postedBy.motherTongue': req.user.profile.motherTongue});
+    Preference.findOne({user: new ObjectId(req.user._id)}, function (err, preference) {
+        if (err) return next(err);
+        //if (!preference) return next(new ErrorHandler(404, 'The item you requested for is not found'));
+        //TODO - Run script to enable preference on all users, then enable this.
 
-    if (filters.date) {
-        startDate = new Date(filters.date);
-        startDate.setHours(0, 0, 0, 0);
-        endDate = new Date(filters.date);
-        endDate.setDate(endDate.getDate() + 1);
-        endDate.setHours(0, 0, 0, 0);
-    }
+        if (preference) {
+            predicate = [];
 
-    filterPredicate = {$and: predicate};
-    datePredicate = {'createdAt': {"$gte": startDate, "$lt": endDate}};
-    spamPredicate = {$and: [{spam: {$nin: [req.user]}}, {'spam.5': {$exists: false}}]};
+            if (preference.currentCity) predicate.push({'postedBy.city': req.user.profile.currentCity});
+            if (preference.caste) predicate.push({'postedBy.caste': req.user.profile.caste});
+            if (preference.motherTongue) predicate.push({'postedBy.motherTongue': req.user.profile.motherTongue});
 
-    if (predicate.length > 0) {
-        query = Post.find({$and: [spamPredicate, filterPredicate]});
-    } else {
-        query = Post.find({$and: [spamPredicate]});
-    }
+            preferencePredicate = {$and: predicate};
+        }
+        spamPredicate = {$and: [{spam: {$nin: [req.user]}}, {'spam.5': {$exists: false}}]};
 
-    query
-        .sort({createdAt: 'desc'})
-        .limit(limit)
-        .skip(skip)
-        .exec(function (err, posts) {
-            if (err) {
-                return next(err);
-            }
+        if (predicate.length > 0) {
+            query = Post.find({$and: [spamPredicate, preferencePredicate]});
+        } else {
+            query = Post.find({$and: [spamPredicate]});
+        }
 
-            Post.countDocuments(query).exec((count_error, count) => {
+        query
+            .sort({createdAt: 'desc'})
+            .limit(limit)
+            .skip(skip)
+            .exec(function (err, posts) {
                 if (err) {
-                    return next(count_error);
+                    return next(err);
                 }
 
-                if (posts) {
-                    postsRes = posts.map(post => {
-                        let obj = post.toJSON();
-                        obj.isLikedByUser = post.isLikedByUser(req.user);
-                        obj.isCreatedByUser = post.isCreatedByUser(req.user);
-                        obj.isInterestedByUser = post.isInterestedByUser(req.user);
-                        return obj;
-                    });
-                    res.status(200).json({
-                        hasNext: !!(count === limit),
-                        posts: postsRes
-                    });
-                }
+                Post.countDocuments(query).exec((count_error, count) => {
+                    if (err) {
+                        return next(count_error);
+                    }
+
+                    if (posts) {
+                        postsRes = posts.map(post => {
+                            let obj = post.toJSON();
+                            obj.isLikedByUser = post.isLikedByUser(req.user);
+                            obj.isCreatedByUser = post.isCreatedByUser(req.user);
+                            obj.isInterestedByUser = post.isInterestedByUser(req.user);
+                            return obj;
+                        });
+                        res.status(200).json({
+                            hasNext: !!(count === limit),
+                            posts: postsRes
+                        });
+                    }
+                });
             });
-        });
+    });
+
+
+    // if (filters.quick.caste) predicate.push({'postedBy.caste': req.user.profile.caste});
+    // if (filters.quick.city) predicate.push({'postedBy.city': req.user.profile.currentCity});
+    // if (filters.quick.motherTongue) predicate.push({'postedBy.motherTongue': req.user.profile.motherTongue});
+    //
+    // if (filters.date) {
+    //     startDate = new Date(filters.date);
+    //     startDate.setHours(0, 0, 0, 0);
+    //     endDate = new Date(filters.date);
+    //     endDate.setDate(endDate.getDate() + 1);
+    //     endDate.setHours(0, 0, 0, 0);
+    // }
+    //
+    // filterPredicate = {$and: predicate};
+    //
+    // datePredicate = {'createdAt': {"$gte": startDate, "$lt": endDate}};
+    //
+    // spamPredicate = {$and: [{spam: {$nin: [req.user]}}, {'spam.5': {$exists: false}}]};
+    //
+    // if (predicate.length > 0) {
+    //     query = Post.find({$and: [spamPredicate, filterPredicate]});
+    // } else {
+    //     query = Post.find({$and: [spamPredicate]});
+    // }
 };
 
 const createNewPost = function (req, res, next) {

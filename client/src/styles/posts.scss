@@ -2,6 +2,11 @@
   display: flex;
   justify-content: center;
 
+  .nav-bar{
+    width: 285px;
+    min-width: 285px;
+  }
+
   .posts {
     margin: 0 auto;
     width: 500px;

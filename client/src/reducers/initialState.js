@@ -37,10 +37,19 @@ export default {
         currentCity: "",
         homeTown: "",
         motherTongue: "",
+        religion: "",
         caste: "",
         subCaste: "",
         organization: "",
         job: "",
         interests: []
+    },
+    preference: {
+        currentCity: false,
+        homeTown: false,
+        motherTongue: false,
+        religion: false,
+        caste: false,
+        subCaste: false
     }
 }

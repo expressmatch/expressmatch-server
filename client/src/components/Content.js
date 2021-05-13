@@ -5,6 +5,7 @@ import CreatePostContainer from '../containers/CreatePostContainer';
 import ProfileContainer from '../containers/ProfileContainer';
 import ViewPostContainer from '../containers/ViewPostContainer';
 import MessagesContainer from '../containers/MessagesContainer';
+import PreferenceContainer from '../containers/PreferenceContainer';
 import ContactUs from '../components/ContactUs';
 import NotFoundPage from './NotFoundPage';
 
@@ -35,6 +36,7 @@ class Content extends React.Component {
                     <Route path="/editprofile" component={ProfileContainer} />
                     <Route path="/post/:postId" component={ViewPostContainer} />
                     {/*<Route path="/messages" component={MessagesContainer} />*/}
+                    <Route path="/preference" component={PreferenceContainer} />
                     <Route component={NotFoundPage} />
                 </Switch>
             </div>

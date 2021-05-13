@@ -6,6 +6,12 @@ import {userContext} from '../context/userContext';
 
 class Header extends React.Component {
 
+    constructor(props){
+        super(props);
+
+        this.showNotifications = this.showNotifications.bind(this);
+    }
+
     render() {
         return (
             <div id="header">
@@ -22,6 +28,9 @@ class Header extends React.Component {
                         <div className="menu-item">
                             <NavLink to="/createpost">Create Post</NavLink>
                         </div>
+                        {/*<div className="menu-item">*/}
+                            {/*<NavLink to="#" onClick={this.showNotifications}>Notifications</NavLink>*/}
+                        {/*</div>*/}
                         {/*<div className="menu-item">*/}
                             {/*<NavLink to="/messages">Messages</NavLink>*/}
                         {/*</div>*/}
@@ -48,6 +57,10 @@ class Header extends React.Component {
                                         <i className="far fa-user-circle"></i>
                                         <span className="item-text">Profile</span>
                                     </DropdownItem>
+                                    <DropdownItem tag="a" href="/preference" className="menu-item">
+                                        <i className="fas fa-user-cog"></i>
+                                        <span className="item-text">Preferences</span>
+                                    </DropdownItem>
                                     <DropdownItem tag="a" href="/logout" className="menu-item">
                                         <i className="fas fa-sign-out-alt"></i>
                                         <span className="item-text">Logout</span>
@@ -60,6 +73,10 @@ class Header extends React.Component {
                 </div>
             </div>
         );
+    }
+
+    showNotifications(e) {
+        alert('Notifications');
     }
 }
 

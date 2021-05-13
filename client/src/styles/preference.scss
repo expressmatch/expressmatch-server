@@ -1,0 +1,108 @@
+#preference{
+  width: 60%;
+  min-width: 700px;
+  margin: 10px auto;
+
+  .page-header{
+    font-size: 20px;
+    margin-bottom: 10px;
+    font-weight: bold;
+    user-select: none;
+  }
+
+  .page-content{
+    background-color: $em-bg-gray-medium;
+    border: 1px solid $em-border-gray;
+
+    form{
+      .em-form-control{
+        padding: 20px;
+        display: flex;
+        align-items: center;
+        border-bottom: 1px solid $em-border-gray;
+
+        .field-label{
+          padding: 5px 0;
+          width: 55%;
+          min-width: 200px;
+          font-weight: bold;
+          color: $em-text-blue;
+        }
+        .field-value{
+          padding: 10px 0 0 0;
+          width: 45%;
+
+          &.center {
+            display: flex;
+            justify-content: center;
+          }
+
+          input, select, textarea{
+            height: 30px;
+            font-size: 12px;
+            width: 450px;
+            outline: none;
+
+            &:disabled{
+              cursor: default;
+              opacity: 0.6;
+            }
+          }
+          textarea{
+            height: 250px;
+            resize: none;
+            font-size: 12px;
+            width: 100%;
+          }
+          input[type="checkbox"]{
+            height: 20px;
+            width: 20px;
+          }
+
+          input[type="text"], textarea{
+            border-radius: 3px;
+            margin: 0 0 4px;
+            max-width: 100%;
+            padding: 8px;
+            -webkit-outline: none;
+            outline: none;
+
+            &:focus{
+              //background-color: $em-bg-white;
+            }
+          }
+          input[type="reset"], input[type="submit"], input[type="button"]{
+            margin-right: 10px;
+            outline: none;
+            font-size: 13px;
+            width: auto;
+            cursor: pointer;
+            border-radius: 25px;
+            border: 1px solid transparent;
+            font-weight: 600;
+            min-height: 36px;
+            padding: 0 16px;
+            vertical-align: middle;
+          }
+          input[type="submit"]{
+            background-color: #ff5e3a;
+            border-color: #ff5e3a;
+            color: #fff;
+          }
+          input.cancel{
+
+          }
+        }
+        .sub-text{
+          color: $em-text-gray-light;
+          font-weight: normal;
+          font-size: 12px;
+        }
+
+        &:last-child{
+          border-bottom: none;
+        }
+      }
+    }
+  }
+}
