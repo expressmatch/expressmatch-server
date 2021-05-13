@@ -60,7 +60,7 @@ class PostInterestsModal extends React.Component {
                                 </div>
                             );
                         })
-                    ): !this.props.loading && <div>No Interests yet. Be the first one to send an interest.</div>
+                    ): !this.props.loading && <div>No Interests yet. Check back later.</div>
                 }
             </div>
         )
