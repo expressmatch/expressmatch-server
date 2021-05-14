@@ -38,8 +38,27 @@ input, select, textarea, select, radio {
   background-color: $em-input-bg-color;
   border: 1px solid $em-border-gray;
   color: $em-text-gray;
+  outline: none;
 }
+input[type="button"],
+input[type="reset"],
+button{
+  color: $em-text-gray-dark;
+  background-color: $em-bg-gray-verylight;
+  border: 1px solid $em-border-gray;
+  opacity: 0.9;
 
+  &:hover:enabled,
+  &:active:enabled,
+  &:focus:enabled{
+    //color: $em-text-white;
+    //background-color: $em-bg-gray-light;
+    opacity: 1;
+  }
+}
+input[type="submit"]{
+
+}
 a:link { color: $em-text-blue; }
 a:visited { color: $em-text-blue; }
 a:hover { color: $em-text-blue; }

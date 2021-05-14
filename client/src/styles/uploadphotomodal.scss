@@ -50,5 +50,20 @@
         margin-bottom: 20px;
       }
     }
+    @include mobile(){
+      .actions{
+        padding: 0;
+      }
+    }
+  }
+  @include mobile(){
+    .right-content{
+      margin: 10px 0;
+    }
+  }
+}
+@include mobile(){
+  .upload-photo-container{
+    flex-direction: column;
   }
 }

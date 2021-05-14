@@ -10,9 +10,9 @@
     $query: append($query, "(max-width: #{map-get($map, max)})")
   }
   @if $device == null {
-    @media screen and #{query} { @content; }
+    @media screen and #{$query} { @content; }
   } @else {
-    @media #{query} { @content; }
+    @media #{$query} { @content; }
   }
 }
 

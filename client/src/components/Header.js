@@ -26,7 +26,7 @@ class Header extends React.Component {
                 <div className="right-content">
                     <div className="menu-items">
                         <div className="menu-item">
-                            <NavLink to="/createpost">Create Post</NavLink>
+                            <NavLink to="/createpost">New Post</NavLink>
                         </div>
                         {/*<div className="menu-item">*/}
                             {/*<NavLink to="#" onClick={this.showNotifications}>Notifications</NavLink>*/}
@@ -34,9 +34,9 @@ class Header extends React.Component {
                         {/*<div className="menu-item">*/}
                             {/*<NavLink to="/messages">Messages</NavLink>*/}
                         {/*</div>*/}
-                        <div className="menu-item">
-                            <NavLink to="/contactus">Contact us</NavLink>
-                        </div>
+                        {/*<div className="menu-item">*/}
+                            {/*<NavLink to="/contactus">C</NavLink>*/}
+                        {/*</div>*/}
                     </div>
                     <div className="profile">
                         <userContext.Consumer>
@@ -60,6 +60,10 @@ class Header extends React.Component {
                                     <DropdownItem tag="a" href="/preference" className="menu-item">
                                         <i className="fas fa-user-cog"></i>
                                         <span className="item-text">Preferences</span>
+                                    </DropdownItem>
+                                    <DropdownItem tag="a" href="/contactus" className="menu-item">
+                                        <i className="fas fa-envelope"></i>
+                                        <span className="item-text">Contact Us</span>
                                     </DropdownItem>
                                     <DropdownItem tag="a" href="/logout" className="menu-item">
                                         <i className="fas fa-sign-out-alt"></i>

@@ -158,7 +158,7 @@ class Post extends React.Component {
                         </div>
                         <div className="post-action">
                             <UncontrolledDropdown className="menu-toggle">
-                                <DropdownToggle tag="div" className="post-action-menu">...</DropdownToggle>
+                                <DropdownToggle tag="div" className="post-action-menu"></DropdownToggle>
                                 <DropdownMenu right>
                                     {/*<DropdownItem className="menu-item">Add to favourites</DropdownItem>*/}
                                     <DropdownItem className="menu-item" onClick={this.copyLink}>
@@ -198,7 +198,16 @@ class Post extends React.Component {
                                 {!this.props.post.isLikedByUser && <i className="far fa-grin-hearts"></i>}
                             </span>
                             <span className="count">
-                                {this.props.post.likes.length || 'No'} {this.props.post.likes.length === 1 && ' Like'}{this.props.post.likes.length !== 1 && ' Likes'}
+                                {this.props.post.likes.length}
+                            </span>
+                        </div>
+                        <div className="comments">
+                            <span className="logo">
+                                {!!this.props.post.comments.length && <i className="fas fa-comment"></i>}
+                                {!this.props.post.comments.length && <i className="far fa-comment"></i>}
+                            </span>
+                            <span className="count">
+                                {this.props.post.comments.length}
                             </span>
                         </div>
                         <div className="interests" data-type={constants.POST_INTERESTS} onClick={this.showPostInterests}>
@@ -212,21 +221,16 @@ class Post extends React.Component {
                                 {this.props.post.interests.length || 'No'} {this.props.post.interests.length === 1 && ' Interest'}{this.props.post.interests.length !== 1 && ' Interests'}
                             </span>
                             </React.Fragment>}
+                            {(!this.props.post.isCreatedByUser && this.props.post.isInterestedByUser) &&
+                            <span>
+                                You have shown interest
+                            </span>}
                         </div>
                         {/*<div className="liked">*/}
                             {/*{this.props.post.likes.length === 0 && 'Be the first one to like this proposal'}*/}
                             {/*{this.props.post.likes.length === 1 && `Express To Match likes this`}*/}
                             {/*{this.props.post.likes.length > 1 && `Express To Match and ${this.props.post.likes.length - 1} others likes this`}*/}
                         {/*</div>*/}
-                        <div className="comments">
-                            <span className="logo">
-                                {!!this.props.post.comments.length && <i className="fas fa-comment"></i>}
-                                {!this.props.post.comments.length && <i className="far fa-comment"></i>}
-                            </span>
-                            <span className="count">
-                                {this.props.post.comments.length || 'No'}{this.props.post.comments.length === 1 && ' Comment'}{this.props.post.comments.length !== 1 && ' Comments'}
-                            </span>
-                        </div>
                     </div>
                     <div className="post-controls">
                         <div className="post-control like">
@@ -238,8 +242,8 @@ class Post extends React.Component {
                         {!this.props.post.isCreatedByUser &&
                         <div className="post-control interest">
                             <button className="btn btn-control" onClick={this.sendInterest}>
-                                {!this.props.post.isInterestedByUser && 'Send Interest'}
-                                {this.props.post.isInterestedByUser && 'Cancel Interest'}
+                                {!this.props.post.isInterestedByUser && 'Interest'}
+                                {this.props.post.isInterestedByUser && 'Withdraw'}
                             </button>
                         </div>}
                         <div className="post-control comment">

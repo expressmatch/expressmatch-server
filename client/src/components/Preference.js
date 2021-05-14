@@ -93,7 +93,7 @@ class Preference extends React.Component {
                                     See posts from users who live in your city
                                 </div>
                             </div>
-                            <div className="field-value center">
+                            <div className="field-value boolean">
                                 <input type="checkbox"
                                        checked={this.state.currentCity}
                                        onChange={this.handleCurrentCityChange}/>
@@ -106,7 +106,7 @@ class Preference extends React.Component {
                                     See posts from users who are from the same caste as you
                                 </div>
                             </div>
-                            <div className="field-value  center">
+                            <div className="field-value boolean">
                                 <input type="checkbox"
                                        checked={this.state.caste}
                                        onChange={this.handleCasteChange}/>
@@ -116,10 +116,10 @@ class Preference extends React.Component {
                             <div className="field-label">
                                 <div>Same Mother Tongue Search</div>
                                 <div className="sub-text">
-                                    See posts from users who speak the same language as you
+                                    See posts from users speaking the same language as you
                                 </div>
                             </div>
-                            <div className="field-value center">
+                            <div className="field-value boolean">
                                 <input type="checkbox"
                                        checked={this.state.motherTongue}
                                        onChange={this.handleMotherTongueChange}/>

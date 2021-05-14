@@ -1,7 +1,8 @@
 #profile{
   width: 60%;
-  min-width: 790px;
-  margin: 10px auto;
+  min-width: 810px;
+  padding: 10px;
+  margin: 0 auto;
 
   .page-header{
     font-size: 20px;
@@ -15,11 +16,12 @@
     border: 1px solid $em-border-gray;
     display: flex;
     justify-content: center;
+    padding: 10px;
 
     .left-content {
       width: 200px;
       min-width: 200px;
-      padding: 10px 20px;
+      padding: 10px;
 
       .display-pic {
         position: relative;
@@ -30,9 +32,12 @@
         }
         .change-pic {
           position: absolute;
+          width: 100%;
           top: 0;
           left: 0;
           .action-item {
+            display: inline-block;
+            width: 100%;
             background-color: $em-bg-gray-light;
             color: $em-text-gray;
             padding: 6px;
@@ -69,6 +74,11 @@
         }
       }
     }
+    @include mobile(){
+      .left-content{
+        padding: 0 0 10px 0;
+      }
+    }
     .right-content {
       width: 450px;
       min-width: 450px;
@@ -93,6 +103,12 @@
             font-weight: bold;
             color: $em-text-blue;
 
+          }
+          @include mobile(){
+            .field-label{
+              //padding: 0;
+              width: 100%;
+            }
           }
           .field-value {
             //padding: 10px 0 0 0;
@@ -164,6 +180,11 @@
               }
             }
           }
+          @include mobile(){
+            .field-value{
+              width: 100%;
+            }
+          }
           .sub-text {
             color: $em-text-gray-light;
             font-weight: normal;
@@ -174,7 +195,25 @@
             border-bottom: none;
           }
         }
+        @include mobile() {
+          .em-form-control {
+            padding: 10px 0;
+            flex-direction: column;
+          }
+        }
       }
+    }
+    @include mobile(){
+      .right-content{
+        width: 100%;
+        min-width: 100%;
+        padding: 0;
+      }
+    }
+  }
+  @include mobile(){
+    .page-content{
+      flex-direction: column;
     }
   }
   &.readonly {
@@ -209,5 +248,11 @@
     input[type="reset"], input[type="submit"], input[type="button"] {
       display: none;
     }
+  }
+}
+@include mobile(){
+  #profile{
+    width: 100%;
+    min-width: 100%;
   }
 }

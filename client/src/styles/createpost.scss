@@ -1,7 +1,8 @@
 #create-post{
   width: 60%;
   min-width: 700px;
-  margin: 10px auto;
+  padding: 10px;
+  margin: 0 auto;
 
   .page-header{
     font-size: 20px;
@@ -27,6 +28,12 @@
           min-width: 200px;
           font-weight: bold;
           color: $em-text-blue;
+        }
+        @include mobile(){
+          .field-label{
+            padding: 0;
+            width: 100%;
+          }
         }
         .field-value{
           padding: 10px 0 0 0;
@@ -84,6 +91,11 @@
 
           }
         }
+        @include mobile(){
+          .field-value{
+            width: 100%;
+          }
+        }
         .sub-text{
           color: $em-text-gray-light;
           font-weight: normal;
@@ -94,6 +106,18 @@
           border-bottom: none;
         }
       }
+      @include mobile(){
+        .em-form-control{
+          padding: 10px;
+          flex-direction: column;
+        }
+      }
     }
+  }
+}
+@include mobile(){
+  #create-post{
+    width: 100%;
+    min-width: 100%;
   }
 }

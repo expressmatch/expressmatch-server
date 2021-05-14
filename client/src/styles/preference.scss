@@ -1,7 +1,8 @@
 #preference{
   width: 60%;
   min-width: 700px;
-  margin: 10px auto;
+  padding: 10px;
+  margin: 0 auto;
 
   .page-header{
     font-size: 20px;
@@ -28,13 +29,19 @@
           font-weight: bold;
           color: $em-text-blue;
         }
+        @include mobile(){
+          .field-label{
+            padding: 0;
+            width: 90%;
+          }
+        }
         .field-value{
           padding: 10px 0 0 0;
           width: 45%;
 
-          &.center {
+          &.boolean {
             display: flex;
-            justify-content: center;
+            justify-content: flex-end;
           }
 
           input, select, textarea{
@@ -93,6 +100,11 @@
 
           }
         }
+        @include mobile(){
+          .field-value{
+            width: 100%;
+          }
+        }
         .sub-text{
           color: $em-text-gray-light;
           font-weight: normal;
@@ -103,6 +115,18 @@
           border-bottom: none;
         }
       }
+      @include mobile(){
+        .em-form-control{
+          padding: 10px;
+          //flex-direction: column;
+        }
+      }
     }
+  }
+}
+@include mobile(){
+  #preference{
+    width: 100%;
+    min-width: 100%;
   }
 }

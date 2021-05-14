@@ -291,3 +291,8 @@
     }
   }
 }
+@include mobile(){
+  .comments-control{
+    padding: 0 10px;
+  }
+}
