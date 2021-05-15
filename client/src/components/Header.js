@@ -49,21 +49,26 @@ class Header extends React.Component {
                                     </picture>
                                 </DropdownToggle>
                                 <DropdownMenu right>
-                                    <DropdownItem className="menu-item header" header>
-                                        {user.name ? user.name : user.email}
+                                    <DropdownItem tag="a" href="/profile" className="menu-item header">
+                                        <span className="item-text">
+                                            <div className="main-text">{user.name ? user.name : user.email}</div>
+                                            <div className="sub-text">See your profile</div>
+                                        </span>
                                     </DropdownItem>
                                     <DropdownItem divider />
-                                    <DropdownItem tag="a" href="/profile" className="menu-item">
-                                        <i className="far fa-user-circle"></i>
-                                        <span className="item-text">Profile</span>
-                                    </DropdownItem>
                                     <DropdownItem tag="a" href="/preference" className="menu-item">
                                         <i className="fas fa-user-cog"></i>
-                                        <span className="item-text">Preferences</span>
+                                        <span className="item-text">
+                                            <div className="main-text">Preference</div>
+                                            <div className="sub-text">Set your post feed preference</div>
+                                        </span>
                                     </DropdownItem>
                                     <DropdownItem tag="a" href="/contactus" className="menu-item">
                                         <i className="fas fa-envelope"></i>
-                                        <span className="item-text">Contact Us</span>
+                                        <span className="item-text">
+                                            <div className="main-text">Give Feedback</div>
+                                            <div className="sub-text">Help us improve the experience</div>
+                                        </span>
                                     </DropdownItem>
                                     <DropdownItem tag="a" href="/logout" className="menu-item">
                                         <i className="fas fa-sign-out-alt"></i>

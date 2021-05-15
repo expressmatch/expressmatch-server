@@ -98,12 +98,13 @@
           }
         }
         .dropdown-menu {
-          max-width: 200px;
+          max-width: 300px;
           -moz-box-shadow: 2px 2px 5px 2px $em-bg-gray-dark;
           -webkit-box-shadow: 2px 2px 5px 2px $em-bg-gray-dark;
           box-shadow: 2px 2px 5px 2px $em-bg-gray-dark;
           outline: none;
           background-color: $em-bg-gray-light;
+          padding: 5px;
 
           .menu-item {
             font-size: 13px;
@@ -112,6 +113,10 @@
             text-overflow: ellipsis;
             padding: 5px 10px;
             color: $em-text-gray;
+            display: flex;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 5px;
 
             &:hover{
               background-color: $em-text-gray;
@@ -122,15 +127,15 @@
 
             &.header{
               font-weight: bold;
-              padding: 0 10px;
+              //padding: 0 10px;
 
-              &:hover{
-                background-color: $em-bg-gray-light;
-                -webkit-user-select: none;
-                -moz-user-select: none;
-                -ms-user-select: none;
-                user-select: none;
-              }
+              //&:hover{
+              //  background-color: $em-bg-gray-light;
+              //  -webkit-user-select: none;
+              //  -moz-user-select: none;
+              //  -ms-user-select: none;
+              //  user-select: none;
+              //}
               &:focus{
                 outline: none;
               }
@@ -140,6 +145,7 @@
             }
             &:focus{
               outline: none;
+              background-color: $em-bg-gray-dark;
             }
             &:active{
               background-color: $em-bg-gray-dark;
@@ -151,6 +157,13 @@
               zoom: 1.4;
               vertical-align: middle;
               width: 16px;
+            }
+            .main-text {
+
+            }
+            .sub-text {
+              font-weight: normal;
+              font-size: 11px;
             }
           }
           &::before{

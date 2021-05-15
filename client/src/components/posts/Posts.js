@@ -218,7 +218,7 @@ class Post extends React.Component {
                                 {!this.props.post.interests.length && <i className="far fa-heart"></i>}
                             </span>
                             <span className="count">
-                                {this.props.post.interests.length || 'No'} {this.props.post.interests.length === 1 && ' Interest'}{this.props.post.interests.length !== 1 && ' Interests'}
+                                {this.props.post.interests.length || 'No'} {this.props.post.interests.length === 1 && ' Interest received'}{this.props.post.interests.length !== 1 && ' Interests received'}
                             </span>
                             </React.Fragment>}
                             {(!this.props.post.isCreatedByUser && this.props.post.isInterestedByUser) &&

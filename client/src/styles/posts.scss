@@ -101,6 +101,7 @@
                 box-shadow: 2px 2px 5px 2px $em-bg-gray-dark;
                 outline: none;
                 background-color: $em-bg-gray-light;
+                padding: 5px;
 
                 .menu-item {
                   font-size: 12px;
@@ -115,12 +116,14 @@
                   align-items: center;
                   line-height: 1;
                   height: 40px;
+                  border-radius: 5px;
 
                   &:hover {
                     background-color: $em-bg-gray-dark;
                   }
                   &:focus {
                     outline: none;
+                    background-color: $em-bg-gray-dark;
                   }
                   &:active {
                     background-color: $em-bg-gray-dark;
@@ -134,11 +137,11 @@
                   }
 
                   .main-text {
-                    padding: 2px;
+                    padding: 2px 0;
                   }
                   .sub-text {
                     font-weight: normal;
-                    padding: 2px;
+                    padding: 2px 0;
                     font-size: 11px;
                   }
                 }
