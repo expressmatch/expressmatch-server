@@ -72,8 +72,8 @@ class ReplyItem extends React.Component {
                         <div className="reply-actions">
                             <div className="action">
                                 <span className="logo">
-                                    {this.props.reply.isLikedByUser && <i className="fas fa-heart"></i>}
-                                    {!this.props.reply.isLikedByUser && <i className="far fa-heart"></i>}
+                                    {this.props.reply.isLikedByUser && <i className="fas fa-thumbs-up"></i>}
+                                    {!this.props.reply.isLikedByUser && <i className="far fa-thumbs-up"></i>}
                                 </span>
                                 <span className="primary" onClick={this.likeReply}>
                                     {!this.props.reply.isLikedByUser && 'Like'}

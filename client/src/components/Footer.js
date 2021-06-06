@@ -6,8 +6,8 @@ class Footer extends React.Component {
         return (
             <div id="footer">
                 <div className="footer-message">
-                    Copyright @ 2021 Express To Match, India. All rights reserved.&nbsp;
-                    <a href="/privacy" target="_blank">Privacy Policy</a> and <a href="/terms" target="_blank">Terms of Use</a>
+                    <div>Copyright @ 2021 Express To Match, India. All rights reserved.&nbsp;</div>
+                    <div><a href="/privacy" target="_blank">Privacy Policy</a> . <a href="/terms" target="_blank">Terms of Use</a></div>
                 </div>
             </div>
         );

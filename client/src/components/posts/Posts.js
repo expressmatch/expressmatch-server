@@ -194,13 +194,13 @@ class Post extends React.Component {
                     <div className="post-meta">
                         <div className="likes" data-type={constants.POST_LIKES}>
                             <span className="logo">
-                                {this.props.post.isLikedByUser && <i className="fas fa-grin-hearts"></i>}
-                                {!this.props.post.isLikedByUser && <i className="far fa-grin-hearts"></i>}
+                                {this.props.post.isLikedByUser && <i class="fas fa-thumbs-up"></i>}
+                                {!this.props.post.isLikedByUser && <i class="far fa-thumbs-up"></i>}
                             </span>
                             <span className="count">
                                 {this.props.post.likes.length}
                             </span>
-                        </div>
+                        </div>-
                         <div className="comments">
                             <span className="logo">
                                 {!!this.props.post.comments.length && <i className="fas fa-comment"></i>}

@@ -119,8 +119,8 @@ class CommentItem extends React.Component {
                             <div className="comment-actions">
                                 <div className="action">
                                     <span className="logo">
-                                        {this.props.comment.isLikedByUser && <i className="fas fa-heart"></i>}
-                                        {!this.props.comment.isLikedByUser && <i className="far fa-heart"></i>}
+                                        {this.props.comment.isLikedByUser && <i className="fas fa-thumbs-up"></i>}
+                                        {!this.props.comment.isLikedByUser && <i className="far fa-thumbs-up"></i>}
                                     </span>
                                     <span className="primary" onClick={this.likeComment}>
                                         {!this.props.comment.isLikedByUser && 'Like'}

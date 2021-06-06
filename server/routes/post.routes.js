@@ -12,6 +12,7 @@ module.exports = function (app) {
     //TODO: Change all the apis to router
 
     app.post('/api/posts', getAllPosts);
+    app.post('/api/userposts', getAllUserPosts);
     app.post('/api/post/create', createNewPost);
     app.get('/api/post/:postId', getPost);
     app.get('/api/post/:postId/likes', getPostLikes);
@@ -117,6 +118,46 @@ const getAllPosts = function (req, res, next) {
     // } else {
     //     query = Post.find({$and: [spamPredicate]});
     // }
+};
+
+const getAllUserPosts = function(req, res, next) {
+    let pageNumber = req.body.pageNumber || 0,
+        limit = 25,
+        skip = (pageNumber * limit),
+        postsRes = [],
+        query = null;
+
+    query = Post.find({'postedBy.userId': req.user._id});
+
+    query
+        .sort({createdAt: 'desc'})
+        .limit(limit)
+        .skip(skip)
+        .exec(function (err, posts) {
+            if (err) {
+                return next(err);
+            }
+
+            Post.countDocuments(query).exec((count_error, count) => {
+                if (err) {
+                    return next(count_error);
+                }
+
+                if (posts) {
+                    postsRes = posts.map(post => {
+                        let obj = post.toJSON();
+                        obj.isLikedByUser = post.isLikedByUser(req.user);
+                        obj.isCreatedByUser = post.isCreatedByUser(req.user);
+                        obj.isInterestedByUser = post.isInterestedByUser(req.user);
+                        return obj;
+                    });
+                    res.status(200).json({
+                        hasNext: !!(count === limit),
+                        posts: postsRes
+                    });
+                }
+            });
+        });
 };
 
 const createNewPost = function (req, res, next) {
