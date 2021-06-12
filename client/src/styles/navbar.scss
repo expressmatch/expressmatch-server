@@ -1,0 +1,81 @@
+.nav-bar{
+  width: 240px;
+  min-width: 240px;
+
+  .nav-bar-content {
+    position: sticky;
+    left: 0;
+    top: 70px; //Header plus margins, TODO: Move to a variable for header height
+    overflow-x: hidden;
+    overflow-y: auto;
+    max-height: calc(100vh - 60px); //Again same variable to be used
+    height: 100%;
+
+    ul.nav-list {
+      padding: 0 10px;
+
+      li.nav-item {
+
+        a.nav-link-item {
+          display: flex;
+          height: 36px;
+          padding: 0 10px;
+          line-height: 1;
+          align-items: center;
+          font-size: 14px;
+          user-select: none;
+          border-radius: 5px;
+
+          text-decoration: none;
+          color: $em-text-gray;
+
+          .logo {
+            height: 26px;
+            width: 26px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            i{
+              color: $em-text-gray-light;
+              zoom: 1.3;
+            }
+            &.user-photo picture img{
+              height: 32px;
+              width: 32px;
+              border-radius: 50%;
+            }
+          }
+          .name {
+            padding-left: 10px;
+            flex: 1;
+          }
+
+          &:hover {
+            cursor: pointer;
+            background-color: $em-bg-gray-medium;
+            color: $em-text-white;
+          }
+          &:active {
+            cursor: pointer;
+            background-color: $em-bg-gray-dark;
+          }
+
+          &.selected {
+            font-weight: bold;
+          }
+        }
+      }
+    }
+  }
+}
+@include mobile(){
+  .nav-bar{
+    display: none;
+  }
+}
+//@include tablet(){
+//  .nav-bar{
+//    display: none;
+//  }
+//}

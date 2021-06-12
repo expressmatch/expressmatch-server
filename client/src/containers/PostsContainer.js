@@ -10,6 +10,7 @@ import Filters from '../components/posts/filters/Filters';
 import Spinner from '../components/common/Spinner';
 import DefaultPost from '../components/posts/DefaultPost';
 import {makeGetPosts} from '../selector/GetPostsSelector';
+import NavBar from '../components/posts/NavBar';
 
 class PostsContainer extends React.Component {
     constructor(props) {
@@ -81,9 +82,7 @@ class PostsContainer extends React.Component {
     render() {
         return (
             <div className="posts-container">
-                {/*<div class="nav-bar">*/}
-
-                {/*</div>*/}
+                <NavBar/>
                 <div className="posts">
                     <Spinner loading={this.props.loading}/>
                     <Posts
