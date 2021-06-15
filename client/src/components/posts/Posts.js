@@ -200,15 +200,19 @@ class Post extends React.Component {
                             <span className="count">
                                 {this.props.post.likes.length}
                             </span>
-                        </div>-
+                        </div>.
                         <div className="comments">
                             <span className="logo">
                                 {!!this.props.post.comments.length && <i className="fas fa-comment"></i>}
                                 {!this.props.post.comments.length && <i className="far fa-comment"></i>}
                             </span>
-                            <span className="count">
-                                {this.props.post.comments.length}
-                            </span>
+                            <a href="javascript:void(0);" onClick={this.comment}>
+                                <span className="count">
+                                    {this.props.post.comments.length}&nbsp;
+                                    {this.props.post.comments.length === 1 && 'Comment'}
+                                    {this.props.post.comments.length !== 1 && 'Comments'}
+                                </span>
+                            </a>
                         </div>
                         <div className="interests" data-type={constants.POST_INTERESTS} onClick={this.showPostInterests}>
                             {this.props.post.isCreatedByUser &&

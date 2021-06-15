@@ -204,8 +204,12 @@
             .logo {
               zoom: 1.2;
             }
-            .count{
-              padding-left: 0;
+            a{
+              color: $em-text-gray;
+
+              .count{
+                padding-left: 0;
+              }
             }
           }
           .interests {
