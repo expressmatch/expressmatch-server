@@ -4,13 +4,11 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as actions from '../actions/postsActions';
 import Posts from '../components/posts/Posts';
-import QuickFilter from '../components/posts/filters/QuickFilter';
-import DateFilter from '../components/posts/filters//DateFilter';
-import Filters from '../components/posts/filters/Filters';
 import Spinner from '../components/common/Spinner';
 import DefaultPost from '../components/posts/DefaultPost';
 import {makeGetPosts} from '../selector/GetPostsSelector';
 import NavBar from '../components/posts/NavBar';
+import SideBar from '../components/posts/SideBar';
 
 class PostsContainer extends React.Component {
     constructor(props) {
@@ -95,15 +93,7 @@ class PostsContainer extends React.Component {
                         <DefaultPost/>
                     </div>}
                 </div>
-                <div className="sidebar">
-                    <div className="sidebar-content">
-                        {/*<DateFilter actions={this.props.actions} selected={this.props.filters.date}/>*/}
-                        {/*<QuickFilter*/}
-                            {/*actions={this.props.actions}*/}
-                            {/*filters={this.props.filters.quick}/>*/}
-                        {/*<Filters />*/}
-                    </div>
-                </div>
+                <SideBar {...this.props}/>
                 <div className="back-to-top">
                     <a onClick={this.scrollToTop}>
                         <i className="fas fa-arrow-up"></i>
