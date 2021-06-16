@@ -6,6 +6,8 @@ import * as actions from '../actions/postsActions';
 import Posts from '../components/posts/Posts';
 import Spinner from '../components/common/Spinner';
 import {makeGetPosts} from '../selector/GetPostsSelector';
+import NavBar from '../components/posts/NavBar';
+import SideBar from '../components/posts/SideBar';
 
 class ViewPostContainer extends React.Component {
     constructor(props) {
@@ -23,6 +25,7 @@ class ViewPostContainer extends React.Component {
     render() {
         return (
             <div className="posts-container">
+                <NavBar/>
                 <div className="posts">
                     {this.props.loading && <div>Loading...</div>}
                     <Spinner loading={this.props.loading}/>
@@ -32,7 +35,7 @@ class ViewPostContainer extends React.Component {
                         actions={this.props.actions}
                         loading={this.props.loading}/>
                 </div>
-                <div className="right-content" />
+                <SideBar {...this.props}/>
             </div>
         );
     }

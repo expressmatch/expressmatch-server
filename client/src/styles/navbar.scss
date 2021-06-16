@@ -74,8 +74,8 @@
     display: none;
   }
 }
-//@include tablet(){
-//  .nav-bar{
-//    display: none;
-//  }
-//}
+@include tablet(){
+  .nav-bar{
+    display: none;
+  }
+}

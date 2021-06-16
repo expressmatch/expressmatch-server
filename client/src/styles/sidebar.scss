@@ -20,6 +20,23 @@
       flex-flow: column;
       padding: 10px 20px 5px 20px;
 
+      .panel-header{
+        font-size: 14px;
+        font-weight: bold;
+        padding-bottom: 5px;
+      }
+      .panel-text{
+        font-size: 12px;
+      }
+      .best-practices{
+        ul{
+          li{
+            padding-bottom: 5px;
+            display: flex;
+          }
+        }
+      }
+
       .date-filter,
       .quick-filter {
         margin-bottom: 5px;
@@ -82,11 +99,11 @@
     }
   }
 }
-@include tablet(){
-  .sidebar{
-    display: none;
-  }
-}
+//@include tablet(){
+//  .sidebar{
+//    display: none;
+//  }
+//}
 @include mobile(){
   .sidebar{
     display: none;
