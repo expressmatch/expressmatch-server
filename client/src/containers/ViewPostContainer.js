@@ -25,10 +25,9 @@ class ViewPostContainer extends React.Component {
     render() {
         return (
             <div className="posts-container">
+                <Spinner loading={this.props.loading}/>
                 <NavBar/>
                 <div className="posts">
-                    {this.props.loading && <div>Loading...</div>}
-                    <Spinner loading={this.props.loading}/>
                     <Posts
                         posts={this.props.posts}
                         filters={this.props.filters}
@@ -53,7 +52,8 @@ const mapStateToProps = (state, ownProps) => {
     const mapStateToProps = (state, ownProps) => {
         return {
             posts: getPosts(state, ownProps),
-            filters: state.posts.filters
+            filters: state.posts.filters,
+            loading: state.posts.loading
         };
     }
     return mapStateToProps;

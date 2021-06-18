@@ -80,9 +80,9 @@ class PostsContainer extends React.Component {
     render() {
         return (
             <div className="posts-container">
+                <Spinner loading={this.props.loading}/>
                 <NavBar/>
                 <div className="posts">
-                    <Spinner loading={this.props.loading}/>
                     <Posts
                         posts={this.props.posts}
                         filters={this.props.filters}
