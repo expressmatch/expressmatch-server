@@ -97,7 +97,7 @@ class CreatePost extends React.Component {
                                 </div>}
                                 {this.state.charCount >= this.state.bestCharCount &&
                                 <div className="sub-text">
-                                    <span style={{color: '#50c878', fontWeight: 'bold'}}>GOOD</span> - Good work.
+                                    <span style={{color: 'limegreen', fontWeight: 'bold'}}>GOOD</span> - Good work.
                                 </div>}
                             </div>
                         </div>

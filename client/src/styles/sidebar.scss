@@ -18,7 +18,7 @@
       //border: 1px solid $em-border-gray;
       display: flex;
       flex-flow: column;
-      padding: 10px 20px 5px 20px;
+      padding: 10px 30px 5px 30px;
 
       .panel-header{
         font-size: 14px;
@@ -27,14 +27,21 @@
       }
       .panel-text{
         font-size: 12px;
+        display: block;
+
+        .highlight{
+          color: limegreen;
+          font-size: 15px;
+        }
+        .slick-dots button:before{
+          color: $em-text-white;
+        }
+        .slick-dots li.slick-active button:before{
+          color: $em-text-gray;
+        }
       }
       .best-practices{
-        ul{
-          li{
-            padding-bottom: 5px;
-            display: flex;
-          }
-        }
+
       }
 
       .date-filter,

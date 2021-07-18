@@ -51,11 +51,13 @@
     "react-places-autocomplete": "^7.3.0",
     "react-redux": "^5.0.7",
     "react-router-dom": "^5.2.0",
+    "react-slick": "^0.28.1",
     "react-spinners": "^0.10.6",
     "reactstrap": "^6.4.0",
     "redux-thunk": "^2.3.0",
     "reselect": "^3.0.1",
     "serve-favicon": "^2.5.0",
+    "slick-carousel": "^1.8.1",
     "smoothscroll-polyfill": "^0.4.4"
   },
   "devDependencies": {

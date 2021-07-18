@@ -226,6 +226,14 @@
               padding-right: 0;
               padding-left: 0;
             }
+            .activity{
+              user-select: none;
+              cursor: default;
+            }
+            .highlight{
+              color: limegreen;
+              font-weight: bold;
+            }
           }
           i {
             zoom: 1.2;

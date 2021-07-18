@@ -214,7 +214,7 @@ class Post extends React.Component {
                                 </span>
                             </a>
                         </div>
-                        <div className="interests" data-type={constants.POST_INTERESTS} onClick={this.showPostInterests}>
+                        <div className="interests" data-type={constants.POST_INTERESTS} onClick={this.props.post.isCreatedByUser && this.showPostInterests}>
                             {this.props.post.isCreatedByUser &&
                             <React.Fragment>
                             <span className="logo">
@@ -226,7 +226,7 @@ class Post extends React.Component {
                             </span>
                             </React.Fragment>}
                             {(!this.props.post.isCreatedByUser && this.props.post.isInterestedByUser) &&
-                            <span>
+                            <span class=" activity highlight">
                                 You have shown interest
                             </span>}
                         </div>
