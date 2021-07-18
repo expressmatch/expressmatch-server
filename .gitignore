@@ -6,6 +6,9 @@
 .env.production
 *.env*
 
+#EmailList
+emaillist.txt
+
 #Dist
 *dist*
 
@@ -33,3 +36,4 @@ node_modules
 # Mac files
 .DS_Store
 server/public
+
