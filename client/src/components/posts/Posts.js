@@ -194,8 +194,8 @@ class Post extends React.Component {
                     <div className="post-meta">
                         <div className="likes" data-type={constants.POST_LIKES}>
                             <span className="logo">
-                                {this.props.post.isLikedByUser && <i class="fas fa-thumbs-up"></i>}
-                                {!this.props.post.isLikedByUser && <i class="far fa-thumbs-up"></i>}
+                                {this.props.post.isLikedByUser && <i className="fas fa-thumbs-up"></i>}
+                                {!this.props.post.isLikedByUser && <i className="far fa-thumbs-up"></i>}
                             </span>
                             <span className="count">
                                 {this.props.post.likes.length}
@@ -214,7 +214,7 @@ class Post extends React.Component {
                                 </span>
                             </a>
                         </div>
-                        <div className="interests" data-type={constants.POST_INTERESTS} onClick={this.props.post.isCreatedByUser && this.showPostInterests}>
+                        <div className="interests" data-type={constants.POST_INTERESTS} onClick={this.props.post.isCreatedByUser ? this.showPostInterests : undefined}>
                             {this.props.post.isCreatedByUser &&
                             <React.Fragment>
                             <span className="logo">
@@ -226,7 +226,7 @@ class Post extends React.Component {
                             </span>
                             </React.Fragment>}
                             {(!this.props.post.isCreatedByUser && this.props.post.isInterestedByUser) &&
-                            <span class=" activity highlight">
+                            <span className=" activity highlight">
                                 You have shown interest
                             </span>}
                         </div>
@@ -259,7 +259,7 @@ class Post extends React.Component {
                 </div>
                 <CommentsContainer
                     post={this.props.post}
-                    showPostComment={!!this.state.showNewComment[this.props.post._id]}/>
+                    showPostComment={!!this.state.showNewComment[this.props.post._id] || !!this.props.post.showComments}/>
                 <DeletePostModal
                     isOpen={this.state.modal[constants.DELETE_POST]}
                     postId={this.props.post._id}
