@@ -1,6 +1,6 @@
 const webpack = require('webpack');
 const path = require('path');
-const cleanWebpackPlugin = require('clean-webpack-plugin');
+const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 const htmlWebpackPlugin = require('html-webpack-plugin');
 const miniCssExtractPlugin = require('mini-css-extract-plugin');
 //const bundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
@@ -18,8 +18,10 @@ module.exports = {
     mode: 'production',
     target: 'web',
     plugins: [
-        new cleanWebpackPlugin(['server/public/dist']),
-        new webpack.NamedModulesPlugin(),
+        new CleanWebpackPlugin({
+            cleanAfterEveryBuildPatterns:['server/public/dist']
+        }),
+        // new webpack.NamedModulesPlugin(),
         new webpack.NoEmitOnErrorsPlugin(),
         new miniCssExtractPlugin({
             filename: '[name].css',
@@ -34,6 +36,9 @@ module.exports = {
             inject: false
         })
     ],
+    optimization: {
+        moduleIds: 'named'
+    },
     module: {
         rules: [
             {

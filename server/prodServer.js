@@ -7,7 +7,7 @@ const morgan       			= require('morgan');
 const cookieParser 			= require('cookie-parser');
 const bodyParser 			= require('body-parser');
 const session      			= require('express-session');
-const mongoStore 			= require('connect-mongo')(session);
+const mongoStore 			= require('connect-mongo');
 const flash    				= require('connect-flash');
 const passport 				= require('passport');
 const initPassport			= require("./passport");
@@ -63,7 +63,7 @@ app.use(session({
     saveUninitialized: false,
     resave: false,
     name: process.env.SESSION_NAME,
-    store: new mongoStore({
+    store: mongoStore.create({
         mongooseConnection: mongoose.connection,
         touchAfter: 24 * 3600, //1 day in seconds
         secret: process.env.SESSION_STORE_SECRET,

@@ -1,6 +1,6 @@
 const webpack = require('webpack');
 const path = require('path');
-const cleanWebpackPlugin = require('clean-webpack-plugin');
+const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 const miniCssExtractPlugin = require('mini-css-extract-plugin');
 //const bundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
@@ -18,8 +18,10 @@ module.exports = {
 	mode: 'development',
 	target: 'web',
 	plugins: [
-		new cleanWebpackPlugin(['client/dist']),
-		new webpack.NamedModulesPlugin(),
+		new CleanWebpackPlugin({
+			cleanAfterEveryBuildPatterns:['client/dist']
+		}),
+		// new webpack.NamedModulesPlugin(),
         new webpack.NoEmitOnErrorsPlugin(),
 		new webpack.HotModuleReplacementPlugin(),
         new miniCssExtractPlugin({
@@ -31,7 +33,10 @@ module.exports = {
 			'process.env.NODE_ENV': JSON.stringify('development')
 		})
 	],
-	module: {
+    optimization: {
+        moduleIds: 'named'
+	},
+    module: {
 		rules: [
 			{
 				test: /\.jsx?$/,
