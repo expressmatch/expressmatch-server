@@ -25,11 +25,11 @@ const { handleError }       = require('./utils/error');
 
 //-------Configurations---------//
 const options = {
-    useFindAndModify: false,
-    useNewUrlParser: true,
-    useCreateIndex: true,
-    useUnifiedTopology: true,
-    poolSize: 10, // Maintain up to 10 socket connections
+    // useFindAndModify: false,
+    // useNewUrlParser: true,
+    // useCreateIndex: true,
+    // useUnifiedTopology: true,
+    maxPoolSize: 100, // Maintain up to 100 (default) socket connections
     serverSelectionTimeoutMS: 5000, // Keep trying to send operations for 5 seconds
     socketTimeoutMS: 45000 // Close sockets after 45 seconds of inactivity
 };
@@ -48,6 +48,7 @@ mongoose.connection.on('disconnected', function() {
 mongoose.set("debug", (collectionName, method, query, doc) => {
     console.log(`QUERY: ${collectionName}.${method}`, JSON.stringify(query), doc);
 });
+mongoose.set('strictQuery', false);
 
 initPassport(passport);
 
@@ -78,7 +79,8 @@ app.use(session({
 	resave: false,
     name: process.env.SESSION_NAME,
     store: mongoStore.create({
-		mongooseConnection: mongoose.connection,
+		// mongooseConnection: mongoose.connection,
+        mongoUrl: uri,
         touchAfter: 24 * 3600, //1 day in seconds
         secret: process.env.SESSION_STORE_SECRET,
 		//ttl: (7 * 24 * 60 * 60) //7 days, no need cookie maxAge is this is set, also need this as session cookie has no expiry

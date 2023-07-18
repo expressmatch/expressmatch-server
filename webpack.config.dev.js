@@ -49,7 +49,13 @@ module.exports = {
 	    	},
 	    	{
 	    		test: /\.(jpe?g|png|svg|gif|woff|woff2|eot|ttf)$/i,
-	    		loader: 'url-loader?name=[name].[ext]&limit=100000'
+				use: [{
+                    loader: 'url-loader',
+                    options: {
+                        name : '[name',
+                        limit: 100000
+                    }
+				}]
 	    	},
 	    	{
                 test: /\.(sa|sc|c)ss$/,
